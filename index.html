@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Taxi</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f2f2f2;
+    color: #222;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    padding: 15px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.resumen {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.dato {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.dato strong {
+    display: block;
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.lista {
+    margin-top: 10px;
+}
+
+.item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ganancia {
+    font-size: 26px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚕 Control Taxi</h1>
+    <p>Villa Guerrero ↔ Toluca</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📊 Resumen de hoy</h2>
+
+<div class="resumen">
+
+<div class="dato">
+Ingresos
+<strong id="ingresos">$0</strong>
+</div>
+
+<div class="dato">
+Gastos
+<strong id="gastos">$0</strong>
+</div>
+
+<div class="dato">
+Ganancia neta
+<strong id="ganancia">$0</strong>
+</div>
+
+<div class="dato">
+Pasajeros
+<strong id="pasajeros">0</strong>
+</div>
+
+</div>
+</div>
+
+
+<div class="card">
+<h2>🚕 Registrar viaje</h2>
+
+<label>¿Cuántos pasajeros?</label>
+
+<input type="number" id="numPasajeros" min="1" placeholder="Ejemplo: 5">
+
+<button onclick="registrarViaje()">
+Registrar viaje
+</button>
+
+<p>Tarifa actual: <strong>$80 por pasajero</strong></p>
+
+</div>
+
+
+<div class="card">
+<h2>💸 Registrar gasto</h2>
+
+<select id="tipoGasto">
+<option value="Gasolina">⛽ Gasolina</option>
+<option value="Caseta ida">🛣️ Caseta ida</option>
+<option value="Caseta regreso">🛣️ Caseta regreso</option>
+<option value="Otro">💰 Otro gasto</option>
+</select>
+
+<input type="number" id="montoGasto" placeholder="Monto del gasto">
+
+<button onclick="registrarGasto()">
+Registrar gasto
+</button>
+
+</div>
+
+
+<div class="card">
+<h2>📋 Historial de hoy</h2>
+
+<div id="historial" class="lista">
+No hay movimientos registrados.
+</div>
+
+</div>
+
+
+<div class="card">
+<h2>🔒 Cerrar día</h2>
+
+<button onclick="cerrarDia()">
+Cerrar día y ver resumen
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let ingresos = 0;
+let gastos = 0;
+let totalPasajeros = 0;
+
+let historial = [];
+
+const tarifa = 80;
+
+function actualizarPantalla() {
+
+document.getElementById("ingresos").innerText =
+"$" + ingresos.toFixed(2);
+
+document.getElementById("gastos").innerText =
+"$" + gastos.toFixed(2);
+
+document.getElementById("ganancia").innerText =
+"$" + (ingresos - gastos).toFixed(2);
+
+document.getElementById("pasajeros").innerText =
+totalPasajeros;
+
+let lista = document.getElementById("historial");
+
+if (historial.length === 0) {
+
+lista.innerHTML =
+"No hay movimientos registrados.";
+
+} else {
+
+lista.innerHTML = historial.map(item =>
+
+'<div class="item">' + item + '</div>'
+
+).join("");
+
+}
+
+}
+
+
+function registrarViaje() {
+
+let pasajeros =
+parseInt(document.getElementById("numPasajeros").value);
+
+if (!pasajeros || pasajeros < 1) {
+
+alert("Ingresa el número de pasajeros.");
+
+return;
+
+}
+
+let ingreso = pasajeros * tarifa;
+
+ingresos += ingreso;
+
+totalPasajeros += pasajeros;
+
+historial.push(
+"🚕 Viaje: " +
+pasajeros +
+" pasajeros = $" +
+ingreso
+);
+
+document.getElementById("numPasajeros").value = "";
+
+actualizarPantalla();
+
+}
+
+
+function registrarGasto() {
+
+let tipo =
+document.getElementById("tipoGasto").value;
+
+let monto =
+parseFloat(document.getElementById("montoGasto").value);
+
+if (!monto || monto <= 0) {
+
+alert("Ingresa un monto válido.");
+
+return;
+
+}
+
+gastos += monto;
+
+historial.push(
+"💸 " +
+tipo +
+": $" +
+monto.toFixed(2)
+);
+
+document.getElementById("montoGasto").value = "";
+
+actualizarPantalla();
+
+}
+
+
+function cerrarDia() {
+
+let ganancia =
+ingresos - gastos;
+
+alert(
+
+"RESUMEN DEL DÍA\n\n" +
+
+"Pasajeros: " +
+totalPasajeros +
+
+"\nIngresos: $" +
+ingresos.toFixed(2) +
+
+"\nGastos: $" +
+gastos.toFixed(2) +
+
+"\nGanancia neta: $" +
+ganancia.toFixed(2)
+
+);
+
+}
+
+</script>
+
+</body>
+</html>
