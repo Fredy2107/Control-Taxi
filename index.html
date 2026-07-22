@@ -3,98 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Control Taxi</title>
+<title>Taxi Pro</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background: #f2f2f2;
-    color: #222;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+    padding-bottom: 30px;
 }
 
 header {
-    background: #111;
+    background: linear-gradient(135deg, #111827, #374151);
     color: white;
-    padding: 20px;
+    padding: 28px 20px 24px;
     text-align: center;
+    border-radius: 0 0 24px 24px;
+}
+
+.logo {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.subtitulo {
+    margin-top: 6px;
+    opacity: 0.85;
+    font-size: 15px;
 }
 
 .container {
-    padding: 15px;
-    max-width: 600px;
+    width: 100%;
+    max-width: 650px;
     margin: auto;
+    padding: 16px;
 }
 
 .card {
     background: white;
-    padding: 18px;
-    margin-bottom: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
 }
 
-h2 {
-    margin-top: 0;
+.card h2 {
+    margin: 0 0 16px;
+    font-size: 20px;
+}
+
+.turno {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.estado {
+    font-weight: 700;
+    color: #6b7280;
+}
+
+.estado.activo {
+    color: #16a34a;
+}
+
+.btn {
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn-principal {
+    background: #111827;
+    color: white;
+}
+
+.btn-verde {
+    background: #16a34a;
+    color: white;
+}
+
+.btn-rojo {
+    background: #dc2626;
+    color: white;
+}
+
+.btn-secundario {
+    background: #e5e7eb;
+    color: #111827;
 }
 
 .resumen {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 12px;
 }
 
 .dato {
-    background: #fafafa;
-    padding: 15px;
-    border-radius: 10px;
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 16px;
     text-align: center;
 }
 
-.dato strong {
+.dato span {
     display: block;
-    font-size: 22px;
-    margin-top: 5px;
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 6px;
 }
 
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 8px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    background: #222;
-    color: white;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-.lista {
-    margin-top: 10px;
-}
-
-.item {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.dato strong {
+    font-size: 23px;
 }
 
 .ganancia {
-    font-size: 26px;
-    font-weight: bold;
+    color: #16a34a;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.info {
+    background: #f3f4f6;
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.vuelta {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 14px;
+    margin-top: 10px;
+    border-left: 4px solid #111827;
+}
+
+.movimiento {
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.movimiento:last-child {
+    border-bottom: none;
+}
+
+.vacio {
+    text-align: center;
+    color: #6b7280;
+    padding: 15px;
+}
+
+@media (max-width: 400px) {
+    .resumen {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
 </head>
@@ -102,89 +184,111 @@ button:active {
 <body>
 
 <header>
-    <h1>🚕 Control Taxi</h1>
-    <p>Villa Guerrero ↔ Toluca</p>
+    <div class="logo">🚕 Taxi Pro</div>
+    <div class="subtitulo">Villa Guerrero ↔ Toluca</div>
 </header>
 
 <div class="container">
 
 <div class="card">
-<h2>📊 Resumen de hoy</h2>
+    <div class="turno">
+        <div>
+            <h2>🕐 Mi turno</h2>
+            <div id="estadoTurno" class="estado">Turno no iniciado</div>
+        </div>
+    </div>
 
-<div class="resumen">
-
-<div class="dato">
-Ingresos
-<strong id="ingresos">$0</strong>
-</div>
-
-<div class="dato">
-Gastos
-<strong id="gastos">$0</strong>
-</div>
-
-<div class="dato">
-Ganancia neta
-<strong id="ganancia">$0</strong>
-</div>
-
-<div class="dato">
-Pasajeros
-<strong id="pasajeros">0</strong>
-</div>
-
-</div>
+    <button id="btnTurno" class="btn btn-verde" onclick="cambiarTurno()">
+        Iniciar turno
+    </button>
 </div>
 
 <div class="card">
-<h2>🚕 Registrar viaje</h2>
+    <h2>📊 Resumen del turno</h2>
 
-<label>¿Cuántos pasajeros?</label>
+    <div class="resumen">
 
-<input type="number" id="numPasajeros" min="1" placeholder="Ejemplo: 5">
+        <div class="dato">
+            <span>💰 Ingresos</span>
+            <strong id="ingresos">$0</strong>
+        </div>
 
-<button onclick="registrarViaje()">
-Registrar viaje
-</button>
+        <div class="dato">
+            <span>💸 Gastos</span>
+            <strong id="gastos">$0</strong>
+        </div>
 
-<p>Tarifa actual: <strong>$80 por pasajero</strong></p>
+        <div class="dato">
+            <span>📈 Ganancia neta</span>
+            <strong id="ganancia" class="ganancia">$0</strong>
+        </div>
 
+        <div class="dato">
+            <span>👥 Pasajeros</span>
+            <strong id="pasajeros">0</strong>
+        </div>
+
+        <div class="dato">
+            <span>🔄 Vueltas</span>
+            <strong id="vueltas">0</strong>
+        </div>
+
+        <div class="dato">
+            <span>🛣️ Casetas</span>
+            <strong id="casetas">$0</strong>
+        </div>
+
+    </div>
 </div>
 
 <div class="card">
-<h2>💸 Registrar gasto</h2>
+    <h2>🔄 Registrar vuelta completa</h2>
 
-<select id="tipoGasto">
-<option value="Gasolina">⛽ Gasolina</option>
-<option value="Caseta ida">🛣️ Caseta ida</option>
-<option value="Caseta regreso">🛣️ Caseta regreso</option>
-<option value="Otro">💰 Otro gasto</option>
-</select>
+    <label>¿Cuántos pasajeros llevaste?</label>
 
-<input type="number" id="montoGasto" placeholder="Monto del gasto">
+    <input
+        type="number"
+        id="numPasajeros"
+        min="1"
+        placeholder="Ejemplo: 5"
+    >
 
-<button onclick="registrarGasto()">
-Registrar gasto
-</button>
+    <button class="btn btn-principal" onclick="registrarVuelta()">
+        Registrar vuelta
+    </button>
 
+    <div class="info">
+        💵 Tarifa: $80 por pasajero<br>
+        🛣️ Casetas: $74 por vuelta completa
+    </div>
 </div>
 
 <div class="card">
-<h2>📋 Historial de hoy</h2>
+    <h2>💸 Registrar gasto</h2>
 
-<div id="historial" class="lista">
-No hay movimientos registrados.
-</div>
+    <select id="tipoGasto" style="width:100%;padding:14px;border:1px solid #d1d5db;border-radius:12px;font-size:16px;margin-bottom:10px;">
+        <option value="Gasolina">⛽ Gasolina</option>
+        <option value="Otro">💰 Otro gasto</option>
+    </select>
 
+    <input
+        type="number"
+        id="montoGasto"
+        min="1"
+        placeholder="Monto del gasto"
+    >
+
+    <button class="btn btn-secundario" onclick="registrarGasto()">
+        Registrar gasto
+    </button>
 </div>
 
 <div class="card">
-<h2>🔒 Cerrar día</h2>
+    <h2>📋 Movimientos del turno</h2>
 
-<button onclick="cerrarDia()">
-Cerrar día y ver resumen
-</button>
-
+    <div id="historial" class="vacio">
+        No hay movimientos registrados.
+    </div>
 </div>
 
 </div>
@@ -194,130 +298,232 @@ Cerrar día y ver resumen
 let ingresos = 0;
 let gastos = 0;
 let totalPasajeros = 0;
+let totalVueltas = 0;
+let totalCasetas = 0;
 
+let turnoActivo = false;
+let horaInicio = "";
 let historial = [];
 
 const tarifa = 80;
+const casetaPorVuelta = 74;
 
 function actualizarPantalla() {
 
-document.getElementById("ingresos").innerText =
-"$" + ingresos.toFixed(2);
+    document.getElementById("ingresos").innerText =
+        "$" + ingresos.toFixed(2);
 
-document.getElementById("gastos").innerText =
-"$" + gastos.toFixed(2);
+    document.getElementById("gastos").innerText =
+        "$" + gastos.toFixed(2);
 
-document.getElementById("ganancia").innerText =
-"$" + (ingresos - gastos).toFixed(2);
+    document.getElementById("ganancia").innerText =
+        "$" + (ingresos - gastos).toFixed(2);
 
-document.getElementById("pasajeros").innerText =
-totalPasajeros;
+    document.getElementById("pasajeros").innerText =
+        totalPasajeros;
 
-let lista = document.getElementById("historial");
+    document.getElementById("vueltas").innerText =
+        totalVueltas;
 
-if (historial.length === 0) {
+    document.getElementById("casetas").innerText =
+        "$" + totalCasetas.toFixed(2);
 
-lista.innerHTML =
-"No hay movimientos registrados.";
+    const lista = document.getElementById("historial");
 
-} else {
+    if (historial.length === 0) {
 
-lista.innerHTML = historial.map(item =>
+        lista.innerHTML =
+            "No hay movimientos registrados.";
 
-'<div class="item">' + item + '</div>'
+    } else {
 
-).join("");
+        lista.innerHTML = historial.map(item =>
+            '<div class="movimiento">' + item + '</div>'
+        ).join("");
 
+    }
 }
 
+function cambiarTurno() {
+
+    if (!turnoActivo) {
+
+        turnoActivo = true;
+
+        const ahora = new Date();
+
+        horaInicio =
+            ahora.toLocaleTimeString("es-MX", {
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+        document.getElementById("estadoTurno").innerText =
+            "Turno activo desde las " + horaInicio;
+
+        document.getElementById("estadoTurno")
+            .classList.add("activo");
+
+        document.getElementById("btnTurno").innerText =
+            "Finalizar turno";
+
+        document.getElementById("btnTurno")
+            .className = "btn btn-rojo";
+
+        historial.push(
+            "🟢 Turno iniciado a las " + horaInicio
+        );
+
+    } else {
+
+        finalizarTurno();
+
+    }
+
+    actualizarPantalla();
 }
 
-function registrarViaje() {
+function registrarVuelta() {
 
-let pasajeros =
-parseInt(document.getElementById("numPasajeros").value);
+    if (!turnoActivo) {
 
-if (!pasajeros || pasajeros < 1) {
+        alert("Primero debes iniciar tu turno.");
 
-alert("Ingresa el número de pasajeros.");
+        return;
+    }
 
-return;
+    let pasajeros =
+        parseInt(
+            document.getElementById("numPasajeros").value
+        );
 
-}
+    if (!pasajeros || pasajeros < 1) {
 
-let ingreso = pasajeros * tarifa;
+        alert("Ingresa el número de pasajeros.");
 
-ingresos += ingreso;
+        return;
+    }
 
-totalPasajeros += pasajeros;
+    let ingreso =
+        pasajeros * tarifa;
 
-historial.push(
-"🚕 Viaje: " +
-pasajeros +
-" pasajeros = $" +
-ingreso
-);
+    ingresos += ingreso;
 
-document.getElementById("numPasajeros").value = "";
+    totalPasajeros += pasajeros;
 
-actualizarPantalla();
+    totalVueltas++;
 
+    totalCasetas += casetaPorVuelta;
+
+    gastos += casetaPorVuelta;
+
+    historial.push(
+        "🔄 Vuelta " +
+        totalVueltas +
+        ": " +
+        pasajeros +
+        " pasajeros | " +
+        "Ingreso: $" +
+        ingreso.toFixed(2) +
+        " | Caseta: $" +
+        casetaPorVuelta.toFixed(2)
+    );
+
+    document.getElementById("numPasajeros").value = "";
+
+    actualizarPantalla();
 }
 
 function registrarGasto() {
 
-let tipo =
-document.getElementById("tipoGasto").value;
+    if (!turnoActivo) {
 
-let monto =
-parseFloat(document.getElementById("montoGasto").value);
+        alert("Primero debes iniciar tu turno.");
 
-if (!monto || monto <= 0) {
+        return;
+    }
 
-alert("Ingresa un monto válido.");
+    let tipo =
+        document.getElementById("tipoGasto").value;
 
-return;
+    let monto =
+        parseFloat(
+            document.getElementById("montoGasto").value
+        );
 
+    if (!monto || monto <= 0) {
+
+        alert("Ingresa un monto válido.");
+
+        return;
+    }
+
+    gastos += monto;
+
+    historial.push(
+        "💸 " +
+        tipo +
+        ": $" +
+        monto.toFixed(2)
+    );
+
+    document.getElementById("montoGasto").value = "";
+
+    actualizarPantalla();
 }
 
-gastos += monto;
+function finalizarTurno() {
 
-historial.push(
-"💸 " +
-tipo +
-": $" +
-monto.toFixed(2)
-);
+    const ahora = new Date();
 
-document.getElementById("montoGasto").value = "";
+    const horaSalida =
+        ahora.toLocaleTimeString("es-MX", {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
 
-actualizarPantalla();
+    const ganancia =
+        ingresos - gastos;
 
-}
+    alert(
+        "🚕 RESUMEN DEL TURNO\n\n" +
+        "Inicio: " +
+        horaInicio +
+        "\nSalida: " +
+        horaSalida +
+        "\n\n" +
+        "Vueltas: " +
+        totalVueltas +
+        "\nPasajeros: " +
+        totalPasajeros +
+        "\nIngresos: $" +
+        ingresos.toFixed(2) +
+        "\nGastos: $" +
+        gastos.toFixed(2) +
+        "\nGanancia neta: $" +
+        ganancia.toFixed(2)
+    );
 
-function cerrarDia() {
+    historial.push(
+        "🔴 Turno finalizado a las " +
+        horaSalida
+    );
 
-let ganancia =
-ingresos - gastos;
+    turnoActivo = false;
 
-alert(
+    document.getElementById("estadoTurno").innerText =
+        "Turno finalizado a las " + horaSalida;
 
-"RESUMEN DEL DÍA\n\n" +
+    document.getElementById("estadoTurno")
+        .classList.remove("activo");
 
-"Pasajeros: " +
-totalPasajeros +
+    document.getElementById("btnTurno").innerText =
+        "Iniciar nuevo turno";
 
-"\nIngresos: $" +
-ingresos.toFixed(2) +
+    document.getElementById("btnTurno")
+        .className = "btn btn-verde";
 
-"\nGastos: $" +
-gastos.toFixed(2) +
-
-"\nGanancia neta: $" +
-ganancia.toFixed(2)
-
-);
-
+    actualizarPantalla();
 }
 
 </script>
