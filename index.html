@@ -13,15 +13,16 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f2f4f7;
-    color: #222;
+    background: #f4f6f8;
+    color: #1f2937;
+    padding-bottom: 80px;
 }
 
 header {
     background: #111827;
     color: white;
+    padding: 22px 18px;
     text-align: center;
-    padding: 22px 15px;
 }
 
 header h1 {
@@ -42,58 +43,170 @@ header p {
 
 .card {
     background: white;
-    border-radius: 14px;
+    border-radius: 18px;
     padding: 18px;
     margin-bottom: 15px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
 }
 
 .card h2 {
-    margin-top: 0;
+    margin: 0 0 15px;
     font-size: 20px;
 }
 
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
-input {
-    width: 100%;
-    padding: 12px;
+.stat {
+    background: #f9fafb;
+    border-radius: 14px;
+    padding: 15px;
+}
+
+.stat span {
+    display: block;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.stat strong {
+    display: block;
+    font-size: 22px;
     margin-top: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin-top: 6px;
+    margin-bottom: 12px;
     border: 1px solid #d1d5db;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
+    background: white;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14px;
 }
 
 button {
     width: 100%;
     padding: 14px;
-    margin-top: 15px;
     border: none;
-    border-radius: 9px;
+    border-radius: 10px;
     background: #111827;
     color: white;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.resultado {
-    background: #f3f4f6;
-    border-radius: 10px;
-    padding: 12px;
-    margin-top: 10px;
+button.secondary {
+    background: #374151;
+}
+
+button.danger {
+    background: #991b1b;
 }
 
 .ganancia {
-    font-size: 25px;
-    font-weight: bold;
     text-align: center;
-    padding: 18px;
-    background: #e5e7eb;
+    background: #111827;
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.ganancia span {
+    display: block;
+    font-size: 14px;
+}
+
+.ganancia strong {
+    display: block;
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+.info {
+    background: #f3f4f6;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    box-shadow: 0 -3px 12px rgba(0,0,0,0.12);
+    z-index: 10;
+}
+
+.menu button {
+    background: white;
+    color: #374151;
+    border-radius: 0;
+    padding: 10px 3px;
+    font-size: 12px;
+}
+
+.menu button.active {
+    background: #111827;
+    color: white;
+}
+
+.seccion {
+    display: none;
+}
+
+.seccion.activa {
+    display: block;
+}
+
+.lista {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 10px;
+}
+
+.item {
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.item strong {
+    display: block;
+}
+
+.item small {
+    color: #6b7280;
+}
+
+.alerta {
+    background: #fff7ed;
     border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 450px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    header h1 {
+        font-size: 26px;
+    }
 }
 </style>
 </head>
@@ -102,91 +215,646 @@ button {
 
 <header>
     <h1>🚕 Taxi Pro</h1>
-    <p>Control de ingresos, gastos y ganancias</p>
+    <p>Control inteligente de tu taxi</p>
 </header>
 
 <div class="container">
 
+<!-- INICIO -->
+<section id="inicio" class="seccion activa">
+
 <div class="card">
-    <h2>🕐 Jornada</h2>
+    <h2>🏠 Resumen de hoy</h2>
+
+    <div class="dashboard">
+
+        <div class="stat">
+            <span>💰 Ingresos</span>
+            <strong id="inicioIngresos">$0</strong>
+        </div>
+
+        <div class="stat">
+            <span>💸 Gastos</span>
+            <strong id="inicioGastos">$0</strong>
+        </div>
+
+        <div class="stat">
+            <span>👥 Pasajeros</span>
+            <strong id="inicioPasajeros">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>🔄 Vueltas</span>
+            <strong id="inicioVueltas">0</strong>
+        </div>
+
+    </div>
+
+    <div class="ganancia">
+        <span>🟢 Ganancia real de hoy</span>
+        <strong id="inicioGanancia">$0</strong>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📅 Gastos programados</h2>
+
+    <div id="gastosProgramados">
+        No hay gastos programados para hoy.
+    </div>
+</div>
+
+</section>
+
+
+<!-- JORNADA -->
+<section id="jornada" class="seccion">
+
+<div class="card">
+    <h2>🚕 Mi jornada</h2>
+
+    <label>Fecha</label>
+    <input type="date" id="fecha">
 
     <label>Hora de inicio</label>
     <input type="time" id="horaInicio">
 
     <label>Hora de salida</label>
     <input type="time" id="horaSalida">
-</div>
 
-<div class="card">
-    <h2>💰 Ingresos</h2>
+    <label>Pasajeros de ida</label>
+    <input type="number" id="pasajerosIda" value="0" min="0">
 
-    <label>Número de pasajeros</label>
-    <input type="number" id="pasajeros" value="0" min="0">
+    <label>Pasajeros de regreso</label>
+    <input type="number" id="pasajerosRegreso" value="0" min="0">
+
+    <label>Vueltas completas (ida + regreso)</label>
+    <input type="number" id="vueltas" value="0" min="0">
+
+    <label>Idas adicionales</label>
+    <input type="number" id="idasAdicionales" value="0" min="0">
 
     <label>Precio por pasajero</label>
-    <input type="number" id="precio" value="80" min="0">
+    <input type="number" id="precioPasajero" value="80" min="0">
 
-    <div class="resultado">
-        Ingreso total: $<span id="ingreso">0.00</span>
+    <div class="info">
+        🛣️ Casetas calculadas automáticamente:
+        <strong id="casetasCalculadas">$0</strong>
     </div>
+
+    <button onclick="calcularJornada()">
+        📊 Calcular jornada
+    </button>
 </div>
 
-<div class="card">
-    <h2>💸 Gastos del día</h2>
 
-    <label>⛽ Gasolina</label>
+<div class="card">
+    <h2>⛽ Gastos de la jornada</h2>
+
+    <label>Gasolina</label>
     <input type="number" id="gasolina" value="0" min="0">
 
-    <label>🛣️ Casetas de ida</label>
-    <input type="number" id="casetaIda" value="37" min="0">
-
-    <label>🛣️ Casetas de regreso</label>
-    <input type="number" id="casetaRegreso" value="37" min="0">
-
-    <label>💵 Otros gastos</label>
+    <label>Otros gastos</label>
     <input type="number" id="otrosGastos" value="0" min="0">
 
-    <button onclick="calcular()">Calcular ganancia</button>
+    <button onclick="calcularJornada()">
+        💰 Actualizar ganancia
+    </button>
 </div>
 
 <div class="card">
-    <h2>📊 Resumen</h2>
 
-    <div class="resultado">
-        Ingresos: $<span id="resumenIngresos">0.00</span>
+    <h2>📊 Resultado</h2>
+
+    <div class="info">
+        💰 Ingresos: <strong id="resultadoIngresos">$0</strong>
     </div>
 
-    <div class="resultado">
-        Gastos: $<span id="resumenGastos">0.00</span>
+    <div class="info">
+        🛣️ Casetas: <strong id="resultadoCasetas">$0</strong>
+    </div>
+
+    <div class="info">
+        ⛽ Gasolina: <strong id="resultadoGasolina">$0</strong>
+    </div>
+
+    <div class="info">
+        💸 Otros gastos: <strong id="resultadoOtros">$0</strong>
     </div>
 
     <div class="ganancia">
-        Ganancia real: $<span id="ganancia">0.00</span>
+        <span>🟢 Ganancia real</span>
+        <strong id="resultadoGanancia">$0</strong>
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- GASTOS -->
+<section id="gastos" class="seccion">
+
+<div class="card">
+    <h2>💸 Gastos recurrentes</h2>
+
+    <div class="lista">
+
+        <div class="item">
+            <strong>🅿️ Estacionamiento Villa Guerrero — $220</strong>
+            <small>Día 29 de cada mes</small>
+        </div>
+
+        <div class="item">
+            <strong>🚦 Movilidad — $200</strong>
+            <small>Día 20 de cada mes</small>
+        </div>
+
+        <div class="item">
+            <strong>📝 Checadora — $300</strong>
+            <small>Cada viernes</small>
+        </div>
+
+        <div class="item">
+            <strong>📍 Metepec — $80</strong>
+            <small>Día 4 de cada mes</small>
+        </div>
+
+        <div class="item">
+            <strong>🅿️ Estacionamiento Toluca — $140</strong>
+            <small>Día 6 de cada mes</small>
+        </div>
+
+        <div class="item">
+            <strong>📌 Punto El Potrero — $120</strong>
+            <small>Cada semana</small>
+        </div>
+
     </div>
 </div>
 
+<div class="card">
+    <h2>📅 Gastos del día</h2>
+
+    <div id="gastosDelDia">
+        Los gastos recurrentes correspondientes aparecerán aquí.
+    </div>
 </div>
 
+</section>
+
+
+<!-- REPORTES -->
+<section id="reportes" class="seccion">
+
+<div class="card">
+    <h2>📊 Reportes</h2>
+
+    <div class="dashboard">
+
+        <div class="stat">
+            <span>Ingresos</span>
+            <strong>$0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Gastos</span>
+            <strong>$0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Ganancia</span>
+            <strong>$0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Jornadas</span>
+            <strong>0</strong>
+        </div>
+
+    </div>
+
+    <div class="alerta">
+        📈 Próximamente podrás consultar tus resultados diarios, semanales y mensuales.
+    </div>
+</div>
+
+</section>
+
+
+<!-- MANTENIMIENTO -->
+<section id="mantenimiento" class="seccion">
+
+<div class="card">
+    <h2>🔧 Mantenimiento del taxi</h2>
+
+    <label>Fecha del servicio</label>
+    <input type="date" id="fechaServicio">
+
+    <label>Tipo de servicio</label>
+    <input type="text" id="tipoServicio"
+    placeholder="Ej. Cambio de llantas">
+
+    <label>Kilometraje</label>
+    <input type="number" id="kilometraje"
+    placeholder="Ej. 102003">
+
+    <label>Costo</label>
+    <input type="number" id="costoServicio"
+    placeholder="$0">
+
+    <label>Descripción</label>
+    <input type="text" id="descripcionServicio"
+    placeholder="Detalles del servicio">
+
+    <button onclick="guardarServicio()">
+        🔧 Guardar servicio
+    </button>
+</div>
+
+<div class="card">
+    <h2>📋 Historial de mantenimiento</h2>
+
+    <div id="historialMantenimiento">
+        Aún no hay servicios registrados.
+    </div>
+</div>
+
+</section>
+
+</div>
+
+
+<!-- MENÚ -->
+<nav class="menu">
+
+<button class="active" onclick="mostrarSeccion('inicio', this)">
+🏠<br>Inicio
+</button>
+
+<button onclick="mostrarSeccion('jornada', this)">
+🚕<br>Jornada
+</button>
+
+<button onclick="mostrarSeccion('gastos', this)">
+💸<br>Gastos
+</button>
+
+<button onclick="mostrarSeccion('reportes', this)">
+📊<br>Reportes
+</button>
+
+<button onclick="mostrarSeccion('mantenimiento', this)">
+🔧<br>Servicio
+</button>
+
+</nav>
+
+
 <script>
-function calcular() {
 
-    const pasajeros = Number(document.getElementById("pasajeros").value) || 0;
-    const precio = Number(document.getElementById("precio").value) || 0;
+function mostrarSeccion(id, boton) {
 
-    const gasolina = Number(document.getElementById("gasolina").value) || 0;
-    const casetaIda = Number(document.getElementById("casetaIda").value) || 0;
-    const casetaRegreso = Number(document.getElementById("casetaRegreso").value) || 0;
-    const otrosGastos = Number(document.getElementById("otrosGastos").value) || 0;
+    document.querySelectorAll('.seccion')
+    .forEach(seccion => {
+        seccion.classList.remove('activa');
+    });
 
-    const ingresos = pasajeros * precio;
-    const gastos = gasolina + casetaIda + casetaRegreso + otrosGastos;
-    const ganancia = ingresos - gastos;
+    document.getElementById(id)
+    .classList.add('activa');
 
-    document.getElementById("ingreso").textContent = ingresos.toFixed(2);
-    document.getElementById("resumenIngresos").textContent = ingresos.toFixed(2);
-    document.getElementById("resumenGastos").textContent = gastos.toFixed(2);
-    document.getElementById("ganancia").textContent = ganancia.toFixed(2);
+    document.querySelectorAll('.menu button')
+    .forEach(btn => {
+        btn.classList.remove('active');
+    });
+
+    boton.classList.add('active');
 }
+
+
+function calcularJornada() {
+
+    const pasajerosIda =
+    Number(document.getElementById('pasajerosIda').value) || 0;
+
+    const pasajerosRegreso =
+    Number(document.getElementById('pasajerosRegreso').value) || 0;
+
+    const vueltas =
+    Number(document.getElementById('vueltas').value) || 0;
+
+    const idasAdicionales =
+    Number(document.getElementById('idasAdicionales').value) || 0;
+
+    const precio =
+    Number(document.getElementById('precioPasajero').value) || 0;
+
+    const gasolina =
+    Number(document.getElementById('gasolina').value) || 0;
+
+    const otros =
+    Number(document.getElementById('otrosGastos').value) || 0;
+
+
+    const pasajeros =
+    pasajerosIda + pasajerosRegreso;
+
+    const ingresos =
+    pasajeros * precio;
+
+
+    // $74 por vuelta completa
+    // $37 por ida adicional
+
+    const casetas =
+    (vueltas * 74) +
+    (idasAdicionales * 37);
+
+
+    const gastos =
+    casetas + gasolina + otros;
+
+
+    const ganancia =
+    ingresos - gastos;
+
+
+    document.getElementById('casetasCalculadas')
+    .textContent =
+    '$' + casetas.toFixed(2);
+
+    document.getElementById('resultadoIngresos')
+    .textContent =
+    '$' + ingresos.toFixed(2);
+
+    document.getElementById('resultadoCasetas')
+    .textContent =
+    '$' + casetas.toFixed(2);
+
+    document.getElementById('resultadoGasolina')
+    .textContent =
+    '$' + gasolina.toFixed(2);
+
+    document.getElementById('resultadoOtros')
+    .textContent =
+    '$' + otros.toFixed(2);
+
+    document.getElementById('resultadoGanancia')
+    .textContent =
+    '$' + ganancia.toFixed(2);
+
+
+    document.getElementById('inicioIngresos')
+    .textContent =
+    '$' + ingresos.toFixed(2);
+
+    document.getElementById('inicioGastos')
+    .textContent =
+    '$' + gastos.toFixed(2);
+
+    document.getElementById('inicioPasajeros')
+    .textContent =
+    pasajeros;
+
+    document.getElementById('inicioVueltas')
+    .textContent =
+    vueltas;
+
+    document.getElementById('inicioGanancia')
+    .textContent =
+    '$' + ganancia.toFixed(2);
+}
+
+
+function guardarServicio() {
+
+    const fecha =
+    document.getElementById('fechaServicio').value;
+
+    const tipo =
+    document.getElementById('tipoServicio').value;
+
+    const km =
+    document.getElementById('kilometraje').value;
+
+    const costo =
+    document.getElementById('costoServicio').value;
+
+    const descripcion =
+    document.getElementById('descripcionServicio').value;
+
+
+    if (!fecha || !tipo || !km) {
+
+        alert('Completa la fecha, tipo de servicio y kilometraje.');
+
+        return;
+    }
+
+
+    const historial =
+    JSON.parse(
+        localStorage.getItem('mantenimientoTaxi')
+    ) || [];
+
+
+    historial.push({
+
+        fecha: fecha,
+
+        tipo: tipo,
+
+        km: km,
+
+        costo: costo || 0,
+
+        descripcion: descripcion
+
+    });
+
+
+    localStorage.setItem(
+
+        'mantenimientoTaxi',
+
+        JSON.stringify(historial)
+
+    );
+
+
+    mostrarHistorial();
+
+
+    document.getElementById('fechaServicio').value = '';
+
+    document.getElementById('tipoServicio').value = '';
+
+    document.getElementById('kilometraje').value = '';
+
+    document.getElementById('costoServicio').value = '';
+
+    document.getElementById('descripcionServicio').value = '';
+
+}
+
+
+function mostrarHistorial() {
+
+    const historial =
+    JSON.parse(
+        localStorage.getItem('mantenimientoTaxi')
+    ) || [];
+
+
+    const contenedor =
+    document.getElementById(
+        'historialMantenimiento'
+    );
+
+
+    if (historial.length === 0) {
+
+        contenedor.innerHTML =
+        'Aún no hay servicios registrados.';
+
+        return;
+    }
+
+
+    contenedor.innerHTML =
+    historial.map(servicio => `
+
+        <div class="item">
+
+            <strong>
+            🔧 ${servicio.tipo}
+            </strong>
+
+            <small>
+            📅 ${servicio.fecha}
+            </small>
+
+            <br>
+
+            <small>
+            🚗 ${servicio.km} km
+            </small>
+
+            <br>
+
+            <small>
+            💰 $${servicio.costo}
+            </small>
+
+            <br>
+
+            <small>
+            ${servicio.descripcion || ''}
+            </small>
+
+        </div>
+
+    `).join('');
+
+}
+
+
+function cargarGastosDelDia() {
+
+    const fecha =
+    new Date();
+
+
+    const dia =
+    fecha.getDate();
+
+
+    const diaSemana =
+    fecha.getDay();
+
+
+    let gastos = [];
+
+
+    if (dia === 4) {
+
+        gastos.push(
+        '📍 Metepec — $80'
+        );
+
+    }
+
+
+    if (dia === 6) {
+
+        gastos.push(
+        '🅿️ Estacionamiento Toluca — $140'
+        );
+
+    }
+
+
+    if (dia === 20) {
+
+        gastos.push(
+        '🚦 Movilidad — $200'
+        );
+
+    }
+
+
+    if (dia === 29) {
+
+        gastos.push(
+        '🅿️ Estacionamiento Villa Guerrero — $220'
+        );
+
+    }
+
+
+    if (diaSemana === 5) {
+
+        gastos.push(
+        '📝 Checadora — $300'
+        );
+
+    }
+
+
+    gastos.push(
+    '📌 Punto El Potrero — $120'
+    );
+
+
+    const contenedor =
+    document.getElementById(
+        'gastosProgramados'
+    );
+
+
+    const contenedor2 =
+    document.getElementById(
+        'gastosDelDia'
+    );
+
+
+    if (gastos.length > 0) {
+
+        contenedor.innerHTML =
+        gastos.join('<br><br>');
+
+        contenedor2.innerHTML =
+        gastos.join('<br><br>');
+
+    }
+
+}
+
+
+mostrarHistorial();
+
+cargarGastosDelDia();
+
 </script>
 
 </body>
