@@ -2,222 +2,259 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taxi Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#111315">
+<title>Taxi Pro 3.0</title>
 <style>
+:root{
+    --yellow:#ffc400;
+    --yellow-light:#fff3b8;
+    --black:#111315;
+    --dark:#1a1d21;
+    --gray:#f4f5f7;
+    --text:#181a1d;
+    --muted:#858b92;
+    --green:#18a66a;
+    --red:#e5484d;
+    --blue:#3b82f6;
+    --white:#ffffff;
+    --border:#e7e8ea;
+    --shadow:0 8px 28px rgba(0,0,0,.07);
+}
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
-:root{
-    --amarillo:#ffc400;
-    --negro:#101214;
-    --gris:#f4f5f7;
-    --texto:#17191d;
-    --verde:#18a66a;
-    --rojo:#e5484d;
-}
 body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--gris);
-    color:var(--texto);
-    padding-bottom:95px;
+    background:var(--gray);
+    color:var(--text);
+    min-height:100vh;
+    padding-bottom:100px;
+}
+button,
+input,
+select{
+    font:inherit;
+}
+button{
+    cursor:pointer;
 }
 .app{
+    width:100%;
     max-width:520px;
     margin:auto;
     min-height:100vh;
 }
-/* =========================
-HEADER
-========================= */
-.header{
-    background:var(--negro);
+/* ========================================
+   PANTALLAS
+======================================== */
+.screen{
+    display:none;
+}
+.screen.active{
+    display:block;
+}
+/* ========================================
+   DASHBOARD HEADER
+======================================== */
+.dashboard-header{
+    background:var(--black);
     color:white;
-    padding:24px 20px 100px;
+    padding:20px 18px 95px;
     border-radius:0 0 35px 35px;
 }
-.header-top{
+.header-row{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
-.logo-area{
+.brand{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:11px;
 }
-.logo{
-    width:52px;
-    height:52px;
-    border-radius:17px;
-    background:var(--amarillo);
+.brand-logo{
+    width:50px;
+    height:50px;
+    border-radius:16px;
+    background:var(--yellow);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:28px;
+    font-size:26px;
 }
-.logo-title{
-    font-size:23px;
+.brand-name{
+    font-size:22px;
     font-weight:900;
 }
-.logo-subtitle{
+.brand-version{
+    color:#969ca3;
     font-size:9px;
-    color:#9da3aa;
-    letter-spacing:1.5px;
+    letter-spacing:1px;
     margin-top:3px;
 }
-.menu{
-    width:45px;
-    height:45px;
+.notification{
+    width:44px;
+    height:44px;
     border-radius:15px;
-    background:#202327;
+    background:#23262a;
     color:white;
+    border:0;
     font-size:20px;
 }
-.greeting{
-    margin-top:30px;
+.welcome{
+    margin-top:28px;
 }
-.greeting-small{
-    color:#9da3aa;
+.welcome-small{
+    color:#a0a6ad;
     font-size:13px;
 }
-.greeting-name{
-    font-size:30px;
+.welcome-name{
+    font-size:29px;
     font-weight:900;
     margin-top:3px;
 }
-.greeting-date{
-    color:#9da3aa;
+.welcome-date{
+    color:#8f969e;
     font-size:12px;
-    margin-top:6px;
+    margin-top:5px;
 }
-/* =========================
-MAIN
-========================= */
-.content{
-    margin-top:-65px;
-    padding:0 15px;
+/* ========================================
+   DASHBOARD CONTENT
+======================================== */
+.dashboard-content{
+    margin-top:-62px;
+    padding:0 14px;
 }
-/* GANANCIA */
+/* Ganancia */
 .profit-card{
-    background:var(--amarillo);
-    border-radius:28px;
-    padding:24px;
-    box-shadow:0 15px 35px rgba(0,0,0,.16);
+    background:var(--yellow);
+    border-radius:29px;
+    padding:22px;
+    box-shadow:0 18px 40px rgba(0,0,0,.16);
 }
-.profit-header{
+.profit-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
-.profit-title{
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:1px;
-    color:#5d4e00;
-}
-.today{
-    background:rgba(255,255,255,.4);
-    padding:7px 12px;
-    border-radius:20px;
+.profit-label{
+    color:#5b4d00;
     font-size:10px;
     font-weight:900;
+    letter-spacing:1px;
 }
-.profit-value{
-    font-size:45px;
+.day-badge{
+    background:rgba(255,255,255,.45);
+    color:#4f4300;
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:900;
+}
+.profit-amount{
+    font-size:46px;
+    line-height:1;
     font-weight:950;
-    margin-top:12px;
     letter-spacing:-2px;
-}
-.profit-description{
-    color:#625400;
-    font-size:11px;
-}
-/* =========================
-STATS
-========================= */
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
     margin-top:14px;
 }
-.stat{
+.profit-detail{
+    color:#655700;
+    font-size:11px;
+    margin-top:7px;
+}
+/* Mini stats */
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:11px;
+    margin-top:13px;
+}
+.stat-card{
     background:white;
-    padding:18px;
     border-radius:23px;
-    box-shadow:0 7px 20px rgba(0,0,0,.05);
+    padding:17px;
+    box-shadow:var(--shadow);
 }
 .stat-icon{
-    font-size:23px;
+    width:39px;
+    height:39px;
+    border-radius:13px;
+    background:#f2f3f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
 }
 .stat-label{
-    color:#858b92;
-    font-size:11px;
+    color:var(--muted);
+    font-size:10px;
     margin-top:10px;
 }
 .stat-value{
-    font-size:23px;
+    font-size:22px;
     font-weight:900;
-    margin-top:3px;
+    margin-top:2px;
 }
-/* =========================
-JORNADA
-========================= */
-.start-work{
-    width:100%;
-    margin-top:14px;
-    padding:16px;
-    border-radius:23px;
-    background:var(--negro);
+/* Estado jornada */
+.shift-card{
+    margin-top:13px;
+    background:var(--black);
     color:white;
+    border-radius:24px;
+    padding:17px;
+}
+.shift-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
-.start-left{
+.shift-status{
     display:flex;
     align-items:center;
-    gap:13px;
+    gap:9px;
 }
-.start-icon{
-    width:48px;
-    height:48px;
-    background:var(--amarillo);
-    color:#111;
-    border-radius:15px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:23px;
+.status-dot{
+    width:10px;
+    height:10px;
+    background:#777;
+    border-radius:50%;
 }
-.start-title{
-    text-align:left;
-    font-size:14px;
+.status-dot.active{
+    background:#28d17c;
+    box-shadow:0 0 0 5px rgba(40,209,124,.12);
+}
+.shift-status-text{
+    font-size:12px;
     font-weight:900;
 }
-.start-subtitle{
-    text-align:left;
-    color:#969ca3;
-    font-size:10px;
-    margin-top:4px;
+.shift-time{
+    color:#999fa6;
+    font-size:11px;
 }
-.arrow{
-    font-size:28px;
-    color:var(--amarillo);
+.shift-button{
+    width:100%;
+    height:47px;
+    border:0;
+    border-radius:14px;
+    background:var(--yellow);
+    color:#111;
+    font-weight:900;
+    margin-top:14px;
 }
-/* =========================
-SECTIONS
-========================= */
+/* ========================================
+   SECTION
+======================================== */
 .section{
-    margin-top:28px;
+    margin-top:27px;
 }
-.section-header{
+.section-head{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
     margin-bottom:12px;
 }
 .section-title{
@@ -225,256 +262,534 @@ SECTIONS
     font-weight:900;
 }
 .section-link{
-    color:#8a9097;
+    border:0;
+    background:transparent;
+    color:#7c8289;
     font-size:11px;
 }
-/* =========================
-QUICK ACTIONS
-========================= */
-.actions{
+/* Acciones */
+.actions-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:9px;
+    gap:8px;
 }
-.action{
+.action-card{
     border:0;
     background:white;
     border-radius:20px;
-    padding:16px 4px;
-    box-shadow:0 7px 20px rgba(0,0,0,.05);
+    padding:15px 4px;
+    box-shadow:var(--shadow);
 }
 .action-icon{
-    font-size:23px;
+    font-size:22px;
 }
 .action-name{
-    font-size:10px;
+    font-size:9px;
     font-weight:900;
-    margin-top:8px;
+    margin-top:7px;
 }
-/* =========================
-RESUMEN
-========================= */
-.summary{
+/* Próximos pagos */
+.payment-card{
     background:white;
     border-radius:24px;
-    padding:4px 18px;
-    box-shadow:0 7px 20px rgba(0,0,0,.05);
+    box-shadow:var(--shadow);
+    overflow:hidden;
 }
-.summary-row{
+.payment{
     display:flex;
-    justify-content:space-between;
-    padding:16px 0;
-    border-bottom:1px solid #eeeeee;
-    font-size:13px;
+    align-items:center;
+    gap:12px;
+    padding:15px 17px;
+    border-bottom:1px solid var(--border);
 }
-.summary-row:last-child{
+.payment:last-child{
     border-bottom:0;
 }
-.summary-row span{
-    color:#858b92;
+.payment-date{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:var(--yellow-light);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
 }
-.summary-row strong{
+.payment-day{
+    font-size:16px;
+    font-weight:900;
+    line-height:1;
+}
+.payment-month{
+    font-size:8px;
+    text-transform:uppercase;
+}
+.payment-info{
+    flex:1;
+}
+.payment-name{
+    font-size:12px;
+    font-weight:800;
+}
+.payment-type{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:3px;
+}
+.payment-amount{
+    font-size:12px;
     font-weight:900;
 }
-/* =========================
-MANTENIMIENTO
-========================= */
-.maintenance{
-    background:var(--negro);
+/* Mantenimiento */
+.maintenance-card{
+    background:var(--black);
     color:white;
     border-radius:25px;
-    padding:20px;
+    padding:19px;
 }
-.maintenance-top{
+.maintenance-title-row{
     display:flex;
     align-items:center;
     gap:12px;
 }
 .maintenance-icon{
-    width:47px;
-    height:47px;
-    background:var(--amarillo);
+    width:46px;
+    height:46px;
+    background:var(--yellow);
     color:#111;
-    border-radius:15px;
+    border-radius:14px;
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:22px;
+    justify-content:center;
+    font-size:21px;
 }
 .maintenance-title{
-    font-weight:900;
     font-size:14px;
+    font-weight:900;
 }
 .maintenance-sub{
     color:#969ca3;
     font-size:10px;
-    margin-top:4px;
+    margin-top:3px;
 }
-.maintenance-data{
+.maintenance-progress{
+    margin-top:18px;
+}
+.progress-info{
     display:flex;
     justify-content:space-between;
-    border-top:1px solid #2c3035;
-    margin-top:18px;
-    padding-top:16px;
-}
-.maintenance-data div{
     color:#969ca3;
     font-size:10px;
 }
-.maintenance-data strong{
-    display:block;
-    color:white;
-    font-size:14px;
-    margin-top:5px;
+.progress-bar{
+    height:8px;
+    background:#2b2f34;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:8px;
 }
-/* =========================
-GASTOS
-========================= */
-.expenses{
-    background:white;
-    border-radius:24px;
-    padding:5px 18px;
-    box-shadow:0 7px 20px rgba(0,0,0,.05);
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:var(--yellow);
+    border-radius:10px;
 }
-.expense{
+.maintenance-km{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    padding:15px 0;
-    border-bottom:1px solid #eeeeee;
+    margin-top:15px;
 }
-.expense:last-child{
-    border-bottom:0;
+.maintenance-km div{
+    color:#969ca3;
+    font-size:9px;
 }
-.expense-name{
-    font-size:12px;
-    font-weight:800;
-}
-.expense-type{
-    color:#92989f;
-    font-size:10px;
+.maintenance-km strong{
+    display:block;
+    color:white;
+    font-size:13px;
     margin-top:4px;
 }
-.expense-value{
-    font-size:13px;
-    font-weight:900;
-}
-/* =========================
-PANTALLAS INTERNAS
-========================= */
-.screen{
-    display:none;
-}
-.screen.active{
-    display:block;
-}
+/* ========================================
+   PÁGINAS INTERNAS
+======================================== */
 .page-header{
-    background:var(--negro);
+    background:var(--black);
     color:white;
-    padding:25px 20px 45px;
+    padding:24px 18px 48px;
     border-radius:0 0 32px 32px;
 }
+.page-header-row{
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+.back-button{
+    width:43px;
+    height:43px;
+    border:0;
+    border-radius:14px;
+    background:#24272b;
+    color:white;
+    font-size:22px;
+}
 .page-header h1{
-    font-size:27px;
+    font-size:26px;
     font-weight:900;
 }
 .page-header p{
     color:#969ca3;
-    font-size:12px;
+    font-size:11px;
     margin-top:5px;
 }
-.page-body{
-    padding:0 15px;
-    margin-top:-15px;
+.page-content{
+    margin-top:-17px;
+    padding:0 14px;
 }
+/* Card */
 .card{
     background:white;
     border-radius:24px;
-    padding:20px;
-    margin-bottom:14px;
-    box-shadow:0 7px 20px rgba(0,0,0,.05);
+    padding:19px;
+    box-shadow:var(--shadow);
+    margin-bottom:13px;
 }
-.card h2{
+.card-title{
     font-size:17px;
-    margin-bottom:18px;
+    font-weight:900;
+    margin-bottom:17px;
 }
-label{
+.form-group{
+    margin-bottom:13px;
+}
+.form-label{
     display:block;
-    color:#656b72;
-    font-size:11px;
+    color:#646a71;
+    font-size:10px;
     font-weight:800;
     margin-bottom:6px;
 }
-input,
-select{
+.form-input,
+.form-select{
     width:100%;
     height:48px;
-    border:1px solid #e1e3e6;
+    border:1px solid var(--border);
     border-radius:14px;
-    padding:0 13px;
-    margin-bottom:14px;
     background:#fafafa;
-    font-size:14px;
+    padding:0 13px;
+    outline:none;
 }
-.primary{
+.form-input:focus,
+.form-select:focus{
+    border-color:var(--yellow);
+}
+.primary-button{
     width:100%;
-    height:50px;
+    height:49px;
     border:0;
     border-radius:15px;
-    background:var(--negro);
+    background:var(--black);
     color:white;
     font-weight:900;
 }
-/* =========================
-NAVEGACIÓN
-========================= */
+.yellow-button{
+    width:100%;
+    height:49px;
+    border:0;
+    border-radius:15px;
+    background:var(--yellow);
+    color:#111;
+    font-weight:900;
+}
+/* ========================================
+   JORNADA
+======================================== */
+.journey-status{
+    background:var(--yellow);
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:13px;
+}
+.journey-status-title{
+    font-size:11px;
+    font-weight:900;
+}
+.journey-status-value{
+    font-size:27px;
+    font-weight:950;
+    margin-top:4px;
+}
+.journey-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.journey-data{
+    background:#f5f6f7;
+    border-radius:16px;
+    padding:14px;
+}
+.journey-data span{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+}
+.journey-data strong{
+    display:block;
+    font-size:17px;
+    margin-top:4px;
+}
+/* ========================================
+   FINANZAS
+======================================== */
+.finance-total{
+    background:var(--black);
+    color:white;
+    border-radius:25px;
+    padding:21px;
+    margin-bottom:13px;
+}
+.finance-total-label{
+    color:#999fa6;
+    font-size:10px;
+}
+.finance-total-value{
+    font-size:36px;
+    font-weight:950;
+    margin-top:6px;
+}
+.finance-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+.finance-row:last-child{
+    border-bottom:0;
+}
+.finance-row span{
+    color:var(--muted);
+    font-size:11px;
+}
+.finance-row strong{
+    font-size:12px;
+}
+/* ========================================
+   COMBUSTIBLE
+======================================== */
+.fuel-highlight{
+    background:var(--yellow);
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:13px;
+}
+.fuel-highlight-title{
+    color:#5b4d00;
+    font-size:10px;
+    font-weight:900;
+}
+.fuel-highlight-value{
+    font-size:32px;
+    font-weight:950;
+    margin-top:5px;
+}
+.fuel-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.fuel-stat{
+    background:#f5f6f7;
+    padding:15px;
+    border-radius:16px;
+}
+.fuel-stat span{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+}
+.fuel-stat strong{
+    display:block;
+    font-size:16px;
+    margin-top:4px;
+}
+/* ========================================
+   REPORTES
+======================================== */
+.period-selector{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:6px;
+    margin-bottom:14px;
+}
+.period-button{
+    height:38px;
+    border:0;
+    border-radius:12px;
+    background:white;
+    color:#777d84;
+    font-size:10px;
+    font-weight:900;
+}
+.period-button.active{
+    background:var(--black);
+    color:white;
+}
+.chart{
+    height:190px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    padding:20px 10px 5px;
+}
+.chart-column{
+    height:100%;
+    width:24px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+    gap:5px;
+}
+.chart-bar{
+    width:24px;
+    border-radius:8px 8px 4px 4px;
+    background:var(--yellow);
+    min-height:4px;
+}
+.chart-label{
+    font-size:8px;
+    color:var(--muted);
+}
+.report-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.report-box{
+    background:#f5f6f7;
+    border-radius:17px;
+    padding:15px;
+}
+.report-box span{
+    color:var(--muted);
+    font-size:9px;
+}
+.report-box strong{
+    display:block;
+    font-size:19px;
+    margin-top:5px;
+}
+/* ========================================
+   CONFIGURACIÓN
+======================================== */
+.setting-row{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px 0;
+    border-bottom:1px solid var(--border);
+}
+.setting-row:last-child{
+    border-bottom:0;
+}
+.setting-icon{
+    width:40px;
+    height:40px;
+    border-radius:13px;
+    background:#f2f3f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.setting-info{
+    flex:1;
+}
+.setting-title{
+    font-size:12px;
+    font-weight:800;
+}
+.setting-sub{
+    color:var(--muted);
+    font-size:9px;
+    margin-top:3px;
+}
+/* ========================================
+   NAVEGACIÓN
+======================================== */
 .bottom-nav{
     position:fixed;
     left:10px;
     right:10px;
     bottom:10px;
     max-width:500px;
+    height:75px;
     margin:auto;
-    height:74px;
-    background:var(--negro);
-    border-radius:25px;
+    background:var(--black);
+    border-radius:26px;
+    padding:5px;
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    padding:5px;
-    z-index:100;
-    box-shadow:0 15px 40px rgba(0,0,0,.3);
+    z-index:1000;
+    box-shadow:0 15px 45px rgba(0,0,0,.3);
 }
 .nav-button{
     border:0;
     background:transparent;
-    color:#777d85;
-    border-radius:19px;
+    color:#777e86;
+    border-radius:20px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     gap:4px;
-    font-size:9px;
+    font-size:8px;
     font-weight:900;
 }
 .nav-button.active{
-    background:var(--amarillo);
+    background:var(--yellow);
     color:#111;
 }
 .nav-icon{
-    font-size:21px;
+    font-size:20px;
 }
-/* =========================
-RESPONSIVE
-========================= */
+/* ========================================
+   TOAST
+======================================== */
+.toast{
+    position:fixed;
+    left:20px;
+    right:20px;
+    bottom:100px;
+    max-width:480px;
+    margin:auto;
+    background:var(--black);
+    color:white;
+    padding:15px 18px;
+    border-radius:16px;
+    font-size:12px;
+    font-weight:800;
+    text-align:center;
+    opacity:0;
+    transform:translateY(15px);
+    pointer-events:none;
+    transition:.3s;
+    z-index:2000;
+}
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+/* ========================================
+   RESPONSIVE
+======================================== */
 @media(max-width:360px){
-    .profit-value{
+    .profit-amount{
         font-size:39px;
     }
-    .greeting-name{
-        font-size:27px;
+    .welcome-name{
+        font-size:26px;
     }
-    .actions{
+    .actions-grid{
         gap:5px;
     }
 }
@@ -482,213 +797,168 @@ RESPONSIVE
 </head>
 <body>
 <div class="app">
-<!-- =========================
-INICIO / DASHBOARD
-========================= -->
-<section id="inicio" class="screen active">
-<header class="header">
-<div class="header-top">
-<div class="logo-area">
-<div class="logo">🚕</div>
+<!-- ========================================
+DASHBOARD
+======================================== -->
+<section id="dashboard" class="screen active">
+<header class="dashboard-header">
+<div class="header-row">
+<div class="brand">
+<div class="brand-logo">🚕</div>
 <div>
-<div class="logo-title">
-Taxi Pro
-</div>
-<div class="logo-subtitle">
-CONTROL INTELIGENTE DE TU TAXI
+<div class="brand-name">Taxi Pro</div>
+<div class="brand-version">VERSIÓN 3.0</div>
 </div>
 </div>
-</div>
-<button class="menu">
-☰
+<button class="notification" onclick="showToast('No tienes notificaciones pendientes')">
+🔔
 </button>
 </div>
-<div class="greeting">
-<div class="greeting-small" id="saludo">
+<div class="welcome">
+<div class="welcome-small" id="greeting">
 Buenos días
 </div>
-<div class="greeting-name">
+<div class="welcome-name">
 Fredy
 </div>
-<div class="greeting-date" id="fecha">
-Jueves 23 de julio de 2026
+<div class="welcome-date" id="currentDate">
+Cargando fecha...
 </div>
 </div>
 </header>
-<main class="content">
-<!-- GANANCIA REAL -->
+<main class="dashboard-content">
+<!-- Ganancia -->
 <div class="profit-card">
-<div class="profit-header">
-<div class="profit-title">
+<div class="profit-top">
+<div class="profit-label">
 GANANCIA REAL DE HOY
 </div>
-<div class="today">
+<div class="day-badge">
 HOY
 </div>
 </div>
-<div class="profit-value" id="ganancia">
+<div class="profit-amount" id="dashboardProfit">
 $0
 </div>
-<div class="profit-description">
-Ingresos menos todos los gastos del día
+<div class="profit-detail">
+Ingresos − gastos = ganancia real
 </div>
 </div>
-<!-- ESTADÍSTICAS -->
-<div class="stats">
-<div class="stat">
-<div class="stat-icon">
-💰
-</div>
+<!-- Estadísticas -->
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-icon">💰</div>
 <div class="stat-label">
 Ingresos
 </div>
-<div class="stat-value" id="ingresos">
+<div class="stat-value" id="dashboardIncome">
 $0
 </div>
 </div>
-<div class="stat">
-<div class="stat-icon">
-🧾
-</div>
+<div class="stat-card">
+<div class="stat-icon">🧾</div>
 <div class="stat-label">
 Gastos
 </div>
-<div class="stat-value" id="gastos">
-$0
+<div class="stat-value" id="dashboardExpenses">
+$500
 </div>
 </div>
-<div class="stat">
-<div class="stat-icon">
-👥
-</div>
+<div class="stat-card">
+<div class="stat-icon">👥</div>
 <div class="stat-label">
 Pasajeros
 </div>
-<div class="stat-value">
+<div class="stat-value" id="dashboardPassengers">
 0
 </div>
 </div>
-<div class="stat">
-<div class="stat-icon">
-🔄
-</div>
+<div class="stat-card">
+<div class="stat-icon">🛣️</div>
 <div class="stat-label">
 Recorridos
 </div>
-<div class="stat-value">
+<div class="stat-value" id="dashboardTrips">
 0
 </div>
 </div>
 </div>
-<!-- JORNADA -->
-<button class="start-work" onclick="showScreen('jornada')">
-<div class="start-left">
-<div class="start-icon">
-🚕
-</div>
-<div>
-<div class="start-title">
-Registrar jornada
-</div>
-<div class="start-subtitle">
-Hora · kilómetros · pasajeros · recorridos
+<!-- Jornada -->
+<div class="shift-card">
+<div class="shift-top">
+<div class="shift-status">
+<div class="status-dot" id="statusDot"></div>
+<div class="shift-status-text" id="shiftStatus">
+Jornada cerrada
 </div>
 </div>
+<div class="shift-time" id="shiftTime">
+--
 </div>
-<div class="arrow">
-›
 </div>
+<button class="shift-button" id="shiftButton" onclick="toggleShift()">
+INICIAR JORNADA
 </button>
-<!-- ACCIONES -->
+</div>
+<!-- Acciones -->
 <div class="section">
-<div class="section-header">
+<div class="section-head">
 <div class="section-title">
-Acciones rápidas
-</div>
-<div class="section-link">
-Taxi Pro
+¿Qué quieres hacer?
 </div>
 </div>
-<div class="actions">
-<button class="action" onclick="showScreen('finanzas')">
-<div class="action-icon">
-🧾
-</div>
+<div class="actions-grid">
+<button class="action-card" onclick="navigate('journey')">
+<div class="action-icon">🚕</div>
 <div class="action-name">
-Gastos
+Jornada
 </div>
 </button>
-<button class="action" onclick="showScreen('combustible')">
-<div class="action-icon">
-⛽
+<button class="action-card" onclick="navigate('finance')">
+<div class="action-icon">🧾</div>
+<div class="action-name">
+Gasto
 </div>
+</button>
+<button class="action-card" onclick="navigate('fuel')">
+<div class="action-icon">⛽</div>
 <div class="action-name">
 Gasolina
 </div>
 </button>
-<button class="action" onclick="showScreen('reportes')">
-<div class="action-icon">
-📊
-</div>
+<button class="action-card" onclick="navigate('vehicle')">
+<div class="action-icon">🔧</div>
 <div class="action-name">
-Reportes
-</div>
-</button>
-<button class="action" onclick="showScreen('vehiculo')">
-<div class="action-icon">
-🔧
-</div>
-<div class="action-name">
-Vehículo
+Servicio
 </div>
 </button>
 </div>
 </div>
-<!-- RESUMEN -->
+<!-- Próximos pagos -->
 <div class="section">
-<div class="section-header">
+<div class="section-head">
 <div class="section-title">
-Resumen de hoy
+Próximos pagos
 </div>
-<div class="section-link">
-Automático
+<button class="section-link" onclick="navigate('finance')">
+Ver todos
+</button>
 </div>
-</div>
-<div class="summary">
-<div class="summary-row">
-<span>Jornadas</span>
-<strong>0</strong>
-</div>
-<div class="summary-row">
-<span>Pasajeros</span>
-<strong>0</strong>
-</div>
-<div class="summary-row">
-<span>Ingresos</span>
-<strong>$0</strong>
-</div>
-<div class="summary-row">
-<span>Gastos</span>
-<strong>$0</strong>
-</div>
-<div class="summary-row">
-<span>Ganancia real</span>
-<strong>$0</strong>
+<div class="payment-card" id="upcomingPayments">
 </div>
 </div>
-</div>
-<!-- MANTENIMIENTO -->
+<!-- Mantenimiento -->
 <div class="section">
-<div class="section-header">
+<div class="section-head">
 <div class="section-title">
-Próximo mantenimiento
+Mantenimiento
 </div>
-<div class="section-link">
-Vehículo
+<button class="section-link" onclick="navigate('vehicle')">
+Ver vehículo
+</button>
 </div>
-</div>
-<div class="maintenance">
-<div class="maintenance-top">
+<div class="maintenance-card">
+<div class="maintenance-title-row">
 <div class="maintenance-icon">
 🔧
 </div>
@@ -697,302 +967,1228 @@ Vehículo
 Cambio de aceite
 </div>
 <div class="maintenance-sub">
-Servicio programado por kilometraje
+Próximo servicio programado
 </div>
 </div>
 </div>
-<div class="maintenance-data">
+<div class="maintenance-progress">
+<div class="progress-info">
+<span>Progreso</span>
+<span id="maintenanceRemaining">
+Faltan 10,000 km
+</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill" id="maintenanceProgress">
+</div>
+</div>
+</div>
+<div class="maintenance-km">
 <div>
-Último servicio
+Último
+<strong id="lastServiceKm">
+100,200 km
+</strong>
+</div>
+<div>
+Próximo
+<strong id="nextServiceKm">
+110,200 km
+</strong>
+</div>
+</div>
+</div>
+</div>
+</main>
+</section>
+<!-- ========================================
+JORNADA
+======================================== -->
+<section id="journey" class="screen">
+<header class="page-header">
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Jornada</h1>
+<p>Control de tu día de trabajo</p>
+</div>
+</div>
+</header>
+<main class="page-content">
+<div class="journey-status">
+<div class="journey-status-title">
+ESTADO ACTUAL
+</div>
+<div class="journey-status-value" id="journeyStatus">
+Jornada cerrada
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Datos de la jornada
+</div>
+<div class="form-group">
+<label class="form-label">
+Hora de inicio
+</label>
+<input class="form-input" type="time" id="startTime">
+</div>
+<div class="form-group">
+<label class="form-label">
+Hora de salida
+</label>
+<input class="form-input" type="time" id="endTime">
+</div>
+<div class="form-group">
+<label class="form-label">
+Kilometraje inicial
+</label>
+<input class="form-input" type="number" id="startKm" placeholder="Ejemplo: 100200">
+</div>
+<div class="form-group">
+<label class="form-label">
+Kilometraje final
+</label>
+<input class="form-input" type="number" id="endKm" placeholder="Ejemplo: 100450">
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Resultados
+</div>
+<div class="journey-grid">
+<div class="journey-data">
+<span>Pasajeros</span>
+<strong id="journeyPassengers">
+0
+</strong>
+</div>
+<div class="journey-data">
+<span>Recorridos</span>
+<strong id="journeyTrips">
+0
+</strong>
+</div>
+<div class="journey-data">
+<span>Km recorridos</span>
+<strong id="journeyKm">
+0 km
+</strong>
+</div>
+<div class="journey-data">
+<span>Ingresos</span>
+<strong id="journeyIncome">
+$0
+</strong>
+</div>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Registrar actividad
+</div>
+<div class="form-group">
+<label class="form-label">
+Pasajeros
+</label>
+<input class="form-input" type="number" id="inputPassengers" placeholder="Cantidad">
+</div>
+<div class="form-group">
+<label class="form-label">
+Recorridos
+</label>
+<input class="form-input" type="number" id="inputTrips" placeholder="Cantidad">
+</div>
+<button class="yellow-button" onclick="saveJourney()">
+GUARDAR JORNADA
+</button>
+</div>
+</main>
+</section>
+<!-- ========================================
+FINANZAS
+======================================== -->
+<section id="finance" class="screen">
+<header class="page-header">
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Finanzas</h1>
+<p>Ingresos, gastos y pagos</p>
+</div>
+</div>
+</header>
+<main class="page-content">
+<div class="finance-total">
+<div class="finance-total-label">
+GANANCIA REAL
+</div>
+<div class="finance-total-value" id="financeProfit">
+$0
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Resumen financiero
+</div>
+<div class="finance-row">
+<span>Ingresos del día</span>
+<strong id="financeIncome">$0</strong>
+</div>
+<div class="finance-row">
+<span>Gastos automáticos</span>
+<strong id="financeAutoExpenses">$500</strong>
+</div>
+<div class="finance-row">
+<span>Otros gastos</span>
+<strong>$0</strong>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Gastos programados
+</div>
+<div class="finance-row">
+<span>Pago de cuentas</span>
+<strong>$500 · Diario</strong>
+</div>
+<div class="finance-row">
+<span>Checadora</span>
+<strong>$300 · Semanal</strong>
+</div>
+<div class="finance-row">
+<span>Punto El Potrero</span>
+<strong>$120 · Cada 5 días</strong>
+</div>
+<div class="finance-row">
+<span>Movilidad</span>
+<strong>$200 · Día 20</strong>
+</div>
+<div class="finance-row">
+<span>Estacionamiento Villa Guerrero</span>
+<strong>$220 · Día 29</strong>
+</div>
+<div class="finance-row">
+<span>Metepec</span>
+<strong>$140 · Mensual</strong>
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Agregar gasto adicional
+</div>
+<div class="form-group">
+<label class="form-label">
+Concepto
+</label>
+<input class="form-input" id="expenseName" placeholder="Ejemplo: Lavado">
+</div>
+<div class="form-group">
+<label class="form-label">
+Cantidad
+</label>
+<input class="form-input" type="number" id="expenseAmount" placeholder="$0">
+</div>
+<button class="primary-button" onclick="addExpense()">
+REGISTRAR GASTO
+</button>
+</div>
+</main>
+</section>
+<!-- ========================================
+COMBUSTIBLE
+======================================== -->
+<section id="fuel" class="screen">
+<header class="page-header">
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Combustible</h1>
+<p>Control de gasolina</p>
+</div>
+</div>
+</header>
+<main class="page-content">
+<div class="fuel-highlight">
+<div class="fuel-highlight-title">
+GASTO DE COMBUSTIBLE
+</div>
+<div class="fuel-highlight-value" id="fuelTotal">
+$0
+</div>
+</div>
+<div class="card">
+<div class="card-title">
+Registrar carga
+</div>
+<div class="form-group">
+<label class="form-label">
+Litros
+</label>
+<input class="form-input" type="number" id="fuelLiters" placeholder="Ejemplo: 40">
+</div>
+<div class="form-group">
+<label class="form-label">
+Precio por litro
+</label>
+<input class="form-input" type="number" id="fuelPrice" placeholder="Ejemplo: 24">
+</div>
+<div class="form-group">
+<label class="form-label">
+Kilometraje actual
+</label>
+<input class="form-input" type="number" id="fuelKm" placeholder="Ejemplo: 100200">
+</div>
+<button class="yellow-button" onclick="saveFuel()">
+GUARDAR CARGA
+</button>
+</div>
+<div class="card">
+<div class="card-title">
+Rendimiento
+</div>
+<div class="fuel-grid">
+<div class="fuel-stat">
+<span>Litros acumulados</span>
+<strong id="fuelLitersTotal">0 L</strong>
+</div>
+<div class="fuel-stat">
+<span>Gasto acumulado</span>
+<strong id="fuelCostTotal">$0</strong>
+</div>
+<div class="fuel-stat">
+<span>Km registrados</span>
+<strong id="fuelKmTotal">0 km</strong>
+</div>
+<div class="fuel-stat">
+<span>Costo promedio</span>
+<strong id="fuelAverage">$0/L</strong>
+</div>
+</div>
+</div>
+</main>
+</section>
+<!-- ========================================
+REPORTES
+======================================== -->
+<section id="reports" class="screen">
+<header class="page-header">
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Reportes</h1>
+<p>Analiza el rendimiento de Taxi Pro</p>
+</div>
+</div>
+</header>
+<main class="page-content">
+<div class="period-selector">
+<button class="period-button active">
+Día
+</button>
+<button class="period-button">
+Semana
+</button>
+<button class="period-button">
+Mes
+</button>
+<button class="period-button">
+Año
+</button>
+</div>
+<div class="card">
+<div class="card-title">
+Ingresos y gastos
+</div>
+<div class="chart">
+<div class="chart-column">
+<div class="chart-bar" style="height:30%"></div>
+<div class="chart-label">L</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:55%"></div>
+<div class="chart-label">M</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:40%"></div>
+<div class="chart-label">M</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:70%"></div>
+<div class="chart-label">J</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:80%"></div>
+<div class="chart-label">V</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:65%"></div>
+<div class="chart-label">S</div>
+</div>
+<div class="chart-column">
+<div class="chart-bar" style="height:90%"></div>
+<div class="chart-label">D</div>
+</div>
+</div>
+</div>
+<div class="report-grid">
+<div class="report-box">
+<span>Ingresos</span>
+<strong id="reportIncome">
+$0
+</strong>
+</div>
+<div class="report-box">
+<span>Gastos</span>
+<strong id="reportExpenses">
+$500
+</strong>
+</div>
+<div class="report-box">
+<span>Ganancia</span>
+<strong id="reportProfit">
+$0
+</strong>
+</div>
+<div class="report-box">
+<span>Pasajeros</span>
+<strong id="reportPassengers">
+0
+</strong>
+</div>
+</div>
+</main>
+</section>
+<!-- ========================================
+VEHÍCULO
+======================================== -->
+<section id="vehicle" class="screen">
+<header class="page-header">
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Vehículo</h1>
+<p>Mantenimiento de tu taxi</p>
+</div>
+</div>
+</header>
+<main class="page-content">
+<div class="card">
+<div class="card-title">
+Kilometraje actual
+</div>
+<div class="form-group">
+<label class="form-label">
+Kilometraje
+</label>
+<input class="form-input" type="number" id="currentKm" value="100200">
+</div>
+<button class="yellow-button" onclick="updateVehicleKm()">
+ACTUALIZAR KILOMETRAJE
+</button>
+</div>
+<div class="card">
+<div class="card-title">
+Próximo servicio
+</div>
+<div class="finance-row">
+<span>Servicio</span>
+<strong>Cambio de aceite</strong>
+</div>
+<div class="finance-row">
+<span>Último servicio</span>
 <strong>100,200 km</strong>
 </div>
-<div>
-Próximo servicio
-<strong>110,200 km</strong>
+<div class="finance-row">
+<span>Intervalo</span>
+<strong>10,000 km</strong>
+</div>
+<div class="finance-row">
+<span>Próximo servicio</span>
+<strong id="vehicleNextKm">110,200 km</strong>
+</div>
+<div class="finance-row">
+<span>Faltan</span>
+<strong id="vehicleRemaining">10,000 km</strong>
 </div>
 </div>
-</div>
-</div>
-<!-- GASTOS AUTOMÁTICOS -->
-<div class="section">
-<div class="section-header">
-<div class="section-title">
-Gastos automáticos
-</div>
-<div class="section-link">
-Programados
-</div>
-</div>
-<div class="expenses">
-<div class="expense">
-<div>
-<div class="expense-name">
-Pago de cuentas del taxi
-</div>
-<div class="expense-type">
-Todos los días
-</div>
-</div>
-<div class="expense-value">
-$500
-</div>
-</div>
-<div class="expense">
-<div>
-<div class="expense-name">
-Punto El Potrero
-</div>
-<div class="expense-type">
-Cada 5 días
-</div>
-</div>
-<div class="expense-value">
-$120
-</div>
-</div>
-<div class="expense">
-<div>
-<div class="expense-name">
-Checadora
-</div>
-<div class="expense-type">
-Semanal
-</div>
-</div>
-<div class="expense-value">
-$300
-</div>
-</div>
-<div class="expense">
-<div>
-<div class="expense-name">
-Movilidad
-</div>
-<div class="expense-type">
-Mensual
-</div>
-</div>
-<div class="expense-value">
-$200
-</div>
-</div>
-</div>
-</div>
-</main>
-</section>
-<!-- =========================
-JORNADA
-========================= -->
-<section id="jornada" class="screen">
-<header class="page-header">
-<h1>🚕 Jornada</h1>
-<p>Registra tu día de trabajo</p>
-</header>
-<main class="page-body">
 <div class="card">
-<h2>Inicio de jornada</h2>
-<label>Hora de inicio</label>
-<input type="time">
-<label>Kilometraje inicial</label>
-<input type="number">
-<label>Pasajeros</label>
-<input type="number">
-<label>Recorridos</label>
-<input type="number">
-<button class="primary">
-Guardar jornada
+<div class="card-title">
+Registrar mantenimiento
+</div>
+<div class="form-group">
+<label class="form-label">
+Descripción
+</label>
+<input class="form-input" id="serviceDescription" placeholder="Ejemplo: Cambio de aceite">
+</div>
+<div class="form-group">
+<label class="form-label">
+Kilometraje
+</label>
+<input class="form-input" type="number" id="serviceKm" placeholder="100200">
+</div>
+<div class="form-group">
+<label class="form-label">
+Costo
+</label>
+<input class="form-input" type="number" id="serviceCost" placeholder="$0">
+</div>
+<button class="primary-button" onclick="saveService()">
+GUARDAR SERVICIO
 </button>
 </div>
 </main>
 </section>
-<!-- =========================
-FINANZAS
-========================= -->
-<section id="finanzas" class="screen">
+<!-- ========================================
+CONFIGURACIÓN
+======================================== -->
+<section id="settings" class="screen">
 <header class="page-header">
-<h1>🧾 Finanzas</h1>
-<p>Control de ingresos y gastos</p>
+<div class="page-header-row">
+<button class="back-button" onclick="navigate('dashboard')">
+‹
+</button>
+<div>
+<h1>Configuración</h1>
+<p>Personaliza Taxi Pro</p>
+</div>
+</div>
 </header>
-<main class="page-body">
+<main class="page-content">
 <div class="card">
-<h2>Gastos programados</h2>
-<div class="summary-row">
-<span>Pago de cuentas</span>
-<strong>$500 diario</strong>
+<div class="card-title">
+Información del taxi
 </div>
-<div class="summary-row">
-<span>Checadora</span>
-<strong>$300 semanal</strong>
+<div class="form-group">
+<label class="form-label">
+Nombre del conductor
+</label>
+<input class="form-input" value="Fredy">
 </div>
-<div class="summary-row">
-<span>Punto El Potrero</span>
-<strong>$120 cada 5 días</strong>
+<div class="form-group">
+<label class="form-label">
+Precio por pasajero
+</label>
+<input class="form-input" type="number" value="80">
 </div>
-<div class="summary-row">
-<span>Movilidad</span>
-<strong>$200 mensual</strong>
+<div class="form-group">
+<label class="form-label">
+Costo de caseta
+</label>
+<input class="form-input" type="number" value="37">
 </div>
-<div class="summary-row">
-<span>Estacionamiento Villa Guerrero</span>
-<strong>$220 día 29</strong>
-</div>
-<div class="summary-row">
-<span>Metepec</span>
-<strong>$140 mensual</strong>
-</div>
-</div>
-</main>
-</section>
-<!-- =========================
-COMBUSTIBLE
-========================= -->
-<section id="combustible" class="screen">
-<header class="page-header">
-<h1>⛽ Combustible</h1>
-<p>Control de gasolina y rendimiento</p>
-</header>
-<main class="page-body">
-<div class="card">
-<h2>Registrar carga</h2>
-<label>Litros</label>
-<input type="number">
-<label>Precio por litro</label>
-<input type="number">
-<label>Kilometraje</label>
-<input type="number">
-<button class="primary">
-Guardar carga
+<button class="yellow-button" onclick="showToast('Configuración guardada')">
+GUARDAR CONFIGURACIÓN
 </button>
 </div>
-</main>
-</section>
-<!-- =========================
-REPORTES
-========================= -->
-<section id="reportes" class="screen">
-<header class="page-header">
-<h1>📊 Reportes</h1>
-<p>Consulta el rendimiento de Taxi Pro</p>
-</header>
-<main class="page-body">
 <div class="card">
-<h2>Resumen</h2>
-<div class="summary-row">
-<span>Ingresos</span>
-<strong>$0</strong>
+<div class="card-title">
+Preferencias
 </div>
-<div class="summary-row">
-<span>Gastos</span>
-<strong>$0</strong>
+<div class="setting-row">
+<div class="setting-icon">💾</div>
+<div class="setting-info">
+<div class="setting-title">
+Datos guardados localmente
 </div>
-<div class="summary-row">
-<span>Ganancia real</span>
-<strong>$0</strong>
+<div class="setting-sub">
+La información permanece en este dispositivo
 </div>
 </div>
-</main>
-</section>
-<!-- =========================
-VEHÍCULO
-========================= -->
-<section id="vehiculo" class="screen">
-<header class="page-header">
-<h1>🔧 Vehículo</h1>
-<p>Control de mantenimiento</p>
-</header>
-<main class="page-body">
-<div class="card">
-<h2>Registrar mantenimiento</h2>
-<label>Servicio</label>
-<input type="text" placeholder="Ejemplo: Cambio de aceite">
-<label>Kilometraje actual</label>
-<input type="number" placeholder="100200">
-<label>Costo</label>
-<input type="number">
-<label>Próximo servicio cada km</label>
-<input type="number" value="10000">
-<button class="primary">
-Guardar servicio
-</button>
+</div>
+<div class="setting-row">
+<div class="setting-icon">🚕</div>
+<div class="setting-info">
+<div class="setting-title">
+Taxi Pro 3.0
+</div>
+<div class="setting-sub">
+Sistema de control de taxi
+</div>
+</div>
+</div>
 </div>
 </main>
 </section>
-<!-- =========================
+<!-- ========================================
 NAVEGACIÓN
-========================= -->
+======================================== -->
 <nav class="bottom-nav">
-<button class="nav-button active" onclick="showScreen('inicio',this)">
+<button class="nav-button active" data-screen="dashboard" onclick="navigate('dashboard',this)">
 <span class="nav-icon">⌂</span>
 Inicio
 </button>
-<button class="nav-button" onclick="showScreen('jornada',this)">
+<button class="nav-button" data-screen="journey" onclick="navigate('journey',this)">
 <span class="nav-icon">🚕</span>
 Jornada
 </button>
-<button class="nav-button" onclick="showScreen('finanzas',this)">
-<span class="nav-icon">🧾</span>
+<button class="nav-button" data-screen="finance" onclick="navigate('finance',this)">
+<span class="nav-icon">💰</span>
 Finanzas
 </button>
-<button class="nav-button" onclick="showScreen('reportes',this)">
+<button class="nav-button" data-screen="reports" onclick="navigate('reports',this)">
 <span class="nav-icon">📊</span>
 Reportes
 </button>
-<button class="nav-button" onclick="showScreen('vehiculo',this)">
+<button class="nav-button" data-screen="vehicle" onclick="navigate('vehicle',this)">
 <span class="nav-icon">🔧</span>
 Vehículo
 </button>
 </nav>
+<div class="toast" id="toast"></div>
 </div>
 <script>
-/* =========================
-CAMBIAR PANTALLA
-========================= */
-function showScreen(id,button){
-document
-.querySelectorAll(".screen")
-.forEach(function(screen){
-screen.classList.remove("active");
-});
-document
-.getElementById(id)
-.classList.add("active");
-if(button){
-document
-.querySelectorAll(".nav-button")
-.forEach(function(nav){
-nav.classList.remove("active");
-});
-button.classList.add("active");
-}
-window.scrollTo(0,0);
-}
-/* =========================
-FECHA AUTOMÁTICA
-========================= */
-const fechaActual = new Date();
-const opcionesFecha = {
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
+/* ========================================
+   DATOS
+======================================== */
+const state = {
+    income: 0,
+    passengers: 0,
+    trips: 0,
+    expenses: 500,
+    fuelTotal: 0,
+    fuelLiters: 0,
+    fuelKm: 0,
+    currentKm: 100200,
+    lastServiceKm: 100200,
+    serviceInterval: 10000,
+    shiftActive: false,
+    shiftStart: null
 };
-document.getElementById("fecha").textContent =
-fechaActual.toLocaleDateString(
-"es-MX",
-opcionesFecha
-);
-/* =========================
-SALUDO AUTOMÁTICO
-========================= */
-const hora = fechaActual.getHours();
-let saludo = "Buenos días";
-if(hora >= 12 && hora < 19){
-saludo = "Buenas tardes";
+/* ========================================
+   CARGAR DATOS
+======================================== */
+function loadData(){
+    const saved =
+    localStorage.getItem("taxiPro30");
+    if(saved){
+        Object.assign(
+            state,
+            JSON.parse(saved)
+        );
+    }
+    updateUI();
 }
-if(hora >= 19 || hora < 6){
-saludo = "Buenas noches";
+/* ========================================
+   GUARDAR DATOS
+======================================== */
+function saveData(){
+    localStorage.setItem(
+        "taxiPro30",
+        JSON.stringify(state)
+    );
 }
-document.getElementById("saludo").textContent = saludo;
+/* ========================================
+   NAVEGACIÓN
+======================================== */
+function navigate(screen,button){
+    document
+    .querySelectorAll(".screen")
+    .forEach(function(item){
+        item.classList.remove("active");
+    });
+    const target =
+    document.getElementById(screen);
+    if(target){
+        target.classList.add("active");
+    }
+    document
+    .querySelectorAll(".nav-button")
+    .forEach(function(item){
+        item.classList.remove("active");
+    });
+    const navButton =
+    button ||
+    document.querySelector(
+        '.nav-button[data-screen="'+screen+'"]'
+    );
+    if(navButton){
+        navButton.classList.add("active");
+    }
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+/* ========================================
+   SALUDO Y FECHA
+======================================== */
+function updateDate(){
+    const now =
+    new Date();
+    const dateText =
+    now.toLocaleDateString(
+        "es-MX",
+        {
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+    document
+    .getElementById("currentDate")
+    .textContent =
+    dateText;
+    let greeting =
+    "Buenos días";
+    const hour =
+    now.getHours();
+    if(hour >= 12 && hour < 19){
+        greeting =
+        "Buenas tardes";
+    }
+    if(hour >= 19 || hour < 6){
+        greeting =
+        "Buenas noches";
+    }
+    document
+    .getElementById("greeting")
+    .textContent =
+    greeting;
+}
+/* ========================================
+   ACTUALIZAR INTERFAZ
+======================================== */
+function updateUI(){
+    const profit =
+    state.income -
+    state.expenses;
+    document
+    .getElementById("dashboardProfit")
+    .textContent =
+    money(profit);
+    document
+    .getElementById("dashboardIncome")
+    .textContent =
+    money(state.income);
+    document
+    .getElementById("dashboardExpenses")
+    .textContent =
+    money(state.expenses);
+    document
+    .getElementById("dashboardPassengers")
+    .textContent =
+    state.passengers;
+    document
+    .getElementById("dashboardTrips")
+    .textContent =
+    state.trips;
+    document
+    .getElementById("financeProfit")
+    .textContent =
+    money(profit);
+    document
+    .getElementById("financeIncome")
+    .textContent =
+    money(state.income);
+    document
+    .getElementById("financeAutoExpenses")
+    .textContent =
+    money(500);
+    document
+    .getElementById("reportIncome")
+    .textContent =
+    money(state.income);
+    document
+    .getElementById("reportExpenses")
+    .textContent =
+    money(state.expenses);
+    document
+    .getElementById("reportProfit")
+    .textContent =
+    money(profit);
+    document
+    .getElementById("reportPassengers")
+    .textContent =
+    state.passengers;
+    updateShiftUI();
+    updateMaintenance();
+    updateFuel();
+    updatePayments();
+}
+/* ========================================
+   JORNADA
+======================================== */
+function toggleShift(){
+    state.shiftActive =
+    !state.shiftActive;
+    if(state.shiftActive){
+        const now =
+        new Date();
+        state.shiftStart =
+        now.toLocaleTimeString(
+            "es-MX",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+        document
+        .getElementById("startTime")
+        .value =
+        now.toTimeString()
+        .substring(0,5);
+        showToast(
+            "Jornada iniciada a las "+
+            state.shiftStart
+        );
+    }else{
+        showToast(
+            "Jornada finalizada"
+        );
+    }
+    saveData();
+    updateUI();
+}
+function updateShiftUI(){
+    const dot =
+    document
+    .getElementById("statusDot");
+    const status =
+    document
+    .getElementById("shiftStatus");
+    const button =
+    document
+    .getElementById("shiftButton");
+    const time =
+    document
+    .getElementById("shiftTime");
+    const journeyStatus =
+    document
+    .getElementById("journeyStatus");
+    if(state.shiftActive){
+        dot.classList.add("active");
+        status.textContent =
+        "Jornada activa";
+        journeyStatus.textContent =
+        "Jornada activa";
+        button.textContent =
+        "FINALIZAR JORNADA";
+        time.textContent =
+        state.shiftStart || "--";
+    }else{
+        dot.classList.remove("active");
+        status.textContent =
+        "Jornada cerrada";
+        journeyStatus.textContent =
+        "Jornada cerrada";
+        button.textContent =
+        "INICIAR JORNADA";
+        time.textContent =
+        "--";
+    }
+}
+/* ========================================
+   GUARDAR JORNADA
+======================================== */
+function saveJourney(){
+    const passengers =
+    Number(
+        document
+        .getElementById("inputPassengers")
+        .value
+    ) || 0;
+    const trips =
+    Number(
+        document
+        .getElementById("inputTrips")
+        .value
+    ) || 0;
+    const startKm =
+    Number(
+        document
+        .getElementById("startKm")
+        .value
+    ) || 0;
+    const endKm =
+    Number(
+        document
+        .getElementById("endKm")
+        .value
+    ) || 0;
+    state.passengers +=
+    passengers;
+    state.trips +=
+    trips;
+    state.income +=
+    passengers * 80;
+    if(startKm && endKm){
+        state.currentKm =
+        endKm;
+    }
+    document
+    .getElementById("journeyPassengers")
+    .textContent =
+    passengers;
+    document
+    .getElementById("journeyTrips")
+    .textContent =
+    trips;
+    document
+    .getElementById("journeyKm")
+    .textContent =
+    Math.max(
+        0,
+        endKm - startKm
+    )+" km";
+    document
+    .getElementById("journeyIncome")
+    .textContent =
+    money(
+        passengers * 80
+    );
+    saveData();
+    updateUI();
+    showToast(
+        "Jornada guardada correctamente"
+    );
+}
+/* ========================================
+   GASTO ADICIONAL
+======================================== */
+function addExpense(){
+    const name =
+    document
+    .getElementById("expenseName")
+    .value
+    .trim();
+    const amount =
+    Number(
+        document
+        .getElementById("expenseAmount")
+        .value
+    ) || 0;
+    if(!name || amount <= 0){
+        showToast(
+            "Escribe un concepto y una cantidad válida"
+        );
+        return;
+    }
+    state.expenses +=
+    amount;
+    saveData();
+    updateUI();
+    document
+    .getElementById("expenseName")
+    .value =
+    "";
+    document
+    .getElementById("expenseAmount")
+    .value =
+    "";
+    showToast(
+        "Gasto registrado"
+    );
+}
+/* ========================================
+   COMBUSTIBLE
+======================================== */
+function saveFuel(){
+    const liters =
+    Number(
+        document
+        .getElementById("fuelLiters")
+        .value
+    ) || 0;
+    const price =
+    Number(
+        document
+        .getElementById("fuelPrice")
+        .value
+    ) || 0;
+    const km =
+    Number(
+        document
+        .getElementById("fuelKm")
+        .value
+    ) || 0;
+    if(liters <= 0 || price <= 0){
+        showToast(
+            "Introduce litros y precio"
+        );
+        return;
+    }
+    state.fuelLiters +=
+    liters;
+    state.fuelTotal +=
+    liters * price;
+    if(km){
+        state.fuelKm =
+        km;
+        state.currentKm =
+        km;
+    }
+    state.expenses +=
+    liters * price;
+    saveData();
+    updateUI();
+    showToast(
+        "Carga de combustible guardada"
+    );
+}
+/* ========================================
+   COMBUSTIBLE UI
+======================================== */
+function updateFuel(){
+    document
+    .getElementById("fuelTotal")
+    .textContent =
+    money(state.fuelTotal);
+    document
+    .getElementById("fuelLitersTotal")
+    .textContent =
+    state.fuelLiters.toFixed(1)+" L";
+    document
+    .getElementById("fuelCostTotal")
+    .textContent =
+    money(state.fuelTotal);
+    document
+    .getElementById("fuelKmTotal")
+    .textContent =
+    state.fuelKm+
+    " km";
+    const average =
+    state.fuelLiters > 0
+    ?
+    state.fuelTotal /
+    state.fuelLiters
+    :
+    0;
+    document
+    .getElementById("fuelAverage")
+    .textContent =
+    "$"+
+    average.toFixed(2)+
+    "/L";
+}
+/* ========================================
+   MANTENIMIENTO
+======================================== */
+function updateMaintenance(){
+    const next =
+    state.lastServiceKm +
+    state.serviceInterval;
+    const remaining =
+    Math.max(
+        0,
+        next -
+        state.currentKm
+    );
+    const used =
+    Math.max(
+        0,
+        state.currentKm -
+        state.lastServiceKm
+    );
+    const percentage =
+    Math.min(
+        100,
+        (
+            used /
+            state.serviceInterval
+        ) * 100
+    );
+    document
+    .getElementById("lastServiceKm")
+    .textContent =
+    state.lastServiceKm+
+    " km";
+    document
+    .getElementById("nextServiceKm")
+    .textContent =
+    next+
+    " km";
+    document
+    .getElementById("vehicleNextKm")
+    .textContent =
+    next+
+    " km";
+    document
+    .getElementById("vehicleRemaining")
+    .textContent =
+    remaining+
+    " km";
+    document
+    .getElementById("maintenanceRemaining")
+    .textContent =
+    remaining > 0
+    ?
+    "Faltan "+
+    remaining+
+    " km"
+    :
+    "Servicio pendiente";
+    document
+    .getElementById("maintenanceProgress")
+    .style.width =
+    percentage+
+    "%";
+}
+/* ========================================
+   ACTUALIZAR KM
+======================================== */
+function updateVehicleKm(){
+    const km =
+    Number(
+        document
+        .getElementById("currentKm")
+        .value
+    ) || 0;
+    if(km <= 0){
+        showToast(
+            "Introduce un kilometraje válido"
+        );
+        return;
+    }
+    state.currentKm =
+    km;
+    saveData();
+    updateUI();
+    showToast(
+        "Kilometraje actualizado"
+    );
+}
+/* ========================================
+   SERVICIO
+======================================== */
+function saveService(){
+    const description =
+    document
+    .getElementById("serviceDescription")
+    .value
+    .trim();
+    const km =
+    Number(
+        document
+        .getElementById("serviceKm")
+        .value
+    ) || 0;
+    const cost =
+    Number(
+        document
+        .getElementById("serviceCost")
+        .value
+    ) || 0;
+    if(!description || !km){
+        showToast(
+            "Completa la información del servicio"
+        );
+        return;
+    }
+    state.lastServiceKm =
+    km;
+    state.currentKm =
+    km;
+    if(cost > 0){
+        state.expenses +=
+        cost;
+    }
+    saveData();
+    updateUI();
+    showToast(
+        "Mantenimiento registrado"
+    );
+}
+/* ========================================
+   PAGOS
+======================================== */
+function updatePayments(){
+    const container =
+    document
+    .getElementById("upcomingPayments");
+    const payments = [
+        {
+            day:"23",
+            month:"Jul",
+            name:"Pago de cuentas",
+            type:"Diario",
+            amount:"$500"
+        },
+        {
+            day:"28",
+            month:"Jul",
+            name:"Punto El Potrero",
+            type:"Cada 5 días",
+            amount:"$120"
+        },
+        {
+            day:"29",
+            month:"Jul",
+            name:"Estacionamiento Villa Guerrero",
+            type:"Mensual",
+            amount:"$220"
+        }
+    ];
+    container.innerHTML =
+    payments
+    .map(function(payment){
+        return `
+        <div class="payment">
+            <div class="payment-date">
+                <div class="payment-day">
+                    ${payment.day}
+                </div>
+                <div class="payment-month">
+                    ${payment.month}
+                </div>
+            </div>
+            <div class="payment-info">
+                <div class="payment-name">
+                    ${payment.name}
+                </div>
+                <div class="payment-type">
+                    ${payment.type}
+                </div>
+            </div>
+            <div class="payment-amount">
+                ${payment.amount}
+            </div>
+        </div>
+        `;
+    })
+    .join("");
+}
+/* ========================================
+   UTILIDADES
+======================================== */
+function money(value){
+    return new Intl.NumberFormat(
+        "es-MX",
+        {
+            style:"currency",
+            currency:"MXN",
+            maximumFractionDigits:0
+        }
+    ).format(value);
+}
+function showToast(message){
+    const toast =
+    document
+    .getElementById("toast");
+    toast.textContent =
+    message;
+    toast.classList.add("show");
+    setTimeout(function(){
+        toast.classList.remove("show");
+    },2500);
+}
+/* ========================================
+   INICIO
+======================================== */
+updateDate();
+loadData();
 </script>
 </body>
 </html>
