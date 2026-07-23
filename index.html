@@ -2,776 +2,270 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#111827">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Taxi Pro</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-:root{
-    --dark:#111827;
-    --dark2:#1f2937;
-    --yellow:#facc15;
-    --yellow2:#fde047;
-    --bg:#f3f4f6;
-    --card:#ffffff;
-    --text:#111827;
-    --muted:#6b7280;
-    --border:#e5e7eb;
-    --green:#16a34a;
-    --red:#dc2626;
-    --blue:#2563eb;
-}
-
 body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
-    padding-bottom:90px;
+    background:#f5f6f8;
+    color:#171717;
+    padding-bottom:95px;
 }
 
-button,
-input,
-select{
-    font:inherit;
-}
+/* =========================
+   ENCABEZADO
+========================= */
 
-button{
-    cursor:pointer;
-}
-
-.app-header{
-    background:var(--dark);
+.header{
+    background:#111111;
     color:white;
-    padding:20px 18px 25px;
-    border-radius:0 0 25px 25px;
+    padding:22px 20px 30px;
+    border-radius:0 0 30px 30px;
 }
 
-.brand{
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo-area{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
 .logo{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    background:var(--yellow);
+    width:50px;
+    height:50px;
+    border-radius:15px;
+    background:#facc15;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:28px;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
 .brand h1{
-    font-size:26px;
+    font-size:25px;
+    font-weight:800;
 }
 
 .brand p{
+    font-size:12px;
+    color:#a3a3a3;
     margin-top:3px;
-    font-size:13px;
-    opacity:.7;
 }
+
+.header-date{
+    margin-top:22px;
+}
+
+.header-date small{
+    color:#a3a3a3;
+}
+
+.header-date h2{
+    font-size:20px;
+    margin-top:5px;
+}
+
+
+/* =========================
+   CONTENEDOR
+========================= */
 
 .container{
-    width:100%;
     max-width:700px;
     margin:auto;
-    padding:15px;
+    padding:0 16px;
 }
 
-.section{
-    display:none;
-}
 
-.section.active{
-    display:block;
-}
+/* =========================
+   TARJETA GANANCIA
+========================= */
 
-.card{
-    background:var(--card);
-    border-radius:20px;
-    padding:18px;
-    margin-bottom:15px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-size:19px;
-    font-weight:800;
-    margin-bottom:15px;
-}
-
-.hero{
-    background:var(--dark);
-    color:white;
+.profit-card{
+    background:#facc15;
+    margin-top:-10px;
+    border-radius:25px;
     padding:22px;
-    border-radius:22px;
-    margin-bottom:15px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
-.hero small{
-    opacity:.7;
+.profit-card::after{
+    content:"🚕";
+    position:absolute;
+    right:-10px;
+    bottom:-25px;
+    font-size:100px;
+    opacity:.12;
 }
 
-.hero h2{
-    font-size:36px;
-    margin:8px 0 5px;
-}
-
-.hero p{
+.profit-label{
     font-size:13px;
-    opacity:.7;
+    font-weight:700;
+    color:#4b4300;
 }
 
-.stats-grid{
+.profit-value{
+    font-size:38px;
+    font-weight:900;
+    margin-top:5px;
+    color:#111111;
+}
+
+.profit-subtitle{
+    font-size:12px;
+    color:#5b5200;
+    margin-top:5px;
+}
+
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
+
+.stats{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:12px;
-    margin-bottom:15px;
+    margin-top:15px;
 }
 
 .stat{
     background:white;
-    border-radius:18px;
-    padding:17px;
-    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
 }
 
-.stat small{
-    color:var(--muted);
-    display:block;
+.stat-icon{
+    font-size:22px;
+    margin-bottom:10px;
 }
 
-.stat strong{
-    display:block;
-    margin-top:7px;
-    font-size:21px;
+.stat-label{
+    color:#737373;
+    font-size:12px;
 }
 
-.stat.green strong{
-    color:var(--green);
-}
-
-.stat.red strong{
-    color:var(--red);
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.form-group{
-    margin-bottom:13px;
-}
-
-.form-group.full{
-    grid-column:1/-1;
-}
-
-label{
-    display:block;
-    font-size:13px;
-    font-weight:700;
-    color:#4b5563;
-    margin-bottom:6px;
-}
-
-input,
-select{
-    width:100%;
-    border:1px solid #d1d5db;
-    border-radius:12px;
-    padding:12px;
-    background:white;
-    color:var(--text);
-    outline:none;
-}
-
-input:focus,
-select:focus{
-    border-color:var(--dark);
-}
-
-.btn{
-    width:100%;
-    border:none;
-    border-radius:13px;
-    padding:13px;
+.stat-value{
+    font-size:22px;
     font-weight:800;
     margin-top:5px;
 }
 
-.btn-primary{
-    background:var(--dark);
-    color:white;
-}
 
-.btn-yellow{
-    background:var(--yellow);
-    color:var(--dark);
-}
+/* =========================
+   SECCIÓN
+========================= */
 
-.btn-green{
-    background:var(--green);
-    color:white;
-}
-
-.btn-red{
-    background:var(--red);
-    color:white;
-}
-
-.btn-light{
-    background:#e5e7eb;
-    color:var(--dark);
-}
-
-.button-row{
-    display:flex;
-    gap:9px;
-}
-
-.button-row .btn{
-    flex:1;
-}
-
-.trip{
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:15px;
-    margin-bottom:12px;
-    background:#fafafa;
-}
-
-.trip-top{
+.section-title{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    margin-bottom:12px;
+    margin:25px 3px 12px;
 }
 
-.trip-title{
-    font-weight:800;
+.section-title h3{
+    font-size:19px;
 }
 
-.trip-badge{
+.section-title span{
     font-size:12px;
-    background:#e5e7eb;
-    padding:5px 8px;
-    border-radius:8px;
+    color:#737373;
 }
-
-.trip-delete{
-    background:var(--red);
-    color:white;
-    border:none;
-    border-radius:9px;
-    padding:7px 10px;
-    font-size:12px;
-}
-
-.notice{
-    background:#f9fafb;
-    border-radius:13px;
-    padding:13px;
-    font-size:14px;
-    color:#4b5563;
-}
-
-.expense-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid var(--border);
-}
-
-.expense-item:last-child{
-    border-bottom:none;
-}
-
-.expense-name{
-    font-weight:700;
-}
-
-.expense-rule{
-    font-size:12px;
-    color:var(--muted);
-    margin-top:3px;
-}
-
-.expense-amount{
-    font-weight:800;
-}
-
-.table-wrap{
-    width:100%;
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:500px;
-}
-
-th,
-td{
-    padding:11px 8px;
-    border-bottom:1px solid var(--border);
-    text-align:left;
-    font-size:13px;
-}
-
-th{
-    color:var(--muted);
-}
-
-.empty{
-    text-align:center;
-    color:var(--muted);
-    padding:20px 10px;
-}
-
-.positive{
-    color:var(--green);
-    font-weight:800;
-}
-
-.negative{
-    color:var(--red);
-    font-weight:800;
-}
-
-.bottom-nav{
-    position:fixed;
-    left:0;
-    right:0;
-    bottom:0;
-    height:76px;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-around;
-    box-shadow:0 -4px 18px rgba(0,0,0,.1);
-    z-index:100;
-}
-
-.nav-btn{
-    border:none;
-    background:none;
-    color:#6b7280;
-    font-size:10px;
-    font-weight:700;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-}
-
-.nav-btn span{
-    font-size:22px;
-}
-
-.nav-btn.active{
-    color:var(--dark);
-}
-
-.toast{
-    position:fixed;
-    left:15px;
-    right:15px;
-    bottom:90px;
-    background:var(--dark);
-    color:white;
-    padding:14px;
-    border-radius:13px;
-    text-align:center;
-    display:none;
-    z-index:200;
-}
-
-@media(max-width:450px){
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
-
-    .hero h2{
-        font-size:32px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<header class="app-header">
-    <div class="brand">
-        <div class="logo">🚕</div>
-        <div>
-            <h1>Taxi Pro</h1>
-            <p>Control inteligente de tu taxi</p>
-        </div>
-    </div>
-</header>
-
-<main class="container">
-
-<!-- INICIO -->
-<section id="inicio" class="section active">
-
-    <div class="hero">
-        <small>Ganancia real del día</small>
-        <h2 id="homeGanancia">$0.00</h2>
-        <p id="homeFecha"></p>
-    </div>
-
-    <div class="stats-grid">
-
-        <div class="stat">
-            <small>💰 Ingresos</small>
-            <strong id="homeIngresos">$0.00</strong>
-        </div>
-
-        <div class="stat red">
-            <small>🧾 Gastos</small>
-            <strong id="homeGastos">$0.00</strong>
-        </div>
-
-        <div class="stat">
-            <small>👥 Pasajeros</small>
-            <strong id="homePasajeros">0</strong>
-        </div>
-
-        <div class="stat">
-            <small>🔄 Vueltas</small>
-            <strong id="homeVueltas">0</strong>
-        </div>
-
-    </div>
-
-    <div class="card">
-        <div class="card-title">📅 Resumen de hoy</div>
-        <div id="homeResumen" class="notice">
-            Registra una jornada para comenzar.
-        </div>
-    </div>
-
-</section>
-
-
-<!-- JORNADA -->
-<section id="jornada" class="section">
-
-    <div class="card">
-
-        <div class="card-title">🕐 Jornada de trabajo</div>
-
-        <div class="form-grid">
-
-            <div class="form-group">
-                <label>Fecha</label>
-                <input type="date" id="fecha">
-            </div>
-
-            <div class="form-group">
-                <label>Hora de inicio</label>
-                <input type="time" id="horaInicio">
-            </div>
-
-            <div class="form-group">
-                <label>Hora de salida</label>
-                <input type="time" id="horaSalida">
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">🔄 Vueltas del día</div>
-
-        <div id="listaVueltas"></div>
-
-        <button class="btn btn-yellow" onclick="agregarVuelta()">
-            ➕ Agregar vuelta
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">⛽ Gasolina</div>
-
-        <div class="form-group">
-            <label>Gasto de gasolina</label>
-            <input type="number" id="gasolina" min="0" step="1" placeholder="$0.00">
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">📊 Resultado</div>
-
-        <div class="stats-grid">
-
-            <div class="stat">
-                <small>Ingresos</small>
-                <strong id="jIngresos">$0.00</strong>
-            </div>
-
-            <div class="stat">
-                <small>Casetas</small>
-                <strong id="jCasetas">$0.00</strong>
-            </div>
-
-            <div class="stat">
-                <small>Gastos recurrentes</small>
-                <strong id="jRecurrentes">$0.00</strong>
-            </div>
-
-            <div class="stat green">
-                <small>Ganancia real</small>
-                <strong id="jGanancia">$0.00</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <button class="btn btn-primary" onclick="guardarJornada()">
-        💾 Guardar jornada
-    </button>
-
-</section>
-
-
-<!-- GASTOS -->
-<section id="gastos" class="section">
-
-    <div class="card">
-
-        <div class="card-title">🧾 Gastos recurrentes</div>
-
-        <div class="notice" style="margin-bottom:12px;">
-            Los gastos se aplican automáticamente solamente en las fechas que corresponden.
-        </div>
-
-        <div id="listaRecurrentes"></div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">📅 Consultar gastos por fecha</div>
-
-        <div class="form-group">
-            <label>Selecciona una fecha</label>
-            <input type="date" id="fechaConsultaGasto">
-        </div>
-
-        <div id="consultaGasto"></div>
-
-    </div>
-
-</section>
-
-
-<!-- REPORTES -->
-<section id="reportes" class="section">
-
-    <div class="card">
-
-        <div class="card-title">📊 Reportes</div>
-
-        <div class="form-group">
-            <label>Periodo</label>
-
-            <select id="periodoReporte">
-                <option value="dia">Hoy</option>
-                <option value="semana">Esta semana</option>
-                <option value="mes">Este mes</option>
-                <option value="todo">Todo el historial</option>
-            </select>
-        </div>
-
-        <button class="btn btn-primary" onclick="generarReporte()">
-            📊 Generar reporte
-        </button>
-
-    </div>
-
-
-    <div id="resultadoReporte"></div>
-
-
-    <div class="card">
-
-        <div class="card-title">📋 Historial de jornadas</div>
-
-        <div id="historialJornadas"></div>
-
-    </div>
-
-</section>
-
-
-<!-- MANTENIMIENTO -->
-<section id="mantenimiento" class="section">
-
-    <div class="card">
-
-        <div class="card-title">🔧 Registrar mantenimiento</div>
-
-        <div class="form-group">
-            <label>Fecha</label>
-            <input type="date" id="mantFecha">
-        </div>
-
-        <div class="form-group">
-            <label>Descripción del servicio</label>
-            <input type="text" id="mantDescripcion" placeholder="Ej. Cambio de 4 llantas">
-        </div>
-
-        <div class="form-grid">
-
-            <div class="form-group">
-                <label>Kilometraje</label>
-                <input type="number" id="mantKm" placeholder="Ej. 102003">
-            </div>
-
-            <div class="form-group">
-                <label>Costo</label>
-                <input type="number" id="mantCosto" placeholder="$0.00">
-            </div>
-
-        </div>
-
-        <button class="btn btn-primary" onclick="guardarMantenimiento()">
-            💾 Guardar servicio
-        </button>
-
-    </div>
-
-
-    <div class="card">
-
-        <div class="card-title">📋 Historial de mantenimiento</div>
-
-        <div id="historialMantenimiento"></div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- NAVEGACIÓN -->
-<nav class="bottom-nav">
-
-    <button class="nav-btn active" onclick="mostrarSeccion('inicio',this)">
-        <span>🏠</span>
-        Inicio
-    </button>
-
-    <button class="nav-btn" onclick="mostrarSeccion('jornada',this)">
-        <span>🔄</span>
-        Jornada
-    </button>
-
-    <button class="nav-btn" onclick="mostrarSeccion('gastos',this)">
-        <span>🧾</span>
-        Gastos
-    </button>
-
-    <button class="nav-btn" onclick="mostrarSeccion('reportes',this)">
-        <span>📊</span>
-        Reportes
-    </button>
-
-    <button class="nav-btn" onclick="mostrarSeccion('mantenimiento',this)">
-        <span>🔧</span>
-        Servicio
-    </button>
-
-</nav>
-
-<div id="toast" class="toast"></div>
-
-
-<script>
-
-const PRECIO_PASAJERO = 80;
-const CASETA_IDA = 37;
-const CASETA_COMPLETA = 74;
-
-let vueltas = [];
 
 
 /* =========================
-   UTILIDADES
+   ACCIONES RÁPIDAS
 ========================= */
 
-function fechaHoy(){
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
 
-    const d = new Date();
+.quick-card{
+    background:white;
+    border:none;
+    border-radius:20px;
+    padding:18px;
+    text-align:left;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+    transition:.2s;
+}
 
-    const y = d.getFullYear();
-    const m = String(d.getMonth()+1).padStart(2,"0");
-    const day = String(d.getDate()).padStart(2,"0");
+.quick-card:active{
+    transform:scale(.97);
+}
 
-    return `${y}-${m}-${day}`;
+.quick-icon{
+    width:44px;
+    height:44px;
+    background:#facc15;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:12px;
+}
 
+.quick-card strong{
+    display:block;
+    font-size:15px;
+}
+
+.quick-card small{
+    display:block;
+    color:#737373;
+    margin-top:4px;
 }
 
 
-function dinero(valor){
+/* =========================
+   RESUMEN
+========================= */
 
-    return "$" + Number(valor || 0).toLocaleString("es-MX",{
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-    });
-
+.summary-card{
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
 }
 
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #eeeeee;
+}
 
-function mostrarToast(texto){
+.summary-row:last-child{
+    border-bottom:none;
+}
 
-    const toast = document.getElementById("toast");
+.summary-row span{
+    color:#737373;
+}
 
-    toast.textContent = texto;
-    toast.style.display = "block";
-
-    setTimeout(()=>{
-        toast.style.display = "none";
-    },2500);
-
+.summary-row strong{
+    font-weight:800;
 }
 
 
@@ -779,244 +273,857 @@ function mostrarToast(texto){
    NAVEGACIÓN
 ========================= */
 
-function mostrarSeccion(id,boton){
+.bottom-nav{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    height:70px;
+    background:#111111;
+    border-radius:24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    z-index:1000;
+}
 
-    document.querySelectorAll(".section").forEach(s=>{
-        s.classList.remove("active");
-    });
+.nav-button{
+    border:none;
+    background:none;
+    color:#8f8f8f;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    font-size:10px;
+    font-weight:700;
+}
 
-    document.getElementById(id).classList.add("active");
+.nav-button span{
+    font-size:22px;
+}
 
-    document.querySelectorAll(".nav-btn").forEach(b=>{
-        b.classList.remove("active");
-    });
+.nav-button.active{
+    color:#facc15;
+}
 
-    boton.classList.add("active");
 
-    if(id==="inicio"){
-        actualizarInicio();
+/* =========================
+   SECCIONES
+========================= */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* =========================
+   FORMULARIOS
+========================= */
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    margin-top:15px;
+    box-shadow:0 5px 18px rgba(0,0,0,.05);
+}
+
+.card h3{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+    margin-bottom:13px;
+}
+
+button.primary{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:#111111;
+    color:white;
+    font-weight:800;
+    font-size:16px;
+}
+
+.trip{
+    background:#f7f7f7;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:12px;
+}
+
+.trip-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-weight:800;
+}
+
+.delete{
+    border:none;
+    background:#ef4444;
+    color:white;
+    padding:6px 9px;
+    border-radius:8px;
+}
+
+.empty{
+    padding:20px;
+    text-align:center;
+    color:#737373;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:400px){
+
+    .profit-value{
+        font-size:32px;
     }
 
-    if(id==="gastos"){
-        mostrarGastosRecurrentes();
-        consultarGasto();
+    .quick-card{
+        padding:15px;
     }
 
-    if(id==="reportes"){
-        mostrarHistorial();
-    }
+}
 
-    if(id==="mantenimiento"){
-        mostrarMantenimiento();
-    }
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     PÁGINA INICIO
+========================= -->
+
+<section id="inicio" class="page active">
+
+<header class="header">
+
+<div class="header-top">
+
+<div class="logo-area">
+
+<div class="logo">
+🚕
+</div>
+
+<div class="brand">
+
+<h1>Taxi Pro</h1>
+
+<p>Control inteligente de tu taxi</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="header-date">
+
+<small>Resumen de operación</small>
+
+<h2 id="fechaActual"></h2>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- GANANCIA -->
+
+<div class="profit-card">
+
+<div class="profit-label">
+GANANCIA REAL DE HOY
+</div>
+
+<div class="profit-value" id="gananciaHoy">
+$0.00
+</div>
+
+<div class="profit-subtitle">
+Ingresos menos casetas, gasolina y gastos
+</div>
+
+</div>
+
+
+<!-- ESTADÍSTICAS -->
+
+<div class="stats">
+
+<div class="stat">
+
+<div class="stat-icon">
+💰
+</div>
+
+<div class="stat-label">
+Ingresos
+</div>
+
+<div class="stat-value" id="ingresosHoy">
+$0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🧾
+</div>
+
+<div class="stat-label">
+Gastos
+</div>
+
+<div class="stat-value" id="gastosHoy">
+$0.00
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+👥
+</div>
+
+<div class="stat-label">
+Pasajeros
+</div>
+
+<div class="stat-value" id="pasajerosHoy">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+🔄
+</div>
+
+<div class="stat-label">
+Vueltas
+</div>
+
+<div class="stat-value" id="vueltasHoy">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ACCIONES -->
+
+<div class="section-title">
+
+<h3>Acciones rápidas</h3>
+
+<span>Taxi Pro</span>
+
+</div>
+
+
+<div class="quick-actions">
+
+<button class="quick-card" onclick="irA('jornada')">
+
+<div class="quick-icon">
+🚕
+</div>
+
+<strong>Nueva jornada</strong>
+
+<small>Registrar trabajo del día</small>
+
+</button>
+
+
+<button class="quick-card" onclick="irA('gastos')">
+
+<div class="quick-icon">
+🧾
+</div>
+
+<strong>Gastos</strong>
+
+<small>Consultar gastos del día</small>
+
+</button>
+
+
+<button class="quick-card" onclick="irA('reportes')">
+
+<div class="quick-icon">
+📊
+</div>
+
+<strong>Reportes</strong>
+
+<small>Ver resultados</small>
+
+</button>
+
+
+<button class="quick-card" onclick="irA('mantenimiento')">
+
+<div class="quick-icon">
+🔧
+</div>
+
+<strong>Mantenimiento</strong>
+
+<small>Servicios del vehículo</small>
+
+</button>
+
+</div>
+
+
+<!-- RESUMEN -->
+
+<div class="section-title">
+
+<h3>Resumen de hoy</h3>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-row">
+
+<span>Jornadas registradas</span>
+
+<strong id="jornadasHoy">
+0
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>Pasajeros</span>
+
+<strong id="resumenPasajeros">
+0
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>Ingresos</span>
+
+<strong id="resumenIngresos">
+$0.00
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>Gastos</span>
+
+<strong id="resumenGastos">
+$0.00
+</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>Ganancia real</span>
+
+<strong id="resumenGanancia">
+$0.00
+</strong>
+
+</div>
+
+</div>
+
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+     JORNADA
+========================= -->
+
+<section id="jornada" class="page">
+
+<header class="header">
+
+<div class="brand">
+
+<h1>🚕 Nueva jornada</h1>
+
+<p>Registra tu día de trabajo</p>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<div class="card">
+
+<h3>🕐 Horario</h3>
+
+<label>Fecha</label>
+
+<input type="date" id="fecha">
+
+
+<label>Hora de inicio</label>
+
+<input type="time" id="horaInicio">
+
+
+<label>Hora de salida</label>
+
+<input type="time" id="horaSalida">
+
+</div>
+
+
+<div class="card">
+
+<h3>🔄 Vueltas</h3>
+
+<div id="listaVueltas"></div>
+
+<button class="primary" onclick="agregarVuelta()">
+
+➕ Agregar vuelta
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>⛽ Gasolina</h3>
+
+<label>Gasto de gasolina</label>
+
+<input type="number" id="gasolina" placeholder="$0.00">
+
+</div>
+
+
+<div class="card">
+
+<h3>📊 Resultado</h3>
+
+<div class="summary-row">
+
+<span>Ingresos</span>
+
+<strong id="jIngresos">$0.00</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>Casetas</span>
+
+<strong id="jCasetas">$0.00</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>Gastos</span>
+
+<strong id="jGastos">$0.00</strong>
+
+</div>
+
+<div class="summary-row">
+
+<span>Ganancia real</span>
+
+<strong id="jGanancia">$0.00</strong>
+
+</div>
+
+</div>
+
+
+<button class="primary" onclick="guardarJornada()">
+
+💾 Guardar jornada
+
+</button>
+
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+     GASTOS
+========================= -->
+
+<section id="gastos" class="page">
+
+<header class="header">
+
+<div class="brand">
+
+<h1>🧾 Gastos</h1>
+
+<p>Control de gastos recurrentes</p>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<div class="card">
+
+<h3>📅 Gastos de hoy</h3>
+
+<div id="gastosLista"></div>
+
+</div>
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+     REPORTES
+========================= -->
+
+<section id="reportes" class="page">
+
+<header class="header">
+
+<div class="brand">
+
+<h1>📊 Reportes</h1>
+
+<p>Resultados de Taxi Pro</p>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<div class="card">
+
+<h3>📈 Resumen</h3>
+
+<div id="reporteContenido">
+
+<div class="empty">
+
+Todavía no hay información registrada.
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+     MANTENIMIENTO
+========================= -->
+
+<section id="mantenimiento" class="page">
+
+<header class="header">
+
+<div class="brand">
+
+<h1>🔧 Mantenimiento</h1>
+
+<p>Historial del vehículo</p>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+<div class="card">
+
+<h3>Registrar servicio</h3>
+
+<label>Fecha</label>
+
+<input type="date" id="mantFecha">
+
+
+<label>Descripción</label>
+
+<input type="text" id="mantDescripcion"
+placeholder="Ej. Cambio de aceite">
+
+
+<label>Kilometraje</label>
+
+<input type="number" id="mantKm">
+
+
+<label>Costo</label>
+
+<input type="number" id="mantCosto">
+
+
+<button class="primary"
+onclick="guardarMantenimiento()">
+
+💾 Guardar servicio
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>📋 Historial</h3>
+
+<div id="historialMantenimiento"></div>
+
+</div>
+
+</main>
+
+</section>
+
+
+
+<!-- =========================
+     NAVEGACIÓN
+========================= -->
+
+<nav class="bottom-nav">
+
+<button class="nav-button active"
+onclick="irA('inicio',this)">
+
+<span>🏠</span>
+
+Inicio
+
+</button>
+
+
+<button class="nav-button"
+onclick="irA('jornada',this)">
+
+<span>🚕</span>
+
+Jornada
+
+</button>
+
+
+<button class="nav-button"
+onclick="irA('gastos',this)">
+
+<span>🧾</span>
+
+Gastos
+
+</button>
+
+
+<button class="nav-button"
+onclick="irA('reportes',this)">
+
+<span>📊</span>
+
+Reportes
+
+</button>
+
+
+<button class="nav-button"
+onclick="irA('mantenimiento',this)">
+
+<span>🔧</span>
+
+Servicio
+
+</button>
+
+</nav>
+
+
+
+<script>
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function irA(id,boton){
+
+document.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document.getElementById(id)
+.classList.add("active");
+
+
+document.querySelectorAll(".nav-button")
+.forEach(b=>b.classList.remove("active"));
+
+
+if(boton){
+
+boton.classList.add("active");
+
+}else{
+
+document.querySelectorAll(".nav-button")
+.forEach(b=>{
+
+if(b.textContent.trim()
+.toLowerCase()
+.includes(id)){
+
+b.classList.add("active");
+
+}
+
+});
+
+}
+
+
+if(id==="inicio") actualizarInicio();
+
+if(id==="gastos") mostrarGastos();
+
+if(id==="reportes") mostrarReportes();
+
+if(id==="mantenimiento") mostrarMantenimiento();
 
 }
 
 
 /* =========================
-   GASTOS RECURRENTES
+   FECHA
 ========================= */
 
-function gastosRecurrentes(fecha){
+function fechaHoy(){
 
-    const fechaSeleccionada = new Date(fecha + "T00:00:00");
+let d=new Date();
 
-    const gastos = [];
-
-
-    // $220 Villa Guerrero - día 29
-    if(fechaSeleccionada.getDate() === 29){
-
-        gastos.push({
-            id:"villa_guerrero",
-            nombre:"Estacionamiento Villa Guerrero",
-            monto:220,
-            regla:"Día 29 de cada mes"
-        });
-
-    }
-
-
-    // $200 Movilidad - día 20
-    if(fechaSeleccionada.getDate() === 20){
-
-        gastos.push({
-            id:"movilidad",
-            nombre:"Movilidad",
-            monto:200,
-            regla:"Día 20 de cada mes"
-        });
-
-    }
-
-
-    // $300 Checadora - cada viernes
-    if(fechaSeleccionada.getDay() === 5){
-
-        gastos.push({
-            id:"checadora",
-            nombre:"Checadora",
-            monto:300,
-            regla:"Cada viernes"
-        });
-
-    }
-
-
-    // $80 Metepec - día 4
-    if(fechaSeleccionada.getDate() === 4){
-
-        gastos.push({
-            id:"metepec",
-            nombre:"Metepec",
-            monto:80,
-            regla:"Día 4 de cada mes"
-        });
-
-    }
-
-
-    // $140 Estacionamiento Toluca - día 6
-    if(fechaSeleccionada.getDate() === 6){
-
-        gastos.push({
-            id:"toluca",
-            nombre:"Estacionamiento Toluca",
-            monto:140,
-            regla:"Día 6 de cada mes"
-        });
-
-    }
-
-
-    /*
-       PUNTO EL POTRERO
-       $120 cada 5 días
-       Inicio: 23 julio 2026
-       23, 28, 2 agosto, 7, 12...
-    */
-
-    const inicio = new Date("2026-07-23T00:00:00");
-
-    const diferencia = Math.floor(
-        (fechaSeleccionada - inicio) / 86400000
-    );
-
-    if(diferencia >= 0 && diferencia % 5 === 0){
-
-        gastos.push({
-            id:"punto_el_potrero",
-            nombre:"Punto El Potrero",
-            monto:120,
-            regla:"Cada 5 días desde el 23/07/2026"
-        });
-
-    }
-
-
-    return gastos;
+return d.getFullYear()+"-"+
+String(d.getMonth()+1).padStart(2,"0")+"-"+
+String(d.getDate()).padStart(2,"0");
 
 }
 
 
-function totalGastosRecurrentes(fecha){
-
-    return gastosRecurrentes(fecha)
-    .reduce((total,gasto)=>total + gasto.monto,0);
-
+document.getElementById("fechaActual")
+.textContent=
+new Date().toLocaleDateString(
+"es-MX",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
 }
+);
 
 
-function mostrarGastosRecurrentes(){
+document.getElementById("fecha")
+.value=fechaHoy();
 
-    const contenedor = document.getElementById("listaRecurrentes");
+document.getElementById("mantFecha")
+.value=fechaHoy();
 
-    const fecha = document.getElementById("fechaConsultaGasto").value || fechaHoy();
 
-    const gastos = gastosRecurrentes(fecha);
+/* =========================
+   FORMATO DINERO
+========================= */
 
-    let html = "";
+function dinero(n){
 
-    if(gastos.length === 0){
-
-        html = `
-        <div class="empty">
-            No hay gastos recurrentes programados para esta fecha.
-        </div>
-        `;
-
-    }else{
-
-        gastos.forEach(gasto=>{
-
-            html += `
-            <div class="expense-item">
-                <div>
-                    <div class="expense-name">${gasto.nombre}</div>
-                    <div class="expense-rule">${gasto.regla}</div>
-                </div>
-
-                <div class="expense-amount">
-                    ${dinero(gasto.monto)}
-                </div>
-            </div>
-            `;
-
-        });
-
-    }
-
-    contenedor.innerHTML = html;
-
+return "$"+
+Number(n||0)
+.toLocaleString(
+"es-MX",
+{
+minimumFractionDigits:2
 }
-
-
-function consultarGasto(){
-
-    const fecha =
-        document.getElementById("fechaConsultaGasto").value || fechaHoy();
-
-    const gastos = gastosRecurrentes(fecha);
-
-    const contenedor = document.getElementById("consultaGasto");
-
-    if(gastos.length === 0){
-
-        contenedor.innerHTML = `
-        <div class="notice">
-            No hay gastos recurrentes para el ${fecha}.
-        </div>
-        `;
-
-        return;
-
-    }
-
-    const total = gastos.reduce((s,g)=>s+g.monto,0);
-
-    let html = "";
-
-    gastos.forEach(g=>{
-
-        html += `
-        <div class="expense-item">
-            <div>
-                <div class="expense-name">${g.nombre}</div>
-                <div class="expense-rule">${g.regla}</div>
-            </div>
-            <div class="expense-amount">${dinero(g.monto)}</div>
-        </div>
-        `;
-
-    });
-
-    html += `
-    <div class="notice" style="margin-top:12px;">
-        <strong>Total de gastos recurrentes: ${dinero(total)}</strong>
-    </div>
-    `;
-
-    contenedor.innerHTML = html;
+);
 
 }
 
@@ -1025,226 +1132,347 @@ function consultarGasto(){
    VUELTAS
 ========================= */
 
+let vueltas=[];
+
+
 function agregarVuelta(){
 
-    vueltas.push({
-        id:Date.now() + Math.random(),
-        tipo:"completa",
-        pasajeros:0
-    });
+vueltas.push({
 
-    renderVueltas();
-    actualizarJornada();
+tipo:"completa",
 
-}
+pasajeros:0
 
+});
 
-function eliminarVuelta(id){
+renderVueltas();
 
-    vueltas = vueltas.filter(v=>v.id !== id);
-
-    renderVueltas();
-    actualizarJornada();
+calcularJornada();
 
 }
 
 
 function renderVueltas(){
 
-    const contenedor = document.getElementById("listaVueltas");
-
-    if(vueltas.length === 0){
-
-        contenedor.innerHTML = `
-        <div class="empty">
-            Todavía no has agregado ninguna vuelta.
-        </div>
-        `;
-
-        return;
-
-    }
-
-    let html = "";
-
-    vueltas.forEach((v,index)=>{
-
-        const caseta =
-            v.tipo === "ida"
-            ? CASETA_IDA
-            : CASETA_COMPLETA;
-
-        html += `
-        <div class="trip">
-
-            <div class="trip-top">
-
-                <div>
-                    <div class="trip-title">
-                        Vuelta ${index+1}
-                    </div>
-
-                    <div class="trip-badge">
-                        Caseta: ${dinero(caseta)}
-                    </div>
-                </div>
-
-                <button
-                    class="trip-delete"
-                    onclick="eliminarVuelta(${v.id})">
-                    Eliminar
-                </button>
-
-            </div>
+let contenedor=
+document.getElementById("listaVueltas");
 
 
-            <div class="form-grid">
+if(vueltas.length===0){
 
-                <div class="form-group">
+contenedor.innerHTML=
+`<div class="empty">
+No hay vueltas registradas.
+</div>`;
 
-                    <label>Tipo de recorrido</label>
-
-                    <select onchange="cambiarTipo(${v.id},this.value)">
-
-                        <option value="completa"
-                            ${v.tipo==="completa"?"selected":""}>
-                            Ida + regreso
-                        </option>
-
-                        <option value="ida"
-                            ${v.tipo==="ida"?"selected":""}>
-                            Solo ida
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>Pasajeros</label>
-
-                    <input
-                        type="number"
-                        min="0"
-                        value="${v.pasajeros}"
-                        onchange="cambiarPasajeros(${v.id},this.value)"
-                    >
-
-                </div>
-
-            </div>
-
-        </div>
-        `;
-
-    });
-
-    contenedor.innerHTML = html;
+return;
 
 }
 
 
-function cambiarTipo(id,tipo){
+contenedor.innerHTML=
+vueltas.map((v,i)=>`
 
-    const vuelta = vueltas.find(v=>v.id === id);
+<div class="trip">
 
-    if(vuelta){
-        vuelta.tipo = tipo;
-    }
+<div class="trip-header">
 
-    renderVueltas();
-    actualizarJornada();
+<span>Vuelta ${i+1}</span>
+
+<button class="delete"
+onclick="eliminarVuelta(${i})">
+
+Eliminar
+
+</button>
+
+</div>
+
+
+<label>Tipo de recorrido</label>
+
+<select onchange="cambiarTipo(${i},this.value)">
+
+<option value="completa"
+${v.tipo==="completa"?"selected":""}>
+
+Ida + regreso — $74
+
+</option>
+
+
+<option value="ida"
+${v.tipo==="ida"?"selected":""}>
+
+Solo ida — $37
+
+</option>
+
+</select>
+
+
+<label>Pasajeros</label>
+
+<input type="number"
+min="0"
+value="${v.pasajeros}"
+oninput="cambiarPasajeros(${i},this.value)">
+
+</div>
+
+`).join("");
 
 }
 
 
-function cambiarPasajeros(id,pasajeros){
+function eliminarVuelta(i){
 
-    const vuelta = vueltas.find(v=>v.id === id);
+vueltas.splice(i,1);
 
-    if(vuelta){
-        vuelta.pasajeros = Math.max(0,Number(pasajeros)||0);
-    }
+renderVueltas();
 
-    actualizarJornada();
+calcularJornada();
+
+}
+
+
+function cambiarTipo(i,v){
+
+vueltas[i].tipo=v;
+
+calcularJornada();
+
+}
+
+
+function cambiarPasajeros(i,v){
+
+vueltas[i].pasajeros=
+Number(v)||0;
+
+calcularJornada();
 
 }
 
 
 /* =========================
-   CÁLCULO JORNADA
+   GASTOS
 ========================= */
 
-function calcularJornada(){
+function gastosRecurrentes(fecha){
 
-    let pasajeros = 0;
-    let ingresos = 0;
-    let casetas = 0;
+let d=new Date(fecha+"T00:00:00");
 
-    vueltas.forEach(v=>{
-
-        const p = Number(v.pasajeros)||0;
-
-        pasajeros += p;
-
-        ingresos += p * PRECIO_PASAJERO;
-
-        casetas +=
-            v.tipo === "ida"
-            ? CASETA_IDA
-            : CASETA_COMPLETA;
-
-    });
+let gastos=[];
 
 
-    const fecha = document.getElementById("fecha").value;
+/* Villa Guerrero día 29 */
 
-    const gasolina =
-        Number(document.getElementById("gasolina").value)||0;
+if(d.getDate()===29){
 
-    const recurrentes =
-        totalGastosRecurrentes(fecha);
-
-    const gastos =
-        casetas +
-        gasolina +
-        recurrentes;
-
-    const ganancia =
-        ingresos -
-        gastos;
-
-
-    return {
-        pasajeros,
-        ingresos,
-        casetas,
-        gasolina,
-        recurrentes,
-        gastos,
-        ganancia
-    };
+gastos.push({
+nombre:"Estacionamiento Villa Guerrero",
+monto:220
+});
 
 }
 
 
-function actualizarJornada(){
+/* Movilidad día 20 */
 
-    const r = calcularJornada();
+if(d.getDate()===20){
 
-    document.getElementById("jIngresos").textContent =
-        dinero(r.ingresos);
+gastos.push({
+nombre:"Movilidad",
+monto:200
+});
 
-    document.getElementById("jCasetas").textContent =
-        dinero(r.casetas);
+}
 
-    document.getElementById("jRecurrentes").textContent =
-        dinero(r.recurrentes);
 
-    document.getElementById("jGanancia").textContent =
-        dinero(r.ganancia);
+/* Checadora viernes */
+
+if(d.getDay()===5){
+
+gastos.push({
+nombre:"Checadora",
+monto:300
+});
+
+}
+
+
+/* Metepec día 4 */
+
+if(d.getDate()===4){
+
+gastos.push({
+nombre:"Metepec",
+monto:80
+});
+
+}
+
+
+/* Estacionamiento Toluca día 6 */
+
+if(d.getDate()===6){
+
+gastos.push({
+nombre:"Estacionamiento Toluca",
+monto:140
+});
+
+}
+
+
+/* Punto El Potrero */
+
+let inicio=
+new Date("2026-07-23T00:00:00");
+
+let diferencia=
+Math.floor(
+(d-inicio)/86400000
+);
+
+
+if(diferencia>=0 &&
+diferencia%5===0){
+
+gastos.push({
+nombre:"Punto El Potrero",
+monto:120
+});
+
+}
+
+
+return gastos;
+
+}
+
+
+function totalRecurrentes(fecha){
+
+return gastosRecurrentes(fecha)
+.reduce(
+(t,g)=>t+g.monto,
+0
+);
+
+}
+
+
+function mostrarGastos(){
+
+let lista=
+document.getElementById("gastosLista");
+
+let gastos=
+gastosRecurrentes(fechaHoy());
+
+
+if(gastos.length===0){
+
+lista.innerHTML=
+`<div class="empty">
+No hay gastos recurrentes programados para hoy.
+</div>`;
+
+return;
+
+}
+
+
+lista.innerHTML=
+gastos.map(g=>`
+
+<div class="summary-row">
+
+<span>${g.nombre}</span>
+
+<strong>${dinero(g.monto)}</strong>
+
+</div>
+
+`).join("");
+
+
+}
+
+
+/* =========================
+   CÁLCULO
+========================= */
+
+function calcularJornada(){
+
+let ingresos=0;
+
+let casetas=0;
+
+
+vueltas.forEach(v=>{
+
+ingresos+=
+v.pasajeros*80;
+
+
+casetas+=
+v.tipo==="ida"
+?37
+:74;
+
+});
+
+
+let gasolina=
+Number(
+document.getElementById("gasolina")
+.value
+)||0;
+
+
+let recurrentes=
+totalRecurrentes(
+document.getElementById("fecha").value
+);
+
+
+let gastos=
+casetas+
+gasolina+
+recurrentes;
+
+
+let ganancia=
+ingresos-gastos;
+
+
+document.getElementById("jIngresos")
+.textContent=dinero(ingresos);
+
+document.getElementById("jCasetas")
+.textContent=dinero(casetas);
+
+document.getElementById("jGastos")
+.textContent=dinero(gastos);
+
+document.getElementById("jGanancia")
+.textContent=dinero(ganancia);
+
+
+return{
+
+ingresos,
+casetas,
+gasolina,
+recurrentes,
+gastos,
+ganancia
+
+};
 
 }
 
@@ -1255,106 +1483,65 @@ function actualizarJornada(){
 
 function guardarJornada(){
 
-    const fecha =
-        document.getElementById("fecha").value;
-
-    if(!fecha){
-
-        mostrarToast("Selecciona una fecha.");
-
-        return;
-
-    }
+let resultado=
+calcularJornada();
 
 
-    if(vueltas.length === 0){
+let jornada={
 
-        mostrarToast("Agrega al menos una vuelta.");
+fecha:
+document.getElementById("fecha").value,
 
-        return;
+horaInicio:
+document.getElementById("horaInicio").value,
 
-    }
+horaSalida:
+document.getElementById("horaSalida").value,
 
+vueltas:
+vueltas,
 
-    const r = calcularJornada();
+ingresos:
+resultado.ingresos,
 
+gastos:
+resultado.gastos,
 
-    const jornada = {
+ganancia:
+resultado.ganancia,
 
-        id:Date.now(),
+pasajeros:
+vueltas.reduce(
+(t,v)=>t+v.pasajeros,
+0
+)
 
-        fecha,
-
-        horaInicio:
-            document.getElementById("horaInicio").value,
-
-        horaSalida:
-            document.getElementById("horaSalida").value,
-
-        vueltas:
-            JSON.parse(JSON.stringify(vueltas)),
-
-        pasajeros:r.pasajeros,
-
-        ingresos:r.ingresos,
-
-        casetas:r.casetas,
-
-        gasolina:r.gasolina,
-
-        recurrentes:r.recurrentes,
-
-        gastos:r.gastos,
-
-        ganancia:r.ganancia
-
-    };
+};
 
 
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProJornadas") || "[]"
-        );
+let historial=
+JSON.parse(
+localStorage.getItem(
+"taxiProJornadas"
+)||"[]"
+);
 
 
-    /*
-       Evita duplicar automáticamente una jornada
-       idéntica guardada el mismo día y hora.
-    */
-
-    const existe = historial.some(h=>
-        h.fecha === jornada.fecha &&
-        h.horaInicio === jornada.horaInicio &&
-        h.horaSalida === jornada.horaSalida
-    );
+historial.push(jornada);
 
 
-    if(existe){
-
-        mostrarToast(
-            "Ya existe una jornada con la misma fecha y horario."
-        );
-
-        return;
-
-    }
+localStorage.setItem(
+"taxiProJornadas",
+JSON.stringify(historial)
+);
 
 
-    historial.push(jornada);
+alert(
+"Jornada guardada correctamente"
+);
 
 
-    localStorage.setItem(
-        "taxiProJornadas",
-        JSON.stringify(historial)
-    );
-
-
-    mostrarToast("✅ Jornada guardada correctamente.");
-
-
-    actualizarInicio();
-
-    mostrarHistorial();
+actualizarInicio();
 
 }
 
@@ -1365,149 +1552,89 @@ function guardarJornada(){
 
 function actualizarInicio(){
 
-    const hoy = fechaHoy();
-
-    document.getElementById("homeFecha").textContent =
-        "Resumen del " + hoy;
-
-
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProJornadas") || "[]"
-        );
+let historial=
+JSON.parse(
+localStorage.getItem(
+"taxiProJornadas"
+)||"[]"
+);
 
 
-    const jornadasHoy =
-        historial.filter(j=>j.fecha === hoy);
+let hoy=
+fechaHoy();
 
 
-    let ingresos = 0;
-    let gastos = 0;
-    let ganancia = 0;
-    let pasajeros = 0;
-    let vueltasHoy = 0;
+let jornadas=
+historial.filter(
+j=>j.fecha===hoy
+);
 
 
-    jornadasHoy.forEach(j=>{
+let ingresos=0;
 
-        ingresos += j.ingresos;
-        gastos += j.gastos;
-        ganancia += j.ganancia;
-        pasajeros += j.pasajeros;
-        vueltasHoy += j.vueltas.length;
+let gastos=0;
 
-    });
+let ganancia=0;
 
+let pasajeros=0;
 
-    document.getElementById("homeGanancia").textContent =
-        dinero(ganancia);
-
-    document.getElementById("homeIngresos").textContent =
-        dinero(ingresos);
-
-    document.getElementById("homeGastos").textContent =
-        dinero(gastos);
-
-    document.getElementById("homePasajeros").textContent =
-        pasajeros;
-
-    document.getElementById("homeVueltas").textContent =
-        vueltasHoy;
+let vueltasTotal=0;
 
 
-    if(jornadasHoy.length === 0){
+jornadas.forEach(j=>{
 
-        document.getElementById("homeResumen").innerHTML =
-            "Todavía no hay jornadas guardadas para hoy.";
+ingresos+=j.ingresos;
 
-    }else{
+gastos+=j.gastos;
 
-        document.getElementById("homeResumen").innerHTML =
-            `Has registrado <strong>${jornadasHoy.length}</strong>
-            jornada(s), con <strong>${pasajeros}</strong>
-            pasajero(s) y una ganancia real de
-            <strong>${dinero(ganancia)}</strong>.`;
+ganancia+=j.ganancia;
 
-    }
+pasajeros+=j.pasajeros;
 
-}
+vueltasTotal+=
+j.vueltas.length;
+
+});
 
 
-/* =========================
-   HISTORIAL
-========================= */
-
-function mostrarHistorial(){
-
-    const contenedor =
-        document.getElementById("historialJornadas");
+document.getElementById("gananciaHoy")
+.textContent=dinero(ganancia);
 
 
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProJornadas") || "[]"
-        );
+document.getElementById("ingresosHoy")
+.textContent=dinero(ingresos);
 
 
-    if(historial.length === 0){
-
-        contenedor.innerHTML =
-            `<div class="empty">
-                Todavía no hay jornadas registradas.
-            </div>`;
-
-        return;
-
-    }
+document.getElementById("gastosHoy")
+.textContent=dinero(gastos);
 
 
-    let html = `
-    <div class="table-wrap">
-    <table>
-
-    <tr>
-        <th>Fecha</th>
-        <th>Pasajeros</th>
-        <th>Ingresos</th>
-        <th>Gastos</th>
-        <th>Ganancia</th>
-    </tr>
-    `;
+document.getElementById("pasajerosHoy")
+.textContent=pasajeros;
 
 
-    historial
-    .slice()
-    .reverse()
-    .forEach(j=>{
-
-        html += `
-        <tr>
-
-            <td>${j.fecha}</td>
-
-            <td>${j.pasajeros}</td>
-
-            <td>${dinero(j.ingresos)}</td>
-
-            <td>${dinero(j.gastos)}</td>
-
-            <td class="${j.ganancia >= 0 ? "positive":"negative"}">
-                ${dinero(j.ganancia)}
-            </td>
-
-        </tr>
-        `;
-
-    });
+document.getElementById("vueltasHoy")
+.textContent=vueltasTotal;
 
 
-    html += `
-    </table>
-    </div>
-    `;
+document.getElementById("jornadasHoy")
+.textContent=jornadas.length;
 
 
-    contenedor.innerHTML = html;
+document.getElementById("resumenPasajeros")
+.textContent=pasajeros;
+
+
+document.getElementById("resumenIngresos")
+.textContent=dinero(ingresos);
+
+
+document.getElementById("resumenGastos")
+.textContent=dinero(gastos);
+
+
+document.getElementById("resumenGanancia")
+.textContent=dinero(ganancia);
 
 }
 
@@ -1516,169 +1643,107 @@ function mostrarHistorial(){
    REPORTES
 ========================= */
 
-function mismaSemana(fecha){
+function mostrarReportes(){
 
-    const hoy = new Date();
-    const d = new Date(fecha + "T00:00:00");
-
-    const inicioSemana = new Date(hoy);
-
-    const dia = inicioSemana.getDay();
-
-    const diferencia = dia === 0 ? 6 : dia - 1;
-
-    inicioSemana.setDate(
-        inicioSemana.getDate() - diferencia
-    );
-
-    inicioSemana.setHours(0,0,0,0);
+let historial=
+JSON.parse(
+localStorage.getItem(
+"taxiProJornadas"
+)||"[]"
+);
 
 
-    const finSemana = new Date(inicioSemana);
+if(historial.length===0){
 
-    finSemana.setDate(
-        finSemana.getDate()+6
-    );
+document.getElementById(
+"reporteContenido"
+).innerHTML=
+`<div class="empty">
+No hay jornadas registradas.
+</div>`;
 
-    finSemana.setHours(23,59,59,999);
-
-
-    return d >= inicioSemana && d <= finSemana;
+return;
 
 }
 
 
-function generarReporte(){
-
-    const periodo =
-        document.getElementById("periodoReporte").value;
-
-
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProJornadas") || "[]"
-        );
+let ingresos=
+historial.reduce(
+(t,j)=>t+j.ingresos,
+0
+);
 
 
-    const hoy = fechaHoy();
-
-    const fechaActual = new Date();
-
-
-    let seleccionadas = [];
-
-
-    if(periodo === "dia"){
-
-        seleccionadas =
-            historial.filter(j=>j.fecha === hoy);
-
-    }
+let gastos=
+historial.reduce(
+(t,j)=>t+j.gastos,
+0
+);
 
 
-    if(periodo === "semana"){
-
-        seleccionadas =
-            historial.filter(j=>mismaSemana(j.fecha));
-
-    }
-
-
-    if(periodo === "mes"){
-
-        seleccionadas =
-            historial.filter(j=>{
-
-                const d =
-                    new Date(j.fecha+"T00:00:00");
-
-                return(
-                    d.getFullYear() === fechaActual.getFullYear() &&
-                    d.getMonth() === fechaActual.getMonth()
-                );
-
-            });
-
-    }
+let ganancia=
+historial.reduce(
+(t,j)=>t+j.ganancia,
+0
+);
 
 
-    if(periodo === "todo"){
-
-        seleccionadas = historial;
-
-    }
-
-
-    let ingresos = 0;
-    let gastos = 0;
-    let ganancia = 0;
-    let pasajeros = 0;
-    let vueltasTotal = 0;
+let pasajeros=
+historial.reduce(
+(t,j)=>t+j.pasajeros,
+0
+);
 
 
-    seleccionadas.forEach(j=>{
+document.getElementById(
+"reporteContenido"
+).innerHTML=`
 
-        ingresos += j.ingresos;
-        gastos += j.gastos;
-        ganancia += j.ganancia;
-        pasajeros += j.pasajeros;
-        vueltasTotal += j.vueltas.length;
+<div class="summary-row">
 
-    });
+<span>Jornadas</span>
+
+<strong>${historial.length}</strong>
+
+</div>
 
 
-    document.getElementById("resultadoReporte").innerHTML = `
+<div class="summary-row">
 
-    <div class="stats-grid">
+<span>Pasajeros</span>
 
-        <div class="stat">
-            <small>💰 Ingresos</small>
-            <strong>${dinero(ingresos)}</strong>
-        </div>
+<strong>${pasajeros}</strong>
 
-        <div class="stat red">
-            <small>🧾 Gastos</small>
-            <strong>${dinero(gastos)}</strong>
-        </div>
+</div>
 
-        <div class="stat">
-            <small>👥 Pasajeros</small>
-            <strong>${pasajeros}</strong>
-        </div>
 
-        <div class="stat green">
-            <small>📈 Ganancia</small>
-            <strong>${dinero(ganancia)}</strong>
-        </div>
+<div class="summary-row">
 
-    </div>
+<span>Ingresos</span>
 
-    <div class="card">
+<strong>${dinero(ingresos)}</strong>
 
-        <div class="card-title">Resumen</div>
+</div>
 
-        <div class="notice">
 
-            Jornadas: <strong>${seleccionadas.length}</strong><br><br>
+<div class="summary-row">
 
-            Vueltas: <strong>${vueltasTotal}</strong><br><br>
+<span>Gastos</span>
 
-            Pasajeros: <strong>${pasajeros}</strong><br><br>
+<strong>${dinero(gastos)}</strong>
 
-            Ingresos: <strong>${dinero(ingresos)}</strong><br><br>
+</div>
 
-            Gastos: <strong>${dinero(gastos)}</strong><br><br>
 
-            Ganancia real:
-            <strong class="${ganancia>=0?"positive":"negative"}">
-                ${dinero(ganancia)}
-            </strong>
+<div class="summary-row">
 
-        </div>
+<span>Ganancia real</span>
 
-    </div>
+<strong>${dinero(ganancia)}</strong>
 
-    `;
+</div>
+
+`;
 
 }
 
@@ -1689,137 +1754,143 @@ function generarReporte(){
 
 function guardarMantenimiento(){
 
-    const fecha =
-        document.getElementById("mantFecha").value;
-
-    const descripcion =
-        document.getElementById("mantDescripcion").value.trim();
-
-    const km =
-        Number(document.getElementById("mantKm").value)||0;
-
-    const costo =
-        Number(document.getElementById("mantCosto").value)||0;
+let historial=
+JSON.parse(
+localStorage.getItem(
+"taxiProMantenimiento"
+)||"[]"
+);
 
 
-    if(!fecha || !descripcion){
+historial.push({
 
-        mostrarToast(
-            "Completa la fecha y descripción del servicio."
-        );
+fecha:
+document.getElementById(
+"mantFecha"
+).value,
 
-        return;
+descripcion:
+document.getElementById(
+"mantDescripcion"
+).value,
 
-    }
+km:
+document.getElementById(
+"mantKm"
+).value,
 
+costo:
+document.getElementById(
+"mantCosto"
+).value
 
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProMantenimiento") || "[]"
-        );
-
-
-    historial.push({
-
-        id:Date.now(),
-
-        fecha,
-
-        descripcion,
-
-        km,
-
-        costo
-
-    });
+});
 
 
-    localStorage.setItem(
-        "taxiProMantenimiento",
-        JSON.stringify(historial)
-    );
+localStorage.setItem(
+"taxiProMantenimiento",
+JSON.stringify(historial)
+);
 
 
-    document.getElementById("mantDescripcion").value = "";
-    document.getElementById("mantKm").value = "";
-    document.getElementById("mantCosto").value = "";
+document.getElementById(
+"mantDescripcion"
+).value="";
+
+document.getElementById(
+"mantKm"
+).value="";
+
+document.getElementById(
+"mantCosto"
+).value="";
 
 
-    mostrarMantenimiento();
+mostrarMantenimiento();
 
-    mostrarToast(
-        "✅ Servicio de mantenimiento guardado."
-    );
+
+alert(
+"Servicio guardado correctamente"
+);
 
 }
 
 
 function mostrarMantenimiento(){
 
-    const contenedor =
-        document.getElementById("historialMantenimiento");
+let historial=
+JSON.parse(
+localStorage.getItem(
+"taxiProMantenimiento"
+)||"[]"
+);
 
 
-    const historial =
-        JSON.parse(
-            localStorage.getItem("taxiProMantenimiento") || "[]"
-        );
+let contenedor=
+document.getElementById(
+"historialMantenimiento"
+);
 
 
-    if(historial.length === 0){
+if(historial.length===0){
 
-        contenedor.innerHTML =
-            `<div class="empty">
-                No hay servicios registrados.
-            </div>`;
+contenedor.innerHTML=
+`<div class="empty">
+No hay servicios registrados.
+</div>`;
 
-        return;
+return;
 
-    }
-
-
-    let html = `
-    <div class="table-wrap">
-    <table>
-
-    <tr>
-        <th>Fecha</th>
-        <th>Servicio</th>
-        <th>Km</th>
-        <th>Costo</th>
-    </tr>
-    `;
+}
 
 
-    historial
-    .slice()
-    .reverse()
-    .forEach(m=>{
+contenedor.innerHTML=
+historial
+.slice()
+.reverse()
+.map(m=>`
 
-        html += `
-        <tr>
+<div class="summary-card"
+style="margin-bottom:12px;">
 
-            <td>${m.fecha}</td>
+<div class="summary-row">
 
-            <td>${m.descripcion}</td>
+<span>Fecha</span>
 
-            <td>${m.km || "-"}</td>
+<strong>${m.fecha}</strong>
 
-            <td>${dinero(m.costo)}</td>
-
-        </tr>
-        `;
-
-    });
+</div>
 
 
-    html += `
-    </table>
-    </div>
-    `;
+<div class="summary-row">
+
+<span>Servicio</span>
+
+<strong>${m.descripcion}</strong>
+
+</div>
 
 
-    contenedor.innerHTML = html;
+<div class="summary-row">
+
+<span>Kilometraje</span>
+
+<strong>${m.km}</strong>
+
+</div>
+
+
+<div class="summary-row">
+
+<span>Costo</span>
+
+<strong>${dinero(m.costo)}</strong>
+
+</div>
+
+</div>
+
+`).join("");
 
 }
 
@@ -1828,58 +1899,37 @@ function mostrarMantenimiento(){
    EVENTOS
 ========================= */
 
-document.getElementById("fecha")
-.addEventListener("change",()=>{
-
-    actualizarJornada();
-
-});
-
-
-document.getElementById("gasolina")
-.addEventListener("input",()=>{
-
-    actualizarJornada();
-
-});
+document.getElementById(
+"fecha"
+)
+.addEventListener(
+"change",
+calcularJornada
+);
 
 
-document.getElementById("fechaConsultaGasto")
-.addEventListener("change",()=>{
-
-    mostrarGastosRecurrentes();
-    consultarGasto();
-
-});
+document.getElementById(
+"gasolina"
+)
+.addEventListener(
+"input",
+calcularJornada
+);
 
 
 /* =========================
-   INICIALIZACIÓN
+   INICIO
 ========================= */
-
-document.getElementById("fecha").value =
-    fechaHoy();
-
-document.getElementById("mantFecha").value =
-    fechaHoy();
-
-document.getElementById("fechaConsultaGasto").value =
-    fechaHoy();
-
 
 agregarVuelta();
 
-actualizarJornada();
-
 actualizarInicio();
 
-mostrarHistorial();
+mostrarGastos();
+
+mostrarReportes();
 
 mostrarMantenimiento();
-
-mostrarGastosRecurrentes();
-
-consultarGasto();
 
 </script>
 
