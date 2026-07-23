@@ -5,41 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Taxi Pro</title>
 <style>
-/* ===== BASE ===== */
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
+:root{
+    --amarillo:#ffc400;
+    --negro:#101214;
+    --gris:#f4f5f7;
+    --texto:#17191d;
+    --verde:#18a66a;
+    --rojo:#e5484d;
+}
 body{
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-    background:#f5f6f8;
-    color:#17191c;
-    padding-bottom:100px;
-}
-button{
-    font-family:inherit;
-    border:0;
-    cursor:pointer;
+    background:var(--gris);
+    color:var(--texto);
+    padding-bottom:95px;
 }
 .app{
-    max-width:500px;
+    max-width:520px;
     margin:auto;
     min-height:100vh;
 }
-/* ===== CABECERA ===== */
+/* =========================
+HEADER
+========================= */
 .header{
-    background:#101214;
+    background:var(--negro);
     color:white;
-    padding:24px 20px 95px;
-    border-radius:0 0 38px 38px;
+    padding:24px 20px 100px;
+    border-radius:0 0 35px 35px;
 }
-.top{
+.header-top{
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:space-between;
 }
-.brand{
+.logo-area{
     display:flex;
     align-items:center;
     gap:12px;
@@ -47,27 +51,26 @@ button{
 .logo{
     width:52px;
     height:52px;
-    background:#ffc400;
-    color:#111;
     border-radius:17px;
+    background:var(--amarillo);
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:28px;
 }
-.brand-name{
-    font-size:24px;
+.logo-title{
+    font-size:23px;
     font-weight:900;
 }
-.brand-sub{
-    color:#8e949b;
+.logo-subtitle{
     font-size:9px;
-    letter-spacing:1px;
+    color:#9da3aa;
+    letter-spacing:1.5px;
     margin-top:3px;
 }
 .menu{
-    width:44px;
-    height:44px;
+    width:45px;
+    height:45px;
     border-radius:15px;
     background:#202327;
     color:white;
@@ -81,57 +84,60 @@ button{
     font-size:13px;
 }
 .greeting-name{
-    font-size:31px;
+    font-size:30px;
     font-weight:900;
-    margin-top:4px;
+    margin-top:3px;
 }
 .greeting-date{
     color:#9da3aa;
     font-size:12px;
     margin-top:6px;
 }
-/* ===== CONTENIDO ===== */
+/* =========================
+MAIN
+========================= */
 .content{
     margin-top:-65px;
     padding:0 15px;
 }
-/* ===== GANANCIA ===== */
-.main-card{
-    background:#ffc400;
+/* GANANCIA */
+.profit-card{
+    background:var(--amarillo);
     border-radius:28px;
-    padding:23px;
-    box-shadow:0 18px 40px rgba(0,0,0,.16);
+    padding:24px;
+    box-shadow:0 15px 35px rgba(0,0,0,.16);
 }
-.main-card-top{
+.profit-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
 }
-.main-label{
+.profit-title{
     font-size:11px;
     font-weight:900;
     letter-spacing:1px;
-    color:#5b4d00;
+    color:#5d4e00;
 }
 .today{
-    background:rgba(255,255,255,.35);
+    background:rgba(255,255,255,.4);
+    padding:7px 12px;
     border-radius:20px;
-    padding:7px 11px;
     font-size:10px;
     font-weight:900;
 }
-.money{
-    font-size:46px;
+.profit-value{
+    font-size:45px;
     font-weight:950;
-    letter-spacing:-2px;
     margin-top:12px;
+    letter-spacing:-2px;
 }
-.money-sub{
-    color:#655700;
+.profit-description{
+    color:#625400;
     font-size:11px;
-    margin-top:2px;
 }
-/* ===== ESTADÍSTICAS ===== */
+/* =========================
+STATS
+========================= */
 .stats{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -140,9 +146,9 @@ button{
 }
 .stat{
     background:white;
-    border-radius:24px;
     padding:18px;
-    box-shadow:0 8px 25px rgba(0,0,0,.06);
+    border-radius:23px;
+    box-shadow:0 7px 20px rgba(0,0,0,.05);
 }
 .stat-icon{
     font-size:23px;
@@ -153,31 +159,33 @@ button{
     margin-top:10px;
 }
 .stat-value{
-    font-size:24px;
+    font-size:23px;
     font-weight:900;
     margin-top:3px;
 }
-/* ===== BOTÓN JORNADA ===== */
-.jornada{
+/* =========================
+JORNADA
+========================= */
+.start-work{
     width:100%;
-    background:#111315;
-    color:white;
-    border-radius:23px;
-    padding:15px;
     margin-top:14px;
+    padding:16px;
+    border-radius:23px;
+    background:var(--negro);
+    color:white;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
 }
-.jornada-left{
+.start-left{
     display:flex;
     align-items:center;
     gap:13px;
 }
-.jornada-icon{
+.start-icon{
     width:48px;
     height:48px;
-    background:#ffc400;
+    background:var(--amarillo);
     color:#111;
     border-radius:15px;
     display:flex;
@@ -185,26 +193,28 @@ button{
     justify-content:center;
     font-size:23px;
 }
-.jornada-title{
+.start-title{
     text-align:left;
-    font-weight:900;
     font-size:14px;
+    font-weight:900;
 }
-.jornada-sub{
+.start-subtitle{
     text-align:left;
-    color:#92989f;
+    color:#969ca3;
     font-size:10px;
     margin-top:4px;
 }
-.jornada-arrow{
-    color:#ffc400;
+.arrow{
     font-size:28px;
+    color:var(--amarillo);
 }
-/* ===== SECCIONES ===== */
+/* =========================
+SECTIONS
+========================= */
 .section{
     margin-top:28px;
 }
-.section-head{
+.section-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -218,42 +228,47 @@ button{
     color:#8a9097;
     font-size:11px;
 }
-/* ===== ACCIONES ===== */
-.quick{
+/* =========================
+QUICK ACTIONS
+========================= */
+.actions{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:9px;
 }
-.quick button{
+.action{
+    border:0;
     background:white;
     border-radius:20px;
     padding:16px 4px;
     box-shadow:0 7px 20px rgba(0,0,0,.05);
 }
-.quick-icon{
+.action-icon{
     font-size:23px;
 }
-.quick-text{
+.action-name{
     font-size:10px;
     font-weight:900;
     margin-top:8px;
 }
-/* ===== RESUMEN ===== */
+/* =========================
+RESUMEN
+========================= */
 .summary{
     background:white;
     border-radius:24px;
     padding:4px 18px;
-    box-shadow:0 7px 22px rgba(0,0,0,.05);
+    box-shadow:0 7px 20px rgba(0,0,0,.05);
 }
 .summary-row{
     display:flex;
     justify-content:space-between;
     padding:16px 0;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #eeeeee;
     font-size:13px;
 }
 .summary-row:last-child{
-    border:0;
+    border-bottom:0;
 }
 .summary-row span{
     color:#858b92;
@@ -261,70 +276,75 @@ button{
 .summary-row strong{
     font-weight:900;
 }
-/* ===== MANTENIMIENTO ===== */
+/* =========================
+MANTENIMIENTO
+========================= */
 .maintenance{
-    background:#111315;
+    background:var(--negro);
     color:white;
     border-radius:25px;
-    padding:19px;
+    padding:20px;
 }
-.maintenance-head{
+.maintenance-top{
     display:flex;
     align-items:center;
     gap:12px;
 }
 .maintenance-icon{
-    width:45px;
-    height:45px;
-    background:#ffc400;
+    width:47px;
+    height:47px;
+    background:var(--amarillo);
     color:#111;
-    border-radius:14px;
+    border-radius:15px;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:21px;
+    align-items:center;
+    font-size:22px;
 }
 .maintenance-title{
-    font-size:14px;
     font-weight:900;
+    font-size:14px;
 }
 .maintenance-sub{
     color:#969ca3;
     font-size:10px;
-    margin-top:3px;
+    margin-top:4px;
 }
-.maintenance-km{
-    margin-top:18px;
-    padding-top:15px;
-    border-top:1px solid #2c3035;
+.maintenance-data{
     display:flex;
     justify-content:space-between;
+    border-top:1px solid #2c3035;
+    margin-top:18px;
+    padding-top:16px;
 }
-.maintenance-km div{
-    font-size:11px;
-    color:#9da3aa;
+.maintenance-data div{
+    color:#969ca3;
+    font-size:10px;
 }
-.maintenance-km strong{
+.maintenance-data strong{
     display:block;
     color:white;
     font-size:14px;
     margin-top:5px;
 }
-/* ===== GASTOS ===== */
+/* =========================
+GASTOS
+========================= */
 .expenses{
     background:white;
     border-radius:24px;
     padding:5px 18px;
-    box-shadow:0 7px 22px rgba(0,0,0,.05);
+    box-shadow:0 7px 20px rgba(0,0,0,.05);
 }
 .expense{
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:15px 0;
-    border-bottom:1px solid #eee;
+    border-bottom:1px solid #eeeeee;
 }
 .expense:last-child{
-    border:0;
+    border-bottom:0;
 }
 .expense-name{
     font-size:12px;
@@ -335,11 +355,13 @@ button{
     font-size:10px;
     margin-top:4px;
 }
-.expense-price{
+.expense-value{
     font-size:13px;
     font-weight:900;
 }
-/* ===== PANTALLAS ===== */
+/* =========================
+PANTALLAS INTERNAS
+========================= */
 .screen{
     display:none;
 }
@@ -347,9 +369,9 @@ button{
     display:block;
 }
 .page-header{
-    background:#101214;
+    background:var(--negro);
     color:white;
-    padding:25px 20px 40px;
+    padding:25px 20px 45px;
     border-radius:0 0 32px 32px;
 }
 .page-header h1{
@@ -370,23 +392,24 @@ button{
     border-radius:24px;
     padding:20px;
     margin-bottom:14px;
-    box-shadow:0 7px 22px rgba(0,0,0,.05);
+    box-shadow:0 7px 20px rgba(0,0,0,.05);
 }
 .card h2{
     font-size:17px;
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 label{
     display:block;
+    color:#656b72;
     font-size:11px;
     font-weight:800;
-    color:#656b72;
     margin-bottom:6px;
 }
-input,select{
+input,
+select{
     width:100%;
     height:48px;
-    border:1px solid #e2e4e7;
+    border:1px solid #e1e3e6;
     border-radius:14px;
     padding:0 13px;
     margin-bottom:14px;
@@ -396,28 +419,24 @@ input,select{
 .primary{
     width:100%;
     height:50px;
-    background:#111315;
+    border:0;
+    border-radius:15px;
+    background:var(--negro);
     color:white;
-    border-radius:15px;
     font-weight:900;
 }
-.secondary{
-    width:100%;
-    height:48px;
-    background:#f0f1f3;
-    border-radius:15px;
-    font-weight:900;
-}
-/* ===== NAVEGACIÓN ===== */
-.bottom{
+/* =========================
+NAVEGACIÓN
+========================= */
+.bottom-nav{
     position:fixed;
-    bottom:10px;
     left:10px;
     right:10px;
-    max-width:480px;
+    bottom:10px;
+    max-width:500px;
     margin:auto;
     height:74px;
-    background:#101214;
+    background:var(--negro);
     border-radius:25px;
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -425,9 +444,10 @@ input,select{
     z-index:100;
     box-shadow:0 15px 40px rgba(0,0,0,.3);
 }
-.bottom button{
+.nav-button{
+    border:0;
     background:transparent;
-    color:#747a82;
+    color:#777d85;
     border-radius:19px;
     display:flex;
     flex-direction:column;
@@ -437,45 +457,45 @@ input,select{
     font-size:9px;
     font-weight:900;
 }
-.bottom button.active{
-    background:#ffc400;
+.nav-button.active{
+    background:var(--amarillo);
     color:#111;
 }
-.bottom-icon{
+.nav-icon{
     font-size:21px;
 }
-/* ===== RESPONSIVE ===== */
+/* =========================
+RESPONSIVE
+========================= */
 @media(max-width:360px){
-.money{
-    font-size:39px;
-}
-.greeting-name{
-    font-size:27px;
-}
-.quick{
-    gap:5px;
-}
+    .profit-value{
+        font-size:39px;
+    }
+    .greeting-name{
+        font-size:27px;
+    }
+    .actions{
+        gap:5px;
+    }
 }
 </style>
 </head>
 <body>
 <div class="app">
 <!-- =========================
-INICIO
+INICIO / DASHBOARD
 ========================= -->
 <section id="inicio" class="screen active">
 <header class="header">
-<div class="top">
-<div class="brand">
-<div class="logo">
-🚕
-</div>
+<div class="header-top">
+<div class="logo-area">
+<div class="logo">🚕</div>
 <div>
-<div class="brand-name">
+<div class="logo-title">
 Taxi Pro
 </div>
-<div class="brand-sub">
-CONTROL INTELIGENTE
+<div class="logo-subtitle">
+CONTROL INTELIGENTE DE TU TAXI
 </div>
 </div>
 </div>
@@ -496,21 +516,21 @@ Jueves 23 de julio de 2026
 </div>
 </header>
 <main class="content">
-<!-- GANANCIA -->
-<div class="main-card">
-<div class="main-card-top">
-<div class="main-label">
+<!-- GANANCIA REAL -->
+<div class="profit-card">
+<div class="profit-header">
+<div class="profit-title">
 GANANCIA REAL DE HOY
 </div>
 <div class="today">
 HOY
 </div>
 </div>
-<div class="money" id="ganancia">
+<div class="profit-value" id="ganancia">
 $0
 </div>
-<div class="money-sub">
-Ingresos − gastos = ganancia real
+<div class="profit-description">
+Ingresos menos todos los gastos del día
 </div>
 </div>
 <!-- ESTADÍSTICAS -->
@@ -520,7 +540,7 @@ Ingresos − gastos = ganancia real
 💰
 </div>
 <div class="stat-label">
-Ingresos de hoy
+Ingresos
 </div>
 <div class="stat-value" id="ingresos">
 $0
@@ -531,7 +551,7 @@ $0
 🧾
 </div>
 <div class="stat-label">
-Gastos de hoy
+Gastos
 </div>
 <div class="stat-value" id="gastos">
 $0
@@ -544,7 +564,7 @@ $0
 <div class="stat-label">
 Pasajeros
 </div>
-<div class="stat-value" id="pasajeros">
+<div class="stat-value">
 0
 </div>
 </div>
@@ -555,33 +575,33 @@ Pasajeros
 <div class="stat-label">
 Recorridos
 </div>
-<div class="stat-value" id="recorridos">
+<div class="stat-value">
 0
 </div>
 </div>
 </div>
 <!-- JORNADA -->
-<button class="jornada" onclick="mostrar('jornada')">
-<div class="jornada-left">
-<div class="jornada-icon">
+<button class="start-work" onclick="showScreen('jornada')">
+<div class="start-left">
+<div class="start-icon">
 🚕
 </div>
 <div>
-<div class="jornada-title">
+<div class="start-title">
 Registrar jornada
 </div>
-<div class="jornada-sub">
-Inicio · salida · km · pasajeros
+<div class="start-subtitle">
+Hora · kilómetros · pasajeros · recorridos
 </div>
 </div>
 </div>
-<div class="jornada-arrow">
+<div class="arrow">
 ›
 </div>
 </button>
 <!-- ACCIONES -->
 <div class="section">
-<div class="section-head">
+<div class="section-header">
 <div class="section-title">
 Acciones rápidas
 </div>
@@ -589,36 +609,36 @@ Acciones rápidas
 Taxi Pro
 </div>
 </div>
-<div class="quick">
-<button onclick="mostrar('finanzas')">
-<div class="quick-icon">
+<div class="actions">
+<button class="action" onclick="showScreen('finanzas')">
+<div class="action-icon">
 🧾
 </div>
-<div class="quick-text">
+<div class="action-name">
 Gastos
 </div>
 </button>
-<button onclick="mostrar('combustible')">
-<div class="quick-icon">
+<button class="action" onclick="showScreen('combustible')">
+<div class="action-icon">
 ⛽
 </div>
-<div class="quick-text">
+<div class="action-name">
 Gasolina
 </div>
 </button>
-<button onclick="mostrar('reportes')">
-<div class="quick-icon">
+<button class="action" onclick="showScreen('reportes')">
+<div class="action-icon">
 📊
 </div>
-<div class="quick-text">
+<div class="action-name">
 Reportes
 </div>
 </button>
-<button onclick="mostrar('vehiculo')">
-<div class="quick-icon">
+<button class="action" onclick="showScreen('vehiculo')">
+<div class="action-icon">
 🔧
 </div>
-<div class="quick-text">
+<div class="action-name">
 Vehículo
 </div>
 </button>
@@ -626,7 +646,7 @@ Vehículo
 </div>
 <!-- RESUMEN -->
 <div class="section">
-<div class="section-head">
+<div class="section-header">
 <div class="section-title">
 Resumen de hoy
 </div>
@@ -636,71 +656,71 @@ Automático
 </div>
 <div class="summary">
 <div class="summary-row">
-<span>Jornadas realizadas</span>
-<strong id="jornadas">0</strong>
+<span>Jornadas</span>
+<strong>0</strong>
 </div>
 <div class="summary-row">
-<span>Total pasajeros</span>
-<strong id="resPasajeros">0</strong>
+<span>Pasajeros</span>
+<strong>0</strong>
 </div>
 <div class="summary-row">
 <span>Ingresos</span>
-<strong id="resIngresos">$0</strong>
+<strong>$0</strong>
 </div>
 <div class="summary-row">
 <span>Gastos</span>
-<strong id="resGastos">$0</strong>
+<strong>$0</strong>
 </div>
 <div class="summary-row">
 <span>Ganancia real</span>
-<strong id="resGanancia">$0</strong>
+<strong>$0</strong>
 </div>
 </div>
 </div>
 <!-- MANTENIMIENTO -->
 <div class="section">
-<div class="section-head">
+<div class="section-header">
 <div class="section-title">
-Estado del vehículo
+Próximo mantenimiento
 </div>
 <div class="section-link">
-Mantenimiento
+Vehículo
 </div>
 </div>
 <div class="maintenance">
-<div class="maintenance-head">
+<div class="maintenance-top">
 <div class="maintenance-icon">
 🔧
 </div>
 <div>
 <div class="maintenance-title">
-Próximo mantenimiento
-</div>
-<div class="maintenance-sub">
 Cambio de aceite
 </div>
+<div class="maintenance-sub">
+Servicio programado por kilometraje
 </div>
 </div>
-<div class="maintenance-km">
+</div>
+<div class="maintenance-data">
 <div>
 Último servicio
 <strong>100,200 km</strong>
 </div>
 <div>
-Próximo
+Próximo servicio
 <strong>110,200 km</strong>
 </div>
 </div>
 </div>
 </div>
-<!-- GASTOS -->
+<!-- GASTOS AUTOMÁTICOS -->
 <div class="section">
-<div class="section-head">
+<div class="section-header">
 <div class="section-title">
 Gastos automáticos
 </div>
 <div class="section-link">
-Hoy
+Programados
 </div>
 </div>
 <div class="expenses">
@@ -710,37 +730,50 @@ Hoy
 Pago de cuentas del taxi
 </div>
 <div class="expense-type">
-Diario
+Todos los días
 </div>
 </div>
-<div class="expense-price">
+<div class="expense-value">
 $500
 </div>
 </div>
 <div class="expense">
 <div>
 <div class="expense-name">
-Casetas
+Punto El Potrero
 </div>
 <div class="expense-type">
-Según recorridos
+Cada 5 días
 </div>
 </div>
-<div class="expense-price">
-Automático
+<div class="expense-value">
+$120
 </div>
 </div>
 <div class="expense">
 <div>
 <div class="expense-name">
-Gasolina
+Checadora
 </div>
 <div class="expense-type">
-Según consumo registrado
+Semanal
 </div>
 </div>
-<div class="expense-price">
-Automático
+<div class="expense-value">
+$300
+</div>
+</div>
+<div class="expense">
+<div>
+<div class="expense-name">
+Movilidad
+</div>
+<div class="expense-type">
+Mensual
+</div>
+</div>
+<div class="expense-value">
+$200
 </div>
 </div>
 </div>
@@ -752,49 +785,22 @@ JORNADA
 ========================= -->
 <section id="jornada" class="screen">
 <header class="page-header">
-<h1>
-🚕 Jornada
-</h1>
-<p>
-Control de tu día de trabajo
-</p>
+<h1>🚕 Jornada</h1>
+<p>Registra tu día de trabajo</p>
 </header>
 <main class="page-body">
 <div class="card">
-<h2>
-🕐 Horario
-</h2>
-<label>
-Hora de inicio
-</label>
+<h2>Inicio de jornada</h2>
+<label>Hora de inicio</label>
 <input type="time">
-<label>
-Hora de salida
-</label>
-<input type="time">
-<label>
-Kilometraje inicial
-</label>
+<label>Kilometraje inicial</label>
 <input type="number">
-<label>
-Kilometraje final
-</label>
+<label>Pasajeros</label>
 <input type="number">
-</div>
-<div class="card">
-<h2>
-👥 Pasajeros y recorridos
-</h2>
-<label>
-Pasajeros
-</label>
-<input type="number" placeholder="Ejemplo: 5">
-<label>
-Recorridos realizados
-</label>
-<input type="number" placeholder="Ejemplo: 3">
+<label>Recorridos</label>
+<input type="number">
 <button class="primary">
-💾 Guardar jornada
+Guardar jornada
 </button>
 </div>
 </main>
@@ -804,18 +810,12 @@ FINANZAS
 ========================= -->
 <section id="finanzas" class="screen">
 <header class="page-header">
-<h1>
-🧾 Finanzas
-</h1>
-<p>
-Tus gastos y pagos automáticos
-</p>
+<h1>🧾 Finanzas</h1>
+<p>Control de ingresos y gastos</p>
 </header>
 <main class="page-body">
 <div class="card">
-<h2>
-Gastos recurrentes
-</h2>
+<h2>Gastos programados</h2>
 <div class="summary-row">
 <span>Pago de cuentas</span>
 <strong>$500 diario</strong>
@@ -826,10 +826,6 @@ Gastos recurrentes
 </div>
 <div class="summary-row">
 <span>Punto El Potrero</span>
-<strong>$100 semanal</strong>
-</div>
-<div class="summary-row">
-<span>Pago especial</span>
 <strong>$120 cada 5 días</strong>
 </div>
 <div class="summary-row">
@@ -837,8 +833,8 @@ Gastos recurrentes
 <strong>$200 mensual</strong>
 </div>
 <div class="summary-row">
-<span>Estacionamiento</span>
-<strong>$220 mensual</strong>
+<span>Estacionamiento Villa Guerrero</span>
+<strong>$220 día 29</strong>
 </div>
 <div class="summary-row">
 <span>Metepec</span>
@@ -852,29 +848,17 @@ COMBUSTIBLE
 ========================= -->
 <section id="combustible" class="screen">
 <header class="page-header">
-<h1>
-⛽ Combustible
-</h1>
-<p>
-Control de gasolina
-</p>
+<h1>⛽ Combustible</h1>
+<p>Control de gasolina y rendimiento</p>
 </header>
 <main class="page-body">
 <div class="card">
-<h2>
-Registrar carga
-</h2>
-<label>
-Litros
-</label>
+<h2>Registrar carga</h2>
+<label>Litros</label>
 <input type="number">
-<label>
-Precio por litro
-</label>
+<label>Precio por litro</label>
 <input type="number">
-<label>
-Kilometraje
-</label>
+<label>Kilometraje</label>
 <input type="number">
 <button class="primary">
 Guardar carga
@@ -887,18 +871,12 @@ REPORTES
 ========================= -->
 <section id="reportes" class="screen">
 <header class="page-header">
-<h1>
-📊 Reportes
-</h1>
-<p>
-Resultados de Taxi Pro
-</p>
+<h1>📊 Reportes</h1>
+<p>Consulta el rendimiento de Taxi Pro</p>
 </header>
 <main class="page-body">
 <div class="card">
-<h2>
-Resumen general
-</h2>
+<h2>Resumen</h2>
 <div class="summary-row">
 <span>Ingresos</span>
 <strong>$0</strong>
@@ -908,7 +886,7 @@ Resumen general
 <strong>$0</strong>
 </div>
 <div class="summary-row">
-<span>Ganancia</span>
+<span>Ganancia real</span>
 <strong>$0</strong>
 </div>
 </div>
@@ -919,45 +897,22 @@ VEHÍCULO
 ========================= -->
 <section id="vehiculo" class="screen">
 <header class="page-header">
-<h1>
-🔧 Vehículo
-</h1>
-<p>
-Mantenimiento de tu taxi
-</p>
+<h1>🔧 Vehículo</h1>
+<p>Control de mantenimiento</p>
 </header>
 <main class="page-body">
 <div class="card">
-<h2>
-Kilometraje actual
-</h2>
-<input type="number" placeholder="Ejemplo: 100200">
-<button class="primary">
-Actualizar kilometraje
-</button>
-</div>
-<div class="card">
-<h2>
-Registrar servicio
-</h2>
-<label>
-Servicio
-</label>
-<input type="text" placeholder="Cambio de aceite">
-<label>
-Kilometraje
-</label>
+<h2>Registrar mantenimiento</h2>
+<label>Servicio</label>
+<input type="text" placeholder="Ejemplo: Cambio de aceite">
+<label>Kilometraje actual</label>
+<input type="number" placeholder="100200">
+<label>Costo</label>
 <input type="number">
-<label>
-Costo
-</label>
-<input type="number">
-<label>
-Cada cuántos kilómetros
-</label>
-<input type="number" placeholder="10000">
+<label>Próximo servicio cada km</label>
+<input type="number" value="10000">
 <button class="primary">
-Guardar mantenimiento
+Guardar servicio
 </button>
 </div>
 </main>
@@ -965,84 +920,79 @@ Guardar mantenimiento
 <!-- =========================
 NAVEGACIÓN
 ========================= -->
-<nav class="bottom">
-<button class="active" onclick="mostrar('inicio',this)">
-<span class="bottom-icon">
-⌂
-</span>
+<nav class="bottom-nav">
+<button class="nav-button active" onclick="showScreen('inicio',this)">
+<span class="nav-icon">⌂</span>
 Inicio
 </button>
-<button onclick="mostrar('jornada',this)">
-<span class="bottom-icon">
-🚕
-</span>
+<button class="nav-button" onclick="showScreen('jornada',this)">
+<span class="nav-icon">🚕</span>
 Jornada
 </button>
-<button onclick="mostrar('finanzas',this)">
-<span class="bottom-icon">
-🧾
-</span>
+<button class="nav-button" onclick="showScreen('finanzas',this)">
+<span class="nav-icon">🧾</span>
 Finanzas
 </button>
-<button onclick="mostrar('reportes',this)">
-<span class="bottom-icon">
-📊
-</span>
+<button class="nav-button" onclick="showScreen('reportes',this)">
+<span class="nav-icon">📊</span>
 Reportes
 </button>
-<button onclick="mostrar('vehiculo',this)">
-<span class="bottom-icon">
-🔧
-</span>
+<button class="nav-button" onclick="showScreen('vehiculo',this)">
+<span class="nav-icon">🔧</span>
 Vehículo
 </button>
 </nav>
 </div>
 <script>
-function mostrar(id,boton){
+/* =========================
+CAMBIAR PANTALLA
+========================= */
+function showScreen(id,button){
 document
 .querySelectorAll(".screen")
-.forEach(
-x=>x.classList.remove("active")
-);
+.forEach(function(screen){
+screen.classList.remove("active");
+});
 document
 .getElementById(id)
 .classList.add("active");
-if(boton){
+if(button){
 document
-.querySelectorAll(".bottom button")
-.forEach(
-x=>x.classList.remove("active")
-);
-boton.classList.add("active");
+.querySelectorAll(".nav-button")
+.forEach(function(nav){
+nav.classList.remove("active");
+});
+button.classList.add("active");
 }
 window.scrollTo(0,0);
 }
-/* Fecha automática */
-let fecha=new Date();
-let opciones={
+/* =========================
+FECHA AUTOMÁTICA
+========================= */
+const fechaActual = new Date();
+const opcionesFecha = {
 weekday:"long",
 day:"numeric",
 month:"long",
 year:"numeric"
 };
-document.getElementById("fecha")
-.textContent=
-fecha.toLocaleDateString(
+document.getElementById("fecha").textContent =
+fechaActual.toLocaleDateString(
 "es-MX",
-opciones
+opcionesFecha
 );
-/* Saludo */
-let hora=fecha.getHours();
-let saludo="Buenos días";
-if(hora>=12 && hora<19){
-saludo="Buenas tardes";
+/* =========================
+SALUDO AUTOMÁTICO
+========================= */
+const hora = fechaActual.getHours();
+let saludo = "Buenos días";
+if(hora >= 12 && hora < 19){
+saludo = "Buenas tardes";
 }
-if(hora>=19 || hora<6){
-saludo="Buenas noches";
+if(hora >= 19 || hora < 6){
+saludo = "Buenas noches";
 }
-document.getElementById("saludo")
-.textContent=saludo;
+document.getElementById("saludo").textContent = saludo;
 </script>
 </body>
 </html>
