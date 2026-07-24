@@ -5,11 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F4B400">
 
-<title>Taxi Pro 11.0</title>
+<title>Taxi Pro</title>
 
 <style>
 
+/* =====================================================
+   TAXI PRO
+   DISEÑO GENERAL SANS + SATOSHI
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
+
 :root{
+
 --primary:#F4B400;
 --primary-dark:#D99500;
 --primary-soft:#FFF4CC;
@@ -27,100 +35,171 @@
 --border:#E5E7EB;
 
 --shadow:0 10px 30px rgba(15,23,42,.08);
+
 }
 
 *{
+
 box-sizing:border-box;
 margin:0;
 padding:0;
+
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
+
+font-family:'DM Sans','Arial','Helvetica',sans-serif;
+
 background:var(--bg);
+
 color:var(--text);
-padding-bottom:100px;
-font-size:16px;
+
+padding-bottom:110px;
+
 }
 
 button,
 input,
 select{
-font-family:Arial,Helvetica,sans-serif;
+
+font-family:'DM Sans','Arial','Helvetica',sans-serif;
+
 }
 
 button{
+
 cursor:pointer;
+
 }
 
 .app{
+
 max-width:900px;
+
 margin:auto;
+
 }
 
-/* =========================
+
+/* =====================================================
 HEADER
-========================= */
+===================================================== */
 
 .header{
+
 background:white;
-padding:24px 20px 22px;
+
+padding:22px 20px 20px;
+
 border-bottom:1px solid var(--border);
+
 }
 
 .header-top{
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
+
 }
 
 .greeting small{
+
 color:var(--muted);
+
 font-size:16px;
+
 font-weight:700;
+
 }
 
 .greeting h1{
+
 font-size:30px;
-margin-top:6px;
+
+margin-top:5px;
+
 font-weight:800;
+
 }
 
 .time{
-margin-top:8px;
-font-size:34px;
+
+margin-top:7px;
+
+font-size:30px;
+
 font-weight:800;
+
 letter-spacing:-1px;
+
 }
 
 .weather-icon{
-width:64px;
-height:64px;
+
+width:65px;
+
+height:65px;
+
 border-radius:20px;
+
 background:var(--primary-soft);
+
 display:grid;
+
 place-items:center;
-font-size:34px;
+
+font-size:38px;
+
 }
 
-/* =========================
+
+/* =====================================================
 VISTAS
-========================= */
+===================================================== */
 
 .view{
+
 display:none;
+
 padding:20px;
+
 }
 
 .view.active{
+
 display:block;
+
 }
 
-/* =========================
-DASHBOARD
-========================= */
+
+/* =====================================================
+TARJETAS
+===================================================== */
+
+.card{
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:24px;
+
+padding:22px;
+
+box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+GANANCIA
+===================================================== */
 
 .profit-card{
+
 background:linear-gradient(
 135deg,
 #F4B400,
@@ -128,634 +207,1061 @@ background:linear-gradient(
 );
 
 border-radius:28px;
+
 padding:26px;
+
 box-shadow:var(--shadow);
+
 }
 
 .profit-label{
+
 font-size:16px;
-font-weight:700;
+
+font-weight:800;
+
 color:#5F4A00;
+
 }
 
 .profit-value{
+
 font-size:46px;
+
 font-weight:800;
-margin:10px 0 24px;
+
+margin:8px 0 22px;
+
 letter-spacing:-2px;
+
 }
 
 .summary-grid{
+
 display:grid;
+
 grid-template-columns:repeat(2,1fr);
+
 gap:12px;
+
 }
 
 .summary{
-background:rgba(255,255,255,.62);
+
+background:rgba(255,255,255,.65);
+
 border-radius:18px;
+
 padding:17px;
+
 }
 
 .summary span{
+
 display:block;
+
 font-size:14px;
+
 color:#665300;
+
 font-weight:600;
+
 }
 
 .summary strong{
+
 display:block;
+
 margin-top:6px;
+
 font-size:21px;
+
 }
 
-/* =========================
-JORNADA EN INICIO
-========================= */
 
-.journey-home-card{
+/* =====================================================
+BOTÓN PRINCIPAL
+===================================================== */
+
+.main-action{
+
+width:100%;
+
 margin-top:18px;
-background:white;
-border:1px solid var(--border);
-border-radius:24px;
-padding:22px;
+
+border:0;
+
+background:#17202A;
+
+color:white;
+
+padding:20px;
+
+border-radius:20px;
+
+font-size:18px;
+
+font-weight:800;
+
 box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+JORNADA EN INICIO
+===================================================== */
+
+.journey-home{
+
+margin-top:18px;
+
+background:white;
+
+border-radius:24px;
+
+padding:22px;
+
+border:1px solid var(--border);
+
+box-shadow:var(--shadow);
+
 }
 
 .journey-home-title{
-display:flex;
-align-items:center;
-gap:12px;
-font-size:21px;
+
+font-size:18px;
+
 font-weight:800;
+
 margin-bottom:14px;
+
 }
 
-.journey-home-icon{
-width:52px;
-height:52px;
-border-radius:16px;
-background:var(--primary-soft);
-display:grid;
-place-items:center;
-font-size:28px;
-}
+.journey-home-status{
 
-.journey-status{
-font-size:20px;
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:18px;
+
 font-weight:800;
-margin-bottom:8px;
+
+margin-bottom:15px;
+
 }
 
-.journey-last{
-font-size:15px;
-color:var(--muted);
-line-height:1.6;
-margin-bottom:16px;
+.journey-dot{
+
+width:15px;
+
+height:15px;
+
+border-radius:50%;
+
+background:#9CA3AF;
+
+}
+
+.journey-dot.active{
+
+background:#16A34A;
+
+box-shadow:0 0 0 6px rgba(22,163,74,.15);
+
 }
 
 .journey-button{
+
 width:100%;
+
 border:0;
+
 border-radius:18px;
-padding:18px;
-font-size:19px;
-font-weight:800;
-box-shadow:var(--shadow);
-}
 
-.journey-start{
-background:#16A34A;
-color:white;
-}
+padding:19px;
 
-.journey-finish{
-background:#DC2626;
-color:white;
-}
-
-/* =========================
-ACCION PRINCIPAL
-========================= */
-
-.main-action{
-width:100%;
-margin-top:18px;
-border:0;
-background:#17202A;
-color:white;
-padding:20px;
-border-radius:20px;
 font-size:18px;
+
 font-weight:800;
-box-shadow:var(--shadow);
+
+color:white;
+
+background:#16A34A;
+
 }
 
-/* =========================
+.journey-button.finish{
+
+background:#DC2626;
+
+}
+
+.journey-record{
+
+margin-top:12px;
+
+font-size:14px;
+
+color:var(--muted);
+
+font-weight:600;
+
+text-align:center;
+
+}
+
+
+/* =====================================================
 SECCIONES
-========================= */
+===================================================== */
 
 .section-title{
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
-margin:30px 2px 14px;
+
+margin:28px 2px 14px;
+
 }
 
 .section-title h2{
+
 font-size:22px;
+
 font-weight:800;
+
 }
 
 .section-title button{
+
 border:0;
+
 background:none;
+
 color:var(--blue);
+
+font-weight:800;
+
 font-size:16px;
-font-weight:800;
+
 }
 
-/* =========================
-TARJETAS
-========================= */
 
-.card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:24px;
-padding:22px;
-box-shadow:var(--shadow);
-}
-
-/* =========================
-VUELTAS
-========================= */
-
-.trip-card{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
-border-bottom:1px solid var(--border);
-gap:15px;
-}
-
-.trip-card:last-child{
-border-bottom:0;
-}
-
-.trip-date{
-font-size:14px;
-color:var(--muted);
-margin-bottom:6px;
-}
-
-.trip-title{
-font-weight:800;
-font-size:17px;
-}
-
-.trip-info{
-color:var(--muted);
-font-size:14px;
-margin-top:6px;
-line-height:1.6;
-}
-
-.trip-income{
-font-size:20px;
-font-weight:800;
-white-space:nowrap;
-}
-
-/* =========================
-MENU RAPIDO
-========================= */
+/* =====================================================
+ACCIONES RÁPIDAS
+===================================================== */
 
 .quick-grid{
+
 display:grid;
+
 grid-template-columns:repeat(4,1fr);
+
 gap:12px;
+
 }
 
 .quick{
+
 border:1px solid var(--border);
+
 background:white;
-border-radius:20px;
-padding:19px 8px;
+
+border-radius:22px;
+
+padding:20px 8px;
+
 text-align:center;
+
 box-shadow:var(--shadow);
+
 }
 
 .quick-icon{
-width:56px;
-height:56px;
-border-radius:17px;
+
+width:62px;
+
+height:62px;
+
+border-radius:18px;
+
 background:var(--primary-soft);
+
 display:grid;
+
 place-items:center;
+
 margin:auto auto 10px;
-font-size:29px;
+
+font-size:34px;
+
 }
 
 .quick strong{
+
 font-size:14px;
+
 }
 
-/* =========================
-FORMULARIO
-========================= */
+
+/* =====================================================
+VUELTAS
+===================================================== */
+
+.trip-card{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 0;
+
+border-bottom:1px solid var(--border);
+
+}
+
+.trip-card:last-child{
+
+border-bottom:0;
+
+}
+
+.trip-date{
+
+font-size:14px;
+
+color:var(--muted);
+
+margin-bottom:6px;
+
+}
+
+.trip-title{
+
+font-weight:800;
+
+font-size:17px;
+
+}
+
+.trip-info{
+
+color:var(--muted);
+
+font-size:14px;
+
+margin-top:6px;
+
+line-height:1.6;
+
+}
+
+.trip-income{
+
+font-size:20px;
+
+font-weight:800;
+
+}
+
+
+/* =====================================================
+FORMULARIOS
+===================================================== */
 
 .form-group{
+
 margin-bottom:18px;
+
 }
 
 .form-group label{
+
 display:block;
-font-size:15px;
+
+font-size:16px;
+
 font-weight:800;
+
 margin-bottom:8px;
+
 }
 
 .form-group input{
+
 width:100%;
+
 padding:17px;
+
 border:1px solid var(--border);
-border-radius:15px;
+
+border-radius:16px;
+
 background:#F9FAFB;
-font-size:18px;
+
+font-size:17px;
+
 outline:none;
+
 }
 
 .form-group input:focus{
+
 border-color:var(--primary);
+
 }
 
+
 .auto-box{
+
 background:var(--primary-soft);
+
 padding:18px;
-border-radius:17px;
-margin:16px 0;
+
+border-radius:18px;
+
+margin:15px 0;
+
 }
 
 .auto-box span{
+
 display:block;
+
 font-size:14px;
+
 color:#6B5300;
-font-weight:600;
+
+font-weight:700;
+
 }
 
 .auto-box strong{
+
 display:block;
-font-size:26px;
+
+font-size:25px;
+
 margin-top:6px;
+
 }
 
-/* =========================
+
+/* =====================================================
 BOTONES
-========================= */
+===================================================== */
 
 .btn{
+
 width:100%;
+
 border:0;
-border-radius:16px;
+
+border-radius:17px;
+
 padding:18px;
-font-size:17px;
+
+font-size:16px;
+
 font-weight:800;
+
 }
 
 .btn-primary{
+
 background:#17202A;
+
 color:white;
+
 }
 
 .btn-secondary{
+
 background:#F2F4F7;
+
 color:var(--text);
+
 }
 
-/* =========================
+
+/* =====================================================
 FINANZAS
-========================= */
+===================================================== */
 
 .finance-main{
+
 text-align:center;
+
 }
 
 .finance-main small{
+
 color:var(--muted);
+
 font-size:15px;
+
+font-weight:600;
+
 }
 
 .finance-main h2{
+
 font-size:42px;
+
 margin:8px 0 22px;
+
 }
 
 .finance-grid{
+
 display:grid;
+
 grid-template-columns:repeat(2,1fr);
+
 gap:12px;
+
 }
 
 .finance-item{
+
 background:#F8FAFC;
+
 padding:19px;
-border-radius:17px;
+
+border-radius:18px;
+
 }
 
 .finance-item span{
+
 display:block;
+
 color:var(--muted);
+
 font-size:14px;
+
 font-weight:600;
+
 }
 
 .finance-item strong{
+
 display:block;
+
 margin-top:6px;
+
 font-size:21px;
+
 }
 
 .green{
+
 color:var(--green);
+
 }
 
 .red{
+
 color:var(--red);
+
 }
 
-/* =========================
-TAXI
-========================= */
 
-.car-card{
-background:white;
-border-radius:26px;
-overflow:hidden;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-}
+/* =====================================================
+INFORMES
+===================================================== */
 
-.car-photo{
-width:100%;
-height:250px;
-object-fit:cover;
-display:block;
-}
+.report-tabs{
 
-.car-info{
-padding:22px;
-}
-
-.car-info h2{
-font-size:26px;
-}
-
-.car-info p{
-color:var(--muted);
-font-size:15px;
-margin-top:6px;
-}
-
-.car-stats{
 display:grid;
+
 grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:20px;
+
+gap:8px;
+
+margin-bottom:15px;
+
 }
 
-/* =========================
-MANTENIMIENTO
-========================= */
+.report-tab{
 
-.service{
-display:flex;
-justify-content:space-between;
-padding:18px 0;
-border-bottom:1px solid var(--border);
-gap:15px;
-}
+border:0;
 
-.service:last-child{
-border-bottom:0;
-}
+padding:14px 5px;
 
-.service strong{
-font-size:16px;
-}
+border-radius:15px;
 
-.service small{
-display:block;
-color:var(--muted);
-margin-top:5px;
+background:#F2F4F7;
+
 font-size:14px;
+
+font-weight:800;
+
 }
 
-/* =========================
-PAGOS
-========================= */
+.report-tab.active{
+
+background:var(--primary);
+
+color:#17202A;
+
+}
+
+.report-summary{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:10px;
+
+}
+
+.report-box{
+
+padding:18px;
+
+border-radius:18px;
+
+background:#F8FAFC;
+
+}
+
+.report-box span{
+
+display:block;
+
+font-size:13px;
+
+color:var(--muted);
+
+font-weight:700;
+
+}
+
+.report-box strong{
+
+display:block;
+
+font-size:21px;
+
+margin-top:6px;
+
+}
+
+
+/* =====================================================
+PAGOS RECURRENTES
+===================================================== */
 
 .payment-notice{
+
 background:#EEF6FF;
+
 border-radius:18px;
+
 padding:18px;
-margin-bottom:16px;
+
+margin-bottom:15px;
+
 }
 
 .payment-notice strong{
+
 font-size:15px;
+
 }
 
 .payment-notice p{
+
 color:var(--muted);
-font-size:14px;
+
+font-size:13px;
+
 margin-top:6px;
+
 line-height:1.5;
+
 }
 
 .payment{
+
 display:flex;
+
 justify-content:space-between;
+
 padding:18px 0;
+
 border-bottom:1px solid var(--border);
-gap:15px;
+
 }
 
 .payment:last-child{
+
 border-bottom:0;
+
 }
 
 .payment-name{
+
 font-weight:800;
+
 font-size:15px;
+
 }
 
 .payment-date{
+
 color:var(--muted);
+
 font-size:13px;
+
 margin-top:5px;
+
 }
 
 .payment-amount{
+
 font-weight:800;
+
 font-size:17px;
+
+text-align:right;
+
 }
 
-/* =========================
-NAVEGACION
-========================= */
+.payment-status{
+
+font-size:12px;
+
+margin-top:4px;
+
+font-weight:700;
+
+}
+
+.payment-paid{
+
+color:var(--green);
+
+}
+
+.payment-pending{
+
+color:var(--red);
+
+}
+
+
+/* =====================================================
+MI TAXI
+===================================================== */
+
+.car-card{
+
+background:white;
+
+border-radius:26px;
+
+overflow:hidden;
+
+border:1px solid var(--border);
+
+box-shadow:var(--shadow);
+
+}
+
+.car-photo{
+
+width:100%;
+
+height:250px;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+.car-info{
+
+padding:22px;
+
+}
+
+.car-info h2{
+
+font-size:25px;
+
+}
+
+.car-info p{
+
+color:var(--muted);
+
+font-size:14px;
+
+margin-top:6px;
+
+}
+
+.car-stats{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+margin-top:20px;
+
+}
+
+
+/* =====================================================
+MANTENIMIENTO
+===================================================== */
+
+.service{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:17px 0;
+
+border-bottom:1px solid var(--border);
+
+}
+
+.service strong{
+
+font-size:15px;
+
+}
+
+.service small{
+
+display:block;
+
+color:var(--muted);
+
+margin-top:5px;
+
+font-size:13px;
+
+}
+
+
+/* =====================================================
+NAVEGACIÓN
+===================================================== */
 
 .bottom-nav{
+
 position:fixed;
+
 z-index:100;
+
 bottom:10px;
+
 left:50%;
+
 transform:translateX(-50%);
 
 width:min(700px,calc(100% - 16px));
 
 background:rgba(255,255,255,.97);
+
 backdrop-filter:blur(20px);
 
 border:1px solid var(--border);
+
 border-radius:25px;
 
 box-shadow:0 15px 40px rgba(0,0,0,.15);
 
 display:grid;
+
 grid-template-columns:repeat(5,1fr);
-padding:8px;
+
+padding:7px;
+
 }
 
 .nav{
+
 border:0;
+
 background:transparent;
+
 padding:10px 3px;
+
 border-radius:18px;
+
 color:var(--muted);
-font-size:13px;
+
+font-size:12px;
+
 font-weight:800;
+
 }
 
 .nav-icon{
+
 display:block;
-font-size:28px;
+
+font-size:31px;
+
 margin-bottom:5px;
+
 }
 
 .nav.active{
+
 background:var(--primary-soft);
+
 color:var(--text);
+
 }
 
-/* =========================
+
+/* =====================================================
 MODAL
-========================= */
+===================================================== */
 
 .modal{
+
 display:none;
+
 position:fixed;
+
 inset:0;
+
 z-index:200;
+
 background:rgba(15,23,42,.6);
+
 align-items:flex-end;
+
 padding:10px;
+
 }
 
 .modal.active{
+
 display:flex;
+
 }
 
 .modal-box{
+
 width:min(650px,100%);
+
 background:white;
+
 border-radius:28px;
-padding:26px;
+
+padding:25px;
+
 margin:auto;
+
 max-height:90vh;
+
 overflow:auto;
+
 }
 
 .modal-box h2{
+
 font-size:25px;
+
 margin-bottom:22px;
+
 }
 
 .modal-buttons{
+
 display:grid;
+
 grid-template-columns:1fr 1fr;
-gap:12px;
+
+gap:10px;
+
 }
 
-/* =========================
+
+/* =====================================================
 RESPONSIVE
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
-.view{
-padding:18px;
-}
-
 .quick-grid{
+
 grid-template-columns:repeat(2,1fr);
+
 }
 
 .profit-value{
+
 font-size:40px;
+
 }
 
 .time{
-font-size:30px;
+
+font-size:28px;
+
 }
 
-.summary strong{
-font-size:19px;
-}
+.quick-icon{
 
-.quick strong{
-font-size:14px;
-}
+font-size:36px;
 
-.nav{
-font-size:11px;
+width:65px;
+
+height:65px;
+
 }
 
 .nav-icon{
-font-size:25px;
-}
 
-.car-stats{
-grid-template-columns:1fr;
-}
+font-size:29px;
 
 }
 
-/* =========================
-JORNADA ACTIVA
-========================= */
+.report-box strong{
 
-.journey-active{
-border:2px solid var(--green);
-background:#F0FDF4;
+font-size:19px;
+
 }
 
-.journey-finished{
-border:2px solid var(--border);
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="app">
 
-<!-- =========================
+
+<!-- =====================================================
 HEADER
-========================= -->
+===================================================== -->
 
 <header class="header">
 
@@ -768,7 +1274,11 @@ HEADER
 </small>
 
 <h1>
-<span id="userName">Fredy</span>
+
+<span id="userName">
+Fredy
+</span>
+
 </h1>
 
 <div id="time" class="time">
@@ -776,6 +1286,7 @@ HEADER
 </div>
 
 </div>
+
 
 <div id="weatherIcon" class="weather-icon">
 ☀️
@@ -786,11 +1297,12 @@ HEADER
 </header>
 
 
-<!-- =========================
+<!-- =====================================================
 INICIO
-========================= -->
+===================================================== -->
 
 <section id="inicio" class="view active">
+
 
 <div class="profit-card">
 
@@ -802,7 +1314,9 @@ INICIO
 $0
 </div>
 
+
 <div class="summary-grid">
+
 
 <div class="summary">
 
@@ -816,6 +1330,7 @@ $0
 
 </div>
 
+
 <div class="summary">
 
 <span>
@@ -828,10 +1343,11 @@ $0
 
 </div>
 
+
 <div class="summary">
 
 <span>
-💰 Ingresos
+💵 Ingresos
 </span>
 
 <strong id="todayIncome">
@@ -839,6 +1355,7 @@ $0
 </strong>
 
 </div>
+
 
 <div class="summary">
 
@@ -852,45 +1369,53 @@ $0
 
 </div>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- =========================
+
+<!-- =====================================================
 JORNADA EN INICIO
-========================= -->
+===================================================== -->
 
-<div id="journeyHomeCard" class="journey-home-card">
+<div class="journey-home">
 
 <div class="journey-home-title">
 
-<div class="journey-home-icon">
-🕐
+🕐 Jornada de trabajo
+
 </div>
 
-<span>
-Control de jornada
+
+<div class="journey-home-status">
+
+<div id="journeyDot" class="journey-dot"></div>
+
+<span id="journeyHomeStatus">
+Fuera de jornada
 </span>
 
 </div>
 
-<div id="journeyHomeStatus" class="journey-status">
-⚪ Fuera de jornada
-</div>
-
-<div id="journeyLastInfo" class="journey-last">
-No hay una jornada registrada.
-</div>
 
 <button
 id="journeyHomeButton"
-class="journey-button journey-start"
+class="journey-button"
 onclick="toggleJourney()">
 
-▶️ INICIAR JORNADA
+▶️ Iniciar jornada
 
 </button>
+
+
+<div
+id="journeyRecord"
+class="journey-record">
+
+Sin jornada registrada hoy
+
+</div>
 
 </div>
 
@@ -914,6 +1439,7 @@ onclick="openModal('tripModal')">
 
 
 <div class="quick-grid">
+
 
 <button
 class="quick"
@@ -974,6 +1500,7 @@ Mantenimiento
 
 </button>
 
+
 </div>
 
 
@@ -992,14 +1519,16 @@ Aún no hay vueltas registradas.
 
 </div>
 
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
 VUELTAS
-========================= -->
+===================================================== -->
 
 <section id="vueltas" class="view">
+
 
 <div class="section-title">
 
@@ -1022,20 +1551,22 @@ onclick="openModal('tripModal')">
 <div
 id="allTrips"
 class="card"
-style="margin-top:20px">
+style="margin-top:18px">
 
 No hay vueltas registradas.
 
 </div>
 
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
 FINANZAS
-========================= -->
+===================================================== -->
 
 <section id="finanzas" class="view">
+
 
 <div class="section-title">
 
@@ -1048,9 +1579,11 @@ FINANZAS
 
 <div class="card finance-main">
 
+
 <small>
 Ganancia real de hoy
 </small>
+
 
 <h2 id="financeProfit">
 $0
@@ -1059,14 +1592,19 @@ $0
 
 <div class="finance-grid">
 
+
 <div class="finance-item">
 
 <span>
-💰 Ingresos
+💵 Ingresos
 </span>
 
-<strong id="financeIncome" class="green">
+<strong
+id="financeIncome"
+class="green">
+
 $0
+
 </strong>
 
 </div>
@@ -1078,8 +1616,12 @@ $0
 💸 Gastos
 </span>
 
-<strong id="financeExpense" class="red">
+<strong
+id="financeExpense"
+class="red">
+
 $0
+
 </strong>
 
 </div>
@@ -1110,10 +1652,149 @@ $0
 
 </div>
 
-</div>
 
 </div>
 
+</div>
+
+
+<!-- =====================================================
+INFORMES
+===================================================== -->
+
+<div class="section-title">
+
+<h2>
+📊 Informes
+</h2>
+
+</div>
+
+
+<div class="card">
+
+
+<div class="report-tabs">
+
+
+<button
+class="report-tab active"
+data-report="week"
+onclick="changeReport('week')">
+
+📅 Semana
+
+</button>
+
+
+<button
+class="report-tab"
+data-report="month"
+onclick="changeReport('month')">
+
+🗓️ Mes
+
+</button>
+
+
+<button
+class="report-tab"
+data-report="year"
+onclick="changeReport('year')">
+
+📆 Año
+
+</button>
+
+
+</div>
+
+
+<div
+id="reportTitle"
+style="font-size:18px;font-weight:800;margin-bottom:15px">
+
+Informe semanal
+
+</div>
+
+
+<div class="report-summary">
+
+
+<div class="report-box">
+
+<span>
+💵 Ingresos
+</span>
+
+<strong
+id="reportIncome"
+class="green">
+
+$0
+
+</strong>
+
+</div>
+
+
+<div class="report-box">
+
+<span>
+💸 Gastos
+</span>
+
+<strong
+id="reportExpenses"
+class="red">
+
+$0
+
+</strong>
+
+</div>
+
+
+<div class="report-box">
+
+<span>
+📈 Ganancia
+</span>
+
+<strong id="reportProfit">
+
+$0
+
+</strong>
+
+</div>
+
+
+<div class="report-box">
+
+<span>
+🚕 Vueltas
+</span>
+
+<strong id="reportTrips">
+
+0
+
+</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+PAGOS RECURRENTES
+===================================================== -->
 
 <div class="section-title">
 
@@ -1127,27 +1808,32 @@ $0
 <div class="payment-notice">
 
 <strong>
-🔄 Los pagos recurrentes se calculan automáticamente.
+🔄 Descuento automático
 </strong>
 
 <p>
-No necesitas registrarlos manualmente. Taxi Pro los toma en cuenta cuando corresponde la fecha de pago.
+
+Taxi Pro calcula automáticamente los pagos recurrentes y los incluye como gasto en la fecha correspondiente.
+
 </p>
 
 </div>
 
 
 <div id="payments" class="card">
+
 </div>
+
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
 MI TAXI
-========================= -->
+===================================================== -->
 
 <section id="taxi" class="view">
+
 
 <div class="section-title">
 
@@ -1160,6 +1846,7 @@ MI TAXI
 
 <div class="car-card">
 
+
 <img
 class="car-photo"
 src="aveo-2019.jpg"
@@ -1169,9 +1856,11 @@ onerror="this.style.display='none';">
 
 <div class="car-info">
 
+
 <h2>
-🚗 Chevrolet Aveo Sedán
+Chevrolet Aveo Sedán
 </h2>
+
 
 <p>
 Modelo 2019 · Taxi Pro
@@ -1180,10 +1869,11 @@ Modelo 2019 · Taxi Pro
 
 <div class="car-stats">
 
+
 <div class="summary">
 
 <span>
-📍 Kilometraje
+📏 Kilometraje
 </span>
 
 <strong id="vehicleKm">
@@ -1218,6 +1908,7 @@ Modelo 2019 · Taxi Pro
 
 </div>
 
+
 </div>
 
 </div>
@@ -1230,6 +1921,7 @@ Modelo 2019 · Taxi Pro
 <h2>
 🔧 Mantenimiento
 </h2>
+
 
 <button
 onclick="openModal('serviceModal')">
@@ -1247,14 +1939,16 @@ No hay servicios registrados.
 
 </div>
 
+
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
 NAVEGACIÓN
-========================= -->
+===================================================== -->
 
 <nav class="bottom-nav">
+
 
 <button
 class="nav active"
@@ -1325,18 +2019,22 @@ Más
 
 </button>
 
+
 </nav>
+
 
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
 MODAL VUELTA
-========================= -->
+===================================================== -->
 
 <div id="tripModal" class="modal">
 
+
 <div class="modal-box">
+
 
 <h2>
 🚕 Registrar nueva vuelta
@@ -1446,6 +2144,7 @@ placeholder="Ejemplo: 50">
 
 <div class="modal-buttons">
 
+
 <button
 class="btn btn-secondary"
 onclick="closeModal('tripModal')">
@@ -1463,20 +2162,24 @@ onclick="saveTrip()">
 
 </button>
 
+
+</div>
+
+
 </div>
 
 </div>
 
-</div>
 
-
-<!-- =========================
+<!-- =====================================================
 MODAL GASTO
-========================= -->
+===================================================== -->
 
 <div id="expenseModal" class="modal">
 
+
 <div class="modal-box">
+
 
 <h2>
 💸 Registrar otro gasto
@@ -1511,6 +2214,7 @@ type="number">
 
 <div class="modal-buttons">
 
+
 <button
 class="btn btn-secondary"
 onclick="closeModal('expenseModal')">
@@ -1528,20 +2232,24 @@ onclick="saveExpense()">
 
 </button>
 
+
+</div>
+
+
 </div>
 
 </div>
 
-</div>
 
-
-<!-- =========================
+<!-- =====================================================
 MODAL GASOLINA
-========================= -->
+===================================================== -->
 
 <div id="fuelModal" class="modal">
 
+
 <div class="modal-box">
+
 
 <h2>
 ⛽ Registrar gasolina
@@ -1565,7 +2273,7 @@ placeholder="Ejemplo: 550">
 <div class="form-group">
 
 <label>
-⛽ Litros
+🛢️ Litros
 </label>
 
 <input
@@ -1578,7 +2286,7 @@ type="number">
 <div class="form-group">
 
 <label>
-📍 Kilometraje actual
+📏 Kilometraje actual
 </label>
 
 <input
@@ -1589,6 +2297,7 @@ type="number">
 
 
 <div class="modal-buttons">
+
 
 <button
 class="btn btn-secondary"
@@ -1607,20 +2316,24 @@ onclick="saveFuel()">
 
 </button>
 
+
+</div>
+
+
 </div>
 
 </div>
 
-</div>
 
-
-<!-- =========================
+<!-- =====================================================
 MODAL SERVICIO
-========================= -->
+===================================================== -->
 
 <div id="serviceModal" class="modal">
 
+
 <div class="modal-box">
+
 
 <h2>
 🔧 Registrar mantenimiento
@@ -1656,7 +2369,7 @@ type="date">
 <div class="form-group">
 
 <label>
-📍 Kilometraje
+📏 Kilometraje
 </label>
 
 <input
@@ -1681,6 +2394,7 @@ type="number">
 
 <div class="modal-buttons">
 
+
 <button
 class="btn btn-secondary"
 onclick="closeModal('serviceModal')">
@@ -1698,7 +2412,9 @@ onclick="saveService()">
 
 </button>
 
+
 </div>
+
 
 </div>
 
@@ -1707,13 +2423,16 @@ onclick="saveService()">
 
 <script>
 
-/* =========================
+/* =====================================================
 DATOS
-========================= */
+===================================================== */
 
 const KEY="taxiPro11";
 
-let data=JSON.parse(
+
+let data=
+
+JSON.parse(
 localStorage.getItem(KEY)
 )||{
 
@@ -1731,9 +2450,18 @@ expenses:[],
 
 fuels:[],
 
-services:[]
+services:[],
+
+paidRecurring:[]
 
 };
+
+
+if(!data.paidRecurring){
+
+data.paidRecurring=[];
+
+}
 
 
 function save(){
@@ -1751,10 +2479,15 @@ function money(value){
 return new Intl.NumberFormat(
 "es-MX",
 {
+
 style:"currency",
+
 currency:"MXN",
+
 maximumFractionDigits:0
+
 }
+
 ).format(
 Number(value)||0
 );
@@ -1771,37 +2504,9 @@ return new Date()
 }
 
 
-/* =========================
-FECHA Y HORA
-========================= */
-
-function getDateTime(){
-
-const now=new Date();
-
-return{
-
-date:now.toLocaleDateString(
-"es-MX"
-),
-
-time:now.toLocaleTimeString(
-"es-MX",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}
-)
-
-};
-
-}
-
-
-/* =========================
-SALUDO
-========================= */
+/* =====================================================
+SALUDO E ICONO
+===================================================== */
 
 function updateHeader(){
 
@@ -1814,10 +2519,7 @@ let greeting="☀️ Buenos días";
 let icon="☀️";
 
 
-if(
-hour>=12 &&
-hour<19
-){
+if(hour>=12 && hour<19){
 
 greeting="🌤️ Buenas tardes";
 
@@ -1826,10 +2528,7 @@ icon="🌤️";
 }
 
 
-if(
-hour>=19 ||
-hour<5
-){
+if(hour>=19 || hour<5){
 
 greeting="🌙 Buenas noches";
 
@@ -1856,51 +2555,308 @@ document.getElementById(
 document.getElementById(
 "time"
 ).textContent=
+
 now.toLocaleTimeString(
 "es-MX",
 {
+
 hour:"2-digit",
+
 minute:"2-digit"
+
 }
+
 );
 
 }
 
 
-/* =========================
+/* =====================================================
+PAGOS RECURRENTES
+===================================================== */
+
+const payments=[
+
+{
+
+name:"📍 Punto El Potrero",
+
+amount:120,
+
+rule:"Cada 5 días",
+
+next:"2026-07-23",
+
+type:"every5"
+
+},
+
+{
+
+name:"🧾 Pago Checadora",
+
+amount:300,
+
+rule:"Cada viernes",
+
+next:"2026-07-24",
+
+type:"weekly"
+
+},
+
+{
+
+name:"🅿️ Estacionamiento Villa Guerrero",
+
+amount:220,
+
+rule:"Día 29 de cada mes",
+
+next:"2026-07-29",
+
+type:"monthly29"
+
+},
+
+{
+
+name:"🚌 Pago Movilidad",
+
+amount:200,
+
+rule:"Día 20 de cada mes",
+
+next:"2026-08-20",
+
+type:"monthly20"
+
+},
+
+{
+
+name:"📍 Pago Metepec",
+
+amount:80,
+
+rule:"Día 4 de cada mes",
+
+next:"2026-08-04",
+
+type:"monthly4"
+
+},
+
+{
+
+name:"🅿️ Estacionamiento Toluca",
+
+amount:140,
+
+rule:"Día 6 de cada mes",
+
+next:"2026-08-06",
+
+type:"monthly6"
+
+}
+
+];
+
+
+/* =====================================================
+GENERAR FECHAS DE PAGOS
+===================================================== */
+
+function getRecurringPaymentsForDate(date){
+
+const result=[];
+
+const d=new Date(
+date+"T00:00:00"
+);
+
+const day=d.getDate();
+
+const weekday=d.getDay();
+
+
+/* PUNTO EL POTRERO
+   23 JULIO 2026
+   CADA 5 DÍAS
+*/
+
+const start=new Date(
+"2026-07-23T00:00:00"
+);
+
+const diff=Math.floor(
+(d-start)/(1000*60*60*24)
+);
+
+
+if(diff>=0 && diff%5===0){
+
+result.push({
+
+id:"potrero_"+date,
+
+name:"📍 Punto El Potrero",
+
+amount:120
+
+});
+
+}
+
+
+/* CHECADORA CADA VIERNES */
+
+if(
+d>=new Date("2026-07-24T00:00:00")
+&&
+weekday===5
+){
+
+result.push({
+
+id:"checadora_"+date,
+
+name:"🧾 Pago Checadora",
+
+amount:300
+
+});
+
+}
+
+
+/* PAGOS MENSUALES */
+
+if(day===29){
+
+result.push({
+
+id:"villa_"+date,
+
+name:"🅿️ Estacionamiento Villa Guerrero",
+
+amount:220
+
+});
+
+}
+
+
+if(day===20){
+
+result.push({
+
+id:"movilidad_"+date,
+
+name:"🚌 Pago Movilidad",
+
+amount:200
+
+});
+
+}
+
+
+if(day===4){
+
+result.push({
+
+id:"metepec_"+date,
+
+name:"📍 Pago Metepec",
+
+amount:80
+
+});
+
+}
+
+
+if(day===6){
+
+result.push({
+
+id:"toluca_"+date,
+
+name:"🅿️ Estacionamiento Toluca",
+
+amount:140
+
+});
+
+}
+
+
+return result;
+
+}
+
+
+/* =====================================================
+PAGOS AUTOMÁTICOS DEL DÍA
+===================================================== */
+
+function getTodayRecurringExpenses(){
+
+const date=today();
+
+const list=
+getRecurringPaymentsForDate(date);
+
+return list.reduce(
+(sum,p)=>sum+p.amount,
+0
+);
+
+}
+
+
+/* =====================================================
 ESTADÍSTICAS
-========================= */
+===================================================== */
 
 function getToday(){
 
 const d=today();
 
 
-const trips=data.trips.filter(
+const trips=
+data.trips.filter(
 x=>x.date===d
 );
 
 
-const expenses=data.expenses.filter(
+const expenses=
+data.expenses.filter(
 x=>x.date===d
 );
 
 
-const fuel=data.fuels.filter(
+const fuel=
+data.fuels.filter(
 x=>x.date===d
 );
 
 
-let income=trips.reduce(
-(a,b)=>a+b.income,
+let income=
+trips.reduce(
+(a,b)=>a+Number(b.income||0),
 0
 );
 
 
-let tolls=trips.length*74;
+let tolls=
+trips.length*74;
 
 
-let tripFuel=trips.reduce(
+let tripFuel=
+trips.reduce(
 (a,b)=>
 a+
 Number(b.fuel||0),
@@ -1908,7 +2864,8 @@ Number(b.fuel||0),
 );
 
 
-let tripOther=trips.reduce(
+let tripOther=
+trips.reduce(
 (a,b)=>
 a+
 Number(b.other||0),
@@ -1916,7 +2873,8 @@ Number(b.other||0),
 );
 
 
-let fuelExtra=fuel.reduce(
+let fuelExtra=
+fuel.reduce(
 (a,b)=>
 a+
 Number(b.amount||0),
@@ -1924,27 +2882,37 @@ Number(b.amount||0),
 );
 
 
-let other=expenses.reduce(
+let other=
+expenses.reduce(
 (a,b)=>
 a+
 Number(b.amount||0),
 0
 );
+
+
+/* PAGOS RECURRENTES */
+
+const recurring=
+getTodayRecurringExpenses();
 
 
 const totalExpenses=
+
 tolls+
 tripFuel+
 tripOther+
 fuelExtra+
-other;
+other+
+recurring;
 
 
-const passengers=trips.reduce(
+const passengers=
+trips.reduce(
 (a,b)=>
 a+
-b.outPassengers+
-b.returnPassengers,
+Number(b.outPassengers||0)+
+Number(b.returnPassengers||0),
 0
 );
 
@@ -1965,6 +2933,8 @@ other:
 tripOther+
 other,
 
+recurring,
+
 expenses:
 totalExpenses,
 
@@ -1978,157 +2948,268 @@ income-totalExpenses
 }
 
 
-/* =========================
-JORNADA
-========================= */
+/* =====================================================
+INFORMES
+===================================================== */
 
-function toggleJourney(){
+let currentReport="week";
 
-if(
-!data.journey
-){
 
-const dt=getDateTime();
+function getReport(){
 
-data.journey=true;
+const now=new Date();
 
-data.journeyStart={
 
-date:dt.date,
+let start=new Date(now);
 
-time:dt.time
+
+if(currentReport==="week"){
+
+const day=now.getDay();
+
+const diff=day===0?6:day-1;
+
+start.setDate(
+now.getDate()-diff
+);
+
+}
+
+
+if(currentReport==="month"){
+
+start=new Date(
+now.getFullYear(),
+now.getMonth(),
+1
+);
+
+}
+
+
+if(currentReport==="year"){
+
+start=new Date(
+now.getFullYear(),
+0,
+1
+);
+
+}
+
+
+start.setHours(0,0,0,0);
+
+
+const startDate=
+start.toISOString().slice(0,10);
+
+
+const trips=
+data.trips.filter(
+x=>x.date>=startDate
+);
+
+
+const expenses=
+data.expenses.filter(
+x=>x.date>=startDate
+);
+
+
+const fuels=
+data.fuels.filter(
+x=>x.date>=startDate
+);
+
+
+let income=
+trips.reduce(
+(a,b)=>a+Number(b.income||0),
+0
+);
+
+
+let tolls=
+trips.length*74;
+
+
+let tripFuel=
+trips.reduce(
+(a,b)=>a+Number(b.fuel||0),
+0
+);
+
+
+let tripOther=
+trips.reduce(
+(a,b)=>a+Number(b.other||0),
+0
+);
+
+
+let fuelExtra=
+fuels.reduce(
+(a,b)=>a+Number(b.amount||0),
+0
+);
+
+
+let other=
+expenses.reduce(
+(a,b)=>a+Number(b.amount||0),
+0
+);
+
+
+/* PAGOS RECURRENTES */
+
+let recurring=0;
+
+
+let cursor=new Date(start);
+
+
+while(cursor<=now){
+
+const date=
+cursor.toISOString().slice(0,10);
+
+
+const daily=
+getRecurringPaymentsForDate(date);
+
+
+recurring+=daily.reduce(
+(a,b)=>a+b.amount,
+0
+);
+
+
+cursor.setDate(
+cursor.getDate()+1
+);
+
+}
+
+
+const totalExpenses=
+
+tolls+
+tripFuel+
+tripOther+
+fuelExtra+
+other+
+recurring;
+
+
+return{
+
+income,
+
+expenses:totalExpenses,
+
+profit:
+income-totalExpenses,
+
+trips:
+trips.length
 
 };
 
-data.journeyEnd=null;
-
-}
-
-else{
-
-const dt=getDateTime();
-
-data.journey=false;
-
-data.journeyEnd={
-
-date:dt.date,
-
-time:dt.time
-
-};
-
-}
-
-save();
-
-render();
-
 }
 
 
-function renderJourney(){
+function changeReport(type){
 
-const status=
-document.getElementById(
-"journeyHomeStatus"
-);
+currentReport=type;
 
-const info=
-document.getElementById(
-"journeyLastInfo"
-);
 
-const button=
-document.getElementById(
-"journeyHomeButton"
-);
-
-const card=
-document.getElementById(
-"journeyHomeCard"
+document
+.querySelectorAll(".report-tab")
+.forEach(
+btn=>
+btn.classList.toggle(
+"active",
+btn.dataset.report===type
+)
 );
 
 
-if(
-data.journey
-){
+if(type==="week"){
 
-card.className=
-"journey-home-card journey-active";
-
-status.textContent=
-"🟢 Jornada activa";
-
-info.innerHTML=
-"🕐 Inicio: <strong>"+
-data.journeyStart.date+
-" · "+
-data.journeyStart.time+
-"</strong>";
-
-button.className=
-"journey-button journey-finish";
-
-button.textContent=
-"⏹️ FINALIZAR JORNADA";
-
-}
-
-else{
-
-card.className=
-"journey-home-card journey-finished";
-
-status.textContent=
-"⚪ Fuera de jornada";
-
-
-if(
-data.journeyStart &&
-data.journeyEnd
-){
-
-info.innerHTML=
-"🟢 Inicio: <strong>"+
-data.journeyStart.date+
-" · "+
-data.journeyStart.time+
-"</strong><br>"+
-"🔴 Fin: <strong>"+
-data.journeyEnd.date+
-" · "+
-data.journeyEnd.time+
-"</strong>";
-
-}
-
-else{
-
-info.textContent=
-"No hay una jornada registrada.";
+document.getElementById(
+"reportTitle"
+).textContent=
+"📅 Informe semanal";
 
 }
 
 
-button.className=
-"journey-button journey-start";
+if(type==="month"){
 
-button.textContent=
-"▶️ INICIAR JORNADA";
+document.getElementById(
+"reportTitle"
+).textContent=
+"🗓️ Informe mensual";
 
 }
 
+
+if(type==="year"){
+
+document.getElementById(
+"reportTitle"
+).textContent=
+"📆 Informe anual";
+
 }
 
 
-/* =========================
+renderReport();
+
+}
+
+
+function renderReport(){
+
+const r=getReport();
+
+
+document.getElementById(
+"reportIncome"
+).textContent=
+money(r.income);
+
+
+document.getElementById(
+"reportExpenses"
+).textContent=
+money(r.expenses);
+
+
+document.getElementById(
+"reportProfit"
+).textContent=
+money(r.profit);
+
+
+document.getElementById(
+"reportTrips"
+).textContent=
+r.trips;
+
+}
+
+
+/* =====================================================
 RENDER
-========================= */
+===================================================== */
 
 function render(){
 
 updateHeader();
+
 
 const s=getToday();
 
@@ -2199,39 +3280,174 @@ renderPayments();
 
 renderServices();
 
+renderReport();
+
 renderJourney();
 
 }
 
 
-/* =========================
+/* =====================================================
+JORNADA
+===================================================== */
+
+function toggleJourney(){
+
+const now=
+new Date()
+.toLocaleTimeString(
+"es-MX",
+{
+
+hour:"2-digit",
+
+minute:"2-digit",
+
+second:"2-digit"
+
+}
+);
+
+
+if(!data.journey){
+
+data.journey=true;
+
+data.journeyStart=now;
+
+data.journeyEnd=null;
+
+}
+
+else{
+
+data.journey=false;
+
+data.journeyEnd=now;
+
+}
+
+
+save();
+
+render();
+
+}
+
+
+function renderJourney(){
+
+const dot=
+document.getElementById(
+"journeyDot"
+);
+
+
+const status=
+document.getElementById(
+"journeyHomeStatus"
+);
+
+
+const button=
+document.getElementById(
+"journeyHomeButton"
+);
+
+
+const record=
+document.getElementById(
+"journeyRecord"
+);
+
+
+if(data.journey){
+
+dot.classList.add("active");
+
+status.textContent=
+"🟢 Jornada activa";
+
+button.classList.add("finish");
+
+button.textContent=
+"⏹️ Finalizar jornada";
+
+record.textContent=
+"Inicio: "+
+data.journeyStart;
+
+}
+
+else{
+
+dot.classList.remove("active");
+
+status.textContent=
+"⚪ Fuera de jornada";
+
+button.classList.remove("finish");
+
+button.textContent=
+"▶️ Iniciar jornada";
+
+
+if(data.journeyStart && data.journeyEnd){
+
+record.textContent=
+"Inicio: "+
+data.journeyStart+
+" · Fin: "+
+data.journeyEnd;
+
+}
+
+else{
+
+record.textContent=
+"Sin jornada registrada hoy";
+
+}
+
+}
+
+}
+
+
+/* =====================================================
 REGISTRAR VUELTA
-========================= */
+===================================================== */
 
 function calculateTrip(){
 
-const out=Number(
+const out=
+Number(
 document.getElementById(
 "outPassengers"
 ).value
 )||0;
 
 
-const back=Number(
+const back=
+Number(
 document.getElementById(
 "returnPassengers"
 ).value
 )||0;
 
 
-const total=out+back;
+const total=
+out+back;
 
-const income=total*80;
+
+const income=
+total*80;
 
 
 document.getElementById(
 "modalPassengers"
-).textContent=total;
+).textContent=
+total;
 
 
 document.getElementById(
@@ -2244,38 +3460,39 @@ money(income);
 
 function saveTrip(){
 
-const out=Number(
+const out=
+Number(
 document.getElementById(
 "outPassengers"
 ).value
 )||0;
 
 
-const back=Number(
+const back=
+Number(
 document.getElementById(
 "returnPassengers"
 ).value
 )||0;
 
 
-const fuel=Number(
+const fuel=
+Number(
 document.getElementById(
 "tripFuel"
 ).value
 )||0;
 
 
-const other=Number(
+const other=
+Number(
 document.getElementById(
 "tripOther"
 ).value
 )||0;
 
 
-if(
-out===0 &&
-back===0
-){
+if(out===0 && back===0){
 
 alert(
 "Registra al menos un pasajero."
@@ -2290,12 +3507,16 @@ data.trips.unshift({
 
 date:today(),
 
-time:new Date()
+time:
+new Date()
 .toLocaleTimeString(
 "es-MX",
 {
+
 hour:"2-digit",
+
 minute:"2-digit"
+
 }
 ),
 
@@ -2334,12 +3555,11 @@ function clearTripForm(){
 "returnPassengers",
 "tripFuel",
 "tripOther"
+
 ]
 .forEach(
 id=>
-document.getElementById(
-id
-).value=""
+document.getElementById(id).value=""
 );
 
 
@@ -2355,32 +3575,33 @@ document.getElementById(
 }
 
 
-/* =========================
+/* =====================================================
 MOSTRAR VUELTAS
-========================= */
+===================================================== */
 
 function renderTrips(){
 
-const todayTrips=data.trips.filter(
+const todayTrips=
+data.trips.filter(
 x=>x.date===today()
 );
 
 
-const recent=document.getElementById(
+const recent=
+document.getElementById(
 "recentTrips"
 );
 
 
-const all=document.getElementById(
+const all=
+document.getElementById(
 "allTrips"
 );
 
 
 function html(list){
 
-if(
-list.length===0
-){
+if(list.length===0){
 
 return "Aún no hay vueltas registradas.";
 
@@ -2397,18 +3618,27 @@ return list
 <div>
 
 <div class="trip-date">
-📅 ${t.date} · 🕐 ${t.time}
+
+${t.date} · ${t.time}
+
 </div>
 
+
 <div class="trip-title">
+
 🚕 Vuelta ${list.length-i}
+
 </div>
+
 
 <div class="trip-info">
 
 👥 Ida: ${t.outPassengers}
+
 · Regreso: ${t.returnPassengers}
+
 · Total: ${t.outPassengers+t.returnPassengers}
+
 pasajeros
 
 <br>
@@ -2423,11 +3653,13 @@ ${money(t.fuel)}
 
 </div>
 
+
 <div class="trip-income">
 
 ${money(t.income)}
 
 </div>
+
 
 </div>
 
@@ -2438,40 +3670,37 @@ ${money(t.income)}
 }
 
 
-recent.innerHTML=html(
-todayTrips
-);
+recent.innerHTML=
+html(todayTrips);
 
 
-all.innerHTML=html(
-data.trips
-);
+all.innerHTML=
+html(data.trips);
 
 }
 
 
-/* =========================
+/* =====================================================
 OTROS GASTOS
-========================= */
+===================================================== */
 
 function saveExpense(){
 
-const name=document.getElementById(
+const name=
+document.getElementById(
 "expenseName"
 ).value.trim();
 
 
-const amount=Number(
+const amount=
+Number(
 document.getElementById(
 "expenseAmount"
 ).value
 );
 
 
-if(
-!name ||
-amount<=0
-){
+if(!name || amount<=0){
 
 alert(
 "Completa los datos."
@@ -2504,36 +3733,37 @@ render();
 }
 
 
-/* =========================
+/* =====================================================
 GASOLINA
-========================= */
+===================================================== */
 
 function saveFuel(){
 
-const amount=Number(
+const amount=
+Number(
 document.getElementById(
 "fuelAmount"
 ).value
 );
 
 
-const liters=Number(
+const liters=
+Number(
 document.getElementById(
 "fuelLiters"
 ).value
 )||0;
 
 
-const km=Number(
+const km=
+Number(
 document.getElementById(
 "fuelKm"
 ).value
 )||0;
 
 
-if(
-amount<=0
-){
+if(amount<=0){
 
 alert(
 "Ingresa el importe."
@@ -2568,45 +3798,42 @@ render();
 }
 
 
-/* =========================
+/* =====================================================
 MANTENIMIENTO
-========================= */
+===================================================== */
 
 function saveService(){
 
-const description=document
-.getElementById(
+const description=
+document.getElementById(
 "serviceDescription"
-)
-.value
-.trim();
+).value.trim();
 
 
-const date=document
-.getElementById(
+const date=
+document.getElementById(
 "serviceDate"
-)
-.value ||
+).value||
 today();
 
 
-const km=Number(
+const km=
+Number(
 document.getElementById(
 "serviceKm"
 ).value
 )||0;
 
 
-const cost=Number(
+const cost=
+Number(
 document.getElementById(
 "serviceCost"
 ).value
 )||0;
 
 
-if(
-!description
-){
+if(!description){
 
 alert(
 "Escribe una descripción."
@@ -2641,20 +3868,19 @@ render();
 }
 
 
-/* =========================
+/* =====================================================
 SERVICIOS
-========================= */
+===================================================== */
 
 function renderServices(){
 
-const box=document.getElementById(
+const box=
+document.getElementById(
 "services"
 );
 
 
-if(
-data.services.length===0
-){
+if(data.services.length===0){
 
 box.textContent=
 "No hay servicios registrados.";
@@ -2679,15 +3905,22 @@ s=>`
 </strong>
 
 <small>
+
 📅 ${s.date}
+
 ·
-📍 ${s.km||0} km
+
+📏 ${s.km||0} km
+
 </small>
 
 </div>
 
+
 <strong>
+
 ${money(s.cost)}
+
 </strong>
 
 </div>
@@ -2699,58 +3932,17 @@ ${money(s.cost)}
 }
 
 
-/* =========================
-PAGOS RECURRENTES
-========================= */
-
-const payments=[
-
-{
-name:"📍 Punto El Potrero",
-amount:120,
-rule:"Cada 5 días",
-next:"2026-07-23"
-},
-
-{
-name:"🧾 Pago Checadora",
-amount:300,
-rule:"Cada viernes",
-next:"2026-07-24"
-},
-
-{
-name:"🅿️ Estacionamiento Villa Guerrero",
-amount:220,
-rule:"Día 29 de cada mes",
-next:"2026-07-29"
-},
-
-{
-name:"🚌 Pago Movilidad",
-amount:200,
-rule:"Día 20 de cada mes",
-next:"2026-08-20"
-},
-
-{
-name:"📍 Pago Metepec",
-amount:80,
-rule:"Día 4 de cada mes",
-next:"2026-08-04"
-},
-
-{
-name:"🅿️ Estacionamiento Toluca",
-amount:140,
-rule:"Día 6 de cada mes",
-next:"2026-08-06"
-}
-
-];
-
+/* =====================================================
+PAGOS
+===================================================== */
 
 function renderPayments(){
+
+const date=today();
+
+const todayPayments=
+getRecurringPaymentsForDate(date);
+
 
 document.getElementById(
 "payments"
@@ -2758,64 +3950,84 @@ document.getElementById(
 
 payments
 .map(
-p=>`
+p=>{
+
+const active=
+todayPayments.some(
+x=>x.name===p.name
+);
+
+
+return`
 
 <div class="payment">
 
 <div>
 
 <div class="payment-name">
+
 ${p.name}
+
 </div>
 
 <div class="payment-date">
-📅 ${p.rule}
+
+${p.rule}
+
+</div>
+
+<div class="payment-status
+${active?
+"payment-pending":
+"payment-paid"}">
+
+${active?
+"🔴 Se descuenta hoy":
+"🟢 Programado"}
+
 </div>
 
 </div>
+
 
 <div class="payment-amount">
+
 ${money(p.amount)}
-</div>
 
 </div>
 
-`
+</div>
+
+`;
+
+}
 )
 .join("");
 
 }
 
 
-/* =========================
+/* =====================================================
 NAVEGACIÓN
-========================= */
+===================================================== */
 
 function showView(view){
 
 document
-.querySelectorAll(
-".view"
-)
+.querySelectorAll(".view")
 .forEach(
 v=>
-v.classList.remove(
-"active"
-)
+v.classList.remove("active")
 );
 
 
 document
 .getElementById(view)
-.classList.add(
-"active"
-);
+.classList.add("active");
 
 
 document
-.querySelectorAll(
-".nav"
-)
+.querySelectorAll(".nav")
 .forEach(
 n=>
 n.classList.toggle(
@@ -2836,17 +4048,15 @@ behavior:"smooth"
 }
 
 
-/* =========================
+/* =====================================================
 MODALES
-========================= */
+===================================================== */
 
 function openModal(id){
 
 document
 .getElementById(id)
-.classList.add(
-"active"
-);
+.classList.add("active");
 
 }
 
@@ -2855,17 +4065,13 @@ function closeModal(id){
 
 document
 .getElementById(id)
-.classList.remove(
-"active"
-);
+.classList.remove("active");
 
 }
 
 
 document
-.querySelectorAll(
-".modal"
-)
+.querySelectorAll(".modal")
 .forEach(
 modal=>{
 
@@ -2873,9 +4079,7 @@ modal.addEventListener(
 "click",
 e=>{
 
-if(
-e.target===modal
-){
+if(e.target===modal){
 
 modal.classList.remove(
 "active"
@@ -2884,14 +4088,16 @@ modal.classList.remove(
 }
 
 }
+
 );
 
-});
+}
+);
 
 
-/* =========================
+/* =====================================================
 INICIO
-========================= */
+===================================================== */
 
 render();
 
@@ -2903,5 +4109,7 @@ updateHeader,
 
 </script>
 
+
 </body>
+
 </html>
