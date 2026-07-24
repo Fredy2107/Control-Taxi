@@ -1839,100 +1839,186 @@ time:currentTime()
    HEADER
 ========================================================= */
 
+/* =========================================================
+   HEADER — CICLO SOLAR REAL APROXIMADO
+   Ubicación: Villa Guerrero, Estado de México
+========================================================= */
+
 function updateHeader(){
 
-const now=new Date();
+const now = new Date();
 
-const hour=now.getHours();
+const hour = now.getHours();
+const minute = now.getMinutes();
+const second = now.getSeconds();
 
-let greeting="";
-let icon="🌙";
-
-/* =========================================================
-   HORARIO ASTRONÓMICO APROXIMADO PARA VILLA GUERRERO,
-   ESTADO DE MÉXICO
-
-   El icono cambia según la hora solar aproximada.
-========================================================= */
-
-const month=now.getMonth()+1;
-const day=now.getDate();
-
-/* Horarios aproximados de amanecer y atardecer
-   ajustados por temporada */
-
-let sunrise=6.5;
-let sunset=18.5;
-
-/* Invierno */
-
-if(month===11 || month===12 || month===1 || month===2){
-
-sunrise=6.8;
-sunset=18.0;
-
-}
-
-/* Primavera */
-
-else if(month===3 || month===4){
-
-sunrise=6.3;
-sunset=18.6;
-
-}
-
-/* Verano */
-
-else if(month===5 || month===6 || month===7 || month===8){
-
-sunrise=6.0;
-sunset=19.0;
-
-}
-
-/* Otoño */
-
-else{
-
-sunrise=6.2;
-sunset=18.5;
-
-}
-
-
-/* Hora actual en formato decimal */
-
-const currentHour=
-now.getHours()+
-(now.getMinutes()/60);
+/* Hora decimal actual */
+const currentHour =
+hour +
+(minute / 60) +
+(second / 3600);
 
 
 /* =========================================================
-   ICONO Y SALUDO
+   COORDENADAS APROXIMADAS DE VILLA GUERRERO
 ========================================================= */
+
+const latitude = 18.9625;
+const longitude = -99.6408;
+
+
+/* =========================================================
+   CÁLCULO ASTRONÓMICO DEL SOL
+========================================================= */
+
+const dayOfYear =
+Math.floor(
+(now - new Date(now.getFullYear(),0,0)) /
+86400000
+);
+
+
+/* Declinación solar aproximada */
+
+const declination =
+23.44 *
+Math.sin(
+(
+2 * Math.PI / 365
+) *
+(
+dayOfYear - 81
+) *
+Math.PI / 180
+);
+
+
+/* Conversión a radianes */
+
+const latRad =
+latitude *
+Math.PI / 180;
+
+const decRad =
+declination *
+Math.PI / 180;
+
+
+/* Ángulo horario */
+
+let cosHourAngle =
+(
+Math.cos(
+90.833 *
+Math.PI / 180
+) -
+Math.sin(latRad) *
+Math.sin(decRad)
+) /
+(
+Math.cos(latRad) *
+Math.cos(decRad)
+);
+
+
+/* Evitar errores matemáticos */
+
+cosHourAngle =
+Math.max(
+-1,
+Math.min(
+1,
+cosHourAngle
+)
+);
+
+
+/* Ángulo horario en grados */
+
+const hourAngle =
+Math.acos(
+cosHourAngle
+) *
+180 /
+Math.PI;
+
+
+/* =========================================================
+   HORA SOLAR LOCAL APROXIMADA
+========================================================= */
+
+/*
+   México Centro = UTC-6
+   Ajustamos según la longitud.
+*/
+
+const timezoneOffset = -6;
+
+const solarNoon =
+12 -
+(
+longitude / 15
+) -
+timezoneOffset;
+
+
+/* Amanecer */
+
+const sunrise =
+solarNoon -
+(
+hourAngle / 15
+);
+
+
+/* Atardecer */
+
+const sunset =
+solarNoon +
+(
+hourAngle / 15
+);
+
+
+/* =========================================================
+   CREPÚSCULOS
+========================================================= */
+
+/*
+   Aproximación:
+   Amanecer civil:
+   ~30 minutos antes del amanecer.
+
+   Atardecer civil:
+   ~30 minutos después del atardecer.
+*/
+
+const dawn =
+sunrise -
+0.5;
+
+const dusk =
+sunset +
+0.5;
+
+
+/* =========================================================
+   DETERMINAR ICONO Y SALUDO
+========================================================= */
+
+let greeting = "";
+let icon = "";
 
 
 /* NOCHE */
 
 if(
-currentHour<sunrise ||
-currentHour>=sunset
+currentHour < dawn ||
+currentHour >= dusk
 ){
 
-icon="🌙";
-
-if(currentHour<5){
-
-greeting="🌙 Buenas noches";
-
-}
-
-else{
-
-greeting="🌙 Buenas noches";
-
-}
+icon = "🌙";
+greeting = "🌙 Buenas noches";
 
 }
 
@@ -1940,13 +2026,12 @@ greeting="🌙 Buenas noches";
 /* AMANECER */
 
 else if(
-currentHour>=sunrise &&
-currentHour<sunrise+1
+currentHour >= dawn &&
+currentHour < sunrise
 ){
 
-icon="🌅";
-
-greeting="🌅 Buenos días";
+icon = "🌅";
+greeting = "🌅 Buenos días";
 
 }
 
@@ -1954,53 +2039,64 @@ greeting="🌅 Buenos días";
 /* DÍA */
 
 else if(
-currentHour>=sunrise+1 &&
-currentHour<sunset-1
+currentHour >= sunrise &&
+currentHour < sunset - 1
 ){
 
-icon="☀️";
-
-greeting="☀️ Buenos días";
+icon = "☀️";
+greeting = "☀️ Buenos días";
 
 }
 
 
 /* ATARDECER */
 
+else if(
+currentHour >= sunset - 1 &&
+currentHour < sunset
+){
+
+icon = "🌇";
+greeting = "🌇 Buenas tardes";
+
+}
+
+
+/* CREPÚSCULO / NOCHE */
+
 else{
 
-icon="🌇";
-
-greeting="🌇 Buenas tardes";
+icon = "🌙";
+greeting = "🌙 Buenas noches";
 
 }
 
 
 /* =========================================================
-   ACTUALIZAR INTERFAZ
+   ACTUALIZAR HEADER
 ========================================================= */
 
 document.getElementById(
 "greeting"
-).textContent=
+).textContent =
 greeting;
 
 
 document.getElementById(
 "weatherIcon"
-).textContent=
+).textContent =
 icon;
 
 
 document.getElementById(
 "userName"
-).textContent=
+).textContent =
 data.name;
 
 
 document.getElementById(
 "time"
-).textContent=
+).textContent =
 currentTime();
 
 }
