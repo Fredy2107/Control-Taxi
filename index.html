@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101828">
-<title>Taxi Pro 9.0 Final</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Taxi Pro 10 - Final</title>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#101828;--muted:#667085;--line:#eaecf0;--primary:#101828;--accent:#f6c945;--radius:24px;--shadow:0 10px 30px rgba(16,24,40,.07)}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text)}
-.app{max-width:1100px;margin:auto;padding-bottom:100px}
-.topbar{height:72px;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:30}
-.logo{width:44px;height:44px;border-radius:15px;background:var(--primary);display:grid;place-items:center;font-size:23px}
-.view{display:none;padding:22px 18px;animation:fade .2s ease}.view.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1}}
-.hero{color:#fff;background:radial-gradient(circle at 100% 0%,rgba(246,201,69,.3),transparent 30%),linear-gradient(135deg,#101828,#1d2939);border-radius:30px;padding:25px;box-shadow:0 18px 45px rgba(16,24,40,.18)}
-.hero-label{color:#98a2b3;font-size:11px;text-transform:uppercase;letter-spacing:1px}.hero-money{font-size:42px;font-weight:900;margin:4px 0 20px}
-.hero-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.hero-stat{background:rgba(255,255,255,.08);border-radius:16px;padding:13px}.hero-stat small{color:#98a2b3;display:block;font-size:10px}.hero-stat strong{display:block;margin-top:5px;font-size:16px}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px 10px;text-align:center;box-shadow:var(--shadow)}.quick-icon{width:44px;height:44px;display:grid;place-items:center;background:#f2f4f7;border-radius:14px;margin:auto auto 9px;font-size:22px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-top:15px}
-.bottom-nav{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:min(680px,calc(100% - 22px));background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border:1px solid var(--line);box-shadow:0 15px 45px rgba(16,24,40,.16);border-radius:25px;padding:7px;display:grid;grid-template-columns:repeat(5,1fr);z-index:50}
-.nav-item{border:0;background:transparent;border-radius:18px;padding:8px 3px;color:var(--muted);font-size:9px;font-weight:750}.nav-item b{display:block;font-size:20px;margin-bottom:3px}.nav-item.active{color:var(--text);background:#fff7d6}
-.modal{position:fixed;inset:0;z-index:100;display:none;background:rgba(16,24,40,.6);align-items:flex-end;padding:12px}.modal.open{display:flex}.sheet{width:min(650px,100%);background:#fff;border-radius:28px;padding:23px;margin:auto}.sheet input{width:100%;border:1px solid var(--line);background:#f8fafc;border-radius:14px;padding:13px;outline:none;margin-top:6px}.btn{border:0;border-radius:15px;padding:13px 16px;font-weight:800;width:100%}.btn-primary{background:var(--primary);color:#fff}.btn-light{background:#f2f4f7}
-.fab{position:fixed;right:18px;bottom:88px;width:58px;height:58px;border-radius:18px;background:#101828;color:#fff;font-size:30px;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:60;border:0}
-.payment{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line)}.payment:first-child{border-top:0}
-@media(max-width:700px){.hero-grid{grid-template-columns:repeat(2,1fr)}.quick-grid{grid-template-columns:repeat(2,1fr)}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{background:#f6f7f9;color:#111}
+.app{max-width:440px;margin:auto;min-height:100vh;padding-bottom:110px}
+.top{height:64px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid #eee}
+.hero{margin:16px;background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:28px;padding:24px;color:#fff;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(246,201,69,.25),transparent 70%)}
+.hero small{color:#94a3b8;font-size:10px;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:42px;font-weight:900;margin:8px 0;letter-spacing:-1px}
+.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.hero-card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:16px;padding:12px}
+.hero-card small{color:#94a3b8;display:block;font-size:10px}
+.hero-card b{display:block;margin-top:4px;font-size:15px}
+.card{background:#fff;border-radius:22px;padding:18px;margin:14px 16px 0;box-shadow:0 4px 20px rgba(0,0,0,.04);border:1px solid #f1f5f9}
+.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.qbtn{background:#fff;border:1px solid #eef2f7;border-radius:18px;padding:16px 8px;text-align:center}
+.qbtn b{display:block;font-size:12px;margin-top:6px}
+.qbtn span{font-size:22px}
+.view{display:none}.view.on{display:block}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:420px;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-radius:24px;display:grid;grid-template-columns:repeat(4,1fr);padding:8px;box-shadow:0 10px 40px rgba(0,0,0,.12);border:1px solid #fff;z-index:20}
+.nav button{border:0;background:transparent;padding:10px;border-radius:16px;font-size:10px;font-weight:700;color:#94a3b8}
+.nav button.on{background:#111;color:#fff}
+.nav button b{display:block;font-size:18px;margin-bottom:2px}
+.fab{position:fixed;right:20px;bottom:92px;width:56px;height:56px;border-radius:18px;background:#111;color:#fff;border:0;font-size:28px;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:30}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
+.modal.on{display:flex}
+.sheet{background:#fff;border-radius:24px;padding:24px;width:100%;max-width:380px;animation:pop .25s}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.sheet h3{font-size:18px}.sheet input{width:100%;padding:14px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:14px;margin-top:10px;font-size:15px}
+.btn{width:100%;border:0;border-radius:14px;padding:14px;font-weight:800;margin-top:12px;font-size:14px}
+.btn-dark{background:#0f172a;color:#fff}.btn-light{background:#f1f5f9}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f8fafc}
+.row:last-child{border:0}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="topbar"><div style="display:flex;align-items:center;gap:11px"><div class="logo">🚕</div><div><strong style="display:block">Taxi Pro</strong><small style="color:#667085;font-size:10px">v9.0 Final • Ixtapan</small></div></div><button onclick="backupData()" style="width:42px;height:42px;border:1px solid #eaecf0;background:#fff;border-radius:14px">💾</button></header>
+<div class="top"><div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;background:#0f172a;border-radius:12px;display:grid;place-items:center;color:#fff">🚕</div><div><b style="font-size:14px">Taxi Pro</b><div style="font-size:10px;color:#64748b">v10.0 • Ixtapan</div></div></div><div style="font-size:11px;background:#f1f5f9;padding:6px 12px;border-radius:20px" id="clock">--</div></div>
 
-<section id="inicio" class="view active">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><div><h1 id="greeting">Hola Fredy</h1><p id="todayText" style="color:#667085;font-size:12px;margin-top:5px"></p></div><div style="padding:8px 11px;background:#fff7d6;color:#806600;border-radius:12px;font-size:10px;font-weight:800">v9.0</div></div>
-<div class="hero"><div class="hero-label">Ganancia real de hoy - ya con $500 Aveo</div><div class="hero-money" id="dashboardProfit">$0</div><div class="hero-grid"><div class="hero-stat"><small>Ingresos</small><strong id="dashboardIncome">$0</strong></div><div class="hero-stat"><small>Gastos</small><strong id="dashboardExpenses">$0</strong></div><div class="hero-stat"><small>Viajes</small><strong id="dashboardTrips">0</strong></div><div class="hero-stat"><small>Gas</small><strong id="dashboardGas">$0</strong></div></div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;margin:25px 0 12px"><h2 style="font-size:17px">⚡ Acciones rápidas</h2></div>
-<div class="quick-grid"><button class="quick" onclick="openModal('tripModal')"><div class="quick-icon">🚕</div><strong style="font-size:11px">Nuevo viaje</strong></button><button class="quick" onclick="openModal('fuelModal')"><div class="quick-icon">⛽</div><strong>Gasolina</strong></button><button class="quick" onclick="openModal('expenseModal')"><div class="quick-icon">💸</div><strong>Gasto</strong></button><button class="quick" onclick="showView('agenda')"><div class="quick-icon">📅</div><strong>Agenda</strong></button></div>
-<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-size:16px">📅 Próximos pagos</h3><span onclick="showView('agenda')" style="color:#2563eb;font-size:12px;font-weight:700">Ver todo →</span></div><div id="nextPayment" style="margin-top:10px"></div></div>
-<div class="card"><h3 style="font-size:16px;margin-bottom:10px">📋 Hoy incluye automático</h3><div id="todayList"></div></div>
-</section>
+<div id="v-inicio" class="view on">
+<div class="hero"><small id="saludo">Buenas noches</small><h1 id="profit">$0</h1><div style="font-size:12px;color:#94a3b8">Ganancia real • después de cuentas</div><div class="hero-grid"><div class="hero-card"><small>Ingresos</small><b id="dIng">$0</b></div><div class="hero-card"><small>Gastos</small><b id="dGas">$0</b></div><div class="hero-card" style="background:#fff;color:#0f172a"><small style="color:#64748b">Viajes</small><b id="dVia">0</b></div></div></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">⚡ Acciones rápidas</b></div><div class="quick"><button class="qbtn" onclick="openM('trip')"><span>🚕</span><b>Viaje</b></button><button class="qbtn" onclick="openM('gas')"><span>⛽</span><b>Gas</b></button><button class="qbtn" onclick="openM('exp')"><span>💸</span><b>Gasto</b></button></div></div>
+<div class="card"><div style="display:flex;justify-content:space-between"><b style="font-size:14px">📅 Próximos pagos</b><span style="font-size:12px;color:#3b82f6" onclick="go('agenda')">Ver todo</span></div><div id="next" style="margin-top:10px"></div></div>
+<div class="card"><b style="font-size:14px">📋 Hoy se descuenta automático</b><div id="todayList" style="margin-top:10px"></div></div>
+</div>
 
-<section id="jornada" class="view"><h2>🚕 Mi jornada</h2><div class="card"><div id="journeyStatusLarge">Jornada cerrada</div><p id="journeyStartLarge" style="font-size:12px;color:#667085">--</p><button id="largeJourneyButton" onclick="toggleJourney()" class="btn btn-primary" style="margin-top:12px">Iniciar jornada</button></div></section>
-<section id="finanzas" class="view"><h2>💰 Finanzas</h2><div style="display:flex;gap:6px;margin-top:12px"><button onclick="setRango('hoy')" id="bHoy" class="btn btn-primary" style="width:auto">Hoy</button><button onclick="setRango('semana')" id="bSem" class="btn btn-light" style="width:auto">Semana</button><button onclick="setRango('mes')" id="bMes" class="btn btn-light" style="width:auto">Mes</button></div><div class="card"><small id="fLabel">Ganancia hoy</small><h2 id="financeProfit" style="font-size:32px;margin-top:4px">$0</h2><div style="display:flex;gap:10px;margin-top:10px"><span>Ingresos <b id="financeIncome">$0</b></span><span>Gastos <b id="financeExpenses">$0</b></span></div><div id="expenseHistory" style="margin-top:12px"></div></div></section>
-<section id="agenda" class="view"><h2>📅 Agenda</h2><p style="font-size:11px;color:#667085">Tus 7 reglas sin duplicados</p><div id="calendarList" style="margin-top:15px"></div></section>
-<section id="perfil" class="view"><div class="card" style
+<div id="v-jornada" class="view"><div class="card" style="text-align:center;padding:28px"><div style="font-size:40px">🚕</div><h3 id="jStatus" style="margin-top:12px">Jornada cerrada</h3><p id="jTime" style="font-size:12px;color:#64748b;margin-top:4px">--</p><button class="btn btn-dark" onclick="toggleJ()" style="margin-top:18px">▶️ Iniciar jornada</button></div><div class="card"><b>Viajes hoy</b><div id="jList" style="margin-top:10px"></div></div></div>
+<div id="v-finanzas" class="view"><div style="display:flex;gap:8px;padding:0 16px;margin-top:10px"><button id="bHoy" onclick="setR('hoy')" class="btn btn-dark" style="width:auto;padding:8px 16px;font-size:12px;margin:0">Hoy</button><button id="bSem" onclick="setR('sem')" class="btn btn-light" style="width:auto;margin:0">Semana</button><button id="bMes" onclick="setR('mes')" class="btn btn-light" style="width:auto;margin:0">Mes</button></div><div class="card"><small id="fLabel" style="color:#64748b">Balance hoy</small><h1 id="fTotal" style="font-size:36px;margin-top:4px">$0</h1><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px"><div style="background:#f8fafc;padding:12px;border-radius:14px"><small>Ingresos</small><b id="fIng" style="display:block;margin-top:4px">$0</b></div><div style="background:#f8fafc;padding:12px;border-radius:14px"><small>Gastos</small><b id="fGas" style="display:block;margin-top:4px">$0</b></div></div></div></div>
+<div id="v-agenda" class="view"><div class="card"><h3>📅 Agenda 90 días</h3><p style="font-size:11px;color:#64748b;margin-top:4px">Sin duplicados • Automático</p></div><div id="cal"></div></div>
+
+<button class="fab" onclick="openM('trip')">＋</button>
+<div class="nav"><button id="n-inicio" class="on" onclick="go('inicio')"><b>🏠</b>Inicio</button><button id="n-jornada" onclick="go('jornada')"><b>🚕</b>Jornada</button><button id="n-finanzas" onclick="go('finanzas')"><b>💰</b>Finanzas</button><button id="n-agenda" onclick="go('agenda')"><b>📅</b>Agenda</button></div>
+</div>
+
+<div id="m-trip" class="modal"><div class="sheet"><h3>🚕 Nuevo viaje</h3><p style="font-size:12px;color:#64748b;margin-top:4px">Se suma a tu ganancia real</p><input id="iPax" type="number" value="1" inputmode="numeric"><input id="iTar" type="number" value="80" inputmode="numeric"><button class="btn btn-dark" onclick="saveTrip()">Guardar $80 x pasajero</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
+<div id="m-gas" class="modal"><div class="sheet"><h3>⛽ Gasolina</h3><input id="iGas" type="number" placeholder="$ Monto" inputmode="numeric"><button class="btn btn-dark" onclick="saveGas()">Guardar</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
+<div id="m-exp" class="modal"><div class="sheet"><h3>💸 Otro gasto</h3><input id="iExpN" placeholder="Concepto Ej. Talacha"><input id="iExpM" type="number" placeholder="$" inputmode="numeric"><button class="btn btn-dark" onclick="saveExp()">Guardar</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
+
+<script>
+function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));var e=document.getElementById('v-'+id);if(e)e.classList.add('on');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));var n=document.getElementById('n-'+id);if(n)n.classList.add('on');}
+function openM(id){var m=document.getElementById('m-'+id);if(m)m.classList.add('on');}
+function closeM(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'));}
+var DATA;try{DATA=JSON.parse(localStorage.getItem('taxi10final'))||{trips:[],gas:[],exps:[],jornada:false,start:null};}catch(e){DATA={trips:[],gas:[],exps:[],jornada:false,start:null};}
+var PAGOS=[
+{n:"Cuentas Aveo",m:500,t:"daily",icon:"🚕"},
+{n:"El Potrero",m:120,t:"interval",start:"2026-07-23",every:5,icon:"📍"},
+{n:"Checadora",m:300,t:"weekly",day:5,icon:"🧾"},
+{n:"Villa Guerrero",m:220,t:"monthly",day:29,icon:"🅿️"},
+{n:"Movilidad",m:200,t:"monthly",day:20,icon:"🚌"},
+{n:"Metepec",m:80,t:"monthly",day:4,icon:"📍"},
+{n:"Toluca",m:140,t:"monthly",day:6,icon:"🅿️"},
+];
