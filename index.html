@@ -1,27 +1,4285 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taxi Pro 10.1</title><style>body{font-family:sans-serif;background:#f6f7f9;max-width:400px;margin:auto;padding:16px} .card{background:#fff;border-radius:20px;padding:16px;margin-top:12px;box-shadow:0 4px 12px rgba(0,0,0,.05)} .hero{background:#0f172a;color:#fff;border-radius:24px;padding:20px} .btn{width:100%;padding:14px;border-radius:14px;border:0;background:#0f172a;color:#fff;font-weight:800;margin-top:10px} .btn2{background:#eef2f7;color:#000} .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;place-items:center;padding:16px}.modal.on{display:grid} .box{background:#fff;border-radius:20px;padding:20px;width:100%}</style></head><body>
-<div class="hero"><small>GANANCIA REAL HOY</small><h1 id="profit" style="font-size:36px">$0</h1><div id="sub" style="font-size:12px;opacity:.7"></div></div>
-<div class="card"><button class="btn btn2" onclick="document.getElementById('m1').classList.add('on')">🚕 Registrar Viaje</button><button class="btn btn2" onclick="document.getElementById('m2').classList.add('on')">⛽ Gasolina</button></div>
-<div class="card"><b>Hoy se descuenta:</b><div id="list"></div></div>
-<div class="card"><b>Próximos pagos:</b><div id="next"></div></div>
-<div id="m1" class="modal"><div class="box"><h3>Viaje</h3><input id="pax" type="number" value="1" style="width:100%;padding:12px;margin-top:10px;border-radius:12px;border:1px solid #ddd"><input id="tar" type="number" value="80" style="width:100%;padding:12px;margin-top:8px;border-radius:12px;border:1px solid #ddd"><button class="btn" onclick="saveT()">Guardar</button><button class="btn btn2" onclick="closeAll()">Cerrar</button></div></div>
-<div id="m2" class="modal"><div class="box"><h3>Gas</h3><input id="gas" type="number" style="width:100%;padding:12px;margin-top:10px;border-radius:12px;border:1px solid #ddd"><button class="btn" onclick="saveG()">Guardar</button><button class="btn btn2" onclick="closeAll()">Cerrar</button></div></div>
-<script>
-function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'))}
-var D;try{D=JSON.parse(localStorage.getItem('taxi101'))||{t:[],g:[]}}catch(e){D={t:[],g:[]}}
-function today(){return new Date().toISOString().slice(0,10)}
-function save(){localStorage.setItem('taxi101',JSON.stringify(D))}
-function gastos(){return [{n:'Aveo $500',m:500},{n:'El Potrero $120 (hoy)',m:120}]} // Simplificado para prueba
-function render(){
-var ing=D.t.filter(x=>x.d==today()).reduce((a,b)=>a+b.v,0);
-var gas=D.g.filter(x=>x.d==today()).reduce((a,b)=>a+b.m,0);
-var fijo=500+120;
-var gan=ing-fijo-gas;
-document.getElementById('profit').innerText='$'+gan;
-document.getElementById('sub').innerText=ing+' ingresos - '+(fijo+gas)+' gastos';
-document.getElementById('list').innerHTML='<div>Aveo $500</div><div>Potrero $120</div>'+(gas?'<div>Gas $'+gas+'</div>':'');
-document.getElementById('next').innerHTML='<div>24 jul - Checadora $300</div><div>28 jul - Potrero $120</div><div>29 jul - Villa $220</div>';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+
+<title>Taxi Pro 10.0</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --yellow:#f5c542;
+  --yellow-light:#fff4c7;
+
+  --bg:#f6f7f9;
+  --card:#ffffff;
+
+  --text:#101828;
+  --muted:#667085;
+
+  --border:#eaecf0;
+
+  --green:#12b76a;
+  --red:#f04438;
+  --blue:#2563eb;
+
+  --shadow:0 8px 28px rgba(16,24,40,.07);
+
+  --radius:24px;
 }
-function saveT(){var p=parseInt(document.getElementById('pax').value)||1;var t=parseInt(document.getElementById('tar').value)||80;D.t.push({d:today(),v:p*t});save();closeAll();render()}
-function saveG(){var m=parseInt(document.getElementById('gas').value)||0;if(m){D.g.push({d:today(),m:m});save();closeAll();render()}}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:"Inter",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,
+input,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  max-width:900px;
+  margin:auto;
+  padding-bottom:110px;
+}
+
+
+/* HEADER */
+
+.header{
+  background:#fff;
+  padding:20px 18px;
+  border-bottom:1px solid var(--border);
+}
+
+.header-content{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.user{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.avatar{
+  width:48px;
+  height:48px;
+  background:var(--yellow);
+  border-radius:16px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:22px;
+  font-weight:900;
+}
+
+.greeting small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:600;
+}
+
+.greeting h1{
+  font-size:18px;
+  margin-top:3px;
+  font-weight:800;
+}
+
+.profile-btn{
+  width:44px;
+  height:44px;
+
+  border:1px solid var(--border);
+  background:#fff;
+
+  border-radius:15px;
+  font-size:19px;
+}
+
+
+/* VIEWS */
+
+.view{
+  display:none;
+  padding:18px;
+}
+
+.view.active{
+  display:block;
+  animation:show .2s ease;
+}
+
+@keyframes show{
+
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+
+/* DATE */
+
+.date-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:16px;
+}
+
+.date-row strong{
+  font-size:13px;
+}
+
+.date-row span{
+  color:var(--muted);
+  font-size:11px;
+}
+
+
+/* HERO */
+
+.hero{
+  background:
+  linear-gradient(
+    135deg,
+    #fff5c9,
+    #ffe58a
+  );
+
+  border-radius:28px;
+
+  padding:24px;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+.hero::after{
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  right:-90px;
+  top:-90px;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.35);
+}
+
+.hero-label{
+  font-size:11px;
+  font-weight:700;
+
+  color:#6c5b16;
+
+  text-transform:uppercase;
+}
+
+.hero-profit{
+  font-size:40px;
+  font-weight:900;
+
+  letter-spacing:-2px;
+
+  margin:8px 0 22px;
+}
+
+.hero-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:8px;
+
+  position:relative;
+  z-index:1;
+}
+
+.hero-item{
+  background:
+  rgba(255,255,255,.55);
+
+  border-radius:16px;
+
+  padding:12px;
+}
+
+.hero-item small{
+  display:block;
+
+  font-size:9px;
+
+  color:#6c5b16;
+}
+
+.hero-item strong{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:14px;
+}
+
+
+/* SECTION */
+
+.section-header{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  margin:
+  24px 2px
+  11px;
+}
+
+.section-header h2{
+  font-size:16px;
+  font-weight:800;
+}
+
+.section-header button{
+  border:0;
+  background:none;
+
+  color:var(--blue);
+
+  font-size:11px;
+  font-weight:700;
+}
+
+
+/* QUICK */
+
+.quick-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:9px;
+}
+
+.quick{
+  border:1px solid var(--border);
+
+  background:#fff;
+
+  border-radius:20px;
+
+  padding:14px 5px;
+
+  box-shadow:var(--shadow);
+
+  text-align:center;
+}
+
+.quick-icon{
+  width:43px;
+  height:43px;
+
+  margin:auto auto 7px;
+
+  background:#f2f4f7;
+
+  border-radius:14px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:20px;
+}
+
+.quick strong{
+  font-size:10px;
+}
+
+
+/* JOURNEY */
+
+.journey-card{
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:25px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+}
+
+.journey-top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+}
+
+.journey-status{
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  font-size:12px;
+  font-weight:800;
+}
+
+.status-dot{
+  width:9px;
+  height:9px;
+
+  border-radius:50%;
+
+  background:#98a2b3;
+}
+
+.status-dot.active{
+  background:var(--green);
+
+  box-shadow:
+  0 0 0 5px
+  rgba(18,183,106,.12);
+}
+
+.journey-time{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.journey-stats{
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:8px;
+
+  margin:18px 0;
+}
+
+.stat{
+  background:#f8fafc;
+
+  border-radius:16px;
+
+  padding:12px;
+}
+
+.stat small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.stat strong{
+  display:block;
+
+  margin-top:4px;
+
+  font-size:17px;
+}
+
+.primary-btn{
+  width:100%;
+
+  border:0;
+
+  background:var(--text);
+
+  color:#fff;
+
+  padding:14px;
+
+  border-radius:15px;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+
+/* PAYMENT */
+
+.payment-card{
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:23px;
+
+  padding:17px;
+
+  box-shadow:var(--shadow);
+}
+
+.payment{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+}
+
+.payment-left{
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+}
+
+.payment-icon{
+  width:45px;
+  height:45px;
+
+  background:#f2f4f7;
+
+  border-radius:15px;
+
+  display:grid;
+  place-items:center;
+
+  font-size:20px;
+}
+
+.payment-title{
+  font-size:11px;
+  font-weight:800;
+}
+
+.payment-date{
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:4px;
+}
+
+.payment-amount{
+  font-size:14px;
+  font-weight:900;
+}
+
+
+/* VEHICLE */
+
+.vehicle-card{
+  background:#fff;
+
+  border-radius:27px;
+
+  overflow:hidden;
+
+  border:1px solid var(--border);
+
+  box-shadow:var(--shadow);
+}
+
+.vehicle-photo{
+  width:100%;
+
+  height:230px;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:#e5e7eb;
+}
+
+.vehicle-info{
+  padding:21px;
+}
+
+.vehicle-info h2{
+  font-size:22px;
+  font-weight:900;
+}
+
+.vehicle-info p{
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-top:5px;
+}
+
+.vehicle-stats{
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:8px;
+
+  margin-top:18px;
+}
+
+
+/* FINANCE */
+
+.periods{
+  display:flex;
+
+  gap:5px;
+
+  padding:5px;
+
+  background:#eaecf0;
+
+  border-radius:15px;
+
+  margin-bottom:15px;
+}
+
+.periods button{
+  flex:1;
+
+  border:0;
+
+  background:transparent;
+
+  padding:9px;
+
+  border-radius:11px;
+
+  font-size:10px;
+
+  font-weight:700;
+
+  color:var(--muted);
+}
+
+.periods button.active{
+  background:#fff;
+
+  color:var(--text);
+}
+
+.finance{
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:25px;
+
+  padding:22px;
+
+  box-shadow:var(--shadow);
+}
+
+.finance-label{
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.finance-profit{
+  font-size:36px;
+
+  font-weight:900;
+
+  margin:5px 0 20px;
+}
+
+.finance-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(2,1fr);
+
+  gap:9px;
+}
+
+.finance-item{
+  background:#f8fafc;
+
+  border-radius:16px;
+
+  padding:15px;
+}
+
+.finance-item small{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+.finance-item strong{
+  display:block;
+
+  margin-top:5px;
+}
+
+.income{
+  color:var(--green);
+}
+
+.expense{
+  color:var(--red);
+}
+
+
+/* CHART */
+
+.chart-card{
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:25px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+}
+
+.chart{
+  height:160px;
+
+  display:flex;
+
+  align-items:flex-end;
+
+  gap:8px;
+
+  margin-top:20px;
+}
+
+.bar{
+  flex:1;
+
+  min-height:5px;
+
+  background:var(--yellow);
+
+  border-radius:
+  7px 7px 3px 3px;
+}
+
+
+/* CALENDAR */
+
+.calendar{
+  background:#fff;
+
+  border-radius:25px;
+
+  overflow:hidden;
+
+  border:1px solid var(--border);
+
+  box-shadow:var(--shadow);
+}
+
+.calendar-header{
+  background:var(--text);
+
+  color:#fff;
+
+  padding:22px;
+}
+
+.calendar-header h2{
+  font-size:19px;
+}
+
+.calendar-header p{
+  color:#98a2b3;
+
+  font-size:10px;
+
+  margin-top:5px;
+}
+
+.calendar-day{
+  border-bottom:
+  1px solid var(--border);
+}
+
+.day-header{
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:11px 16px;
+
+  background:#f8fafc;
+}
+
+.day-header strong{
+  font-size:10px;
+}
+
+.day-header span{
+  color:var(--muted);
+
+  font-size:9px;
+}
+
+.pay-row{
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:13px 16px;
+}
+
+.pay-left{
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.pay-name{
+  font-size:11px;
+  font-weight:800;
+}
+
+.pay-rule{
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+.pay-value{
+  font-size:12px;
+  font-weight:900;
+}
+
+
+/* SERVICES */
+
+.service-card{
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:23px;
+
+  padding:18px;
+
+  box-shadow:var(--shadow);
+}
+
+.service{
+  display:flex;
+
+  justify-content:space-between;
+
+  padding:14px 0;
+
+  border-bottom:
+  1px solid var(--border);
+}
+
+.service:last-child{
+  border-bottom:0;
+}
+
+.service strong{
+  font-size:11px;
+}
+
+.service small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:4px;
+}
+
+
+/* PROFILE */
+
+.profile-card{
+  background:#fff;
+
+  border-radius:25px;
+
+  padding:28px;
+
+  text-align:center;
+
+  box-shadow:var(--shadow);
+}
+
+.profile-avatar{
+  width:76px;
+  height:76px;
+
+  margin:auto;
+
+  border-radius:25px;
+
+  background:var(--yellow);
+
+  display:grid;
+
+  place-items:center;
+
+  font-size:30px;
+}
+
+.profile-card h2{
+  margin-top:12px;
+
+  font-size:20px;
+}
+
+.profile-card p{
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:4px;
+}
+
+.profile-menu{
+  margin-top:15px;
+
+  background:#fff;
+
+  border:1px solid var(--border);
+
+  border-radius:23px;
+
+  overflow:hidden;
+}
+
+.profile-item{
+  width:100%;
+
+  border:0;
+
+  background:#fff;
+
+  padding:15px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  text-align:left;
+
+  border-bottom:
+  1px solid var(--border);
+}
+
+.profile-item:last-child{
+  border-bottom:0;
+}
+
+.profile-item-icon{
+  width:42px;
+  height:42px;
+
+  border-radius:14px;
+
+  background:#f2f4f7;
+
+  display:grid;
+
+  place-items:center;
+}
+
+.profile-item strong{
+  display:block;
+
+  font-size:11px;
+}
+
+.profile-item small{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:9px;
+
+  margin-top:3px;
+}
+
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+
+  z-index:50;
+
+  bottom:10px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  width:
+  min(700px,calc(100% - 18px));
+
+  background:
+  rgba(255,255,255,.96);
+
+  backdrop-filter:
+  blur(18px);
+
+  border:
+  1px solid var(--border);
+
+  border-radius:25px;
+
+  box-shadow:
+  0 12px 40px
+  rgba(16,24,40,.15);
+
+  padding:7px;
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(5,1fr);
+}
+
+.nav{
+  border:0;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  border-radius:17px;
+
+  padding:7px 2px;
+
+  font-size:8px;
+
+  font-weight:700;
+}
+
+.nav-icon{
+  display:block;
+
+  font-size:19px;
+
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:var(--text);
+
+  background:var(--yellow-light);
+}
+
+
+/* FLOATING */
+
+.floating{
+  position:fixed;
+
+  z-index:45;
+
+  right:18px;
+
+  bottom:85px;
+
+  width:54px;
+  height:54px;
+
+  border:0;
+
+  border-radius:18px;
+
+  background:var(--text);
+
+  color:#fff;
+
+  font-size:26px;
+
+  box-shadow:
+  0 10px 25px
+  rgba(16,24,40,.25);
+}
+
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+
+  align-items:flex-end;
+
+  background:
+  rgba(16,24,40,.55);
+
+  padding:10px;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.sheet{
+  width:
+  min(650px,100%);
+
+  background:#fff;
+
+  border-radius:28px;
+
+  padding:23px;
+
+  margin:auto;
+
+  max-height:90vh;
+
+  overflow:auto;
+}
+
+.sheet h2{
+  font-size:19px;
+
+  margin-bottom:18px;
+}
+
+.form{
+  margin-bottom:13px;
+}
+
+.form label{
+  display:block;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+}
+
+.form input{
+  width:100%;
+
+  padding:13px;
+
+  border:
+  1px solid var(--border);
+
+  border-radius:14px;
+
+  background:#f8fafc;
+
+  outline:none;
+}
+
+.modal-buttons{
+  display:flex;
+
+  gap:8px;
+
+  margin-top:18px;
+}
+
+.modal-buttons button{
+  flex:1;
+
+  border:0;
+
+  padding:13px;
+
+  border-radius:14px;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.cancel{
+  background:#f2f4f7;
+}
+
+.save{
+  background:var(--text);
+
+  color:#fff;
+}
+
+
+/* MOBILE */
+
+@media(max-width:520px){
+
+  .quick-grid{
+    grid-template-columns:
+    repeat(2,1fr);
+  }
+
+  .hero-profit{
+    font-size:35px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+<div class="header-content">
+
+<div class="user">
+
+<div class="avatar">
+🚗
+</div>
+
+<div class="greeting">
+
+<small id="greeting">
+☀️ Buenos días
+</small>
+
+<h1 id="userName">
+Fredy
+</h1>
+
+</div>
+
+</div>
+
+
+<button
+class="profile-btn"
+onclick="showView('perfil')">
+
+👤
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section
+id="inicio"
+class="view active">
+
+
+<div class="date-row">
+
+<strong id="today">
+Hoy
+</strong>
+
+<span id="clock">
+--:--
+
+</span>
+
+</div>
+
+
+
+<div class="hero">
+
+<div class="hero-label">
+Ganancia real de hoy
+</div>
+
+<div
+id="profit"
+class="hero-profit">
+
+$0
+
+</div>
+
+
+<div class="hero-grid">
+
+<div class="hero-item">
+
+<small>
+Ingresos
+</small>
+
+<strong id="income">
+$0
+</strong>
+
+</div>
+
+
+<div class="hero-item">
+
+<small>
+Gastos
+</small>
+
+<strong id="expenses">
+$0
+</strong>
+
+</div>
+
+
+<div class="hero-item">
+
+<small>
+Pasajeros
+</small>
+
+<strong id="passengers">
+0
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section-header">
+
+<h2>
+Acciones rápidas
+</h2>
+
+</div>
+
+
+<div class="quick-grid">
+
+
+<button
+class="quick"
+onclick="openModal('tripModal')">
+
+<div class="quick-icon">
+🚕
+</div>
+
+<strong>
+Registrar viaje
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="openModal('expenseModal')">
+
+<div class="quick-icon">
+💸
+</div>
+
+<strong>
+Registrar gasto
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="openModal('fuelModal')">
+
+<div class="quick-icon">
+⛽
+</div>
+
+<strong>
+Gasolina
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="openModal('serviceModal')">
+
+<div class="quick-icon">
+🔧
+</div>
+
+<strong>
+Mantenimiento
+</strong>
+
+</button>
+
+
+</div>
+
+
+
+<div class="section-header">
+
+<h2>
+Tu jornada
+</h2>
+
+<button
+onclick="showView('jornada')">
+
+Detalles
+
+</button>
+
+</div>
+
+
+
+<div class="journey-card">
+
+
+<div class="journey-top">
+
+<div class="journey-status">
+
+<span
+id="statusDot"
+class="status-dot">
+</span>
+
+<span id="statusText">
+Fuera de jornada
+</span>
+
+</div>
+
+
+<span
+id="startTime"
+class="journey-time">
+
+--
+
+</span>
+
+</div>
+
+
+
+<div class="journey-stats">
+
+
+<div class="stat">
+
+<small>
+Viajes
+</small>
+
+<strong id="trips">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Pasajeros
+</small>
+
+<strong id="journeyPassengers">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Ingresos
+</small>
+
+<strong id="journeyIncome">
+$0
+</strong>
+
+</div>
+
+
+</div>
+
+
+
+<button
+id="journeyBtn"
+class="primary-btn"
+onclick="toggleJourney()">
+
+▶ Iniciar jornada
+
+</button>
+
+
+</div>
+
+
+
+<div class="section-header">
+
+<h2>
+Próximo pago
+</h2>
+
+<button
+onclick="showView('agenda')">
+
+Ver calendario
+
+</button>
+
+</div>
+
+
+
+<div
+id="nextPayment"
+class="payment-card">
+
+Cargando...
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     JORNADA
+========================= -->
+
+<section
+id="jornada"
+class="view">
+
+<div class="section-header">
+
+<h2>
+🚕 Jornada de trabajo
+</h2>
+
+</div>
+
+
+<div class="journey-card">
+
+<div class="journey-top">
+
+<div class="journey-status">
+
+<span
+id="statusDot2"
+class="status-dot">
+</span>
+
+<span id="statusText2">
+Fuera de jornada
+</span>
+
+</div>
+
+<span
+id="startTime2"
+class="journey-time">
+
+--
+
+</span>
+
+</div>
+
+
+<div class="journey-stats">
+
+<div class="stat">
+
+<small>
+Viajes
+</small>
+
+<strong id="trips2">
+0
+</strong>
+
+</div>
+
+<div class="stat">
+
+<small>
+Pasajeros
+</small>
+
+<strong id="passengers2">
+0
+</strong>
+
+</div>
+
+<div class="stat">
+
+<small>
+Ingresos
+</small>
+
+<strong id="income2">
+$0
+</strong>
+
+</div>
+
+</div>
+
+
+<button
+id="journeyBtn2"
+class="primary-btn"
+onclick="toggleJourney()">
+
+▶ Iniciar jornada
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     FINANZAS
+========================= -->
+
+<section
+id="finanzas"
+class="view">
+
+<div class="section-header">
+
+<h2>
+💰 Finanzas
+</h2>
+
+</div>
+
+
+<div class="periods">
+
+<button
+class="active"
+onclick="setPeriod('day',this)">
+
+Hoy
+
+</button>
+
+
+<button
+onclick="setPeriod('week',this)">
+
+Semana
+
+</button>
+
+
+<button
+onclick="setPeriod('month',this)">
+
+Mes
+
+</button>
+
+</div>
+
+
+<div class="finance">
+
+<div class="finance-label">
+Ganancia real
+</div>
+
+<div
+id="financeProfit"
+class="finance-profit">
+
+$0
+
+</div>
+
+
+<div class="finance-grid">
+
+<div class="finance-item">
+
+<small>
+Ingresos
+</small>
+
+<strong
+id="financeIncome"
+class="income">
+
+$0
+
+</strong>
+
+</div>
+
+
+<div class="finance-item">
+
+<small>
+Gastos
+</small>
+
+<strong
+id="financeExpenses"
+class="expense">
+
+$0
+
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section-header">
+
+<h2>
+Ingresos recientes
+</h2>
+
+</div>
+
+
+<div class="chart-card">
+
+<div
+id="chart"
+class="chart">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     MI TAXI
+========================= -->
+
+<section
+id="taxi"
+class="view">
+
+<div class="section-header">
+
+<h2>
+🚗 Mi Taxi
+</h2>
+
+</div>
+
+
+<div class="vehicle-card">
+
+
+<!--
+IMPORTANTE:
+Coloca una fotografía real de tu
+CHEVROLET AVEO SEDÁN 2019
+en la carpeta del proyecto con:
+
+aveo-2019.jpg
+
+-->
+
+<img
+class="vehicle-photo"
+src="aveo-2019.jpg"
+alt="Chevrolet Aveo sedán 2019"
+onerror="
+this.src='https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=85';
+">
+
+
+<div class="vehicle-info">
+
+<h2>
+Chevrolet Aveo
+</h2>
+
+<p>
+Sedán 2019 · Vehículo de trabajo
+</p>
+
+
+<div class="vehicle-stats">
+
+
+<div class="stat">
+
+<small>
+Kilometraje
+</small>
+
+<strong id="vehicleKm">
+0 km
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Servicios
+</small>
+
+<strong id="serviceCount">
+0
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>
+Último servicio
+</small>
+
+<strong id="lastService">
+--
+</strong>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section-header">
+
+<h2>
+🔧 Historial de mantenimiento
+</h2>
+
+<button
+onclick="openModal('serviceModal')">
+
++ Agregar
+
+</button>
+
+</div>
+
+
+<div
+id="services"
+class="service-card">
+
+Sin servicios registrados.
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     AGENDA
+========================= -->
+
+<section
+id="agenda"
+class="view">
+
+
+<div class="calendar">
+
+
+<div class="calendar-header">
+
+<h2>
+📅 Calendario de pagos
+</h2>
+
+<p>
+Pagos recurrentes configurados en Taxi Pro
+</p>
+
+</div>
+
+
+<div
+id="calendarList">
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PERFIL
+========================= -->
+
+<section
+id="perfil"
+class="view">
+
+
+<div class="profile-card">
+
+
+<div class="profile-avatar">
+👤
+</div>
+
+
+<h2 id="profileName">
+Fredy
+</h2>
+
+
+<p>
+Administrador de Taxi Pro
+</p>
+
+
+</div>
+
+
+
+<div class="profile-menu">
+
+
+<button
+class="profile-item"
+onclick="openModal('profileModal')">
+
+<div class="profile-item-icon">
+👤
+</div>
+
+<div>
+
+<strong>
+Mi información
+</strong>
+
+<small>
+Cambiar nombre
+</small>
+
+</div>
+
+</button>
+
+
+<button
+class="profile-item"
+onclick="showView('taxi')">
+
+<div class="profile-item-icon">
+🚗
+</div>
+
+<div>
+
+<strong>
+Mi Taxi
+</strong>
+
+<small>
+Chevrolet Aveo sedán 2019
+</small>
+
+</div>
+
+</button>
+
+
+<button
+class="profile-item"
+onclick="showView('agenda')">
+
+<div class="profile-item-icon">
+📅
+</div>
+
+<div>
+
+<strong>
+Calendario de pagos
+</strong>
+
+<small>
+Consultar próximos pagos
+</small>
+
+</div>
+
+</button>
+
+
+<button
+class="profile-item"
+onclick="backup()">
+
+<div class="profile-item-icon">
+💾
+</div>
+
+<div>
+
+<strong>
+Respaldar información
+</strong>
+
+<small>
+Guardar una copia de tus datos
+</small>
+
+</div>
+
+</button>
+
+
+</div>
+
+</section>
+
+
+
+<!-- FLOATING -->
+
+<button
+class="floating"
+onclick="openModal('quickModal')">
+
++
+
+</button>
+
+
+
+<!-- NAVEGACIÓN -->
+
+<nav class="bottom-nav">
+
+
+<button
+class="nav active"
+data-view="inicio"
+onclick="showView('inicio')">
+
+<span class="nav-icon">
+⌂
+</span>
+
+Inicio
+
+</button>
+
+
+<button
+class="nav"
+data-view="jornada"
+onclick="showView('jornada')">
+
+<span class="nav-icon">
+🚕
+</span>
+
+Jornada
+
+</button>
+
+
+<button
+class="nav"
+data-view="finanzas"
+onclick="showView('finanzas')">
+
+<span class="nav-icon">
+$
+</span>
+
+Finanzas
+
+</button>
+
+
+<button
+class="nav"
+data-view="taxi"
+onclick="showView('taxi')">
+
+<span class="nav-icon">
+🚗
+</span>
+
+Mi Taxi
+
+</button>
+
+
+<button
+class="nav"
+data-view="agenda"
+onclick="showView('agenda')">
+
+<span class="nav-icon">
+☰
+</span>
+
+Más
+
+</button>
+
+
+</nav>
+
+
+</div>
+
+
+
+<!-- =========================
+     MODAL VIAJE
+========================= -->
+
+<div
+id="tripModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+🚕 Registrar viaje
+</h2>
+
+
+<div class="form">
+
+<label>
+Cantidad de pasajeros
+</label>
+
+<input
+id="tripPassengers"
+type="number"
+min="1"
+value="1">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Tarifa por pasajero
+</label>
+
+<input
+id="tripFare"
+type="number"
+value="80">
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModals()">
+
+Cancelar
+
+</button>
+
+<button
+class="save"
+onclick="saveTrip()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL GASTO -->
+
+<div
+id="expenseModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+💸 Registrar gasto
+</h2>
+
+
+<div class="form">
+
+<label>
+Concepto
+</label>
+
+<input
+id="expenseName"
+placeholder="Ej. Caseta">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Importe
+</label>
+
+<input
+id="expenseAmount"
+type="number">
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModals()">
+
+Cancelar
+
+</button>
+
+<button
+class="save"
+onclick="saveExpense()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL GASOLINA -->
+
+<div
+id="fuelModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+⛽ Registrar gasolina
+</h2>
+
+
+<div class="form">
+
+<label>
+Importe
+</label>
+
+<input
+id="fuelAmount"
+type="number">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Litros
+</label>
+
+<input
+id="fuelLiters"
+type="number">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Kilometraje actual
+</label>
+
+<input
+id="fuelKm"
+type="number">
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModals()">
+
+Cancelar
+
+</button>
+
+<button
+class="save"
+onclick="saveFuel()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL SERVICIO -->
+
+<div
+id="serviceModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+🔧 Registrar mantenimiento
+</h2>
+
+
+<div class="form">
+
+<label>
+Descripción del servicio
+</label>
+
+<input
+id="serviceDescription"
+placeholder="Ej. Cambio de aceite">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Fecha
+</label>
+
+<input
+id="serviceDate"
+type="date">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Kilometraje
+</label>
+
+<input
+id="serviceKm"
+type="number">
+
+</div>
+
+
+<div class="form">
+
+<label>
+Costo
+</label>
+
+<input
+id="serviceCost"
+type="number">
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModals()">
+
+Cancelar
+
+</button>
+
+<button
+class="save"
+onclick="saveService()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL PERFIL -->
+
+<div
+id="profileModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+👤 Mi información
+</h2>
+
+
+<div class="form">
+
+<label>
+Nombre
+</label>
+
+<input
+id="profileInput">
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button
+class="cancel"
+onclick="closeModals()">
+
+Cancelar
+
+</button>
+
+<button
+class="save"
+onclick="saveProfile()">
+
+Guardar
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MODAL RÁPIDO -->
+
+<div
+id="quickModal"
+class="modal">
+
+<div class="sheet">
+
+<h2>
+＋ Registrar
+</h2>
+
+
+<div class="quick-grid">
+
+
+<button
+class="quick"
+onclick="
+closeModals();
+openModal('tripModal')
+">
+
+<div class="quick-icon">
+🚕
+</div>
+
+<strong>
+Viaje
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="
+closeModals();
+openModal('expenseModal')
+">
+
+<div class="quick-icon">
+💸
+</div>
+
+<strong>
+Gasto
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="
+closeModals();
+openModal('fuelModal')
+">
+
+<div class="quick-icon">
+⛽
+</div>
+
+<strong>
+Gasolina
+</strong>
+
+</button>
+
+
+<button
+class="quick"
+onclick="
+closeModals();
+openModal('serviceModal')
+">
+
+<div class="quick-icon">
+🔧
+</div>
+
+<strong>
+Servicio
+</strong>
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================
+   DATOS
+========================= */
+
+const STORAGE_KEY =
+"taxiPro10";
+
+const DEFAULT_DATA={
+
+name:"Fredy",
+
+journey:{
+active:false,
+start:null,
+trips:0,
+passengers:0,
+income:0
+},
+
+trips:[],
+expenses:[],
+fuels:[],
+services:[],
+
+vehicleKm:0
+
+};
+
+
+let data =
+JSON.parse(
+localStorage.getItem(
+STORAGE_KEY
+)
+)||DEFAULT_DATA;
+
+
+/* =========================
+   UTILIDADES
+========================= */
+
+function save(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
+
+}
+
+
+function money(value){
+
+return new Intl.NumberFormat(
+"es-MX",
+{
+style:"currency",
+currency:"MXN",
+maximumFractionDigits:0
+}
+).format(
+Number(value)||0
+);
+
+}
+
+
+function dateKey(date=new Date()){
+
+return date
+.toISOString()
+.slice(0,10);
+
+}
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function showView(view){
+
+document
+.querySelectorAll(".view")
+.forEach(
+v=>v.classList.remove(
+"active"
+)
+);
+
+
+document
+.getElementById(view)
+.classList.add(
+"active"
+);
+
+
+document
+.querySelectorAll(".nav")
+.forEach(
+nav=>{
+
+nav.classList.toggle(
+"active",
+nav.dataset.view===view
+);
+
+}
+);
+
+
+window.scrollTo(
+{
+top:0,
+behavior:"smooth"
+}
+);
+
+}
+
+
+/* =========================
+   RELOJ
+========================= */
+
+function updateClock(){
+
+const now =
+new Date();
+
+const hour =
+now.getHours();
+
+let text =
+"☀️ Buenos días";
+
+if(
+hour>=12 &&
+hour<19
+){
+
+text =
+"🌤️ Buenas tardes";
+
+}
+
+if(
+hour>=19 ||
+hour<5
+){
+
+text =
+"🌙 Buenas noches";
+
+}
+
+
+document
+.getElementById(
+"greeting"
+)
+.textContent =
+text;
+
+
+document
+.getElementById(
+"userName"
+)
+.textContent =
+data.name;
+
+
+document
+.getElementById(
+"profileName"
+)
+.textContent =
+data.name;
+
+
+document
+.getElementById(
+"today"
+)
+.textContent =
+now.toLocaleDateString(
+"es-MX",
+{
+weekday:"long",
+day:"numeric",
+month:"long"
+}
+);
+
+
+document
+.getElementById(
+"clock"
+)
+.textContent =
+now.toLocaleTimeString(
+"es-MX",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+/* =========================
+   ESTADÍSTICAS
+========================= */
+
+function todayStats(){
+
+const today =
+dateKey();
+
+
+const trips =
+data.trips.filter(
+x=>x.date===today
+);
+
+
+const expenses =
+data.expenses.filter(
+x=>x.date===today
+);
+
+
+const fuels =
+data.fuels.filter(
+x=>x.date===today
+);
+
+
+const income =
+trips.reduce(
+(a,b)=>
+a+
+Number(b.income),
+0
+);
+
+
+const expense =
+expenses.reduce(
+(a,b)=>
+a+
+Number(b.amount),
+0
+)+
+fuels.reduce(
+(a,b)=>
+a+
+Number(b.amount),
+0
+);
+
+
+return{
+
+income,
+
+expense,
+
+profit:
+income-expense,
+
+passengers:
+trips.reduce(
+(a,b)=>
+a+
+Number(b.passengers),
+0
+)
+
+};
+
+}
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(){
+
+updateClock();
+
+
+const stats =
+todayStats();
+
+
+document
+.getElementById(
+"profit"
+)
+.textContent =
+money(stats.profit);
+
+
+document
+.getElementById(
+"income"
+)
+.textContent =
+money(stats.income);
+
+
+document
+.getElementById(
+"expenses"
+)
+.textContent =
+money(stats.expense);
+
+
+document
+.getElementById(
+"passengers"
+)
+.textContent =
+stats.passengers;
+
+
+document
+.getElementById(
+"financeProfit"
+)
+.textContent =
+money(stats.profit);
+
+
+document
+.getElementById(
+"financeIncome"
+)
+.textContent =
+money(stats.income);
+
+
+document
+.getElementById(
+"financeExpenses"
+)
+.textContent =
+money(stats.expense);
+
+
+/* JOURNEY */
+
+const active =
+data.journey.active;
+
+
+[
+"statusDot",
+"statusDot2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.classList.toggle(
+"active",
+active
+)
+);
+
+
+[
+"statusText",
+"statusText2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+active
+?
+"Jornada activa"
+:
+"Fuera de jornada"
+);
+
+
+const start =
+data.journey.start
+?
+new Date(
+data.journey.start
+)
+.toLocaleTimeString(
+"es-MX",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+)
+:
+"--";
+
+
+[
+"startTime",
+"startTime2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+start
+);
+
+
+[
+"trips",
+"trips2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+data.journey.trips
+);
+
+
+[
+"journeyPassengers",
+"passengers2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+data.journey.passengers
+);
+
+
+[
+"journeyIncome",
+"income2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+money(
+data.journey.income
+)
+);
+
+
+[
+"journeyBtn",
+"journeyBtn2"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.textContent =
+active
+?
+"⏹ Finalizar jornada"
+:
+"▶ Iniciar jornada"
+);
+
+
+/* VEHICLE */
+
+document
+.getElementById(
+"vehicleKm"
+)
+.textContent =
+Number(
+data.vehicleKm||0
+)
+.toLocaleString(
+"es-MX"
+)
++
+" km";
+
+
+document
+.getElementById(
+"serviceCount"
+)
+.textContent =
+data.services.length;
+
+
+renderServices();
+
+renderPayments();
+
+renderChart();
+
+}
+
+
+/* =========================
+   JORNADA
+========================= */
+
+function toggleJourney(){
+
+if(
+!data.journey.active
+){
+
+data.journey.active =
+true;
+
+data.journey.start =
+new Date()
+.toISOString();
+
+data.journey.trips =
+0;
+
+data.journey.passengers =
+0;
+
+data.journey.income =
+0;
+
+}else{
+
+data.journey.active =
+false;
+
+}
+
+save();
+
 render();
-</script></body></html>
+
+}
+
+
+/* =========================
+   VIAJE
+========================= */
+
+function saveTrip(){
+
+const passengers =
+Number(
+document
+.getElementById(
+"tripPassengers"
+)
+.value
+);
+
+
+const fare =
+Number(
+document
+.getElementById(
+"tripFare"
+)
+.value
+);
+
+
+if(
+passengers<=0 ||
+fare<=0
+){
+
+alert(
+"Ingresa datos válidos."
+);
+
+return;
+
+}
+
+
+const income =
+passengers*fare;
+
+
+data.trips.push({
+
+date:
+dateKey(),
+
+passengers,
+
+fare,
+
+income
+
+});
+
+
+data.journey.trips++;
+
+data.journey.passengers +=
+passengers;
+
+data.journey.income +=
+income;
+
+
+save();
+
+closeModals();
+
+render();
+
+}
+
+
+/* =========================
+   GASTO
+========================= */
+
+function saveExpense(){
+
+const name =
+document
+.getElementById(
+"expenseName"
+)
+.value
+.trim();
+
+
+const amount =
+Number(
+document
+.getElementById(
+"expenseAmount"
+)
+.value
+);
+
+
+if(
+!name ||
+amount<=0
+){
+
+alert(
+"Completa los datos."
+);
+
+return;
+
+}
+
+
+data.expenses.push({
+
+date:
+dateKey(),
+
+name,
+
+amount
+
+});
+
+
+save();
+
+closeModals();
+
+render();
+
+}
+
+
+/* =========================
+   GASOLINA
+========================= */
+
+function saveFuel(){
+
+const amount =
+Number(
+document
+.getElementById(
+"fuelAmount"
+)
+.value
+);
+
+
+const liters =
+Number(
+document
+.getElementById(
+"fuelLiters"
+)
+.value
+);
+
+
+const km =
+Number(
+document
+.getElementById(
+"fuelKm"
+)
+.value
+);
+
+
+if(
+amount<=0
+){
+
+alert(
+"Ingresa el importe."
+);
+
+return;
+
+}
+
+
+data.fuels.push({
+
+date:
+dateKey(),
+
+amount,
+
+liters,
+
+km
+
+});
+
+
+if(km){
+
+data.vehicleKm =
+km;
+
+}
+
+
+save();
+
+closeModals();
+
+render();
+
+}
+
+
+/* =========================
+   MANTENIMIENTO
+========================= */
+
+function saveService(){
+
+const description =
+document
+.getElementById(
+"serviceDescription"
+)
+.value
+.trim();
+
+
+const date =
+document
+.getElementById(
+"serviceDate"
+)
+.value ||
+dateKey();
+
+
+const km =
+Number(
+document
+.getElementById(
+"serviceKm"
+)
+.value
+);
+
+
+const cost =
+Number(
+document
+.getElementById(
+"serviceCost"
+)
+.value
+);
+
+
+if(
+!description
+){
+
+alert(
+"Ingresa la descripción."
+);
+
+return;
+
+}
+
+
+data.services.unshift({
+
+description,
+
+date,
+
+km,
+
+cost
+
+});
+
+
+if(km){
+
+data.vehicleKm =
+km;
+
+}
+
+
+save();
+
+closeModals();
+
+render();
+
+}
+
+
+/* =========================
+   SERVICIOS
+========================= */
+
+function renderServices(){
+
+const box =
+document
+.getElementById(
+"services"
+);
+
+
+if(
+data.services.length===0
+){
+
+box.innerHTML =
+"Sin servicios registrados.";
+
+document
+.getElementById(
+"lastService"
+)
+.textContent =
+"--";
+
+return;
+
+}
+
+
+document
+.getElementById(
+"lastService"
+)
+.textContent =
+data.services[0].date;
+
+
+box.innerHTML =
+data.services
+.slice(0,10)
+.map(
+s=>`
+
+<div class="service">
+
+<div>
+
+<strong>
+🔧 ${s.description}
+</strong>
+
+<small>
+${s.date}
+ ·
+${Number(s.km||0)
+.toLocaleString("es-MX")}
+ km
+</small>
+
+</div>
+
+<strong>
+${money(s.cost)}
+</strong>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================
+   PAGOS RECURRENTES
+========================= */
+
+const PAYMENT_RULES=[
+
+{
+id:"potrero",
+
+name:"Punto El Potrero",
+
+icon:"📍",
+
+amount:120,
+
+type:"interval",
+
+start:"2026-07-23",
+
+interval:5
+
+},
+
+{
+id:"checadora",
+
+name:"Pago Checadora",
+
+icon:"🧾",
+
+amount:300,
+
+type:"weekly",
+
+weekday:5
+
+},
+
+{
+id:"villa",
+
+name:"Estacionamiento Villa Guerrero",
+
+icon:"🅿️",
+
+amount:220,
+
+type:"monthly",
+
+day:29
+
+},
+
+{
+id:"movilidad",
+
+name:"Pago Movilidad",
+
+icon:"🚌",
+
+amount:200,
+
+type:"monthly",
+
+day:20
+
+},
+
+{
+id:"metepec",
+
+name:"Pago Metepec",
+
+icon:"📍",
+
+amount:80,
+
+type:"monthly",
+
+day:4
+
+},
+
+{
+id:"toluca",
+
+name:"Estacionamiento Toluca",
+
+icon:"🅿️",
+
+amount:140,
+
+type:"monthly",
+
+day:6
+
+}
+
+];
+
+
+/*
+Generador de calendario.
+
+Punto El Potrero:
+23 julio
+28 julio
+2 agosto
+7 agosto
+12 agosto
+etc.
+
+No genera pagos duplicados.
+*/
+
+function generatePayments(){
+
+const payments=[];
+
+const seen=
+new Set();
+
+
+const today =
+new Date();
+
+today.setHours(
+0,0,0,0
+);
+
+
+for(
+let i=0;
+i<120;
+i++
+){
+
+const date =
+new Date(today);
+
+date.setDate(
+today.getDate()+i
+);
+
+
+PAYMENT_RULES
+.forEach(
+rule=>{
+
+let match=false;
+
+
+if(
+rule.type==="monthly"
+){
+
+match =
+date.getDate()===
+rule.day;
+
+}
+
+
+if(
+rule.type==="weekly"
+){
+
+match =
+date.getDay()===
+rule.weekday;
+
+}
+
+
+if(
+rule.type==="interval"
+){
+
+const start =
+new Date(
+rule.start+
+"T00:00:00"
+);
+
+
+const days =
+Math.floor(
+(date-start)/
+86400000
+);
+
+
+match =
+days>=0 &&
+days%
+rule.interval===0;
+
+}
+
+
+if(match){
+
+const key =
+rule.id+
+"_"+
+dateKey(date);
+
+
+if(
+!seen.has(key)
+){
+
+seen.add(key);
+
+
+payments.push({
+
+...rule,
+
+date:
+new Date(date)
+
+});
+
+}
+
+}
+
+}
+);
+
+}
+
+
+return payments
+.sort(
+(a,b)=>
+a.date-b.date
+);
+
+}
+
+
+/* =========================
+   CALENDARIO
+========================= */
+
+function renderPayments(){
+
+const payments =
+generatePayments();
+
+
+const groups={};
+
+
+payments
+.forEach(
+p=>{
+
+const key =
+dateKey(p.date);
+
+
+if(
+!groups[key]
+){
+
+groups[key]={
+date:p.date,
+items:[]
+};
+
+}
+
+
+groups[key]
+.items
+.push(p);
+
+}
+);
+
+
+let html="";
+
+
+Object
+.values(groups)
+.forEach(
+group=>{
+
+const date =
+group.date
+.toLocaleDateString(
+"es-MX",
+{
+weekday:"long",
+day:"numeric",
+month:"long"
+}
+);
+
+
+html+=`
+
+<div class="calendar-day">
+
+<div class="day-header">
+
+<strong>
+${date}
+</strong>
+
+<span>
+${group.items.length}
+${group.items.length===1
+?"pago"
+:"pagos"}
+</span>
+
+</div>
+
+`;
+
+
+group.items
+.forEach(
+p=>{
+
+html+=`
+
+<div class="pay-row">
+
+<div class="pay-left">
+
+<div class="payment-icon">
+${p.icon}
+</div>
+
+<div>
+
+<div class="pay-name">
+${p.name}
+</div>
+
+<div class="pay-rule">
+${getRuleText(p)}
+</div>
+
+</div>
+
+</div>
+
+<div class="pay-value">
+${money(p.amount)}
+</div>
+
+</div>
+
+`;
+
+}
+);
+
+
+html+=`
+
+</div>
+
+`;
+
+}
+);
+
+
+document
+.getElementById(
+"calendarList"
+)
+.innerHTML =
+html;
+
+
+const next =
+payments[0];
+
+
+if(next){
+
+const date =
+next.date
+.toLocaleDateString(
+"es-MX",
+{
+weekday:"long",
+day:"numeric",
+month:"long"
+}
+);
+
+
+document
+.getElementById(
+"nextPayment"
+)
+.innerHTML = `
+
+<div class="payment">
+
+<div class="payment-left">
+
+<div class="payment-icon">
+${next.icon}
+</div>
+
+<div>
+
+<div class="payment-title">
+${next.name}
+</div>
+
+<div class="payment-date">
+${date}
+</div>
+
+</div>
+
+</div>
+
+<div class="payment-amount">
+${money(next.amount)}
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+
+/* =========================
+   REGLAS
+========================= */
+
+function getRuleText(p){
+
+if(
+p.type==="interval"
+){
+
+return "Cada 5 días";
+
+}
+
+if(
+p.type==="weekly"
+){
+
+return "Cada viernes";
+
+}
+
+return "Cada mes";
+
+}
+
+
+/* =========================
+   GRÁFICA
+========================= */
+
+function renderChart(){
+
+const chart =
+document
+.getElementById(
+"chart"
+);
+
+
+const values=[];
+
+
+for(
+let i=6;
+i>=0;
+i--
+){
+
+const d =
+new Date();
+
+
+d.setDate(
+d.getDate()-i
+);
+
+
+const key =
+dateKey(d);
+
+
+const total =
+data.trips
+.filter(
+t=>t.date===key
+)
+.reduce(
+(a,b)=>
+a+
+Number(b.income),
+0
+);
+
+
+values.push(total);
+
+}
+
+
+const max =
+Math.max(
+...values,
+1
+);
+
+
+chart.innerHTML =
+values
+.map(
+value=>`
+
+<div
+class="bar"
+style="
+height:
+${Math.max(
+5,
+value/max*100
+)}%;
+">
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================
+   PERFIL
+========================= */
+
+function saveProfile(){
+
+const name =
+document
+.getElementById(
+"profileInput"
+)
+.value
+.trim();
+
+
+if(name){
+
+data.name =
+name;
+
+}
+
+
+save();
+
+closeModals();
+
+render();
+
+}
+
+
+/* =========================
+   PERIODO
+========================= */
+
+function setPeriod(
+period,
+button
+){
+
+document
+.querySelectorAll(
+".periods button"
+)
+.forEach(
+b=>
+b.classList.remove(
+"active"
+)
+);
+
+button.classList.add(
+"active"
+);
+
+}
+
+
+/* =========================
+   MODALES
+========================= */
+
+function openModal(id){
+
+document
+.getElementById(id)
+.classList.add(
+"open"
+);
+
+}
+
+
+function closeModals(){
+
+document
+.querySelectorAll(
+".modal"
+)
+.forEach(
+m=>
+m.classList.remove(
+"open"
+)
+);
+
+}
+
+
+/* =========================
+   RESPALDO
+========================= */
+
+function backup(){
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+data,
+null,
+2
+)
+],
+{
+type:
+"application/json"
+}
+);
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const a =
+document
+.createElement("a");
+
+
+a.href =
+url;
+
+
+a.download =
+"Taxi-Pro-10.0-Respaldo.json";
+
+
+a.click();
+
+
+URL.revokeObjectURL(
+url
+);
+
+}
+
+
+/* =========================
+   CERRAR MODAL
+========================= */
+
+document
+.querySelectorAll(
+".modal"
+)
+.forEach(
+modal=>{
+
+modal.addEventListener(
+"click",
+e=>{
+
+if(
+e.target===
+modal
+){
+
+modal.classList.remove(
+"open"
+);
+
+}
+
+}
+);
+
+});
+
+
+/* =========================
+   INICIAR
+========================= */
+
+render();
+
+
+setInterval(
+updateClock,
+30000
+);
+
+</script>
+
+
+</body>
+</html>
