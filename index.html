@@ -1841,76 +1841,99 @@ time:currentTime()
 
 function updateHeader(){
 
-const now=new Date();
+    const now = new Date();
 
-const hour=now.getHours();
+    const hour = now.getHours();
+    const minute = now.getMinutes();
 
-let greeting="☀️ Buenos días";
+    const currentMinutes = hour * 60 + minute;
 
-let icon="☀️";
+    /*
+    Horarios aproximados del ciclo solar:
+    
+    05:30 - 06:30  → Amanecer 🌅
+    06:30 - 18:00  → Día ☀️
+    18:00 - 19:00  → Atardecer 🌇
+    19:00 - 05:30  → Noche 🌙
+    
+    El icono se actualiza automáticamente
+    cada segundo.
+    */
 
+    let greeting = "☀️ Buenos días";
+    let icon = "☀️";
 
-/*
-   00:00 a 04:59
-   Se mantiene SOL a las 00:00
-   como solicitaste.
-*/
+    if (
+        currentMinutes >= 330 &&
+        currentMinutes < 390
+    ){
 
-if(hour>=0 && hour<5){
+        greeting = "🌅 Buenos días";
+        icon = "🌅";
 
-greeting="☀️ Buenos días";
+    }
 
-icon="☀️";
+    else if (
+        currentMinutes >= 390 &&
+        currentMinutes < 720
+    ){
+
+        greeting = "☀️ Buenos días";
+        icon = "☀️";
+
+    }
+
+    else if (
+        currentMinutes >= 720 &&
+        currentMinutes < 1080
+    ){
+
+        greeting = "🌤️ Buenas tardes";
+        icon = "🌤️";
+
+    }
+
+    else if (
+        currentMinutes >= 1080 &&
+        currentMinutes < 1140
+    ){
+
+        greeting = "🌇 Buenas tardes";
+        icon = "🌇";
+
+    }
+
+    else {
+
+        greeting = "🌙 Buenas noches";
+        icon = "🌙";
+
+    }
+
+    document.getElementById(
+        "greeting"
+    ).textContent = greeting;
+
+    document.getElementById(
+        "weatherIcon"
+    ).textContent = icon;
+
+    document.getElementById(
+        "userName"
+    ).textContent = data.name;
+
+    document.getElementById(
+        "time"
+    ).textContent =
+        now.toLocaleTimeString(
+            "es-MX",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
 
 }
-
-else if(hour>=5 && hour<12){
-
-greeting="☀️ Buenos días";
-
-icon="☀️";
-
-}
-
-else if(hour>=12 && hour<19){
-
-greeting="🌤️ Buenas tardes";
-
-icon="🌤️";
-
-}
-
-else{
-
-greeting="🌙 Buenas noches";
-
-icon="🌙";
-
-}
-
-
-document.getElementById(
-"greeting"
-).textContent=greeting;
-
-
-document.getElementById(
-"weatherIcon"
-).textContent=icon;
-
-
-document.getElementById(
-"userName"
-).textContent=data.name;
-
-
-document.getElementById(
-"time"
-).textContent=
-currentTime();
-
-}
-
 
 /* =========================================================
    PAGOS RECURRENTES
