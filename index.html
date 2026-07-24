@@ -9,8 +9,6 @@
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 :root{
 --primary:#F4B400;
 --primary-dark:#D99500;
@@ -38,16 +36,17 @@ padding:0;
 }
 
 body{
-font-family:'Inter',sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 background:var(--bg);
 color:var(--text);
-padding-bottom:110px;
+padding-bottom:100px;
+font-size:16px;
 }
 
 button,
 input,
 select{
-font-family:inherit;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 button{
@@ -58,7 +57,6 @@ cursor:pointer;
 max-width:900px;
 margin:auto;
 }
-
 
 /* =========================
 HEADER
@@ -105,7 +103,6 @@ place-items:center;
 font-size:34px;
 }
 
-
 /* =========================
 VISTAS
 ========================= */
@@ -118,7 +115,6 @@ padding:20px;
 .view.active{
 display:block;
 }
-
 
 /* =========================
 DASHBOARD
@@ -174,14 +170,78 @@ margin-top:6px;
 font-size:21px;
 }
 
+/* =========================
+JORNADA EN INICIO
+========================= */
+
+.journey-home-card{
+margin-top:18px;
+background:white;
+border:1px solid var(--border);
+border-radius:24px;
+padding:22px;
+box-shadow:var(--shadow);
+}
+
+.journey-home-title{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:21px;
+font-weight:800;
+margin-bottom:14px;
+}
+
+.journey-home-icon{
+width:52px;
+height:52px;
+border-radius:16px;
+background:var(--primary-soft);
+display:grid;
+place-items:center;
+font-size:28px;
+}
+
+.journey-status{
+font-size:20px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.journey-last{
+font-size:15px;
+color:var(--muted);
+line-height:1.6;
+margin-bottom:16px;
+}
+
+.journey-button{
+width:100%;
+border:0;
+border-radius:18px;
+padding:18px;
+font-size:19px;
+font-weight:800;
+box-shadow:var(--shadow);
+}
+
+.journey-start{
+background:#16A34A;
+color:white;
+}
+
+.journey-finish{
+background:#DC2626;
+color:white;
+}
 
 /* =========================
-BOTÓN PRINCIPAL
+ACCION PRINCIPAL
 ========================= */
 
 .main-action{
 width:100%;
-margin-top:20px;
+margin-top:18px;
 border:0;
 background:#17202A;
 color:white;
@@ -192,204 +252,6 @@ font-weight:800;
 box-shadow:var(--shadow);
 }
 
-
-/* =========================
-JORNADA EN INICIO
-========================= */
-
-.journey-home-card{
-
-margin-top:22px;
-
-background:white;
-
-border:2px solid var(--border);
-
-border-radius:26px;
-
-padding:22px;
-
-box-shadow:var(--shadow);
-
-}
-
-.journey-home-title{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-font-size:21px;
-
-font-weight:800;
-
-margin-bottom:18px;
-
-}
-
-.journey-big-icon{
-
-width:58px;
-
-height:58px;
-
-border-radius:18px;
-
-background:var(--primary-soft);
-
-display:grid;
-
-place-items:center;
-
-font-size:32px;
-
-}
-
-.journey-status{
-
-background:#F8FAFC;
-
-border-radius:20px;
-
-padding:18px;
-
-margin-bottom:15px;
-
-}
-
-.journey-status-label{
-
-font-size:14px;
-
-color:var(--muted);
-
-font-weight:700;
-
-}
-
-.journey-status-text{
-
-font-size:24px;
-
-font-weight:800;
-
-margin-top:6px;
-
-}
-
-.journey-times{
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:12px;
-
-margin-bottom:15px;
-
-}
-
-.journey-time-box{
-
-background:var(--primary-soft);
-
-border-radius:18px;
-
-padding:16px;
-
-}
-
-.journey-time-box span{
-
-display:block;
-
-font-size:13px;
-
-font-weight:700;
-
-color:#6B5300;
-
-}
-
-.journey-time-box strong{
-
-display:block;
-
-font-size:22px;
-
-margin-top:7px;
-
-}
-
-.journey-duration{
-
-background:#EEF6FF;
-
-border-radius:18px;
-
-padding:16px;
-
-margin-bottom:15px;
-
-}
-
-.journey-duration span{
-
-display:block;
-
-font-size:13px;
-
-font-weight:700;
-
-color:#2563EB;
-
-}
-
-.journey-duration strong{
-
-display:block;
-
-font-size:24px;
-
-margin-top:6px;
-
-}
-
-.journey-button{
-
-width:100%;
-
-border:0;
-
-border-radius:20px;
-
-padding:20px;
-
-font-size:19px;
-
-font-weight:800;
-
-color:white;
-
-box-shadow:var(--shadow);
-
-}
-
-.journey-button.start{
-
-background:#16A34A;
-
-}
-
-.journey-button.finish{
-
-background:#DC2626;
-
-}
-
-
 /* =========================
 SECCIONES
 ========================= */
@@ -398,7 +260,7 @@ SECCIONES
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:28px 2px 14px;
+margin:30px 2px 14px;
 }
 
 .section-title h2{
@@ -410,10 +272,9 @@ font-weight:800;
 border:0;
 background:none;
 color:var(--blue);
-font-weight:800;
 font-size:16px;
+font-weight:800;
 }
-
 
 /* =========================
 TARJETAS
@@ -427,7 +288,6 @@ padding:22px;
 box-shadow:var(--shadow);
 }
 
-
 /* =========================
 VUELTAS
 ========================= */
@@ -438,6 +298,7 @@ justify-content:space-between;
 align-items:center;
 padding:18px 0;
 border-bottom:1px solid var(--border);
+gap:15px;
 }
 
 .trip-card:last-child{
@@ -457,7 +318,7 @@ font-size:17px;
 
 .trip-info{
 color:var(--muted);
-font-size:13px;
+font-size:14px;
 margin-top:6px;
 line-height:1.6;
 }
@@ -465,11 +326,11 @@ line-height:1.6;
 .trip-income{
 font-size:20px;
 font-weight:800;
+white-space:nowrap;
 }
 
-
 /* =========================
-MENÚ RÁPIDO
+MENU RAPIDO
 ========================= */
 
 .quick-grid{
@@ -482,7 +343,7 @@ gap:12px;
 border:1px solid var(--border);
 background:white;
 border-radius:20px;
-padding:18px 7px;
+padding:19px 8px;
 text-align:center;
 box-shadow:var(--shadow);
 }
@@ -495,16 +356,15 @@ background:var(--primary-soft);
 display:grid;
 place-items:center;
 margin:auto auto 10px;
-font-size:30px;
+font-size:29px;
 }
 
 .quick strong{
 font-size:14px;
 }
 
-
 /* =========================
-FORMULARIOS
+FORMULARIO
 ========================= */
 
 .form-group{
@@ -543,15 +403,14 @@ margin:16px 0;
 display:block;
 font-size:14px;
 color:#6B5300;
-font-weight:700;
+font-weight:600;
 }
 
 .auto-box strong{
 display:block;
-font-size:25px;
+font-size:26px;
 margin-top:6px;
 }
-
 
 /* =========================
 BOTONES
@@ -562,7 +421,7 @@ width:100%;
 border:0;
 border-radius:16px;
 padding:18px;
-font-size:16px;
+font-size:17px;
 font-weight:800;
 }
 
@@ -576,7 +435,6 @@ background:#F2F4F7;
 color:var(--text);
 }
 
-
 /* =========================
 FINANZAS
 ========================= */
@@ -587,7 +445,7 @@ text-align:center;
 
 .finance-main small{
 color:var(--muted);
-font-size:14px;
+font-size:15px;
 }
 
 .finance-main h2{
@@ -628,7 +486,6 @@ color:var(--green);
 color:var(--red);
 }
 
-
 /* =========================
 TAXI
 ========================= */
@@ -643,7 +500,7 @@ box-shadow:var(--shadow);
 
 .car-photo{
 width:100%;
-height:230px;
+height:250px;
 object-fit:cover;
 display:block;
 }
@@ -658,7 +515,7 @@ font-size:26px;
 
 .car-info p{
 color:var(--muted);
-font-size:14px;
+font-size:15px;
 margin-top:6px;
 }
 
@@ -669,7 +526,6 @@ gap:10px;
 margin-top:20px;
 }
 
-
 /* =========================
 MANTENIMIENTO
 ========================= */
@@ -677,8 +533,9 @@ MANTENIMIENTO
 .service{
 display:flex;
 justify-content:space-between;
-padding:17px 0;
+padding:18px 0;
 border-bottom:1px solid var(--border);
+gap:15px;
 }
 
 .service:last-child{
@@ -686,16 +543,15 @@ border-bottom:0;
 }
 
 .service strong{
-font-size:15px;
+font-size:16px;
 }
 
 .service small{
 display:block;
 color:var(--muted);
 margin-top:5px;
-font-size:13px;
+font-size:14px;
 }
-
 
 /* =========================
 PAGOS
@@ -714,7 +570,7 @@ font-size:15px;
 
 .payment-notice p{
 color:var(--muted);
-font-size:13px;
+font-size:14px;
 margin-top:6px;
 line-height:1.5;
 }
@@ -722,8 +578,9 @@ line-height:1.5;
 .payment{
 display:flex;
 justify-content:space-between;
-padding:17px 0;
+padding:18px 0;
 border-bottom:1px solid var(--border);
+gap:15px;
 }
 
 .payment:last-child{
@@ -737,7 +594,7 @@ font-size:15px;
 
 .payment-date{
 color:var(--muted);
-font-size:12px;
+font-size:13px;
 margin-top:5px;
 }
 
@@ -746,48 +603,8 @@ font-weight:800;
 font-size:17px;
 }
 
-
 /* =========================
-HISTORIAL JORNADAS
-========================= */
-
-.journey-history-item{
-
-padding:17px 0;
-
-border-bottom:1px solid var(--border);
-
-}
-
-.journey-history-item:last-child{
-
-border-bottom:0;
-
-}
-
-.journey-history-title{
-
-font-size:16px;
-
-font-weight:800;
-
-}
-
-.journey-history-info{
-
-font-size:13px;
-
-color:var(--muted);
-
-margin-top:6px;
-
-line-height:1.6;
-
-}
-
-
-/* =========================
-NAVEGACIÓN
+NAVEGACION
 ========================= */
 
 .bottom-nav{
@@ -818,13 +635,13 @@ background:transparent;
 padding:10px 3px;
 border-radius:18px;
 color:var(--muted);
-font-size:12px;
+font-size:13px;
 font-weight:800;
 }
 
 .nav-icon{
 display:block;
-font-size:29px;
+font-size:28px;
 margin-bottom:5px;
 }
 
@@ -832,7 +649,6 @@ margin-bottom:5px;
 background:var(--primary-soft);
 color:var(--text);
 }
-
 
 /* =========================
 MODAL
@@ -870,15 +686,18 @@ margin-bottom:22px;
 .modal-buttons{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
+gap:12px;
 }
-
 
 /* =========================
 RESPONSIVE
 ========================= */
 
 @media(max-width:600px){
+
+.view{
+padding:18px;
+}
 
 .quick-grid{
 grid-template-columns:repeat(2,1fr);
@@ -892,24 +711,47 @@ font-size:40px;
 font-size:30px;
 }
 
-.journey-times{
-grid-template-columns:1fr 1fr;
-}
-
-.journey-time-box strong{
+.summary strong{
 font-size:19px;
 }
 
+.quick strong{
+font-size:14px;
+}
+
+.nav{
+font-size:11px;
+}
+
+.nav-icon{
+font-size:25px;
+}
+
+.car-stats{
+grid-template-columns:1fr;
+}
+
+}
+
+/* =========================
+JORNADA ACTIVA
+========================= */
+
+.journey-active{
+border:2px solid var(--green);
+background:#F0FDF4;
+}
+
+.journey-finished{
+border:2px solid var(--border);
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
-
 
 <!-- =========================
 HEADER
@@ -926,22 +768,16 @@ HEADER
 </small>
 
 <h1>
-<span id="userName">
-Fredy
-</span>
+<span id="userName">Fredy</span>
 </h1>
 
-<div
-id="time"
-class="time">
+<div id="time" class="time">
 00:00
 </div>
 
 </div>
 
-<div
-id="weatherIcon"
-class="weather-icon">
+<div id="weatherIcon" class="weather-icon">
 ☀️
 </div>
 
@@ -954,10 +790,7 @@ class="weather-icon">
 INICIO
 ========================= -->
 
-<section
-id="inicio"
-class="view active">
-
+<section id="inicio" class="view active">
 
 <div class="profit-card">
 
@@ -965,12 +798,9 @@ class="view active">
 💰 Ganancia real de hoy
 </div>
 
-<div
-id="todayProfit"
-class="profit-value">
+<div id="todayProfit" class="profit-value">
 $0
 </div>
-
 
 <div class="summary-grid">
 
@@ -986,7 +816,6 @@ $0
 
 </div>
 
-
 <div class="summary">
 
 <span>
@@ -999,7 +828,6 @@ $0
 
 </div>
 
-
 <div class="summary">
 
 <span>
@@ -1011,7 +839,6 @@ $0
 </strong>
 
 </div>
-
 
 <div class="summary">
 
@@ -1031,89 +858,34 @@ $0
 
 
 <!-- =========================
-JORNADA DIRECTAMENTE EN INICIO
+JORNADA EN INICIO
 ========================= -->
 
-<div class="journey-home-card">
+<div id="journeyHomeCard" class="journey-home-card">
 
 <div class="journey-home-title">
 
-<div class="journey-big-icon">
-🚕
+<div class="journey-home-icon">
+🕐
 </div>
 
-<div>
-⏱️ Control de jornada
-</div>
+<span>
+Control de jornada
+</span>
 
 </div>
 
-
-<div class="journey-status">
-
-<div class="journey-status-label">
-ESTADO ACTUAL
-</div>
-
-<div
-id="homeJourneyStatus"
-class="journey-status-text">
-
+<div id="journeyHomeStatus" class="journey-status">
 ⚪ Fuera de jornada
-
 </div>
 
+<div id="journeyLastInfo" class="journey-last">
+No hay una jornada registrada.
 </div>
-
-
-<div class="journey-times">
-
-
-<div class="journey-time-box">
-
-<span>
-🟢 Hora de inicio
-</span>
-
-<strong id="homeStartTime">
---
-</strong>
-
-</div>
-
-
-<div class="journey-time-box">
-
-<span>
-🔴 Hora de salida
-</span>
-
-<strong id="homeEndTime">
---
-</strong>
-
-</div>
-
-
-</div>
-
-
-<div class="journey-duration">
-
-<span>
-⏱️ Tiempo de jornada
-</span>
-
-<strong id="homeJourneyDuration">
-00:00:00
-</strong>
-
-</div>
-
 
 <button
-id="homeJourneyButton"
-class="journey-button start"
+id="journeyHomeButton"
+class="journey-button journey-start"
 onclick="toggleJourney()">
 
 ▶️ INICIAR JORNADA
@@ -1127,7 +899,7 @@ onclick="toggleJourney()">
 class="main-action"
 onclick="openModal('tripModal')">
 
-🚕 REGISTRAR NUEVA VUELTA
+🚕 ＋ REGISTRAR NUEVA VUELTA
 
 </button>
 
@@ -1142,7 +914,6 @@ onclick="openModal('tripModal')">
 
 
 <div class="quick-grid">
-
 
 <button
 class="quick"
@@ -1203,7 +974,6 @@ Mantenimiento
 
 </button>
 
-
 </div>
 
 
@@ -1216,14 +986,11 @@ Mantenimiento
 </div>
 
 
-<div
-id="recentTrips"
-class="card">
+<div id="recentTrips" class="card">
 
 Aún no hay vueltas registradas.
 
 </div>
-
 
 </section>
 
@@ -1232,9 +999,7 @@ Aún no hay vueltas registradas.
 VUELTAS
 ========================= -->
 
-<section
-id="vueltas"
-class="view">
+<section id="vueltas" class="view">
 
 <div class="section-title">
 
@@ -1249,7 +1014,7 @@ class="view">
 class="main-action"
 onclick="openModal('tripModal')">
 
-➕ REGISTRAR VUELTA
+🚕 ＋ REGISTRAR VUELTA
 
 </button>
 
@@ -1270,9 +1035,7 @@ No hay vueltas registradas.
 FINANZAS
 ========================= -->
 
-<section
-id="finanzas"
-class="view">
+<section id="finanzas" class="view">
 
 <div class="section-title">
 
@@ -1289,14 +1052,12 @@ class="view">
 Ganancia real de hoy
 </small>
 
-<h2
-id="financeProfit">
+<h2 id="financeProfit">
 $0
 </h2>
 
 
 <div class="finance-grid">
-
 
 <div class="finance-item">
 
@@ -1304,9 +1065,7 @@ $0
 💰 Ingresos
 </span>
 
-<strong
-id="financeIncome"
-class="green">
+<strong id="financeIncome" class="green">
 $0
 </strong>
 
@@ -1319,9 +1078,7 @@ $0
 💸 Gastos
 </span>
 
-<strong
-id="financeExpense"
-class="red">
+<strong id="financeExpense" class="red">
 $0
 </strong>
 
@@ -1353,7 +1110,6 @@ $0
 
 </div>
 
-
 </div>
 
 </div>
@@ -1381,12 +1137,8 @@ No necesitas registrarlos manualmente. Taxi Pro los toma en cuenta cuando corres
 </div>
 
 
-<div
-id="payments"
-class="card">
-
+<div id="payments" class="card">
 </div>
-
 
 </section>
 
@@ -1395,10 +1147,7 @@ class="card">
 MI TAXI
 ========================= -->
 
-<section
-id="taxi"
-class="view">
-
+<section id="taxi" class="view">
 
 <div class="section-title">
 
@@ -1411,14 +1160,11 @@ class="view">
 
 <div class="car-card">
 
-
 <img
 class="car-photo"
 src="aveo-2019.jpg"
 alt="Chevrolet Aveo sedán 2019"
-onerror="
-this.style.display='none';
-">
+onerror="this.style.display='none';">
 
 
 <div class="car-info">
@@ -1434,11 +1180,10 @@ Modelo 2019 · Taxi Pro
 
 <div class="car-stats">
 
-
 <div class="summary">
 
 <span>
-📏 Kilometraje
+📍 Kilometraje
 </span>
 
 <strong id="vehicleKm">
@@ -1473,7 +1218,6 @@ Modelo 2019 · Taxi Pro
 
 </div>
 
-
 </div>
 
 </div>
@@ -1490,86 +1234,16 @@ Modelo 2019 · Taxi Pro
 <button
 onclick="openModal('serviceModal')">
 
-➕ Agregar
+＋ Agregar
 
 </button>
 
 </div>
 
 
-<div
-id="services"
-class="card">
+<div id="services" class="card">
 
 No hay servicios registrados.
-
-</div>
-
-
-</section>
-
-
-<!-- =========================
-JORNADA
-========================= -->
-
-<section
-id="jornada"
-class="view">
-
-
-<div class="section-title">
-
-<h2>
-🚕 Jornada
-</h2>
-
-</div>
-
-
-<div class="card">
-
-
-<div class="finance-main">
-
-<small>
-Estado actual
-</small>
-
-<h2
-id="journeyStatus">
-⚪ Fuera de jornada
-</h2>
-
-</div>
-
-
-<button
-id="journeyButton"
-class="btn btn-primary"
-onclick="toggleJourney()">
-
-▶ Iniciar jornada
-
-</button>
-
-
-<div class="section-title">
-
-<h2>
-📋 Historial de jornadas
-</h2>
-
-</div>
-
-
-<div
-id="journeyHistory">
-
-No hay jornadas registradas.
-
-</div>
-
 
 </div>
 
@@ -1581,7 +1255,6 @@ NAVEGACIÓN
 ========================= -->
 
 <nav class="bottom-nav">
-
 
 <button
 class="nav active"
@@ -1641,8 +1314,8 @@ Mi Taxi
 
 <button
 class="nav"
-data-view="jornada"
-onclick="showView('jornada')">
+data-view="inicio"
+onclick="showView('inicio')">
 
 <span class="nav-icon">
 ☰
@@ -1651,7 +1324,6 @@ onclick="showView('jornada')">
 Más
 
 </button>
-
 
 </nav>
 
@@ -1662,9 +1334,7 @@ Más
 MODAL VUELTA
 ========================= -->
 
-<div
-id="tripModal"
-class="modal">
+<div id="tripModal" class="modal">
 
 <div class="modal-box">
 
@@ -1747,7 +1417,7 @@ $74
 <div class="form-group">
 
 <label>
-⛽ Gasolina de esta vuelta (opcional)
+⛽ Gasolina de esta vuelta
 </label>
 
 <input
@@ -1762,7 +1432,7 @@ placeholder="Ejemplo: 500">
 <div class="form-group">
 
 <label>
-💸 Otros gastos (opcional)
+💸 Otros gastos
 </label>
 
 <input
@@ -1804,9 +1474,7 @@ onclick="saveTrip()">
 MODAL GASTO
 ========================= -->
 
-<div
-id="expenseModal"
-class="modal">
+<div id="expenseModal" class="modal">
 
 <div class="modal-box">
 
@@ -1871,9 +1539,7 @@ onclick="saveExpense()">
 MODAL GASOLINA
 ========================= -->
 
-<div
-id="fuelModal"
-class="modal">
+<div id="fuelModal" class="modal">
 
 <div class="modal-box">
 
@@ -1899,7 +1565,7 @@ placeholder="Ejemplo: 550">
 <div class="form-group">
 
 <label>
-⛽ Litros (opcional)
+⛽ Litros
 </label>
 
 <input
@@ -1912,7 +1578,7 @@ type="number">
 <div class="form-group">
 
 <label>
-📏 Kilometraje actual (opcional)
+📍 Kilometraje actual
 </label>
 
 <input
@@ -1952,9 +1618,7 @@ onclick="saveFuel()">
 MODAL SERVICIO
 ========================= -->
 
-<div
-id="serviceModal"
-class="modal">
+<div id="serviceModal" class="modal">
 
 <div class="modal-box">
 
@@ -1992,7 +1656,7 @@ type="date">
 <div class="form-group">
 
 <label>
-📏 Kilometraje
+📍 Kilometraje
 </label>
 
 <input
@@ -2043,15 +1707,13 @@ onclick="saveService()">
 
 <script>
 
-
 /* =========================
 DATOS
 ========================= */
 
 const KEY="taxiPro11";
 
-let data=
-JSON.parse(
+let data=JSON.parse(
 localStorage.getItem(KEY)
 )||{
 
@@ -2061,7 +1723,7 @@ journey:false,
 
 journeyStart:null,
 
-journeyHistory:[],
+journeyEnd:null,
 
 trips:[],
 
@@ -2113,31 +1775,26 @@ return new Date()
 FECHA Y HORA
 ========================= */
 
-function currentTime(){
+function getDateTime(){
 
-return new Date()
-.toLocaleTimeString(
+const now=new Date();
+
+return{
+
+date:now.toLocaleDateString(
+"es-MX"
+),
+
+time:now.toLocaleTimeString(
 "es-MX",
 {
 hour:"2-digit",
 minute:"2-digit",
 second:"2-digit"
 }
-);
+)
 
-}
-
-
-function dateTime(){
-
-return new Date()
-.toLocaleString(
-"es-MX",
-{
-dateStyle:"short",
-timeStyle:"medium"
-}
-);
+};
 
 }
 
@@ -2181,24 +1838,24 @@ icon="🌙";
 }
 
 
-document
-.getElementById("greeting")
-.textContent=greeting;
+document.getElementById(
+"greeting"
+).textContent=greeting;
 
 
-document
-.getElementById("weatherIcon")
-.textContent=icon;
+document.getElementById(
+"weatherIcon"
+).textContent=icon;
 
 
-document
-.getElementById("userName")
-.textContent=data.name;
+document.getElementById(
+"userName"
+).textContent=data.name;
 
 
-document
-.getElementById("time")
-.textContent=
+document.getElementById(
+"time"
+).textContent=
 now.toLocaleTimeString(
 "es-MX",
 {
@@ -2218,35 +1875,32 @@ function getToday(){
 
 const d=today();
 
-const trips=
-data.trips.filter(
-x=>x.date===d
-);
 
-const expenses=
-data.expenses.filter(
-x=>x.date===d
-);
-
-const fuel=
-data.fuels.filter(
+const trips=data.trips.filter(
 x=>x.date===d
 );
 
 
-let income=
-trips.reduce(
+const expenses=data.expenses.filter(
+x=>x.date===d
+);
+
+
+const fuel=data.fuels.filter(
+x=>x.date===d
+);
+
+
+let income=trips.reduce(
 (a,b)=>a+b.income,
 0
 );
 
 
-let tolls=
-trips.length*74;
+let tolls=trips.length*74;
 
 
-let tripFuel=
-trips.reduce(
+let tripFuel=trips.reduce(
 (a,b)=>
 a+
 Number(b.fuel||0),
@@ -2254,8 +1908,7 @@ Number(b.fuel||0),
 );
 
 
-let tripOther=
-trips.reduce(
+let tripOther=trips.reduce(
 (a,b)=>
 a+
 Number(b.other||0),
@@ -2263,8 +1916,7 @@ Number(b.other||0),
 );
 
 
-let fuelExtra=
-fuel.reduce(
+let fuelExtra=fuel.reduce(
 (a,b)=>
 a+
 Number(b.amount||0),
@@ -2272,8 +1924,7 @@ Number(b.amount||0),
 );
 
 
-let other=
-expenses.reduce(
+let other=expenses.reduce(
 (a,b)=>
 a+
 Number(b.amount||0),
@@ -2289,8 +1940,7 @@ fuelExtra+
 other;
 
 
-const passengers=
-trips.reduce(
+const passengers=trips.reduce(
 (a,b)=>
 a+
 b.outPassengers+
@@ -2338,59 +1988,37 @@ if(
 !data.journey
 ){
 
+const dt=getDateTime();
+
 data.journey=true;
 
 data.journeyStart={
-date:today(),
-time:currentTime(),
-timestamp:Date.now()
+
+date:dt.date,
+
+time:dt.time
+
 };
 
-save();
-
-render();
-
-return;
+data.journeyEnd=null;
 
 }
 
+else{
 
-const endTime=currentTime();
-
-const endTimestamp=Date.now();
-
-let duration="--";
-
-if(
-data.journeyStart &&
-data.journeyStart.timestamp
-){
-
-duration=
-formatDuration(
-endTimestamp-
-data.journeyStart.timestamp
-);
-
-}
-
-
-data.journeyHistory.unshift({
-
-date:today(),
-
-start:data.journeyStart.time,
-
-end:endTime,
-
-duration:duration
-
-});
-
+const dt=getDateTime();
 
 data.journey=false;
 
-data.journeyStart=null;
+data.journeyEnd={
+
+date:dt.date,
+
+time:dt.time
+
+};
+
+}
 
 save();
 
@@ -2398,89 +2026,27 @@ render();
 
 }
 
-
-/* =========================
-DURACIÓN
-========================= */
-
-function formatDuration(ms){
-
-let totalSeconds=
-Math.floor(ms/1000);
-
-let hours=
-Math.floor(
-totalSeconds/3600
-);
-
-let minutes=
-Math.floor(
-(totalSeconds%3600)/60
-);
-
-let seconds=
-totalSeconds%60;
-
-
-return String(hours).padStart(2,"0")
-+
-":"
-+
-String(minutes).padStart(2,"0")
-+
-":"
-+
-String(seconds).padStart(2,"0");
-
-}
-
-
-/* =========================
-RENDER JORNADA
-========================= */
 
 function renderJourney(){
 
 const status=
-document
-.getElementById(
-"journeyStatus"
+document.getElementById(
+"journeyHomeStatus"
+);
+
+const info=
+document.getElementById(
+"journeyLastInfo"
 );
 
 const button=
-document
-.getElementById(
-"journeyButton"
+document.getElementById(
+"journeyHomeButton"
 );
 
-const homeStatus=
-document
-.getElementById(
-"homeJourneyStatus"
-);
-
-const homeButton=
-document
-.getElementById(
-"homeJourneyButton"
-);
-
-const startTime=
-document
-.getElementById(
-"homeStartTime"
-);
-
-const endTime=
-document
-.getElementById(
-"homeEndTime"
-);
-
-const duration=
-document
-.getElementById(
-"homeJourneyDuration"
+const card=
+document.getElementById(
+"journeyHomeCard"
 );
 
 
@@ -2488,255 +2054,142 @@ if(
 data.journey
 ){
 
+card.className=
+"journey-home-card journey-active";
+
 status.textContent=
 "🟢 Jornada activa";
 
-button.textContent=
-"⏹ Finalizar jornada";
+info.innerHTML=
+"🕐 Inicio: <strong>"+
+data.journeyStart.date+
+" · "+
+data.journeyStart.time+
+"</strong>";
 
 button.className=
-"btn btn-primary";
+"journey-button journey-finish";
 
+button.textContent=
+"⏹️ FINALIZAR JORNADA";
 
-homeStatus.textContent=
-"🟢 Jornada activa";
+}
 
-homeButton.textContent=
-"⏹ FINALIZAR JORNADA";
+else{
 
-homeButton.className=
-"journey-button finish";
+card.className=
+"journey-home-card journey-finished";
 
-
-startTime.textContent=
-data.journeyStart
-?
-data.journeyStart.time
-:
-"--";
-
-
-endTime.textContent=
-"--";
+status.textContent=
+"⚪ Fuera de jornada";
 
 
 if(
 data.journeyStart &&
-data.journeyStart.timestamp
+data.journeyEnd
 ){
 
-duration.textContent=
-formatDuration(
-Date.now()-
-data.journeyStart.timestamp
-);
+info.innerHTML=
+"🟢 Inicio: <strong>"+
+data.journeyStart.date+
+" · "+
+data.journeyStart.time+
+"</strong><br>"+
+"🔴 Fin: <strong>"+
+data.journeyEnd.date+
+" · "+
+data.journeyEnd.time+
+"</strong>";
 
 }
 
-}else{
+else{
+
+info.textContent=
+"No hay una jornada registrada.";
+
+}
 
 
-status.textContent=
-"⚪ Fuera de jornada";
+button.className=
+"journey-button journey-start";
 
 button.textContent=
-"▶ Iniciar jornada";
-
-
-homeStatus.textContent=
-"⚪ Fuera de jornada";
-
-homeButton.textContent=
 "▶️ INICIAR JORNADA";
 
-homeButton.className=
-"journey-button start";
-
-
-if(
-data.journeyHistory.length
-){
-
-const last=
-data.journeyHistory[0];
-
-startTime.textContent=
-last.start;
-
-endTime.textContent=
-last.end;
-
-duration.textContent=
-last.duration;
-
-}else{
-
-startTime.textContent=
-"--";
-
-endTime.textContent=
-"--";
-
-duration.textContent=
-"00:00:00";
-
 }
-
-}
-
-
-renderJourneyHistory();
-
-}
-
-
-function renderJourneyHistory(){
-
-const box=
-document
-.getElementById(
-"journeyHistory"
-);
-
-
-if(
-!data.journeyHistory.length
-){
-
-box.textContent=
-"No hay jornadas registradas.";
-
-return;
-
-}
-
-
-box.innerHTML=
-data.journeyHistory
-.slice(0,20)
-.map(
-(j,i)=>`
-
-<div class="journey-history-item">
-
-<div class="journey-history-title">
-
-📅 Jornada ${i+1} · ${j.date}
-
-</div>
-
-<div class="journey-history-info">
-
-🟢 Inicio: ${j.start}
-
-<br>
-
-🔴 Finalización: ${j.end}
-
-<br>
-
-⏱️ Duración: ${j.duration}
-
-</div>
-
-</div>
-
-`
-)
-.join("");
 
 }
 
 
 /* =========================
-RENDER GENERAL
+RENDER
 ========================= */
 
 function render(){
 
 updateHeader();
 
-
 const s=getToday();
 
 
-document
-.getElementById(
+document.getElementById(
 "todayProfit"
-)
-.textContent=
+).textContent=
 money(s.profit);
 
 
-document
-.getElementById(
+document.getElementById(
 "todayTrips"
-)
-.textContent=
+).textContent=
 s.trips.length;
 
 
-document
-.getElementById(
+document.getElementById(
 "todayPassengers"
-)
-.textContent=
+).textContent=
 s.passengers;
 
 
-document
-.getElementById(
+document.getElementById(
 "todayIncome"
-)
-.textContent=
+).textContent=
 money(s.income);
 
 
-document
-.getElementById(
+document.getElementById(
 "todayExpenses"
-)
-.textContent=
+).textContent=
 money(s.expenses);
 
 
-document
-.getElementById(
+document.getElementById(
 "financeProfit"
-)
-.textContent=
+).textContent=
 money(s.profit);
 
 
-document
-.getElementById(
+document.getElementById(
 "financeIncome"
-)
-.textContent=
+).textContent=
 money(s.income);
 
 
-document
-.getElementById(
+document.getElementById(
 "financeExpense"
-)
-.textContent=
+).textContent=
 money(s.expenses);
 
 
-document
-.getElementById(
+document.getElementById(
 "financeTolls"
-)
-.textContent=
+).textContent=
 money(s.tolls);
 
 
-document
-.getElementById(
+document.getElementById(
 "financeFuel"
-)
-.textContent=
+).textContent=
 money(s.fuel);
 
 
@@ -2757,47 +2210,33 @@ REGISTRAR VUELTA
 
 function calculateTrip(){
 
-const out=
-Number(
-document
-.getElementById(
+const out=Number(
+document.getElementById(
 "outPassengers"
-)
-.value
+).value
 )||0;
 
 
-const back=
-Number(
-document
-.getElementById(
+const back=Number(
+document.getElementById(
 "returnPassengers"
-)
-.value
+).value
 )||0;
 
 
-const total=
-out+back;
+const total=out+back;
+
+const income=total*80;
 
 
-const income=
-total*80;
-
-
-document
-.getElementById(
+document.getElementById(
 "modalPassengers"
-)
-.textContent=
-total;
+).textContent=total;
 
 
-document
-.getElementById(
+document.getElementById(
 "modalIncome"
-)
-.textContent=
+).textContent=
 money(income);
 
 }
@@ -2805,43 +2244,31 @@ money(income);
 
 function saveTrip(){
 
-const out=
-Number(
-document
-.getElementById(
+const out=Number(
+document.getElementById(
 "outPassengers"
-)
-.value
+).value
 )||0;
 
 
-const back=
-Number(
-document
-.getElementById(
+const back=Number(
+document.getElementById(
 "returnPassengers"
-)
-.value
+).value
 )||0;
 
 
-const fuel=
-Number(
-document
-.getElementById(
+const fuel=Number(
+document.getElementById(
 "tripFuel"
-)
-.value
+).value
 )||0;
 
 
-const other=
-Number(
-document
-.getElementById(
+const other=Number(
+document.getElementById(
 "tripOther"
-)
-.value
+).value
 )||0;
 
 
@@ -2863,8 +2290,7 @@ data.trips.unshift({
 
 date:today(),
 
-time:
-new Date()
+time:new Date()
 .toLocaleTimeString(
 "es-MX",
 {
@@ -2877,8 +2303,7 @@ outPassengers:out,
 
 returnPassengers:back,
 
-income:
-(out+back)*80,
+income:(out+back)*80,
 
 toll:74,
 
@@ -2912,24 +2337,20 @@ function clearTripForm(){
 ]
 .forEach(
 id=>
-document
-.getElementById(id)
-.value=""
+document.getElementById(
+id
+).value=""
 );
 
 
-document
-.getElementById(
+document.getElementById(
 "modalPassengers"
-)
-.textContent="0";
+).textContent="0";
 
 
-document
-.getElementById(
+document.getElementById(
 "modalIncome"
-)
-.textContent="$0";
+).textContent="$0";
 
 }
 
@@ -2940,22 +2361,17 @@ MOSTRAR VUELTAS
 
 function renderTrips(){
 
-const todayTrips=
-data.trips.filter(
+const todayTrips=data.trips.filter(
 x=>x.date===today()
 );
 
 
-const recent=
-document
-.getElementById(
+const recent=document.getElementById(
 "recentTrips"
 );
 
 
-const all=
-document
-.getElementById(
+const all=document.getElementById(
 "allTrips"
 );
 
@@ -2981,23 +2397,17 @@ return list
 <div>
 
 <div class="trip-date">
-
-📅 ${t.date} · ⏰ ${t.time}
-
+📅 ${t.date} · 🕐 ${t.time}
 </div>
 
 <div class="trip-title">
-
 🚕 Vuelta ${list.length-i}
-
 </div>
 
 <div class="trip-info">
 
 👥 Ida: ${t.outPassengers}
-
 · Regreso: ${t.returnPassengers}
-
 · Total: ${t.outPassengers+t.returnPassengers}
 pasajeros
 
@@ -3028,12 +2438,14 @@ ${money(t.income)}
 }
 
 
-recent.innerHTML=
-html(todayTrips);
+recent.innerHTML=html(
+todayTrips
+);
 
 
-all.innerHTML=
-html(data.trips);
+all.innerHTML=html(
+data.trips
+);
 
 }
 
@@ -3044,22 +2456,15 @@ OTROS GASTOS
 
 function saveExpense(){
 
-const name=
-document
-.getElementById(
+const name=document.getElementById(
 "expenseName"
-)
-.value
-.trim();
+).value.trim();
 
 
-const amount=
-Number(
-document
-.getElementById(
+const amount=Number(
+document.getElementById(
 "expenseAmount"
-)
-.value
+).value
 );
 
 
@@ -3105,33 +2510,24 @@ GASOLINA
 
 function saveFuel(){
 
-const amount=
-Number(
-document
-.getElementById(
+const amount=Number(
+document.getElementById(
 "fuelAmount"
-)
-.value
+).value
 );
 
 
-const liters=
-Number(
-document
-.getElementById(
+const liters=Number(
+document.getElementById(
 "fuelLiters"
-)
-.value
+).value
 )||0;
 
 
-const km=
-Number(
-document
-.getElementById(
+const km=Number(
+document.getElementById(
 "fuelKm"
-)
-.value
+).value
 )||0;
 
 
@@ -3178,8 +2574,7 @@ MANTENIMIENTO
 
 function saveService(){
 
-const description=
-document
+const description=document
 .getElementById(
 "serviceDescription"
 )
@@ -3187,8 +2582,7 @@ document
 .trim();
 
 
-const date=
-document
+const date=document
 .getElementById(
 "serviceDate"
 )
@@ -3196,23 +2590,17 @@ document
 today();
 
 
-const km=
-Number(
-document
-.getElementById(
+const km=Number(
+document.getElementById(
 "serviceKm"
-)
-.value
+).value
 )||0;
 
 
-const cost=
-Number(
-document
-.getElementById(
+const cost=Number(
+document.getElementById(
 "serviceCost"
-)
-.value
+).value
 )||0;
 
 
@@ -3259,9 +2647,7 @@ SERVICIOS
 
 function renderServices(){
 
-const box=
-document
-.getElementById(
+const box=document.getElementById(
 "services"
 );
 
@@ -3295,7 +2681,7 @@ s=>`
 <small>
 📅 ${s.date}
 ·
-📏 ${s.km||0} km
+📍 ${s.km||0} km
 </small>
 
 </div>
@@ -3366,11 +2752,10 @@ next:"2026-08-06"
 
 function renderPayments(){
 
-document
-.getElementById(
+document.getElementById(
 "payments"
-)
-.innerHTML=
+).innerHTML=
+
 payments
 .map(
 p=>`
@@ -3440,12 +2825,13 @@ n.dataset.view===view
 );
 
 
-window.scrollTo(
-{
+window.scrollTo({
+
 top:0,
+
 behavior:"smooth"
-}
-);
+
+});
 
 }
 
@@ -3513,24 +2899,6 @@ render();
 setInterval(
 updateHeader,
 30000
-);
-
-
-/* Actualiza el tiempo de jornada en vivo */
-
-setInterval(
-()=>{
-
-if(
-data.journey
-){
-
-renderJourney();
-
-}
-
-},
-1000
 );
 
 </script>
