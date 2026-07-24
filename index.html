@@ -1845,90 +1845,34 @@ const now=new Date();
 
 const hour=now.getHours();
 
-const minute=now.getMinutes();
-
-const timeInMinutes=(hour*60)+minute;
-
 let greeting="";
 
 let icon="";
 
-let iconClass="";
 
+if(hour>=5 && hour<12){
 
-/*
-   🌙 NOCHE
-   00:00 - 05:29
-*/
-
-if(timeInMinutes>=0 && timeInMinutes<330){
-
-greeting="🌙 Buenas noches";
-
-icon="🌙";
-
-iconClass="night";
-
-}
-
-
-/*
-   🌅 AMANECER
-   05:30 - 06:59
-*/
-
-else if(timeInMinutes>=330 && timeInMinutes<420){
-
-greeting="🌅 Buenos días";
-
-icon="🌅";
-
-iconClass="sunrise";
-
-}
-
-
-/*
-   ☀️ DÍA
-   07:00 - 17:59
-*/
-
-else if(timeInMinutes>=420 && timeInMinutes<1080){
-
-greeting=
-hour<12
-?
-"☀️ Buenos días"
-:
-"🌤️ Buenas tardes";
+greeting="☀️ Buenos días";
 
 icon="☀️";
 
-iconClass="day";
+}
+
+else if(hour>=12 && hour<18){
+
+greeting="🌤️ Buenas tardes";
+
+icon="🌤️";
 
 }
 
-
-/*
-   🌇 ATARDECER
-   18:00 - 19:29
-*/
-
-else if(timeInMinutes>=1080 && timeInMinutes<1170){
+else if(hour>=18 && hour<20){
 
 greeting="🌇 Buenas tardes";
 
 icon="🌇";
 
-iconClass="sunset";
-
 }
-
-
-/*
-   🌙 NOCHE
-   19:30 - 23:59
-*/
 
 else{
 
@@ -1936,102 +1880,29 @@ greeting="🌙 Buenas noches";
 
 icon="🌙";
 
-iconClass="night";
-
 }
 
-
-/*
-   Actualizar saludo
-*/
 
 document.getElementById(
 "greeting"
 ).textContent=greeting;
 
 
-/*
-   Actualizar icono
-*/
-
-const weatherIcon=
 document.getElementById(
 "weatherIcon"
-);
+).textContent=icon;
 
-weatherIcon.textContent=icon;
-
-
-/*
-   Cambiar apariencia según
-   el momento del día
-*/
-
-weatherIcon.className=
-"weather-icon "+
-iconClass;
-
-
-/*
-   Nombre
-*/
 
 document.getElementById(
 "userName"
 ).textContent=data.name;
 
 
-/*
-   Reloj
-*/
-
 document.getElementById(
 "time"
 ).textContent=
 currentTime();
 
-}
-/* =========================================================
-   ICONO DEL CIELO SEGÚN LA HORA
-========================================================= */
-
-.weather-icon{
-transition:
-background .8s ease,
-transform .5s ease,
-box-shadow .8s ease;
-}
-
-/* NOCHE */
-
-.weather-icon.night{
-background:#172554;
-box-shadow:
-0 0 20px rgba(30,64,175,.25);
-}
-
-/* AMANECER */
-
-.weather-icon.sunrise{
-background:#FFE4B5;
-box-shadow:
-0 0 20px rgba(251,146,60,.25);
-}
-
-/* DÍA */
-
-.weather-icon.day{
-background:#FFF4CC;
-box-shadow:
-0 0 20px rgba(244,180,0,.25);
-}
-
-/* ATARDECER */
-
-.weather-icon.sunset{
-background:#FED7AA;
-box-shadow:
-0 0 20px rgba(234,88,12,.25);
 }
 /* =========================================================
    PAGOS RECURRENTES
