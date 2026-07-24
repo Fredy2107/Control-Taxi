@@ -3,26 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>Taxi Pro 10.0</title>
 
-<title>Taxi Pro 9.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
-  --bg:#f4f6f8;
-  --surface:#ffffff;
-  --dark:#101828;
-  --dark2:#1d2939;
-  --text:#172033;
+  --primary:#f5c542;
+  --primary-dark:#dcae19;
+  --bg:#f5f7fa;
+  --card:#ffffff;
+  --text:#101828;
   --muted:#667085;
-  --line:#eaecf0;
-  --yellow:#f5c542;
+  --border:#eaecf0;
   --green:#12b76a;
   --red:#f04438;
   --blue:#2563eb;
   --orange:#f79009;
-  --radius:24px;
-  --shadow:0 12px 35px rgba(16,24,40,.08);
+  --shadow:0 8px 28px rgba(16,24,40,.07);
+  --radius:22px;
 }
 
 *{
@@ -32,15 +35,10 @@
 }
 
 body{
-  font-family:
-  -apple-system,
-  BlinkMacSystemFont,
-  "Segoe UI",
-  Roboto,
-  Arial,
-  sans-serif;
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   background:var(--bg);
   color:var(--text);
+  min-height:100vh;
 }
 
 button,
@@ -54,81 +52,81 @@ button{
 }
 
 .app{
-  max-width:1100px;
+  max-width:900px;
   margin:auto;
-  padding-bottom:110px;
+  padding-bottom:105px;
 }
 
 /* HEADER */
 
-.header{
-  background:var(--dark);
-  color:white;
+.top-header{
+  background:white;
   padding:
   calc(18px + env(safe-area-inset-top))
-  20px
-  24px;
-  border-radius:0 0 32px 32px;
+  18px
+  18px;
+  border-bottom:1px solid var(--border);
 }
 
-.header-top{
+.header-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
-.brand{
+.user-area{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  border-radius:17px;
-  background:var(--yellow);
+.avatar{
+  width:46px;
+  height:46px;
+  border-radius:16px;
+  background:var(--primary);
   display:grid;
   place-items:center;
-  font-size:25px;
-}
-
-.brand-title{
-  font-size:18px;
+  font-size:21px;
   font-weight:900;
 }
 
-.brand-subtitle{
-  font-size:10px;
-  color:#98a2b3;
+.greeting small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.greeting h1{
+  font-size:17px;
+  font-weight:800;
   margin-top:3px;
 }
 
-.header-button{
+.header-action{
   width:43px;
   height:43px;
-  border:1px solid rgba(255,255,255,.12);
+  border:1px solid var(--border);
+  background:white;
   border-radius:15px;
-  background:rgba(255,255,255,.08);
-  color:white;
+  font-size:19px;
 }
 
-/* VIEWS */
+/* VIEW */
 
 .view{
   display:none;
-  padding:20px 16px;
+  padding:18px;
 }
 
 .view.active{
   display:block;
-  animation:show .2s ease;
+  animation:fade .2s ease;
 }
 
-@keyframes show{
+@keyframes fade{
   from{
     opacity:0;
-    transform:translateY(8px);
+    transform:translateY(7px);
   }
   to{
     opacity:1;
@@ -136,149 +134,162 @@ button{
   }
 }
 
-/* DASHBOARD */
+/* DATE */
 
-.welcome{
-  margin-top:-2px;
-  margin-bottom:18px;
+.today-line{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
 }
 
-.welcome h1{
-  font-size:25px;
-  font-weight:900;
-  color:white;
+.today-line strong{
+  font-size:14px;
 }
 
-.welcome p{
-  color:#98a2b3;
-  font-size:12px;
-  margin-top:5px;
+.today-line span{
+  color:var(--muted);
+  font-size:11px;
 }
 
-.dashboard-card{
-  margin-top:18px;
-  background:white;
-  border-radius:28px;
-  padding:21px;
-  box-shadow:var(--shadow);
-}
+/* MAIN DASHBOARD */
 
-.main-balance{
+.hero{
   background:
   linear-gradient(
     135deg,
-    #f5c542,
-    #eab62c
+    #fff4bd,
+    #ffe48a
   );
-  color:#211b00;
-  border-radius:26px;
-  padding:24px;
+  border-radius:28px;
+  padding:23px;
+  position:relative;
+  overflow:hidden;
 }
 
-.main-balance-label{
-  font-size:11px;
-  font-weight:800;
-  text-transform:uppercase;
-  opacity:.7;
-}
-
-.main-balance h2{
-  font-size:40px;
-  margin:6px 0 20px;
-  letter-spacing:-1px;
-}
-
-.balance-row{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-
-.balance-item{
+.hero::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-60px;
+  top:-60px;
   background:rgba(255,255,255,.35);
-  padding:12px;
-  border-radius:16px;
+  border-radius:50%;
 }
 
-.balance-item small{
+.hero-label{
+  font-size:11px;
+  font-weight:700;
+  color:#665515;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+.hero-profit{
+  font-size:39px;
+  font-weight:900;
+  letter-spacing:-1.5px;
+  margin:7px 0 20px;
+}
+
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  position:relative;
+  z-index:1;
+}
+
+.hero-stat{
+  background:rgba(255,255,255,.5);
+  border-radius:15px;
+  padding:11px;
+}
+
+.hero-stat small{
   display:block;
-  font-size:10px;
+  font-size:9px;
+  color:#665515;
 }
 
-.balance-item strong{
+.hero-stat strong{
   display:block;
   margin-top:4px;
-  font-size:15px;
+  font-size:14px;
 }
 
-.section-head{
+/* SECTION */
+
+.section-title{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  margin:23px 2px 12px;
+  align-items:center;
+  margin:24px 2px 11px;
 }
 
-.section-head h2{
-  font-size:17px;
+.section-title h2{
+  font-size:16px;
+  font-weight:800;
 }
 
-.section-head button{
+.section-title button{
   border:0;
   background:none;
   color:var(--blue);
-  font-size:12px;
-  font-weight:800;
+  font-size:11px;
+  font-weight:700;
 }
 
-/* QUICK */
+/* QUICK ACTIONS */
 
-.quick-actions{
+.quick-grid{
   display:grid;
-  grid-template-columns:
-  repeat(4,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:9px;
 }
 
-.quick-action{
+.quick{
   background:white;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:14px 5px;
+  border:1px solid var(--border);
+  border-radius:19px;
+  padding:13px 5px;
   text-align:center;
   box-shadow:var(--shadow);
 }
 
-.quick-action-icon{
-  width:43px;
-  height:43px;
-  margin:auto auto 8px;
+.quick-icon{
+  width:42px;
+  height:42px;
   border-radius:14px;
-  background:#f2f4f7;
+  margin:auto auto 7px;
   display:grid;
   place-items:center;
-  font-size:21px;
+  background:#f2f4f7;
+  font-size:20px;
 }
 
-.quick-action strong{
+.quick strong{
   font-size:10px;
 }
 
-/* JOURNEY CARD */
+/* JOURNEY */
 
-.journey-card{
-  background:var(--dark);
-  color:white;
-  border-radius:26px;
-  padding:20px;
+.journey{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:19px;
+  box-shadow:var(--shadow);
 }
 
-.journey-top{
+.journey-header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
 }
 
-.journey-status{
+.journey-state{
   display:flex;
   align-items:center;
   gap:8px;
@@ -286,76 +297,84 @@ button{
   font-weight:800;
 }
 
-.status-dot{
+.dot{
   width:9px;
   height:9px;
   border-radius:50%;
   background:#98a2b3;
 }
 
-.status-dot.active{
+.dot.on{
   background:var(--green);
-  box-shadow:0 0 0 5px rgba(18,183,106,.15);
+  box-shadow:0 0 0 5px rgba(18,183,106,.12);
 }
 
 .journey-time{
-  color:#98a2b3;
-  font-size:11px;
+  color:var(--muted);
+  font-size:10px;
 }
 
-.journey-stats{
+.journey-grid{
   display:grid;
-  grid-template-columns:
-  repeat(3,1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:8px;
-  margin:18px 0;
+  margin:17px 0;
 }
 
-.journey-stat{
-  background:rgba(255,255,255,.07);
-  border-radius:16px;
-  padding:13px;
+.journey-data{
+  background:#f8fafc;
+  border-radius:15px;
+  padding:12px;
 }
 
-.journey-stat small{
-  color:#98a2b3;
+.journey-data small{
+  color:var(--muted);
   display:block;
   font-size:9px;
 }
 
-.journey-stat strong{
+.journey-data strong{
   display:block;
-  margin-top:5px;
-  font-size:18px;
+  margin-top:4px;
+  font-size:17px;
 }
 
-.primary-button{
+.main-button{
   width:100%;
   border:0;
-  border-radius:15px;
+  background:var(--text);
+  color:white;
   padding:14px;
-  background:var(--yellow);
-  color:#201a00;
-  font-weight:900;
+  border-radius:15px;
+  font-size:12px;
+  font-weight:800;
 }
 
-/* NEXT PAYMENT */
+/* PAYMENT */
 
-.next-payment{
+.payment-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:17px;
+  box-shadow:var(--shadow);
+}
+
+.payment-flex{
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:center;
 }
 
-.next-left{
+.payment-left{
   display:flex;
-  gap:12px;
   align-items:center;
+  gap:11px;
 }
 
 .payment-icon{
-  width:44px;
-  height:44px;
+  width:45px;
+  height:45px;
   border-radius:15px;
   background:#f2f4f7;
   display:grid;
@@ -363,291 +382,351 @@ button{
   font-size:20px;
 }
 
-.next-name{
+.payment-name{
   font-size:12px;
-  font-weight:850;
+  font-weight:800;
 }
 
-.next-date{
+.payment-date{
   color:var(--muted);
   font-size:10px;
   margin-top:4px;
 }
 
-.next-price{
+.payment-value{
   font-size:14px;
   font-weight:900;
 }
 
 /* FINANCE */
 
-.period-selector{
+.periods{
   display:flex;
-  gap:7px;
-  background:#e9edf2;
+  gap:5px;
+  background:#eaecf0;
   padding:5px;
-  border-radius:16px;
+  border-radius:15px;
   margin-bottom:15px;
 }
 
-.period-selector button{
+.periods button{
   flex:1;
   border:0;
   background:transparent;
   padding:9px;
-  border-radius:12px;
-  font-size:11px;
-  font-weight:800;
+  border-radius:11px;
   color:var(--muted);
+  font-size:10px;
+  font-weight:700;
 }
 
-.period-selector button.active{
+.periods button.active{
   background:white;
-  color:var(--dark);
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  color:var(--text);
 }
 
-.finance-hero{
-  background:var(--dark);
-  color:white;
-  border-radius:28px;
-  padding:24px;
+.finance-main{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:22px;
+  box-shadow:var(--shadow);
 }
 
-.finance-hero small{
-  color:#98a2b3;
+.finance-profit-label{
+  color:var(--muted);
+  font-size:11px;
 }
 
-.finance-hero h2{
-  font-size:38px;
-  margin:6px 0 22px;
+.finance-profit{
+  font-size:36px;
+  font-weight:900;
+  margin:5px 0 20px;
 }
 
-.finance-grid{
+.finance-cards{
   display:grid;
-  grid-template-columns:
-  repeat(2,1fr);
+  grid-template-columns:repeat(2,1fr);
   gap:9px;
 }
 
-.finance-box{
-  background:rgba(255,255,255,.08);
-  padding:14px;
-  border-radius:16px;
+.finance-card{
+  padding:15px;
+  border-radius:17px;
+  background:#f8fafc;
 }
 
-.finance-box small{
-  display:block;
+.finance-card small{
+  color:var(--muted);
   font-size:10px;
 }
 
-.finance-box strong{
+.finance-card strong{
   display:block;
   margin-top:5px;
 }
 
-/* MINI CHART */
+.income{
+  color:var(--green);
+}
+
+.expense{
+  color:var(--red);
+}
+
+/* CHART */
+
+.chart-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
 
 .chart{
-  height:150px;
+  height:160px;
   display:flex;
   align-items:flex-end;
-  gap:10px;
-  padding:15px 5px 0;
+  gap:9px;
+  margin-top:20px;
 }
 
-.bar{
+.chart-bar{
   flex:1;
-  min-height:10px;
-  background:var(--yellow);
-  border-radius:8px 8px 3px 3px;
-}
-
-/* AGENDA */
-
-.calendar-card{
-  background:white;
-  border-radius:25px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-
-.calendar-title{
-  padding:20px;
-  background:var(--dark);
-  color:white;
-}
-
-.calendar-title h2{
-  font-size:20px;
-}
-
-.calendar-title p{
-  color:#98a2b3;
-  font-size:11px;
-  margin-top:5px;
-}
-
-.calendar-day{
-  border-bottom:1px solid var(--line);
-}
-
-.day-title{
-  background:#f8fafc;
-  padding:12px 17px;
-  display:flex;
-  justify-content:space-between;
-}
-
-.day-title strong{
-  font-size:11px;
-}
-
-.day-title span{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.payment-row{
-  padding:14px 17px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.payment-info{
-  display:flex;
-  gap:11px;
-  align-items:center;
-}
-
-.payment-title{
-  font-size:12px;
-  font-weight:850;
-}
-
-.payment-rule{
-  font-size:10px;
-  color:var(--muted);
-  margin-top:3px;
-}
-
-.payment-amount{
-  font-size:13px;
-  font-weight:900;
+  background:var(--primary);
+  border-radius:7px 7px 3px 3px;
+  min-height:5px;
 }
 
 /* VEHICLE */
 
-.vehicle-hero{
+.vehicle{
+  background:white;
+  border-radius:27px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+}
+
+.vehicle-image{
+  height:210px;
   background:
   linear-gradient(
-    135deg,
-    #101828,
-    #344054
-  );
-  color:white;
-  border-radius:29px;
-  padding:24px;
+    rgba(0,0,0,.08),
+    rgba(0,0,0,.08)
+  ),
+  url("https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1200&q=85")
+  center/cover;
 }
 
-.vehicle-icon-large{
-  font-size:50px;
+.vehicle-info{
+  padding:21px;
 }
 
-.vehicle-hero h2{
-  margin-top:12px;
+.vehicle-info h2{
+  font-size:22px;
 }
 
-.vehicle-hero p{
-  color:#98a2b3;
-  font-size:11px;
-  margin-top:4px;
-}
-
-.vehicle-grid{
-  display:grid;
-  grid-template-columns:
-  repeat(3,1fr);
-  gap:8px;
-  margin-top:22px;
-}
-
-.vehicle-box{
-  background:rgba(255,255,255,.08);
-  border-radius:15px;
-  padding:12px;
-}
-
-.vehicle-box small{
-  color:#98a2b3;
-  display:block;
-  font-size:9px;
-}
-
-.vehicle-box strong{
-  display:block;
-  margin-top:4px;
-  font-size:12px;
-}
-
-/* PROFILE */
-
-.profile{
-  text-align:center;
-  background:white;
-  border-radius:28px;
-  padding:28px;
-  box-shadow:var(--shadow);
-}
-
-.avatar{
-  width:80px;
-  height:80px;
-  margin:auto;
-  border-radius:27px;
-  background:var(--dark);
-  color:white;
-  display:grid;
-  place-items:center;
-  font-size:35px;
-}
-
-.profile h2{
-  margin-top:12px;
-}
-
-.profile p{
+.vehicle-info p{
   color:var(--muted);
   font-size:11px;
   margin-top:4px;
 }
 
-.menu{
-  margin-top:15px;
+.vehicle-data{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:18px;
+}
+
+.vehicle-stat{
+  background:#f8fafc;
+  padding:12px;
+  border-radius:15px;
+}
+
+.vehicle-stat small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+}
+
+.vehicle-stat strong{
+  display:block;
+  margin-top:4px;
+  font-size:12px;
+}
+
+/* CALENDAR */
+
+.calendar{
   background:white;
+  border:1px solid var(--border);
   border-radius:25px;
   overflow:hidden;
   box-shadow:var(--shadow);
 }
 
-.menu-button{
-  width:100%;
-  border:0;
-  background:white;
-  padding:17px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  text-align:left;
-  border-bottom:1px solid var(--line);
+.calendar-header{
+  padding:21px;
+  background:#101828;
+  color:white;
 }
 
-.menu-button:last-child{
+.calendar-header h2{
+  font-size:19px;
+}
+
+.calendar-header p{
+  color:#98a2b3;
+  font-size:10px;
+  margin-top:5px;
+}
+
+.day{
+  border-bottom:1px solid var(--border);
+}
+
+.day:last-child{
   border-bottom:0;
 }
 
-.menu-icon{
+.day-header{
+  padding:11px 16px;
+  background:#f8fafc;
+  display:flex;
+  justify-content:space-between;
+}
+
+.day-header strong{
+  font-size:10px;
+}
+
+.day-header span{
+  color:var(--muted);
+  font-size:9px;
+}
+
+.pay-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:13px 16px;
+}
+
+.pay-left{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.pay-title{
+  font-size:11px;
+  font-weight:800;
+}
+
+.pay-rule{
+  color:var(--muted);
+  font-size:9px;
+  margin-top:3px;
+}
+
+.pay-amount{
+  font-size:12px;
+  font-weight:900;
+}
+
+/* MAINTENANCE */
+
+.service-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:23px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.service-row{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.service-row:last-child{
+  border-bottom:0;
+}
+
+.service-row strong{
+  font-size:11px;
+}
+
+.service-row small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* PROFILE */
+
+.profile-card{
+  text-align:center;
+  background:white;
+  border-radius:25px;
+  padding:27px;
+  box-shadow:var(--shadow);
+}
+
+.profile-avatar{
+  width:75px;
+  height:75px;
+  border-radius:25px;
+  background:var(--primary);
+  display:grid;
+  place-items:center;
+  margin:auto;
+  font-size:30px;
+}
+
+.profile-card h2{
+  margin-top:12px;
+  font-size:20px;
+}
+
+.profile-card p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.profile-menu{
+  margin-top:15px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:23px;
+  overflow:hidden;
+}
+
+.profile-item{
+  width:100%;
+  border:0;
+  background:white;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:15px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+.profile-item:last-child{
+  border-bottom:0;
+}
+
+.profile-item-icon{
   width:42px;
   height:42px;
   border-radius:14px;
@@ -656,101 +735,73 @@ button{
   place-items:center;
 }
 
-.menu-button strong{
-  font-size:12px;
+.profile-item strong{
+  font-size:11px;
 }
 
-.menu-button small{
+.profile-item small{
   display:block;
   color:var(--muted);
-  font-size:10px;
+  font-size:9px;
   margin-top:3px;
-}
-
-/* MAINTENANCE */
-
-.service{
-  display:flex;
-  justify-content:space-between;
-  padding:15px 0;
-  border-bottom:1px solid var(--line);
-}
-
-.service:last-child{
-  border-bottom:0;
-}
-
-.service strong{
-  font-size:12px;
-}
-
-.service small{
-  color:var(--muted);
-  font-size:10px;
-  display:block;
-  margin-top:4px;
-}
-
-/* FLOATING BUTTON */
-
-.floating{
-  position:fixed;
-  right:20px;
-  bottom:91px;
-  width:58px;
-  height:58px;
-  border:0;
-  border-radius:20px;
-  background:var(--yellow);
-  color:#211b00;
-  font-size:28px;
-  box-shadow:
-  0 12px 30px
-  rgba(245,197,66,.4);
-  z-index:30;
 }
 
 /* BOTTOM NAV */
 
 .bottom-nav{
   position:fixed;
-  z-index:40;
+  z-index:50;
+  left:50%;
   bottom:
   calc(10px + env(safe-area-inset-bottom));
-  left:50%;
   transform:translateX(-50%);
-  width:
-  min(700px,calc(100% - 20px));
-  padding:7px;
+  width:min(700px,calc(100% - 18px));
   background:rgba(255,255,255,.96);
-  backdrop-filter:blur(20px);
-  border:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  border:1px solid var(--border);
   border-radius:25px;
-  box-shadow:0 15px 45px rgba(16,24,40,.16);
+  box-shadow:0 12px 40px rgba(16,24,40,.15);
+  padding:7px;
   display:grid;
-  grid-template-columns:
-  repeat(5,1fr);
+  grid-template-columns:repeat(5,1fr);
 }
 
 .nav{
   border:0;
   background:transparent;
-  border-radius:17px;
-  padding:8px 3px;
   color:var(--muted);
-  font-size:9px;
-  font-weight:800;
+  border-radius:17px;
+  padding:7px 2px;
+  font-size:8px;
+  font-weight:700;
 }
 
-.nav b{
+.nav-icon{
   display:block;
-  font-size:20px;
+  font-size:19px;
   margin-bottom:3px;
 }
 
 .nav.active{
-  background:#fff7d6;
-  color:var(--dark);
+  color:var(--text);
+  background:#fff4c7;
+}
+
+/* FLOATING */
+
+.floating{
+  position:fixed;
+  z-index:45;
+  right:18px;
+  bottom:90px;
+  width:54px;
+  height:54px;
+  border:0;
+  border-radius:18px;
+  background:var(--text);
+  color:white;
+  font-size:26px;
+  box-shadow:0 10px 25px rgba(16,24,40,.25);
 }
 
 /* MODAL */
@@ -759,9 +810,9 @@ button{
   position:fixed;
   inset:0;
   z-index:100;
-  background:rgba(16,24,40,.65);
   display:none;
   align-items:flex-end;
+  background:rgba(16,24,40,.55);
   padding:10px;
 }
 
@@ -773,13 +824,14 @@ button{
   width:min(650px,100%);
   max-height:90vh;
   overflow:auto;
-  margin:auto;
   background:white;
-  border-radius:30px;
+  border-radius:28px;
   padding:23px;
+  margin:auto;
 }
 
 .sheet h2{
+  font-size:19px;
   margin-bottom:18px;
 }
 
@@ -789,33 +841,34 @@ button{
 
 .form label{
   display:block;
+  font-size:10px;
+  font-weight:700;
   color:var(--muted);
-  font-size:11px;
-  font-weight:800;
   margin-bottom:6px;
 }
 
 .form input,
 .form select{
   width:100%;
-  border:1px solid var(--line);
+  border:1px solid var(--border);
   background:#f8fafc;
-  padding:13px;
   border-radius:14px;
+  padding:13px;
   outline:none;
 }
 
-.modal-actions{
+.modal-buttons{
   display:flex;
-  gap:9px;
+  gap:8px;
   margin-top:18px;
 }
 
-.modal-actions button{
+.modal-buttons button{
   flex:1;
   border:0;
+  border-radius:14px;
   padding:13px;
-  border-radius:15px;
+  font-size:11px;
   font-weight:800;
 }
 
@@ -824,8 +877,22 @@ button{
 }
 
 .save{
-  background:var(--dark);
+  background:var(--text);
   color:white;
+}
+
+/* MOBILE */
+
+@media(max-width:520px){
+
+  .quick-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-profit{
+    font-size:35px;
+  }
+
 }
 
 /* DESKTOP */
@@ -833,27 +900,7 @@ button{
 @media(min-width:700px){
 
   .view{
-    padding:28px;
-  }
-
-  .quick-actions{
-    grid-template-columns:
-    repeat(4,160px);
-  }
-
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-  .quick-actions{
-    grid-template-columns:
-    repeat(2,1fr);
-  }
-
-  .main-balance h2{
-    font-size:36px;
+    padding:25px;
   }
 
 }
@@ -861,38 +908,36 @@ button{
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
 
+<header class="top-header">
 
-<!-- HEADER -->
+  <div class="header-row">
 
-<header class="header">
+    <div class="user-area">
 
-  <div class="header-top">
-
-    <div class="brand">
-
-      <div class="logo">
-        🚕
+      <div class="avatar">
+        🚗
       </div>
 
-      <div>
-        <div class="brand-title">
-          Taxi Pro
-        </div>
+      <div class="greeting">
 
-        <div class="brand-subtitle">
-          Tu control inteligente
-        </div>
+        <small id="greetingText">
+          Buenos días
+        </small>
+
+        <h1 id="userGreeting">
+          Fredy
+        </h1>
+
       </div>
 
     </div>
 
     <button
-      class="header-button"
+      class="header-action"
       onclick="showView('perfil')">
 
       👤
@@ -901,61 +946,79 @@ button{
 
   </div>
 
-
-  <div class="welcome">
-
-    <h1 id="greeting">
-      ☀️ Buenos días, Fredy
-    </h1>
-
-    <p id="dateText">
-      Cargando fecha...
-    </p>
-
-  </div>
-
 </header>
 
 
-<!-- DASHBOARD -->
+<!-- INICIO -->
 
 <section
 id="inicio"
 class="view active">
 
+  <div class="today-line">
 
-  <div class="main-balance">
+    <strong id="todayDate">
+      Hoy
+    </strong>
 
-    <div class="main-balance-label">
+    <span id="currentTime">
+      --:--
+    </span>
+
+  </div>
+
+
+  <div class="hero">
+
+    <div class="hero-label">
       Ganancia real de hoy
     </div>
 
-    <h2 id="profit">
+    <div
+    class="hero-profit"
+    id="dashboardProfit">
+
       $0
-    </h2>
 
-    <div class="balance-row">
+    </div>
 
-      <div class="balance-item">
+
+    <div class="hero-stats">
+
+      <div class="hero-stat">
 
         <small>
           Ingresos
         </small>
 
-        <strong id="income">
+        <strong id="dashboardIncome">
           $0
         </strong>
 
       </div>
 
-      <div class="balance-item">
+
+      <div class="hero-stat">
 
         <small>
           Gastos
         </small>
 
-        <strong id="expenses">
+        <strong id="dashboardExpenses">
           $0
+        </strong>
+
+      </div>
+
+
+      <div class="hero-stat">
+
+        <small>
+          Pasajeros
+        </small>
+
+        <strong id="dashboardPassengers">
+          0
         </strong>
 
       </div>
@@ -965,7 +1028,7 @@ class="view active">
   </div>
 
 
-  <div class="section-head">
+  <div class="section-title">
 
     <h2>
       Acciones rápidas
@@ -974,28 +1037,28 @@ class="view active">
   </div>
 
 
-  <div class="quick-actions">
+  <div class="quick-grid">
 
     <button
-      class="quick-action"
-      onclick="openModal('tripModal')">
+    class="quick"
+    onclick="openModal('tripModal')">
 
-      <div class="quick-action-icon">
+      <div class="quick-icon">
         🚕
       </div>
 
       <strong>
-        Nuevo viaje
+        Viaje
       </strong>
 
     </button>
 
 
     <button
-      class="quick-action"
-      onclick="openModal('expenseModal')">
+    class="quick"
+    onclick="openModal('expenseModal')">
 
-      <div class="quick-action-icon">
+      <div class="quick-icon">
         💸
       </div>
 
@@ -1007,10 +1070,10 @@ class="view active">
 
 
     <button
-      class="quick-action"
-      onclick="openModal('fuelModal')">
+    class="quick"
+    onclick="openModal('fuelModal')">
 
-      <div class="quick-action-icon">
+      <div class="quick-icon">
         ⛽
       </div>
 
@@ -1022,10 +1085,10 @@ class="view active">
 
 
     <button
-      class="quick-action"
-      onclick="openModal('serviceModal')">
+    class="quick"
+    onclick="openModal('serviceModal')">
 
-      <div class="quick-action-icon">
+      <div class="quick-icon">
         🔧
       </div>
 
@@ -1038,31 +1101,28 @@ class="view active">
   </div>
 
 
-  <div class="section-head">
+  <div class="section-title">
 
     <h2>
-      Mi jornada
+      Tu jornada
     </h2>
 
-    <button
-      onclick="showView('jornada')">
-
-      Ver detalles
-
+    <button onclick="showView('jornada')">
+      Detalles
     </button>
 
   </div>
 
 
-  <div class="journey-card">
+  <div class="journey">
 
-    <div class="journey-top">
+    <div class="journey-header">
 
-      <div class="journey-status">
+      <div class="journey-state">
 
         <span
-          id="statusDot"
-          class="status-dot">
+        id="journeyDot"
+        class="dot">
         </span>
 
         <span id="journeyStatus">
@@ -1072,8 +1132,8 @@ class="view active">
       </div>
 
       <div
-        class="journey-time"
-        id="journeyTime">
+      class="journey-time"
+      id="journeyStartTime">
 
         --
 
@@ -1082,33 +1142,35 @@ class="view active">
     </div>
 
 
-    <div class="journey-stats">
+    <div class="journey-grid">
 
-      <div class="journey-stat">
+      <div class="journey-data">
 
         <small>
           Viajes
         </small>
 
-        <strong id="trips">
+        <strong id="journeyTrips">
           0
         </strong>
 
       </div>
 
-      <div class="journey-stat">
+
+      <div class="journey-data">
 
         <small>
           Pasajeros
         </small>
 
-        <strong id="passengers">
+        <strong id="journeyPassengers">
           0
         </strong>
 
       </div>
 
-      <div class="journey-stat">
+
+      <div class="journey-data">
 
         <small>
           Ingresos
@@ -1124,41 +1186,37 @@ class="view active">
 
 
     <button
-      id="journeyButton"
-      class="primary-button"
-      onclick="toggleJourney()">
+    id="journeyButton"
+    class="main-button"
+    onclick="toggleJourney()">
 
-      ▶️ Iniciar jornada
+      ▶ Iniciar jornada
 
     </button>
 
   </div>
 
 
-  <div class="section-head">
+  <div class="section-title">
 
     <h2>
       Próximo pago
     </h2>
 
-    <button
-      onclick="showView('agenda')">
-
-      Ver calendario
-
+    <button onclick="showView('agenda')">
+      Ver todos
     </button>
 
   </div>
 
 
   <div
-    class="dashboard-card"
-    id="nextPayment">
+  id="nextPayment"
+  class="payment-card">
 
     Cargando...
 
   </div>
-
 
 </section>
 
@@ -1169,76 +1227,76 @@ class="view active">
 id="jornada"
 class="view">
 
-  <div class="section-head">
+  <div class="section-title">
 
     <h2>
-      🚕 Jornada de trabajo
+      🚕 Jornada
     </h2>
 
   </div>
 
 
-  <div class="journey-card">
+  <div class="journey">
 
-    <div class="journey-top">
+    <div class="journey-header">
 
-      <div class="journey-status">
+      <div class="journey-state">
 
         <span
-          id="largeDot"
-          class="status-dot">
+        id="journeyDot2"
+        class="dot">
         </span>
 
-        <span id="largeStatus">
+        <span id="journeyStatus2">
           Fuera de jornada
         </span>
 
       </div>
 
-      <div
-        id="largeTime"
-        class="journey-time">
-
+      <span
+      class="journey-time"
+      id="journeyTime2">
         --
-
-      </div>
+      </span>
 
     </div>
 
 
-    <div class="journey-stats">
+    <div class="journey-grid">
 
-      <div class="journey-stat">
+      <div class="journey-data">
 
         <small>
           Viajes
         </small>
 
-        <strong id="largeTrips">
+        <strong id="journeyTrips2">
           0
         </strong>
 
       </div>
 
-      <div class="journey-stat">
+
+      <div class="journey-data">
 
         <small>
           Pasajeros
         </small>
 
-        <strong id="largePassengers">
+        <strong id="journeyPassengers2">
           0
         </strong>
 
       </div>
 
-      <div class="journey-stat">
+
+      <div class="journey-data">
 
         <small>
           Ingresos
         </small>
 
-        <strong id="largeIncome">
+        <strong id="journeyIncome2">
           $0
         </strong>
 
@@ -1248,9 +1306,9 @@ class="view">
 
 
     <button
-      id="largeJourneyButton"
-      class="primary-button"
-      onclick="toggleJourney()">
+    id="journeyButton2"
+    class="main-button"
+    onclick="toggleJourney()">
 
       Iniciar jornada
 
@@ -1267,7 +1325,7 @@ class="view">
 id="finanzas"
 class="view">
 
-  <div class="section-head">
+  <div class="section-title">
 
     <h2>
       💰 Finanzas
@@ -1276,65 +1334,73 @@ class="view">
   </div>
 
 
-  <div class="period-selector">
+  <div class="periods">
 
     <button
-      class="active"
-      onclick="setPeriod('day',this)">
-
+    class="active"
+    onclick="changePeriod('day',this)">
       Hoy
-
     </button>
 
     <button
-      onclick="setPeriod('week',this)">
-
+    onclick="changePeriod('week',this)">
       Semana
-
     </button>
 
     <button
-      onclick="setPeriod('month',this)">
-
+    onclick="changePeriod('month',this)">
       Mes
-
     </button>
 
   </div>
 
 
-  <div class="finance-hero">
+  <div class="finance-main">
 
-    <small>
+    <div class="finance-profit-label">
       Ganancia real
-    </small>
+    </div>
 
-    <h2 id="financeProfit">
+    <div
+    id="financeProfit"
+    class="finance-profit">
+
       $0
-    </h2>
 
-    <div class="finance-grid">
+    </div>
 
-      <div class="finance-box">
+
+    <div class="finance-cards">
+
+      <div class="finance-card">
 
         <small>
           Ingresos
         </small>
 
-        <strong id="financeIncome">
+        <strong
+        id="financeIncome"
+        class="income">
+
           $0
+
         </strong>
 
       </div>
 
-      <div class="finance-box">
+
+      <div class="finance-card">
 
         <small>
           Gastos
         </small>
 
-        <strong id="financeExpenses">
+        <strong
+        id="financeExpenses"
+        class="expense">
+
           $0
+
         </strong>
 
       </div>
@@ -1344,17 +1410,127 @@ class="view">
   </div>
 
 
-  <div class="dashboard-card">
+  <div class="section-title">
 
-    <h3>
-      📊 Actividad
-    </h3>
+    <h2>
+      Rendimiento
+    </h2>
+
+  </div>
+
+
+  <div class="chart-card">
 
     <div
-      id="chart"
-      class="chart">
+    id="chart"
+    class="chart">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TAXI -->
+
+<section
+id="taxi"
+class="view">
+
+  <div class="section-title">
+
+    <h2>
+      🚗 Mi Taxi
+    </h2>
+
+  </div>
+
+
+  <div class="vehicle">
+
+    <div class="vehicle-image">
+    </div>
+
+
+    <div class="vehicle-info">
+
+      <h2>
+        Chevrolet Aveo
+      </h2>
+
+      <p>
+        Sedán 2019 · Vehículo de trabajo
+      </p>
+
+
+      <div class="vehicle-data">
+
+        <div class="vehicle-stat">
+
+          <small>
+            Kilometraje
+          </small>
+
+          <strong id="vehicleKm">
+            0 km
+          </strong>
+
+        </div>
+
+
+        <div class="vehicle-stat">
+
+          <small>
+            Servicios
+          </small>
+
+          <strong id="vehicleServices">
+            0
+          </strong>
+
+        </div>
+
+
+        <div class="vehicle-stat">
+
+          <small>
+            Último servicio
+          </small>
+
+          <strong id="lastService">
+            --
+          </strong>
+
+        </div>
+
+      </div>
 
     </div>
+
+  </div>
+
+
+  <div class="section-title">
+
+    <h2>
+      🔧 Mantenimiento
+    </h2>
+
+    <button
+    onclick="openModal('serviceModal')">
+
+      + Agregar
+
+    </button>
+
+  </div>
+
+
+  <div
+  id="services"
+  class="service-card">
+
+    Sin servicios registrados.
 
   </div>
 
@@ -1367,19 +1543,20 @@ class="view">
 id="agenda"
 class="view">
 
-  <div class="calendar-card">
+  <div class="calendar">
 
-    <div class="calendar-title">
+    <div class="calendar-header">
 
       <h2>
         📅 Calendario de pagos
       </h2>
 
       <p>
-        Próximos pagos programados de Taxi Pro
+        Tus obligaciones recurrentes
       </p>
 
     </div>
+
 
     <div id="calendarList">
 
@@ -1392,115 +1569,15 @@ class="view">
 </section>
 
 
-<!-- VEHÍCULO -->
-
-<section
-id="vehiculo"
-class="view">
-
-  <div class="section-head">
-
-    <h2>
-      🚗 Mi Taxi
-    </h2>
-
-  </div>
-
-
-  <div class="vehicle-hero">
-
-    <div class="vehicle-icon-large">
-      🚕
-    </div>
-
-    <h2>
-      Aveo 2019
-    </h2>
-
-    <p>
-      Vehículo de trabajo
-    </p>
-
-
-    <div class="vehicle-grid">
-
-      <div class="vehicle-box">
-
-        <small>
-          Kilometraje
-        </small>
-
-        <strong id="vehicleKm">
-          0 km
-        </strong>
-
-      </div>
-
-      <div class="vehicle-box">
-
-        <small>
-          Servicios
-        </small>
-
-        <strong id="serviceCount">
-          0
-        </strong>
-
-      </div>
-
-      <div class="vehicle-box">
-
-        <small>
-          Próximo servicio
-        </small>
-
-        <strong>
-          Pendiente
-        </strong>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-head">
-
-    <h2>
-      🔧 Mantenimiento
-    </h2>
-
-    <button
-      onclick="openModal('serviceModal')">
-
-      + Agregar
-
-    </button>
-
-  </div>
-
-
-  <div
-    class="dashboard-card"
-    id="serviceHistory">
-
-    No hay servicios registrados.
-
-  </div>
-
-</section>
-
-
 <!-- PERFIL -->
 
 <section
 id="perfil"
 class="view">
 
-  <div class="profile">
+  <div class="profile-card">
 
-    <div class="avatar">
+    <div class="profile-avatar">
       👤
     </div>
 
@@ -1515,13 +1592,13 @@ class="view">
   </div>
 
 
-  <div class="menu">
+  <div class="profile-menu">
 
     <button
-      class="menu-button"
-      onclick="openProfile()">
+    class="profile-item"
+    onclick="openProfile()">
 
-      <div class="menu-icon">
+      <div class="profile-item-icon">
         👤
       </div>
 
@@ -1532,7 +1609,7 @@ class="view">
         </strong>
 
         <small>
-          Editar nombre
+          Cambiar nombre
         </small>
 
       </div>
@@ -1541,17 +1618,17 @@ class="view">
 
 
     <button
-      class="menu-button"
-      onclick="showView('vehiculo')">
+    class="profile-item"
+    onclick="showView('taxi')">
 
-      <div class="menu-icon">
+      <div class="profile-item-icon">
         🚗
       </div>
 
       <div>
 
         <strong>
-          Mi vehículo
+          Mi Taxi
         </strong>
 
         <small>
@@ -1564,21 +1641,21 @@ class="view">
 
 
     <button
-      class="menu-button"
-      onclick="showView('agenda')">
+    class="profile-item"
+    onclick="showView('agenda')">
 
-      <div class="menu-icon">
+      <div class="profile-item-icon">
         📅
       </div>
 
       <div>
 
         <strong>
-          Pagos recurrentes
+          Calendario de pagos
         </strong>
 
         <small>
-          Calendario de obligaciones
+          Consulta tus próximos pagos
         </small>
 
       </div>
@@ -1587,21 +1664,21 @@ class="view">
 
 
     <button
-      class="menu-button"
-      onclick="backup()">
+    class="profile-item"
+    onclick="backupData()">
 
-      <div class="menu-icon">
+      <div class="profile-item-icon">
         💾
       </div>
 
       <div>
 
         <strong>
-          Respaldar datos
+          Respaldar información
         </strong>
 
         <small>
-          Descargar una copia
+          Descargar una copia de tus datos
         </small>
 
       </div>
@@ -1613,7 +1690,7 @@ class="view">
 </section>
 
 
-<!-- BOTÓN FLOTANTE -->
+<!-- BOTÓN -->
 
 <button
 class="floating"
@@ -1629,51 +1706,70 @@ onclick="openModal('quickModal')">
 <nav class="bottom-nav">
 
   <button
-    class="nav active"
-    data-view="inicio"
-    onclick="showView('inicio')">
+  class="nav active"
+  data-view="inicio"
+  onclick="showView('inicio')">
 
-    <b>⌂</b>
+    <span class="nav-icon">
+      ⌂
+    </span>
+
     Inicio
 
   </button>
 
-  <button
-    class="nav"
-    data-view="jornada"
-    onclick="showView('jornada')">
 
-    <b>🚕</b>
-    Turno
+  <button
+  class="nav"
+  data-view="jornada"
+  onclick="showView('jornada')">
+
+    <span class="nav-icon">
+      🚕
+    </span>
+
+    Jornada
 
   </button>
 
-  <button
-    class="nav"
-    data-view="finanzas"
-    onclick="showView('finanzas')">
 
-    <b>₱</b>
-    Dinero
+  <button
+  class="nav"
+  data-view="finanzas"
+  onclick="showView('finanzas')">
+
+    <span class="nav-icon">
+      $
+    </span>
+
+    Finanzas
 
   </button>
 
-  <button
-    class="nav"
-    data-view="agenda"
-    onclick="showView('agenda')">
 
-    <b>📅</b>
-    Agenda
+  <button
+  class="nav"
+  data-view="taxi"
+  onclick="showView('taxi')">
+
+    <span class="nav-icon">
+      🚗
+    </span>
+
+    Taxi
 
   </button>
 
-  <button
-    class="nav"
-    data-view="perfil"
-    onclick="showView('perfil')">
 
-    <b>☰</b>
+  <button
+  class="nav"
+  data-view="agenda"
+  onclick="showView('agenda')">
+
+    <span class="nav-icon">
+      ☰
+    </span>
+
     Más
 
   </button>
@@ -1692,13 +1788,13 @@ class="modal">
 <div class="sheet">
 
 <h2>
-🚕 Nuevo viaje
+🚕 Registrar viaje
 </h2>
 
 <div class="form">
 
 <label>
-Número de pasajeros
+Pasajeros
 </label>
 
 <input
@@ -1708,7 +1804,6 @@ min="1"
 value="1">
 
 </div>
-
 
 <div class="form">
 
@@ -1723,8 +1818,7 @@ value="80">
 
 </div>
 
-
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
 class="cancel"
@@ -1738,7 +1832,7 @@ Cancelar
 class="save"
 onclick="saveTrip()">
 
-Guardar viaje
+Guardar
 
 </button>
 
@@ -1773,7 +1867,6 @@ placeholder="Ej. Caseta">
 
 </div>
 
-
 <div class="form">
 
 <label>
@@ -1786,8 +1879,7 @@ type="number">
 
 </div>
 
-
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
 class="cancel"
@@ -1836,7 +1928,6 @@ type="number">
 
 </div>
 
-
 <div class="form">
 
 <label>
@@ -1848,7 +1939,6 @@ id="fuelLiters"
 type="number">
 
 </div>
-
 
 <div class="form">
 
@@ -1862,8 +1952,7 @@ type="number">
 
 </div>
 
-
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
 class="cancel"
@@ -1897,7 +1986,7 @@ class="modal">
 <div class="sheet">
 
 <h2>
-🔧 Nuevo mantenimiento
+🔧 Registrar mantenimiento
 </h2>
 
 <div class="form">
@@ -1912,7 +2001,6 @@ placeholder="Ej. Cambio de aceite">
 
 </div>
 
-
 <div class="form">
 
 <label>
@@ -1924,7 +2012,6 @@ id="serviceDate"
 type="date">
 
 </div>
-
 
 <div class="form">
 
@@ -1938,7 +2025,6 @@ type="number">
 
 </div>
 
-
 <div class="form">
 
 <label>
@@ -1951,8 +2037,7 @@ type="number">
 
 </div>
 
-
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
 class="cancel"
@@ -1977,7 +2062,7 @@ Guardar
 </div>
 
 
-<!-- MODAL PERFIL -->
+<!-- PERFIL MODAL -->
 
 <div
 id="profileModal"
@@ -2000,8 +2085,7 @@ id="profileInput">
 
 </div>
 
-
-<div class="modal-actions">
+<div class="modal-buttons">
 
 <button
 class="cancel"
@@ -2026,7 +2110,7 @@ Guardar
 </div>
 
 
-<!-- MODAL RÁPIDO -->
+<!-- QUICK MODAL -->
 
 <div
 id="quickModal"
@@ -2038,41 +2122,64 @@ class="modal">
 ＋ Registrar
 </h2>
 
-<div class="quick-actions">
+<div class="quick-grid">
 
 <button
-class="quick-action"
+class="quick"
 onclick="closeModals();openModal('tripModal')">
 
-🚕<br>
-<strong>Viaje</strong>
+<div class="quick-icon">
+🚕
+</div>
+
+<strong>
+Viaje
+</strong>
 
 </button>
 
+
 <button
-class="quick-action"
+class="quick"
 onclick="closeModals();openModal('expenseModal')">
 
-💸<br>
-<strong>Gasto</strong>
+<div class="quick-icon">
+💸
+</div>
+
+<strong>
+Gasto
+</strong>
 
 </button>
 
+
 <button
-class="quick-action"
+class="quick"
 onclick="closeModals();openModal('fuelModal')">
 
-⛽<br>
-<strong>Gasolina</strong>
+<div class="quick-icon">
+⛽
+</div>
+
+<strong>
+Gasolina
+</strong>
 
 </button>
 
+
 <button
-class="quick-action"
+class="quick"
 onclick="closeModals();openModal('serviceModal')">
 
-🔧<br>
-<strong>Servicio</strong>
+<div class="quick-icon">
+🔧
+</div>
+
+<strong>
+Servicio
+</strong>
 
 </button>
 
@@ -2085,30 +2192,28 @@ onclick="closeModals();openModal('serviceModal')">
 
 <script>
 
-/* =====================================================
-   TAXI PRO 9.0
-===================================================== */
+/* =========================================
+   TAXI PRO 10.0
+========================================= */
 
-const KEY="taxiPro90";
+const STORAGE_KEY="taxiPro10Data";
 
-const DEFAULT={
+
+const DEFAULT_DATA={
 
 name:"Fredy",
 
 journey:{
-active:false,
-start:null,
-trips:0,
-passengers:0,
-income:0
+  active:false,
+  start:null,
+  trips:0,
+  passengers:0,
+  income:0
 },
 
 trips:[],
-
 expenses:[],
-
 fuels:[],
-
 services:[],
 
 vehicleKm:0
@@ -2116,54 +2221,54 @@ vehicleKm:0
 };
 
 
-let data=load();
-
-let currentPeriod="day";
+let data=loadData();
 
 
-function load(){
+function loadData(){
 
 try{
 
 const saved=
-localStorage.getItem(KEY);
+localStorage.getItem(
+STORAGE_KEY
+);
 
 if(saved){
 
-const old=
+const parsed=
 JSON.parse(saved);
 
 return{
-...structuredClone(DEFAULT),
-...old
+...structuredClone(DEFAULT_DATA),
+...parsed
 };
 
 }
 
-}catch(e){
+}catch(error){
 
-console.log(e);
-
-}
-
-return structuredClone(DEFAULT);
+console.error(error);
 
 }
 
+return structuredClone(
+DEFAULT_DATA
+);
 
-function save(){
+}
+
+
+function saveData(){
 
 localStorage.setItem(
-KEY,
+STORAGE_KEY,
 JSON.stringify(data)
 );
 
 }
 
 
-/* FORMAT */
-
-function money(n){
+function money(value){
 
 return new Intl.NumberFormat(
 "es-MX",
@@ -2173,152 +2278,209 @@ currency:"MXN",
 maximumFractionDigits:0
 }
 ).format(
-Number(n)||0
+Number(value)||0
 );
 
 }
 
 
-function today(){
+function dateKey(date=new Date()){
 
-return new Date()
-.toISOString()
-.slice(0,10);
+const y=date.getFullYear();
+
+const m=String(
+date.getMonth()+1
+).padStart(2,"0");
+
+const d=String(
+date.getDate()
+).padStart(2,"0");
+
+return`${y}-${m}-${d}`;
 
 }
 
 
 /* NAVIGATION */
 
-function showView(id){
+function showView(view){
 
 document
 .querySelectorAll(".view")
 .forEach(
-v=>v.classList.remove("active")
+item=>
+item.classList.remove(
+"active"
+)
 );
 
-document
-.getElementById(id)
-.classList.add("active");
+const target=
+document.getElementById(
+view
+);
+
+if(target){
+
+target.classList.add(
+"active"
+);
+
+}
 
 
 document
 .querySelectorAll(".nav")
 .forEach(
-n=>{
+nav=>{
 
-n.classList.toggle(
+nav.classList.toggle(
 "active",
-n.dataset.view===id
+nav.dataset.view===view
 );
 
 }
 );
 
-window.scrollTo(0,0);
+window.scrollTo(
+{
+top:0,
+behavior:"smooth"
+}
+);
 
 }
 
 
-/* GREETING */
+/* CLOCK */
 
-function updateGreeting(){
+function updateClock(){
 
-const h=
-new Date().getHours();
+const now=
+new Date();
 
-let text="Buenas noches";
+const hour=
+now.getHours();
 
-let icon="🌙";
+let greeting=
+"Buenos días";
 
-if(h>=5&&h<12){
+let icon="☀️";
 
-text="Buenos días";
+if(hour>=12&&hour<19){
 
-icon="☀️";
-
-}
-
-else if(h>=12&&h<19){
-
-text="Buenas tardes";
+greeting=
+"Buenas tardes";
 
 icon="🌤️";
 
 }
 
+if(hour>=19||hour<5){
+
+greeting=
+"Buenas noches";
+
+icon="🌙";
+
+}
+
 
 document
-.getElementById("greeting")
+.getElementById(
+"greetingText"
+)
 .textContent=
-`${icon} ${text}, ${data.name}`;
+`${icon} ${greeting}`;
 
 
 document
-.getElementById("dateText")
+.getElementById(
+"userGreeting"
+)
 .textContent=
-new Intl.DateTimeFormat(
+data.name;
+
+
+document
+.getElementById(
+"todayDate"
+)
+.textContent=
+now.toLocaleDateString(
 "es-MX",
 {
 weekday:"long",
 day:"numeric",
-month:"long",
-year:"numeric"
+month:"long"
 }
-).format(
-new Date()
+);
+
+
+document
+.getElementById(
+"currentTime"
+)
+.textContent=
+now.toLocaleTimeString(
+"es-MX",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
 );
 
 }
 
 
-/* STATS */
+/* TODAY STATS */
 
-function stats(){
+function getTodayStats(){
 
-const key=
-today();
+const today=
+dateKey();
 
 
 const trips=
-data.trips
-.filter(
-x=>x.date===key
+data.trips.filter(
+item=>
+item.date===today
 );
 
 
 const expenses=
-data.expenses
-.filter(
-x=>x.date===key
+data.expenses.filter(
+item=>
+item.date===today
 );
 
 
 const fuels=
-data.fuels
-.filter(
-x=>x.date===key
+data.fuels.filter(
+item=>
+item.date===today
 );
 
 
 const income=
 trips.reduce(
-(a,x)=>
-a+Number(x.income),
+(sum,item)=>
+sum+
+Number(item.income),
 0
 );
 
 
 const expense=
 expenses.reduce(
-(a,x)=>
-a+Number(x.amount),
+(sum,item)=>
+sum+
+Number(item.amount),
 0
 )+
 fuels.reduce(
-(a,x)=>
-a+Number(x.amount),
+(sum,item)=>
+sum+
+Number(item.amount),
 0
 );
 
@@ -2332,12 +2494,11 @@ expense,
 profit:
 income-expense,
 
-trips:trips.length,
-
 passengers:
 trips.reduce(
-(a,x)=>
-a+Number(x.passengers),
+(sum,item)=>
+sum+
+Number(item.passengers),
 0
 )
 
@@ -2350,49 +2511,43 @@ a+Number(x.passengers),
 
 function render(){
 
-updateGreeting();
+updateClock();
 
 
-const s=
-stats();
-
-
-document
-.getElementById("profit")
-.textContent=
-money(s.profit);
+const stats=
+getTodayStats();
 
 
 document
-.getElementById("income")
+.getElementById(
+"dashboardProfit"
+)
 .textContent=
-money(s.income);
+money(stats.profit);
 
 
 document
-.getElementById("expenses")
+.getElementById(
+"dashboardIncome"
+)
 .textContent=
-money(s.expense);
+money(stats.income);
 
 
 document
-.getElementById("trips")
+.getElementById(
+"dashboardExpenses"
+)
 .textContent=
-data.journey.trips;
+money(stats.expense);
 
 
 document
-.getElementById("passengers")
+.getElementById(
+"dashboardPassengers"
+)
 .textContent=
-data.journey.passengers;
-
-
-document
-.getElementById("journeyIncome")
-.textContent=
-money(
-data.journey.income
-);
+stats.passengers;
 
 
 const active=
@@ -2400,38 +2555,46 @@ data.journey.active;
 
 
 document
-.getElementById("journeyStatus")
+.getElementById(
+"journeyStatus"
+)
 .textContent=
-active
-?"Jornada activa"
-:"Fuera de jornada";
+active?
+"Jornada activa":
+"Fuera de jornada";
 
 
 document
-.getElementById("largeStatus")
+.getElementById(
+"journeyStatus2"
+)
 .textContent=
-active
-?"Jornada activa"
-:"Fuera de jornada";
+active?
+"Jornada activa":
+"Fuera de jornada";
 
 
 document
-.getElementById("statusDot")
+.getElementById(
+"journeyDot"
+)
 .classList.toggle(
-"active",
+"on",
 active
 );
 
 
 document
-.getElementById("largeDot")
+.getElementById(
+"journeyDot2"
+)
 .classList.toggle(
-"active",
+"on",
 active
 );
 
 
-const time=
+const start=
 data.journey.start
 ?
 new Date(
@@ -2447,96 +2610,135 @@ minute:"2-digit"
 
 
 document
-.getElementById("journeyTime")
+.getElementById(
+"journeyStartTime"
+)
 .textContent=
-time;
+start;
 
 
 document
-.getElementById("largeTime")
+.getElementById(
+"journeyTime2"
+)
 .textContent=
-time;
+start;
 
+
+[
+"journeyButton",
+"journeyButton2"
+]
+.forEach(
+id=>{
 
 document
-.getElementById("journeyButton")
+.getElementById(id)
 .textContent=
-active
-?"⏹️ Finalizar jornada"
-:"▶️ Iniciar jornada";
+active?
+"⏹ Finalizar jornada":
+"▶ Iniciar jornada";
+
+}
+);
 
 
+[
+"journeyTrips",
+"journeyTrips2"
+]
+.forEach(
+id=>
 document
-.getElementById("largeJourneyButton")
+.getElementById(id)
 .textContent=
-active
-?"Finalizar jornada"
-:"Iniciar jornada";
+data.journey.trips
+);
 
 
+[
+"journeyPassengers",
+"journeyPassengers2"
+]
+.forEach(
+id=>
 document
-.getElementById("largeTrips")
+.getElementById(id)
 .textContent=
-data.journey.trips;
+data.journey.passengers
+);
 
 
+[
+"journeyIncome",
+"journeyIncome2"
+]
+.forEach(
+id=>
 document
-.getElementById("largePassengers")
-.textContent=
-data.journey.passengers;
-
-
-document
-.getElementById("largeIncome")
+.getElementById(id)
 .textContent=
 money(
 data.journey.income
+)
 );
 
 
 document
-.getElementById("financeProfit")
+.getElementById(
+"financeProfit"
+)
 .textContent=
-money(s.profit);
+money(stats.profit);
 
 
 document
-.getElementById("financeIncome")
+.getElementById(
+"financeIncome"
+)
 .textContent=
-money(s.income);
+money(stats.income);
 
 
 document
-.getElementById("financeExpenses")
+.getElementById(
+"financeExpenses"
+)
 .textContent=
-money(s.expense);
+money(stats.expense);
 
 
 document
-.getElementById("profileName")
+.getElementById(
+"profileName"
+)
 .textContent=
 data.name;
 
 
 document
-.getElementById("vehicleKm")
+.getElementById(
+"vehicleKm"
+)
 .textContent=
 Number(
-data.vehicleKm
+data.vehicleKm||0
 ).toLocaleString(
 "es-MX"
 )+" km";
 
 
 document
-.getElementById("serviceCount")
+.getElementById(
+"vehicleServices"
+)
 .textContent=
 data.services.length;
 
 
-renderCalendar();
-
 renderNextPayment();
+
+renderCalendar();
 
 renderServices();
 
@@ -2565,15 +2767,13 @@ data.journey.passengers=0;
 
 data.journey.income=0;
 
-}
-
-else{
+}else{
 
 data.journey.active=false;
 
 }
 
-save();
+saveData();
 
 render();
 
@@ -2589,16 +2789,17 @@ Number(
 document
 .getElementById(
 "tripPassengers"
-).value
+)
+.value
 );
-
 
 const fare=
 Number(
 document
 .getElementById(
 "tripFare"
-).value
+)
+.value
 );
 
 
@@ -2608,7 +2809,7 @@ fare<=0
 ){
 
 alert(
-"Completa los datos."
+"Ingresa datos válidos."
 );
 
 return;
@@ -2622,7 +2823,7 @@ passengers*fare;
 
 data.trips.push({
 
-date:today(),
+date:dateKey(),
 
 passengers,
 
@@ -2642,7 +2843,7 @@ data.journey.income+=
 income;
 
 
-save();
+saveData();
 
 closeModals();
 
@@ -2669,7 +2870,8 @@ Number(
 document
 .getElementById(
 "expenseAmount"
-).value
+)
+.value
 );
 
 
@@ -2689,7 +2891,7 @@ return;
 
 data.expenses.push({
 
-date:today(),
+date:dateKey(),
 
 name,
 
@@ -2698,7 +2900,7 @@ amount
 });
 
 
-save();
+saveData();
 
 closeModals();
 
@@ -2716,7 +2918,8 @@ Number(
 document
 .getElementById(
 "fuelAmount"
-).value
+)
+.value
 );
 
 
@@ -2725,7 +2928,8 @@ Number(
 document
 .getElementById(
 "fuelLiters"
-).value
+)
+.value
 );
 
 
@@ -2734,7 +2938,8 @@ Number(
 document
 .getElementById(
 "fuelKm"
-).value
+)
+.value
 );
 
 
@@ -2751,7 +2956,7 @@ return;
 
 data.fuels.push({
 
-date:today(),
+date:dateKey(),
 
 amount,
 
@@ -2764,12 +2969,13 @@ km
 
 if(km){
 
-data.vehicleKm=km;
+data.vehicleKm=
+km;
 
 }
 
 
-save();
+saveData();
 
 closeModals();
 
@@ -2795,9 +3001,9 @@ const date=
 document
 .getElementById(
 "serviceDate"
-).value
-||
-today();
+)
+.value||
+dateKey();
 
 
 const km=
@@ -2805,7 +3011,8 @@ Number(
 document
 .getElementById(
 "serviceKm"
-).value
+)
+.value
 );
 
 
@@ -2814,14 +3021,15 @@ Number(
 document
 .getElementById(
 "serviceCost"
-).value
+)
+.value
 );
 
 
 if(!description){
 
 alert(
-"Escribe el servicio."
+"Ingresa la descripción."
 );
 
 return;
@@ -2844,12 +3052,13 @@ cost
 
 if(km){
 
-data.vehicleKm=km;
+data.vehicleKm=
+km;
 
 }
 
 
-save();
+saveData();
 
 closeModals();
 
@@ -2889,12 +3098,13 @@ document
 
 if(name){
 
-data.name=name;
+data.name=
+name;
 
 }
 
 
-save();
+saveData();
 
 closeModals();
 
@@ -2909,7 +3119,9 @@ function openModal(id){
 
 document
 .getElementById(id)
-.classList.add("open");
+.classList.add(
+"open"
+);
 
 }
 
@@ -2917,24 +3129,41 @@ document
 function closeModals(){
 
 document
-.querySelectorAll(".modal")
+.querySelectorAll(
+".modal"
+)
 .forEach(
-m=>m.classList.remove("open")
+modal=>
+modal.classList.remove(
+"open"
+)
 );
 
 }
 
 
-/* PAYMENTS */
+/* =========================================
+   PAGOS RECURRENTES
+========================================= */
 
-const PAYMENTS=[
+const PAYMENT_RULES=[
 
 {
-id:"potrero",
-name:"Punto El Potrero",
-icon:"📍",
-amount:120,
-type:"interval"
+id:"villa-guerrero",
+name:"Estacionamiento Villa Guerrero",
+icon:"🅿️",
+amount:220,
+type:"monthly",
+day:29
+},
+
+{
+id:"movilidad",
+name:"Pago Movilidad",
+icon:"🚌",
+amount:200,
+type:"monthly",
+day:20
 },
 
 {
@@ -2942,16 +3171,8 @@ id:"checadora",
 name:"Pago Checadora",
 icon:"🧾",
 amount:300,
-type:"friday"
-},
-
-{
-id:"villa",
-name:"Estacionamiento Villa Guerrero",
-icon:"🅿️",
-amount:220,
-type:"day",
-day:29
+type:"weekly",
+weekday:5
 },
 
 {
@@ -2959,7 +3180,7 @@ id:"metepec",
 name:"Pago Metepec",
 icon:"📍",
 amount:80,
-type:"day",
+type:"monthly",
 day:4
 },
 
@@ -2968,75 +3189,27 @@ id:"toluca",
 name:"Estacionamiento Toluca",
 icon:"🅿️",
 amount:140,
-type:"day",
+type:"monthly",
 day:6
 },
 
 {
-id:"movilidad",
-name:"Pago Movilidad",
-icon:"🚌",
-amount:200,
-type:"day",
-day:20
+id:"potrero",
+name:"Punto El Potrero",
+icon:"📍",
+amount:120,
+type:"interval",
+start:"2026-07-23",
+interval:5
 }
 
 ];
 
 
-function paymentMatches(
-rule,
-date
-){
-
-if(
-rule.type==="friday"
-){
-
-return date.getDay()===5;
-
-}
-
-
-if(
-rule.type==="day"
-){
-
-return date.getDate()===
-rule.day;
-
-}
-
-
-if(
-rule.type==="interval"
-){
-
-const start=
-new Date(
-"2026-07-23T00:00:00"
-);
-
-const current=
-new Date(date);
-
-const diff=
-Math.floor(
-(current-start)/86400000
-);
-
-return(
-diff>=0&&
-diff%5===0
-);
-
-}
-
-
-return false;
-
-}
-
+/*
+Genera cada ocurrencia una sola vez.
+No se duplica por día.
+*/
 
 function generatePayments(){
 
@@ -3046,41 +3219,85 @@ const seen=
 new Set();
 
 
-for(
-let i=0;
-i<120;
-i++
-){
-
-const date=
+const start=
 new Date();
 
-date.setHours(
+start.setHours(
 0,0,0,0
 );
 
+
+for(
+let offset=0;
+offset<120;
+offset++
+){
+
+const date=
+new Date(start);
+
 date.setDate(
-date.getDate()+i
+start.getDate()+offset
 );
 
 
-PAYMENTS
+PAYMENT_RULES
 .forEach(
 rule=>{
 
+let match=false;
+
+
 if(
-paymentMatches(
-rule,
-date
-)
+rule.type==="monthly"
 ){
 
+match=
+date.getDate()===
+rule.day;
+
+}
+
+
+if(
+rule.type==="weekly"
+){
+
+match=
+date.getDay()===
+rule.weekday;
+
+}
+
+
+if(
+rule.type==="interval"
+){
+
+const origin=
+new Date(
+rule.start+
+"T00:00:00"
+);
+
+const difference=
+Math.floor(
+(date-origin)/
+86400000
+);
+
+match=
+difference>=0&&
+difference%
+rule.interval===0;
+
+}
+
+
+if(match){
+
 const key=
-rule.id+
-"-"+
-date
-.toISOString()
-.slice(0,10);
+`${rule.id}_${dateKey(date)}`;
 
 
 if(
@@ -3129,14 +3346,14 @@ const groups={};
 
 
 payments
-.slice(0,40)
+.slice(0,45)
 .forEach(
-p=>{
+payment=>{
 
 const key=
-p.date
-.toISOString()
-.slice(0,10);
+dateKey(
+payment.date
+);
 
 
 if(
@@ -3144,7 +3361,7 @@ if(
 ){
 
 groups[key]={
-date:p.date,
+date:payment.date,
 items:[]
 };
 
@@ -3153,7 +3370,7 @@ items:[]
 
 groups[key]
 .items
-.push(p);
+.push(payment);
 
 }
 );
@@ -3167,7 +3384,7 @@ Object
 .forEach(
 group=>{
 
-const dateText=
+const date=
 group.date
 .toLocaleDateString(
 "es-MX",
@@ -3181,17 +3398,17 @@ month:"long"
 
 html+=`
 
-<div class="calendar-day">
+<div class="day">
 
-<div class="day-title">
+<div class="day-header">
 
 <strong>
-${dateText}
+${date}
 </strong>
 
 <span>
 ${group.items.length}
-pago${group.items.length>1?"s":""}
+${group.items.length===1?"pago":"pagos"}
 </span>
 
 </div>
@@ -3201,34 +3418,34 @@ pago${group.items.length>1?"s":""}
 
 group.items
 .forEach(
-p=>{
+payment=>{
 
 html+=`
 
-<div class="payment-row">
+<div class="pay-row">
 
-<div class="payment-info">
+<div class="pay-left">
 
 <div class="payment-icon">
-${p.icon}
+${payment.icon}
 </div>
 
 <div>
 
-<div class="payment-title">
-${p.name}
+<div class="pay-title">
+${payment.name}
 </div>
 
-<div class="payment-rule">
-${paymentRule(p)}
+<div class="pay-rule">
+${paymentRuleText(payment)}
 </div>
 
 </div>
 
 </div>
 
-<div class="payment-amount">
-${money(p.amount)}
+<div class="pay-amount">
+${money(payment.amount)}
 </div>
 
 </div>
@@ -3254,30 +3471,34 @@ document
 "calendarList"
 )
 .innerHTML=
-html;
+html||
+"<div style='padding:20px'>No hay pagos próximos.</div>";
 
 }
 
 
-function paymentRule(p){
+function paymentRuleText(payment){
 
 if(
-p.type==="friday"
+payment.type==="monthly"
 ){
 
-return "Cada viernes";
+return
+`Cada mes · día ${payment.day}`;
 
 }
 
 if(
-p.type==="day"
+payment.type==="weekly"
 ){
 
-return "Cada mes";
+return
+"Cada viernes";
 
 }
 
-return "Cada 5 días · desde 23 de julio";
+return
+"Cada 5 días · desde 23 de julio";
 
 }
 
@@ -3286,11 +3507,11 @@ return "Cada 5 días · desde 23 de julio";
 
 function renderNextPayment(){
 
-const p=
+const payment=
 generatePayments()[0];
 
 
-if(!p){
+if(!payment){
 
 return;
 
@@ -3298,7 +3519,7 @@ return;
 
 
 const date=
-p.date
+payment.date
 .toLocaleDateString(
 "es-MX",
 {
@@ -3315,21 +3536,21 @@ document
 )
 .innerHTML=`
 
-<div class="next-payment">
+<div class="payment-flex">
 
-<div class="next-left">
+<div class="payment-left">
 
 <div class="payment-icon">
-${p.icon}
+${payment.icon}
 </div>
 
 <div>
 
-<div class="next-name">
-${p.name}
+<div class="payment-name">
+${payment.name}
 </div>
 
-<div class="next-date">
+<div class="payment-date">
 ${date}
 </div>
 
@@ -3337,8 +3558,8 @@ ${date}
 
 </div>
 
-<div class="next-price">
-${money(p.amount)}
+<div class="payment-value">
+${money(payment.amount)}
 </div>
 
 </div>
@@ -3355,7 +3576,7 @@ function renderServices(){
 const container=
 document
 .getElementById(
-"serviceHistory"
+"services"
 );
 
 
@@ -3364,38 +3585,61 @@ data.services.length===0
 ){
 
 container.innerHTML=
-"No hay servicios registrados.";
+"Sin servicios registrados.";
+
+document
+.getElementById(
+"lastService"
+)
+.textContent=
+"--";
 
 return;
 
 }
 
 
+const latest=
+data.services[0];
+
+
+document
+.getElementById(
+"lastService"
+)
+.textContent=
+latest.date;
+
+
 container.innerHTML=
 data.services
 .slice(0,10)
 .map(
-s=>`
+service=>`
 
-<div class="service">
+<div class="service-row">
 
 <div>
 
 <strong>
-🔧 ${s.description}
+🔧 ${service.description}
 </strong>
 
 <small>
-${s.date}
-· ${Number(s.km||0)
-.toLocaleString("es-MX")}
-km
+${service.date}
+ · ${Number(
+service.km||0
+).toLocaleString(
+"es-MX"
+)} km
 </small>
 
 </div>
 
 <strong>
-${money(s.cost)}
+${money(
+service.cost
+)}
 </strong>
 
 </div>
@@ -3413,10 +3657,12 @@ function renderChart(){
 
 const chart=
 document
-.getElementById("chart");
+.getElementById(
+"chart"
+);
 
 
-const days=[];
+const values=[];
 
 
 for(
@@ -3432,49 +3678,51 @@ date.setDate(
 date.getDate()-i
 );
 
+
 const key=
-date
-.toISOString()
-.slice(0,10);
+dateKey(date);
 
 
-const value=
+const income=
 data.trips
 .filter(
-x=>x.date===key
+trip=>
+trip.date===key
 )
 .reduce(
-(a,x)=>
-a+Number(x.income),
+(sum,trip)=>
+sum+
+Number(trip.income),
 0
 );
 
 
-days.push(value);
+values.push(
+income
+);
 
 }
 
 
 const max=
 Math.max(
-...days,
+...values,
 1
 );
 
 
 chart.innerHTML=
-days
+values
 .map(
 value=>`
 
 <div
-class="bar"
+class="chart-bar"
 style="
-height:
-${Math.max(
-10,
-(value/max)*100
-)}%
+height:${Math.max(
+5,
+value/max*100
+)}%;
 ">
 
 </div>
@@ -3486,37 +3734,34 @@ ${Math.max(
 }
 
 
-/* PERIOD */
+/* FINANCE PERIOD */
 
-function setPeriod(
+function changePeriod(
 period,
 button
 ){
 
-currentPeriod=
-period;
-
-
 document
 .querySelectorAll(
-".period-selector button"
+".periods button"
 )
 .forEach(
-b=>
-b.classList.remove("active")
+item=>
+item.classList.remove(
+"active"
+)
 );
 
-
-button
-.classList
-.add("active");
+button.classList.add(
+"active"
+);
 
 }
 
 
 /* BACKUP */
 
-function backup(){
+function backupData(){
 
 const blob=
 new Blob(
@@ -3540,17 +3785,20 @@ blob
 );
 
 
-const a=
+const link=
 document
 .createElement("a");
 
 
-a.href=url;
+link.href=
+url;
 
-a.download=
-"Taxi-Pro-9.0-Respaldo.json";
 
-a.click();
+link.download=
+"Taxi-Pro-10.0-Respaldo.json";
+
+
+link.click();
 
 
 URL.revokeObjectURL(
@@ -3560,26 +3808,27 @@ url
 }
 
 
-/* CLOSE MODAL OUTSIDE */
+/* CLOSE OUTSIDE */
 
 document
-.querySelectorAll(".modal")
+.querySelectorAll(
+".modal"
+)
 .forEach(
 modal=>{
 
-modal
-.addEventListener(
+modal.addEventListener(
 "click",
-e=>{
+event=>{
 
 if(
-e.target===
+event.target===
 modal
 ){
 
-modal
-.classList
-.remove("open");
+modal.classList.remove(
+"open"
+);
 
 }
 
@@ -3589,13 +3838,13 @@ modal
 });
 
 
-/* START */
+/* INIT */
 
 render();
 
 
 setInterval(
-updateGreeting,
+updateClock,
 30000
 );
 
