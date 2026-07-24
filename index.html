@@ -1,78 +1,27 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Taxi Pro 10 - Final</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif}
-body{background:#f6f7f9;color:#111}
-.app{max-width:440px;margin:auto;min-height:100vh;padding-bottom:110px}
-.top{height:64px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:10;border-bottom:1px solid #eee}
-.hero{margin:16px;background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:28px;padding:24px;color:#fff;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(246,201,69,.25),transparent 70%)}
-.hero small{color:#94a3b8;font-size:10px;letter-spacing:1px;text-transform:uppercase}
-.hero h1{font-size:42px;font-weight:900;margin:8px 0;letter-spacing:-1px}
-.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
-.hero-card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border-radius:16px;padding:12px}
-.hero-card small{color:#94a3b8;display:block;font-size:10px}
-.hero-card b{display:block;margin-top:4px;font-size:15px}
-.card{background:#fff;border-radius:22px;padding:18px;margin:14px 16px 0;box-shadow:0 4px 20px rgba(0,0,0,.04);border:1px solid #f1f5f9}
-.quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
-.qbtn{background:#fff;border:1px solid #eef2f7;border-radius:18px;padding:16px 8px;text-align:center}
-.qbtn b{display:block;font-size:12px;margin-top:6px}
-.qbtn span{font-size:22px}
-.view{display:none}.view.on{display:block}
-.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:calc(100% - 24px);max-width:420px;background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-radius:24px;display:grid;grid-template-columns:repeat(4,1fr);padding:8px;box-shadow:0 10px 40px rgba(0,0,0,.12);border:1px solid #fff;z-index:20}
-.nav button{border:0;background:transparent;padding:10px;border-radius:16px;font-size:10px;font-weight:700;color:#94a3b8}
-.nav button.on{background:#111;color:#fff}
-.nav button b{display:block;font-size:18px;margin-bottom:2px}
-.fab{position:fixed;right:20px;bottom:92px;width:56px;height:56px;border-radius:18px;background:#111;color:#fff;border:0;font-size:28px;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:30}
-.modal{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
-.modal.on{display:flex}
-.sheet{background:#fff;border-radius:24px;padding:24px;width:100%;max-width:380px;animation:pop .25s}
-@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-.sheet h3{font-size:18px}.sheet input{width:100%;padding:14px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:14px;margin-top:10px;font-size:15px}
-.btn{width:100%;border:0;border-radius:14px;padding:14px;font-weight:800;margin-top:12px;font-size:14px}
-.btn-dark{background:#0f172a;color:#fff}.btn-light{background:#f1f5f9}
-.row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f8fafc}
-.row:last-child{border:0}
-</style>
-</head>
-<body>
-<div class="app">
-<div class="top"><div style="display:flex;gap:10px;align-items:center"><div style="width:36px;height:36px;background:#0f172a;border-radius:12px;display:grid;place-items:center;color:#fff">🚕</div><div><b style="font-size:14px">Taxi Pro</b><div style="font-size:10px;color:#64748b">v10.0 • Ixtapan</div></div></div><div style="font-size:11px;background:#f1f5f9;padding:6px 12px;border-radius:20px" id="clock">--</div></div>
-
-<div id="v-inicio" class="view on">
-<div class="hero"><small id="saludo">Buenas noches</small><h1 id="profit">$0</h1><div style="font-size:12px;color:#94a3b8">Ganancia real • después de cuentas</div><div class="hero-grid"><div class="hero-card"><small>Ingresos</small><b id="dIng">$0</b></div><div class="hero-card"><small>Gastos</small><b id="dGas">$0</b></div><div class="hero-card" style="background:#fff;color:#0f172a"><small style="color:#64748b">Viajes</small><b id="dVia">0</b></div></div></div>
-<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">⚡ Acciones rápidas</b></div><div class="quick"><button class="qbtn" onclick="openM('trip')"><span>🚕</span><b>Viaje</b></button><button class="qbtn" onclick="openM('gas')"><span>⛽</span><b>Gas</b></button><button class="qbtn" onclick="openM('exp')"><span>💸</span><b>Gasto</b></button></div></div>
-<div class="card"><div style="display:flex;justify-content:space-between"><b style="font-size:14px">📅 Próximos pagos</b><span style="font-size:12px;color:#3b82f6" onclick="go('agenda')">Ver todo</span></div><div id="next" style="margin-top:10px"></div></div>
-<div class="card"><b style="font-size:14px">📋 Hoy se descuenta automático</b><div id="todayList" style="margin-top:10px"></div></div>
-</div>
-
-<div id="v-jornada" class="view"><div class="card" style="text-align:center;padding:28px"><div style="font-size:40px">🚕</div><h3 id="jStatus" style="margin-top:12px">Jornada cerrada</h3><p id="jTime" style="font-size:12px;color:#64748b;margin-top:4px">--</p><button class="btn btn-dark" onclick="toggleJ()" style="margin-top:18px">▶️ Iniciar jornada</button></div><div class="card"><b>Viajes hoy</b><div id="jList" style="margin-top:10px"></div></div></div>
-<div id="v-finanzas" class="view"><div style="display:flex;gap:8px;padding:0 16px;margin-top:10px"><button id="bHoy" onclick="setR('hoy')" class="btn btn-dark" style="width:auto;padding:8px 16px;font-size:12px;margin:0">Hoy</button><button id="bSem" onclick="setR('sem')" class="btn btn-light" style="width:auto;margin:0">Semana</button><button id="bMes" onclick="setR('mes')" class="btn btn-light" style="width:auto;margin:0">Mes</button></div><div class="card"><small id="fLabel" style="color:#64748b">Balance hoy</small><h1 id="fTotal" style="font-size:36px;margin-top:4px">$0</h1><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px"><div style="background:#f8fafc;padding:12px;border-radius:14px"><small>Ingresos</small><b id="fIng" style="display:block;margin-top:4px">$0</b></div><div style="background:#f8fafc;padding:12px;border-radius:14px"><small>Gastos</small><b id="fGas" style="display:block;margin-top:4px">$0</b></div></div></div></div>
-<div id="v-agenda" class="view"><div class="card"><h3>📅 Agenda 90 días</h3><p style="font-size:11px;color:#64748b;margin-top:4px">Sin duplicados • Automático</p></div><div id="cal"></div></div>
-
-<button class="fab" onclick="openM('trip')">＋</button>
-<div class="nav"><button id="n-inicio" class="on" onclick="go('inicio')"><b>🏠</b>Inicio</button><button id="n-jornada" onclick="go('jornada')"><b>🚕</b>Jornada</button><button id="n-finanzas" onclick="go('finanzas')"><b>💰</b>Finanzas</button><button id="n-agenda" onclick="go('agenda')"><b>📅</b>Agenda</button></div>
-</div>
-
-<div id="m-trip" class="modal"><div class="sheet"><h3>🚕 Nuevo viaje</h3><p style="font-size:12px;color:#64748b;margin-top:4px">Se suma a tu ganancia real</p><input id="iPax" type="number" value="1" inputmode="numeric"><input id="iTar" type="number" value="80" inputmode="numeric"><button class="btn btn-dark" onclick="saveTrip()">Guardar $80 x pasajero</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
-<div id="m-gas" class="modal"><div class="sheet"><h3>⛽ Gasolina</h3><input id="iGas" type="number" placeholder="$ Monto" inputmode="numeric"><button class="btn btn-dark" onclick="saveGas()">Guardar</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
-<div id="m-exp" class="modal"><div class="sheet"><h3>💸 Otro gasto</h3><input id="iExpN" placeholder="Concepto Ej. Talacha"><input id="iExpM" type="number" placeholder="$" inputmode="numeric"><button class="btn btn-dark" onclick="saveExp()">Guardar</button><button class="btn btn-light" onclick="closeM()">Cerrar</button></div></div>
-
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Taxi Pro 10.1</title><style>body{font-family:sans-serif;background:#f6f7f9;max-width:400px;margin:auto;padding:16px} .card{background:#fff;border-radius:20px;padding:16px;margin-top:12px;box-shadow:0 4px 12px rgba(0,0,0,.05)} .hero{background:#0f172a;color:#fff;border-radius:24px;padding:20px} .btn{width:100%;padding:14px;border-radius:14px;border:0;background:#0f172a;color:#fff;font-weight:800;margin-top:10px} .btn2{background:#eef2f7;color:#000} .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;place-items:center;padding:16px}.modal.on{display:grid} .box{background:#fff;border-radius:20px;padding:20px;width:100%}</style></head><body>
+<div class="hero"><small>GANANCIA REAL HOY</small><h1 id="profit" style="font-size:36px">$0</h1><div id="sub" style="font-size:12px;opacity:.7"></div></div>
+<div class="card"><button class="btn btn2" onclick="document.getElementById('m1').classList.add('on')">🚕 Registrar Viaje</button><button class="btn btn2" onclick="document.getElementById('m2').classList.add('on')">⛽ Gasolina</button></div>
+<div class="card"><b>Hoy se descuenta:</b><div id="list"></div></div>
+<div class="card"><b>Próximos pagos:</b><div id="next"></div></div>
+<div id="m1" class="modal"><div class="box"><h3>Viaje</h3><input id="pax" type="number" value="1" style="width:100%;padding:12px;margin-top:10px;border-radius:12px;border:1px solid #ddd"><input id="tar" type="number" value="80" style="width:100%;padding:12px;margin-top:8px;border-radius:12px;border:1px solid #ddd"><button class="btn" onclick="saveT()">Guardar</button><button class="btn btn2" onclick="closeAll()">Cerrar</button></div></div>
+<div id="m2" class="modal"><div class="box"><h3>Gas</h3><input id="gas" type="number" style="width:100%;padding:12px;margin-top:10px;border-radius:12px;border:1px solid #ddd"><button class="btn" onclick="saveG()">Guardar</button><button class="btn btn2" onclick="closeAll()">Cerrar</button></div></div>
 <script>
-function go(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));var e=document.getElementById('v-'+id);if(e)e.classList.add('on');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));var n=document.getElementById('n-'+id);if(n)n.classList.add('on');}
-function openM(id){var m=document.getElementById('m-'+id);if(m)m.classList.add('on');}
-function closeM(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'));}
-var DATA;try{DATA=JSON.parse(localStorage.getItem('taxi10final'))||{trips:[],gas:[],exps:[],jornada:false,start:null};}catch(e){DATA={trips:[],gas:[],exps:[],jornada:false,start:null};}
-var PAGOS=[
-{n:"Cuentas Aveo",m:500,t:"daily",icon:"🚕"},
-{n:"El Potrero",m:120,t:"interval",start:"2026-07-23",every:5,icon:"📍"},
-{n:"Checadora",m:300,t:"weekly",day:5,icon:"🧾"},
-{n:"Villa Guerrero",m:220,t:"monthly",day:29,icon:"🅿️"},
-{n:"Movilidad",m:200,t:"monthly",day:20,icon:"🚌"},
-{n:"Metepec",m:80,t:"monthly",day:4,icon:"📍"},
-{n:"Toluca",m:140,t:"monthly",day:6,icon:"🅿️"},
-];
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'))}
+var D;try{D=JSON.parse(localStorage.getItem('taxi101'))||{t:[],g:[]}}catch(e){D={t:[],g:[]}}
+function today(){return new Date().toISOString().slice(0,10)}
+function save(){localStorage.setItem('taxi101',JSON.stringify(D))}
+function gastos(){return [{n:'Aveo $500',m:500},{n:'El Potrero $120 (hoy)',m:120}]} // Simplificado para prueba
+function render(){
+var ing=D.t.filter(x=>x.d==today()).reduce((a,b)=>a+b.v,0);
+var gas=D.g.filter(x=>x.d==today()).reduce((a,b)=>a+b.m,0);
+var fijo=500+120;
+var gan=ing-fijo-gas;
+document.getElementById('profit').innerText='$'+gan;
+document.getElementById('sub').innerText=ing+' ingresos - '+(fijo+gas)+' gastos';
+document.getElementById('list').innerHTML='<div>Aveo $500</div><div>Potrero $120</div>'+(gas?'<div>Gas $'+gas+'</div>':'');
+document.getElementById('next').innerHTML='<div>24 jul - Checadora $300</div><div>28 jul - Potrero $120</div><div>29 jul - Villa $220</div>';
+}
+function saveT(){var p=parseInt(document.getElementById('pax').value)||1;var t=parseInt(document.getElementById('tar').value)||80;D.t.push({d:today(),v:p*t});save();closeAll();render()}
+function saveG(){var m=parseInt(document.getElementById('gas').value)||0;if(m){D.g.push({d:today(),m:m});save();closeAll();render()}}
+render();
+</script></body></html>
