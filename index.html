@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F4B400">
 
-<title>Taxi Pro 12.0</title>
+<title>Taxi Pro 11.0</title>
 
 <style>
 
@@ -20,7 +20,7 @@
   --card:#FFFFFF;
 
   --text:#17202A;
-  --muted:#5F6875;
+  --muted:#6B7280;
 
   --green:#16A34A;
   --red:#DC2626;
@@ -42,7 +42,6 @@ body{
   background:var(--bg);
   color:var(--text);
   padding-bottom:105px;
-  font-size:16px;
 }
 
 button,
@@ -60,14 +59,13 @@ button{
   margin:auto;
 }
 
-
 /* =========================
 HEADER
 ========================= */
 
 .header{
   background:white;
-  padding:24px 20px 22px;
+  padding:22px 20px 20px;
   border-bottom:1px solid var(--border);
 }
 
@@ -85,27 +83,26 @@ HEADER
 
 .greeting h1{
   font-size:29px;
-  margin-top:6px;
+  margin-top:5px;
   font-weight:800;
 }
 
 .time{
-  margin-top:8px;
+  margin-top:7px;
   font-size:34px;
   font-weight:800;
   letter-spacing:-1px;
 }
 
 .weather-icon{
-  width:64px;
-  height:64px;
+  width:65px;
+  height:65px;
   border-radius:20px;
   background:var(--primary-soft);
   display:grid;
   place-items:center;
-  font-size:34px;
+  font-size:35px;
 }
-
 
 /* =========================
 VISTAS
@@ -119,7 +116,6 @@ VISTAS
 .view.active{
   display:block;
 }
-
 
 /* =========================
 DASHBOARD
@@ -139,25 +135,25 @@ DASHBOARD
 
 .profit-label{
   font-size:15px;
-  font-weight:800;
+  font-weight:700;
   color:#5F4A00;
 }
 
 .profit-value{
   font-size:46px;
   font-weight:800;
-  margin:9px 0 24px;
+  margin:8px 0 24px;
   letter-spacing:-2px;
 }
 
 .summary-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:11px;
 }
 
 .summary{
-  background:rgba(255,255,255,.68);
+  background:rgba(255,255,255,.62);
   border-radius:18px;
   padding:17px;
 }
@@ -166,7 +162,6 @@ DASHBOARD
   display:block;
   font-size:13px;
   color:#665300;
-  font-weight:600;
 }
 
 .summary strong{
@@ -175,9 +170,8 @@ DASHBOARD
   font-size:21px;
 }
 
-
 /* =========================
-ACCIONES
+ACCIÓN PRINCIPAL
 ========================= */
 
 .main-action{
@@ -186,13 +180,12 @@ ACCIONES
   border:0;
   background:#17202A;
   color:white;
-  padding:19px;
+  padding:20px;
   border-radius:20px;
-  font-size:17px;
+  font-size:18px;
   font-weight:800;
   box-shadow:var(--shadow);
 }
-
 
 /* =========================
 SECCIONES
@@ -206,7 +199,7 @@ SECCIONES
 }
 
 .section-title h2{
-  font-size:21px;
+  font-size:22px;
   font-weight:800;
 }
 
@@ -217,7 +210,6 @@ SECCIONES
   font-size:15px;
   font-weight:800;
 }
-
 
 /* =========================
 TARJETAS
@@ -231,7 +223,6 @@ TARJETAS
   box-shadow:var(--shadow);
 }
 
-
 /* =========================
 VUELTAS
 ========================= */
@@ -240,8 +231,7 @@ VUELTAS
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  padding:18px 0;
+  padding:17px 0;
   border-bottom:1px solid var(--border);
 }
 
@@ -270,9 +260,7 @@ VUELTAS
 .trip-income{
   font-size:19px;
   font-weight:800;
-  white-space:nowrap;
 }
-
 
 /* =========================
 MENÚ RÁPIDO
@@ -281,14 +269,14 @@ MENÚ RÁPIDO
 .quick-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:12px;
+  gap:11px;
 }
 
 .quick{
   border:1px solid var(--border);
   background:white;
   border-radius:20px;
-  padding:18px 8px;
+  padding:19px 7px;
   text-align:center;
   box-shadow:var(--shadow);
 }
@@ -296,7 +284,7 @@ MENÚ RÁPIDO
 .quick-icon{
   width:56px;
   height:56px;
-  border-radius:17px;
+  border-radius:16px;
   background:var(--primary-soft);
   display:grid;
   place-items:center;
@@ -307,7 +295,6 @@ MENÚ RÁPIDO
 .quick strong{
   font-size:13px;
 }
-
 
 /* =========================
 FORMULARIOS
@@ -320,23 +307,21 @@ FORMULARIOS
 .form-group label{
   display:block;
   font-size:15px;
-  font-weight:800;
+  font-weight:700;
   margin-bottom:8px;
 }
 
-.form-group input,
-.form-group select{
+.form-group input{
   width:100%;
   padding:16px;
   border:1px solid var(--border);
   border-radius:15px;
   background:#F9FAFB;
-  font-size:17px;
+  font-size:18px;
   outline:none;
 }
 
-.form-group input:focus,
-.form-group select:focus{
+.form-group input:focus{
   border-color:var(--primary);
 }
 
@@ -351,7 +336,6 @@ FORMULARIOS
   display:block;
   font-size:14px;
   color:#6B5300;
-  font-weight:700;
 }
 
 .auto-box strong{
@@ -359,7 +343,6 @@ FORMULARIOS
   font-size:25px;
   margin-top:6px;
 }
-
 
 /* =========================
 BOTONES
@@ -370,7 +353,7 @@ BOTONES
   border:0;
   border-radius:16px;
   padding:17px;
-  font-size:15px;
+  font-size:16px;
   font-weight:800;
 }
 
@@ -384,16 +367,68 @@ BOTONES
   color:var(--text);
 }
 
-.btn-start{
-  background:#16A34A;
+/* =========================
+JORNADA
+========================= */
+
+.journey-card{
+  text-align:center;
+  padding:25px;
+}
+
+.journey-icon{
+  font-size:60px;
+  margin-bottom:10px;
+}
+
+.journey-status{
+  font-size:26px;
+  font-weight:800;
+  margin:10px 0;
+}
+
+.journey-time{
+  background:#F8FAFC;
+  border-radius:18px;
+  padding:17px;
+  margin:15px 0;
+  text-align:left;
+}
+
+.journey-time-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  font-size:15px;
+}
+
+.journey-time-row:last-child{
+  border-bottom:0;
+}
+
+.journey-time-row strong{
+  font-size:17px;
+}
+
+.btn-journey{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:20px;
+  font-size:19px;
+  font-weight:800;
   color:white;
+  box-shadow:var(--shadow);
+}
+
+.btn-start{
+  background:var(--green);
 }
 
 .btn-finish{
-  background:#DC2626;
-  color:white;
+  background:var(--red);
 }
-
 
 /* =========================
 FINANZAS
@@ -406,7 +441,6 @@ FINANZAS
 .finance-main small{
   color:var(--muted);
   font-size:14px;
-  font-weight:600;
 }
 
 .finance-main h2{
@@ -417,7 +451,7 @@ FINANZAS
 .finance-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  gap:11px;
 }
 
 .finance-item{
@@ -430,13 +464,12 @@ FINANZAS
   display:block;
   color:var(--muted);
   font-size:13px;
-  font-weight:600;
 }
 
 .finance-item strong{
   display:block;
   margin-top:6px;
-  font-size:21px;
+  font-size:20px;
 }
 
 .green{
@@ -446,117 +479,6 @@ FINANZAS
 .red{
   color:var(--red);
 }
-
-
-/* =========================
-PAGOS RECURRENTES
-========================= */
-
-.payment-notice{
-  background:#EEF6FF;
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:16px;
-}
-
-.payment-notice strong{
-  font-size:14px;
-}
-
-.payment-notice p{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:6px;
-  line-height:1.5;
-}
-
-.payment{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  padding:17px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.payment:last-child{
-  border-bottom:0;
-}
-
-.payment-name{
-  font-weight:800;
-  font-size:15px;
-}
-
-.payment-date{
-  color:var(--muted);
-  font-size:12px;
-  margin-top:5px;
-}
-
-.payment-amount{
-  font-weight:800;
-  font-size:17px;
-  white-space:nowrap;
-}
-
-.payment-status{
-  display:inline-block;
-  margin-top:6px;
-  padding:4px 8px;
-  border-radius:8px;
-  font-size:11px;
-  font-weight:800;
-}
-
-.payment-status.today{
-  background:#FEE2E2;
-  color:#B91C1C;
-}
-
-.payment-status.future{
-  background:#ECFDF5;
-  color:#15803D;
-}
-
-
-/* =========================
-GASTOS AUTOMÁTICOS
-========================= */
-
-.auto-expense-summary{
-  background:#FFF7ED;
-  border:1px solid #FED7AA;
-  border-radius:20px;
-  padding:18px;
-  margin-top:15px;
-}
-
-.auto-expense-summary h3{
-  font-size:16px;
-  margin-bottom:10px;
-}
-
-.auto-expense-row{
-  display:flex;
-  justify-content:space-between;
-  padding:9px 0;
-  border-bottom:1px solid rgba(0,0,0,.07);
-  font-size:14px;
-}
-
-.auto-expense-row:last-child{
-  border-bottom:0;
-}
-
-.auto-expense-total{
-  display:flex;
-  justify-content:space-between;
-  margin-top:12px;
-  font-size:17px;
-  font-weight:800;
-}
-
 
 /* =========================
 TAXI
@@ -572,7 +494,7 @@ TAXI
 
 .car-photo{
   width:100%;
-  height:250px;
+  height:230px;
   object-fit:cover;
   display:block;
 }
@@ -582,7 +504,7 @@ TAXI
 }
 
 .car-info h2{
-  font-size:25px;
+  font-size:26px;
 }
 
 .car-info p{
@@ -594,10 +516,9 @@ TAXI
 .car-stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:10px;
+  gap:9px;
   margin-top:20px;
 }
-
 
 /* =========================
 MANTENIMIENTO
@@ -606,7 +527,6 @@ MANTENIMIENTO
 .service{
   display:flex;
   justify-content:space-between;
-  gap:15px;
   padding:17px 0;
   border-bottom:1px solid var(--border);
 }
@@ -623,73 +543,86 @@ MANTENIMIENTO
   display:block;
   color:var(--muted);
   margin-top:5px;
-  font-size:12px;
+  font-size:13px;
 }
-
 
 /* =========================
-JORNADA
+PAGOS
 ========================= */
 
-.journey-card{
-  text-align:center;
+.payment-notice{
+  background:#EEF6FF;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:16px;
 }
 
-.journey-icon{
-  width:90px;
-  height:90px;
-  border-radius:28px;
-  background:var(--primary-soft);
-  display:grid;
-  place-items:center;
-  margin:0 auto 18px;
-  font-size:48px;
-}
-
-.journey-status{
-  font-size:25px;
-  font-weight:800;
-  margin-bottom:8px;
-}
-
-.journey-time{
-  color:var(--muted);
+.payment-notice strong{
   font-size:15px;
-  line-height:1.7;
-  margin-bottom:20px;
 }
+
+.payment-notice p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
+  line-height:1.5;
+}
+
+.payment{
+  display:flex;
+  justify-content:space-between;
+  padding:17px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.payment:last-child{
+  border-bottom:0;
+}
+
+.payment-name{
+  font-weight:700;
+  font-size:15px;
+}
+
+.payment-date{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.payment-amount{
+  font-weight:800;
+  font-size:17px;
+}
+
+/* =========================
+HISTORIAL JORNADAS
+========================= */
 
 .journey-history{
   margin-top:20px;
 }
 
-.journey-history-title{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:10px;
-}
-
-.journey-record{
-  padding:17px 0;
+.history-item{
+  padding:16px 0;
   border-bottom:1px solid var(--border);
 }
 
-.journey-record:last-child{
+.history-item:last-child{
   border-bottom:0;
 }
 
-.journey-record-date{
-  font-weight:800;
+.history-title{
   font-size:15px;
+  font-weight:800;
 }
 
-.journey-record-time{
+.history-info{
+  margin-top:6px;
   color:var(--muted);
   font-size:13px;
-  margin-top:6px;
   line-height:1.6;
 }
-
 
 /* =========================
 NAVEGACIÓN
@@ -714,7 +647,7 @@ NAVEGACIÓN
 
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  padding:8px;
+  padding:7px;
 }
 
 .nav{
@@ -724,12 +657,12 @@ NAVEGACIÓN
   border-radius:18px;
   color:var(--muted);
   font-size:12px;
-  font-weight:800;
+  font-weight:700;
 }
 
 .nav-icon{
   display:block;
-  font-size:27px;
+  font-size:29px;
   margin-bottom:5px;
 }
 
@@ -737,7 +670,6 @@ NAVEGACIÓN
   background:var(--primary-soft);
   color:var(--text);
 }
-
 
 /* =========================
 MODAL
@@ -761,7 +693,7 @@ MODAL
   width:min(650px,100%);
   background:white;
   border-radius:28px;
-  padding:26px;
+  padding:25px;
   margin:auto;
   max-height:90vh;
   overflow:auto;
@@ -777,7 +709,6 @@ MODAL
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
-
 
 /* =========================
 RESPONSIVE
@@ -797,16 +728,8 @@ RESPONSIVE
     font-size:30px;
   }
 
-  .section-title h2{
-    font-size:20px;
-  }
-
-  .nav{
-    font-size:11px;
-  }
-
-  .nav-icon{
-    font-size:25px;
+  .journey-status{
+    font-size:23px;
   }
 
 }
@@ -840,17 +763,13 @@ Fredy
 </span>
 </h1>
 
-<div
-id="time"
-class="time">
+<div id="time" class="time">
 00:00
 </div>
 
 </div>
 
-<div
-id="weatherIcon"
-class="weather-icon">
+<div id="weatherIcon" class="weather-icon">
 ☀️
 </div>
 
@@ -863,9 +782,7 @@ class="weather-icon">
 INICIO
 ========================= -->
 
-<section
-id="inicio"
-class="view active">
+<section id="inicio" class="view active">
 
 <div class="profit-card">
 
@@ -873,9 +790,7 @@ class="view active">
 💰 Ganancia real de hoy
 </div>
 
-<div
-id="todayProfit"
-class="profit-value">
+<div id="todayProfit" class="profit-value">
 $0
 </div>
 
@@ -916,7 +831,11 @@ onclick="openModal('tripModal')">
 
 
 <div class="section-title">
-<h2>⚡ Acciones rápidas</h2>
+
+<h2>
+⚡ Acciones rápidas
+</h2>
+
 </div>
 
 
@@ -987,15 +906,13 @@ Mantenimiento
 <div class="section-title">
 
 <h2>
-🚕 Últimas vueltas
+🧾 Últimas vueltas
 </h2>
 
 </div>
 
 
-<div
-id="recentTrips"
-class="card">
+<div id="recentTrips" class="card">
 
 Aún no hay vueltas registradas.
 
@@ -1008,9 +925,7 @@ Aún no hay vueltas registradas.
 VUELTAS
 ========================= -->
 
-<section
-id="vueltas"
-class="view">
+<section id="vueltas" class="view">
 
 <div class="section-title">
 
@@ -1046,9 +961,7 @@ No hay vueltas registradas.
 FINANZAS
 ========================= -->
 
-<section
-id="finanzas"
-class="view">
+<section id="finanzas" class="view">
 
 <div class="section-title">
 
@@ -1062,11 +975,10 @@ class="view">
 <div class="card finance-main">
 
 <small>
-💰 Ganancia real de hoy
+Ganancia real de hoy
 </small>
 
-<h2
-id="financeProfit">
+<h2 id="financeProfit">
 $0
 </h2>
 
@@ -1079,9 +991,7 @@ $0
 💰 Ingresos
 </span>
 
-<strong
-id="financeIncome"
-class="green">
+<strong id="financeIncome" class="green">
 $0
 </strong>
 
@@ -1091,12 +1001,10 @@ $0
 <div class="finance-item">
 
 <span>
-💸 Gastos totales
+💸 Gastos
 </span>
 
-<strong
-id="financeExpense"
-class="red">
+<strong id="financeExpense" class="red">
 $0
 </strong>
 
@@ -1109,8 +1017,7 @@ $0
 🛣️ Casetas
 </span>
 
-<strong
-id="financeTolls">
+<strong id="financeTolls">
 $0
 </strong>
 
@@ -1123,8 +1030,7 @@ $0
 ⛽ Gasolina
 </span>
 
-<strong
-id="financeFuel">
+<strong id="financeFuel">
 $0
 </strong>
 
@@ -1138,7 +1044,7 @@ $0
 <div class="section-title">
 
 <h2>
-📅 Gastos recurrentes
+📅 Pagos recurrentes
 </h2>
 
 </div>
@@ -1147,26 +1053,17 @@ $0
 <div class="payment-notice">
 
 <strong>
-🤖 Descuento automático de gastos
+🔄 Los pagos recurrentes se calculan automáticamente.
 </strong>
 
 <p>
-Taxi Pro calcula automáticamente los gastos recurrentes que corresponden a la fecha actual y los incluye en la ganancia real.
+Taxi Pro los toma en cuenta cuando corresponde la fecha de pago.
 </p>
 
 </div>
 
 
-<div
-id="payments"
-class="card">
-
-</div>
-
-
-<div
-id="automaticExpenses"
-class="auto-expense-summary">
+<div id="payments" class="card">
 
 </div>
 
@@ -1177,9 +1074,7 @@ class="auto-expense-summary">
 MI TAXI
 ========================= -->
 
-<section
-id="taxi"
-class="view">
+<section id="taxi" class="view">
 
 <div class="section-title">
 
@@ -1203,7 +1098,7 @@ onerror="this.style.display='none';">
 <div class="car-info">
 
 <h2>
-🚗 Chevrolet Aveo Sedán
+🚕 Chevrolet Aveo Sedán
 </h2>
 
 <p>
@@ -1216,7 +1111,7 @@ Modelo 2019 · Taxi Pro
 <div class="summary">
 
 <span>
-📏 Kilometraje
+📍 Kilometraje
 </span>
 
 <strong id="vehicleKm">
@@ -1264,8 +1159,7 @@ Modelo 2019 · Taxi Pro
 🔧 Mantenimiento
 </h2>
 
-<button
-onclick="openModal('serviceModal')">
+<button onclick="openModal('serviceModal')">
 
 ＋ Agregar
 
@@ -1274,9 +1168,7 @@ onclick="openModal('serviceModal')">
 </div>
 
 
-<div
-id="services"
-class="card">
+<div id="services" class="card">
 
 No hay servicios registrados.
 
@@ -1289,14 +1181,12 @@ No hay servicios registrados.
 JORNADA
 ========================= -->
 
-<section
-id="jornada"
-class="view">
+<section id="jornada" class="view">
 
 <div class="section-title">
 
 <h2>
-🕐 Jornada
+🕐 Jornada de trabajo
 </h2>
 
 </div>
@@ -1309,30 +1199,47 @@ class="view">
 </div>
 
 
-<div
-id="journeyStatus"
-class="journey-status">
-
+<div id="journeyStatus" class="journey-status">
 ⚪ Fuera de jornada
+</div>
+
+
+<div class="journey-time">
+
+<div class="journey-time-row">
+
+<span>
+🟢 Hora de inicio
+</span>
+
+<strong id="journeyStart">
+--
+</strong>
 
 </div>
 
 
-<div
-id="journeyTime"
-class="journey-time">
+<div class="journey-time-row">
 
-No hay jornada activa.
+<span>
+🔴 Hora de finalización
+</span>
+
+<strong id="journeyEnd">
+--
+</strong>
+
+</div>
 
 </div>
 
 
 <button
 id="journeyButton"
-class="btn btn-start"
+class="btn-journey btn-start"
 onclick="toggleJourney()">
 
-▶ Iniciar jornada
+▶️ INICIAR JORNADA
 
 </button>
 
@@ -1348,11 +1255,9 @@ onclick="toggleJourney()">
 </div>
 
 
-<div
-id="journeyHistory"
-class="card journey-history">
+<div id="journeyHistory" class="card">
 
-No hay jornadas registradas.
+Aún no hay jornadas registradas.
 
 </div>
 
@@ -1364,6 +1269,7 @@ NAVEGACIÓN
 ========================= -->
 
 <nav class="bottom-nav">
+
 
 <button
 class="nav active"
@@ -1443,9 +1349,7 @@ Jornada
 MODAL VUELTA
 ========================= -->
 
-<div
-id="tripModal"
-class="modal">
+<div id="tripModal" class="modal">
 
 <div class="modal-box">
 
@@ -1585,9 +1489,7 @@ onclick="saveTrip()">
 MODAL GASTO
 ========================= -->
 
-<div
-id="expenseModal"
-class="modal">
+<div id="expenseModal" class="modal">
 
 <div class="modal-box">
 
@@ -1652,9 +1554,7 @@ onclick="saveExpense()">
 MODAL GASOLINA
 ========================= -->
 
-<div
-id="fuelModal"
-class="modal">
+<div id="fuelModal" class="modal">
 
 <div class="modal-box">
 
@@ -1693,7 +1593,7 @@ type="number">
 <div class="form-group">
 
 <label>
-📏 Kilometraje actual (opcional)
+📍 Kilometraje actual (opcional)
 </label>
 
 <input
@@ -1733,9 +1633,7 @@ onclick="saveFuel()">
 MODAL SERVICIO
 ========================= -->
 
-<div
-id="serviceModal"
-class="modal">
+<div id="serviceModal" class="modal">
 
 <div class="modal-box">
 
@@ -1773,7 +1671,7 @@ type="date">
 <div class="form-group">
 
 <label>
-📏 Kilometraje
+📍 Kilometraje
 </label>
 
 <input
@@ -1833,54 +1731,50 @@ const KEY = "taxiPro11";
 let data =
 JSON.parse(
 localStorage.getItem(KEY)
-) || {};
+) || {
+
+name:"Fredy",
+
+journey:false,
+
+journeyStart:"",
+
+journeyEnd:"",
+
+journeyHistory:[],
+
+trips:[],
+
+expenses:[],
+
+fuels:[],
+
+services:[]
+
+};
 
 
 /* =========================
-COMPATIBILIDAD CON DATOS
-ANTERIORES
+COMPATIBILIDAD CON DATOS ANTERIORES
 ========================= */
 
-data.name =
-data.name || "Fredy";
+if(!data.journeyHistory){
 
-data.journey =
-data.journey || false;
+data.journeyHistory=[];
 
-data.trips =
-Array.isArray(data.trips)
-?
-data.trips
-:
-[];
+}
 
-data.expenses =
-Array.isArray(data.expenses)
-?
-data.expenses
-:
-[];
+if(!data.journeyStart){
 
-data.fuels =
-Array.isArray(data.fuels)
-?
-data.fuels
-:
-[];
+data.journeyStart="";
 
-data.services =
-Array.isArray(data.services)
-?
-data.services
-:
-[];
+}
 
-data.journeys =
-Array.isArray(data.journeys)
-?
-data.journeys
-:
-[];
+if(!data.journeyEnd){
+
+data.journeyEnd="";
+
+}
 
 
 /* =========================
@@ -1918,27 +1812,21 @@ Number(value)||0
 
 
 /* =========================
-FECHA LOCAL
+FECHA
 ========================= */
 
 function today(){
 
-const now =
-new Date();
+const d=new Date();
 
-const year =
-now.getFullYear();
+const year=d.getFullYear();
 
-const month =
-String(
-now.getMonth()+1
-)
+const month=
+String(d.getMonth()+1)
 .padStart(2,"0");
 
-const day =
-String(
-now.getDate()
-)
+const day=
+String(d.getDate())
 .padStart(2,"0");
 
 return `${year}-${month}-${day}`;
@@ -1947,24 +1835,36 @@ return `${year}-${month}-${day}`;
 
 
 /* =========================
-FECHA BONITA
+HORA
 ========================= */
 
-function prettyDate(date){
+function currentTime(){
 
-if(!date){
-return "--";
-}
-
-return new Date(
-date+"T12:00:00"
-)
-.toLocaleDateString(
+return new Date()
+.toLocaleTimeString(
 "es-MX",
 {
-day:"2-digit",
-month:"2-digit",
-year:"numeric"
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
+
+}
+
+
+/* =========================
+FECHA Y HORA
+========================= */
+
+function dateTime(){
+
+return new Date()
+.toLocaleString(
+"es-MX",
+{
+dateStyle:"short",
+timeStyle:"short"
 }
 );
 
@@ -2019,33 +1919,25 @@ icon =
 
 
 document
-.getElementById(
-"greeting"
-)
+.getElementById("greeting")
 .textContent =
 greeting;
 
 
 document
-.getElementById(
-"weatherIcon"
-)
+.getElementById("weatherIcon")
 .textContent =
 icon;
 
 
 document
-.getElementById(
-"userName"
-)
+.getElementById("userName")
 .textContent =
 data.name;
 
 
 document
-.getElementById(
-"time"
-)
+.getElementById("time")
 .textContent =
 now.toLocaleTimeString(
 "es-MX",
@@ -2059,208 +1951,7 @@ minute:"2-digit"
 
 
 /* =========================
-PAGOS RECURRENTES
-========================= */
-
-const payments = [
-
-{
-name:"📍 Punto El Potrero",
-amount:120,
-rule:"Cada 5 días",
-start:"2026-07-23"
-},
-
-{
-name:"🧾 Pago Checadora",
-amount:300,
-rule:"Cada viernes",
-start:"2026-07-24"
-},
-
-{
-name:"🅿️ Estacionamiento Villa Guerrero",
-amount:220,
-rule:"Día 29 de cada mes",
-start:"2026-07-29"
-},
-
-{
-name:"🚌 Pago Movilidad",
-amount:200,
-rule:"Día 20 de cada mes",
-start:"2026-07-20"
-},
-
-{
-name:"📍 Pago Metepec",
-amount:80,
-rule:"Día 4 de cada mes",
-start:"2026-08-04"
-},
-
-{
-name:"🅿️ Estacionamiento Toluca",
-amount:140,
-rule:"Día 6 de cada mes",
-start:"2026-08-06"
-}
-
-];
-
-
-/* =========================
-COMPROBAR SI PAGO
-CORRESPONDE HOY
-========================= */
-
-function isPaymentDueToday(payment){
-
-const current =
-new Date(
-today()+"T12:00:00"
-);
-
-const start =
-new Date(
-payment.start+"T12:00:00"
-);
-
-
-/* No aplicar antes de su
-fecha inicial */
-
-if(
-current<start
-){
-
-return false;
-
-}
-
-
-/* Punto El Potrero
-cada 5 días */
-
-if(
-payment.name.includes(
-"Punto El Potrero"
-)
-){
-
-const diff =
-Math.floor(
-(
-current-start
-)/
-(
-1000*60*60*24
-)
-);
-
-return diff%5===0;
-
-}
-
-
-/* Checadora
-cada viernes */
-
-if(
-payment.name.includes(
-"Checadora"
-)
-){
-
-return current.getDay()===5;
-
-}
-
-
-/* Pagos mensuales */
-
-const day =
-current.getDate();
-
-
-if(
-payment.name.includes(
-"Villa Guerrero"
-)
-){
-
-return day===29;
-
-}
-
-
-if(
-payment.name.includes(
-"Movilidad"
-)
-){
-
-return day===20;
-
-}
-
-
-if(
-payment.name.includes(
-"Metepec"
-)
-){
-
-return day===4;
-
-}
-
-
-if(
-payment.name.includes(
-"Toluca"
-)
-){
-
-return day===6;
-
-}
-
-
-return false;
-
-}
-
-
-/* =========================
-GASTOS RECURRENTES DE HOY
-========================= */
-
-function getAutomaticExpensesToday(){
-
-return payments.filter(
-p=>
-isPaymentDueToday(p)
-);
-
-}
-
-
-function getAutomaticExpenseTotal(){
-
-return getAutomaticExpensesToday()
-.reduce(
-(sum,p)=>
-sum+
-Number(p.amount),
-0
-);
-
-}
-
-
-/* =========================
-ESTADÍSTICAS DEL DÍA
+ESTADÍSTICAS
 ========================= */
 
 function getToday(){
@@ -2336,20 +2027,12 @@ Number(b.amount||0),
 );
 
 
-/* Gastos recurrentes
-automáticos */
-
-const automatic =
-getAutomaticExpenseTotal();
-
-
 const totalExpenses =
 tolls+
 tripFuel+
 tripOther+
 fuelExtra+
-other+
-automatic;
+other;
 
 
 const passengers =
@@ -2378,8 +2061,6 @@ other:
 tripOther+
 other,
 
-automatic,
-
 expenses:
 totalExpenses,
 
@@ -2407,81 +2088,61 @@ getToday();
 
 
 document
-.getElementById(
-"todayProfit"
-)
+.getElementById("todayProfit")
 .textContent =
 money(s.profit);
 
 
 document
-.getElementById(
-"todayTrips"
-)
+.getElementById("todayTrips")
 .textContent =
 s.trips.length;
 
 
 document
-.getElementById(
-"todayPassengers"
-)
+.getElementById("todayPassengers")
 .textContent =
 s.passengers;
 
 
 document
-.getElementById(
-"todayIncome"
-)
+.getElementById("todayIncome")
 .textContent =
 money(s.income);
 
 
 document
-.getElementById(
-"todayExpenses"
-)
+.getElementById("todayExpenses")
 .textContent =
 money(s.expenses);
 
 
 document
-.getElementById(
-"financeProfit"
-)
+.getElementById("financeProfit")
 .textContent =
 money(s.profit);
 
 
 document
-.getElementById(
-"financeIncome"
-)
+.getElementById("financeIncome")
 .textContent =
 money(s.income);
 
 
 document
-.getElementById(
-"financeExpense"
-)
+.getElementById("financeExpense")
 .textContent =
 money(s.expenses);
 
 
 document
-.getElementById(
-"financeTolls"
-)
+.getElementById("financeTolls")
 .textContent =
 money(s.tolls);
 
 
 document
-.getElementById(
-"financeFuel"
-)
+.getElementById("financeFuel")
 .textContent =
 money(s.fuel);
 
@@ -2489,8 +2150,6 @@ money(s.fuel);
 renderTrips();
 
 renderPayments();
-
-renderAutomaticExpenses();
 
 renderServices();
 
@@ -2507,27 +2166,22 @@ function calculateTrip(){
 
 const out =
 Number(
-document
-.getElementById(
+document.getElementById(
 "outPassengers"
-)
-.value
+).value
 )||0;
 
 
 const back =
 Number(
-document
-.getElementById(
+document.getElementById(
 "returnPassengers"
-)
-.value
+).value
 )||0;
 
 
 const total =
-out+
-back;
+out+back;
 
 
 const income =
@@ -2535,17 +2189,13 @@ total*80;
 
 
 document
-.getElementById(
-"modalPassengers"
-)
+.getElementById("modalPassengers")
 .textContent =
 total;
 
 
 document
-.getElementById(
-"modalIncome"
-)
+.getElementById("modalIncome")
 .textContent =
 money(income);
 
@@ -2556,41 +2206,33 @@ function saveTrip(){
 
 const out =
 Number(
-document
-.getElementById(
+document.getElementById(
 "outPassengers"
-)
-.value
+).value
 )||0;
 
 
 const back =
 Number(
-document
-.getElementById(
+document.getElementById(
 "returnPassengers"
-)
-.value
+).value
 )||0;
 
 
 const fuel =
 Number(
-document
-.getElementById(
+document.getElementById(
 "tripFuel"
-)
-.value
+).value
 )||0;
 
 
 const other =
 Number(
-document
-.getElementById(
+document.getElementById(
 "tripOther"
-)
-.value
+).value
 )||0;
 
 
@@ -2614,14 +2256,7 @@ date:
 today(),
 
 time:
-new Date()
-.toLocaleTimeString(
-"es-MX",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-),
+currentTime(),
 
 outPassengers:
 out,
@@ -2643,11 +2278,14 @@ other
 
 save();
 
+
 closeModal(
 "tripModal"
 );
 
+
 clearTripForm();
+
 
 render();
 
@@ -2668,6 +2306,7 @@ document
 .getElementById(id)
 .value=""
 );
+
 
 document
 .getElementById(
@@ -2698,15 +2337,13 @@ x=>x.date===today()
 
 
 const recent =
-document
-.getElementById(
+document.getElementById(
 "recentTrips"
 );
 
 
 const all =
-document
-.getElementById(
+document.getElementById(
 "allTrips"
 );
 
@@ -2732,18 +2369,26 @@ return list
 <div>
 
 <div class="trip-date">
-${prettyDate(t.date)} · ${t.time}
+
+📅 ${t.date} · 🕐 ${t.time}
+
 </div>
 
 <div class="trip-title">
+
 🚕 Vuelta ${list.length-i}
+
 </div>
 
 <div class="trip-info">
 
 👥 Ida: ${t.outPassengers}
+
 · Regreso: ${t.returnPassengers}
-· Total: ${Number(t.outPassengers)+Number(t.returnPassengers)} pasajeros
+
+· Total: ${t.outPassengers+t.returnPassengers}
+
+pasajeros
 
 <br>
 
@@ -2799,11 +2444,9 @@ document
 
 const amount =
 Number(
-document
-.getElementById(
+document.getElementById(
 "expenseAmount"
-)
-.value
+).value
 );
 
 
@@ -2835,9 +2478,11 @@ amount
 
 save();
 
+
 closeModal(
 "expenseModal"
 );
+
 
 render();
 
@@ -2852,31 +2497,25 @@ function saveFuel(){
 
 const amount =
 Number(
-document
-.getElementById(
+document.getElementById(
 "fuelAmount"
-)
-.value
+).value
 );
 
 
 const liters =
 Number(
-document
-.getElementById(
+document.getElementById(
 "fuelLiters"
-)
-.value
+).value
 )||0;
 
 
 const km =
 Number(
-document
-.getElementById(
+document.getElementById(
 "fuelKm"
-)
-.value
+).value
 )||0;
 
 
@@ -2907,23 +2546,13 @@ km
 });
 
 
-if(
-km>0
-){
-
-localStorage.setItem(
-"taxiProLastKm",
-km
-);
-
-}
-
-
 save();
+
 
 closeModal(
 "fuelModal"
 );
+
 
 render();
 
@@ -3000,23 +2629,13 @@ cost
 });
 
 
-if(
-km>0
-){
-
-localStorage.setItem(
-"taxiProLastKm",
-km
-);
-
-}
-
-
 save();
+
 
 closeModal(
 "serviceModal"
 );
+
 
 render();
 
@@ -3030,56 +2649,66 @@ SERVICIOS
 function renderServices(){
 
 const box =
-document
-.getElementById(
+document.getElementById(
 "services"
 );
 
 
 const count =
-document
-.getElementById(
-"serviceCount"
-);
-
-
-const last =
-document
-.getElementById(
-"lastService"
-);
-
-
-const vehicleKm =
-document
-.getElementById(
-"vehicleKm"
-);
-
-
-count.textContent =
 data.services.length;
 
 
+document
+.getElementById(
+"serviceCount"
+)
+.textContent =
+count;
+
+
 if(
-data.services.length===0
+count===0
 ){
 
 box.textContent =
 "No hay servicios registrados.";
 
-last.textContent =
+document
+.getElementById(
+"lastService"
+)
+.textContent =
 "--";
 
-}else{
+return;
 
-const latest =
+}
+
+
+const last =
 data.services[0];
 
-last.textContent =
-prettyDate(
-latest.date
-);
+
+document
+.getElementById(
+"lastService"
+)
+.textContent =
+last.date;
+
+
+if(
+last.km
+){
+
+document
+.getElementById(
+"vehicleKm"
+)
+.textContent =
+last.km+" km";
+
+}
 
 
 box.innerHTML =
@@ -3097,9 +2726,9 @@ s=>`
 </strong>
 
 <small>
-📅 ${prettyDate(s.date)}
+📅 ${s.date}
 ·
-📏 ${s.km||0} km
+📍 ${s.km||0} km
 </small>
 
 </div>
@@ -3117,62 +2746,67 @@ ${money(s.cost)}
 }
 
 
-const storedKm =
-localStorage.getItem(
-"taxiProLastKm"
-);
+/* =========================
+PAGOS RECURRENTES
+========================= */
 
+const payments=[
 
-vehicleKm.textContent =
-storedKm
-?
-Number(storedKm).toLocaleString(
-"es-MX"
-)+" km"
-:
-"0 km";
+{
+name:"📍 Punto El Potrero",
+amount:120,
+rule:"Cada 5 días",
+next:"2026-07-23"
+},
 
+{
+name:"🧾 Pago Checadora",
+amount:300,
+rule:"Cada viernes",
+next:"2026-07-24"
+},
+
+{
+name:"🅿️ Estacionamiento Villa Guerrero",
+amount:220,
+rule:"Día 29 de cada mes",
+next:"2026-07-29"
+},
+
+{
+name:"🚌 Pago Movilidad",
+amount:200,
+rule:"Día 20 de cada mes",
+next:"2026-08-20"
+},
+
+{
+name:"📍 Pago Metepec",
+amount:80,
+rule:"Día 4 de cada mes",
+next:"2026-08-04"
+},
+
+{
+name:"🅿️ Estacionamiento Toluca",
+amount:140,
+rule:"Día 6 de cada mes",
+next:"2026-08-06"
 }
 
+];
 
-/* =========================
-LISTA DE PAGOS
-========================= */
 
 function renderPayments(){
 
-const box =
 document
 .getElementById(
 "payments"
-);
-
-
-const currentDate =
-today();
-
-
-box.innerHTML =
+)
+.innerHTML =
 payments
 .map(
-p=>{
-
-const due =
-isPaymentDueToday(p);
-
-let status =
-"Próximo";
-
-if(
-due
-){
-
-status =
-"🔴 Se descuenta hoy";
-
-}
-
-return `
+p=>`
 
 <div class="payment">
 
@@ -3183,12 +2817,8 @@ ${p.name}
 </div>
 
 <div class="payment-date">
-${p.rule}
+📅 ${p.rule}
 </div>
-
-<span class="payment-status ${due?"today":"future"}">
-${status}
-</span>
 
 </div>
 
@@ -3198,102 +2828,9 @@ ${money(p.amount)}
 
 </div>
 
-`;
-
-}
-)
-.join("");
-
-}
-
-
-/* =========================
-MOSTRAR GASTOS AUTOMÁTICOS
-========================= */
-
-function renderAutomaticExpenses(){
-
-const box =
-document
-.getElementById(
-"automaticExpenses"
-);
-
-
-const list =
-getAutomaticExpensesToday();
-
-
-if(
-list.length===0
-){
-
-box.innerHTML = `
-
-<h3>
-🤖 Gastos automáticos de hoy
-</h3>
-
-<div class="auto-expense-row">
-
-<span>
-No hay pagos recurrentes programados para hoy.
-</span>
-
-<span>
-$0
-</span>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-box.innerHTML = `
-
-<h3>
-🤖 Gastos automáticos descontados hoy
-</h3>
-
-${list
-.map(
-p=>`
-
-<div class="auto-expense-row">
-
-<span>
-${p.name}
-</span>
-
-<strong>
--${money(p.amount)}
-</strong>
-
-</div>
-
 `
 )
-.join("")}
-
-<div class="auto-expense-total">
-
-<span>
-Total automático
-</span>
-
-<strong class="red">
--${money(
-getAutomaticExpenseTotal()
-)}
-</strong>
-
-</div>
-
-`;
+.join("");
 
 }
 
@@ -3305,103 +2842,96 @@ JORNADA
 function toggleJourney(){
 
 if(
+data.journey
+){
+
+finishJourney();
+
+}else{
+
+startJourney();
+
+}
+
+}
+
+
+/* =========================
+INICIAR JORNADA
+========================= */
+
+function startJourney(){
+
+if(
+data.journey
+){
+
+return;
+
+}
+
+
+data.journey=true;
+
+data.journeyStart =
+dateTime();
+
+data.journeyEnd="";
+
+
+save();
+
+render();
+
+}
+
+
+/* =========================
+FINALIZAR JORNADA
+========================= */
+
+function finishJourney(){
+
+if(
 !data.journey
 ){
 
-/* INICIAR */
+return;
 
-const now =
-new Date();
+}
 
-data.journey =
-true;
 
-data.currentJourney = {
+const end =
+dateTime();
+
+
+const record={
 
 date:
 today(),
 
 start:
-now.toLocaleTimeString(
-"es-MX",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}
-),
+data.journeyStart,
 
-startTimestamp:
-now.getTime(),
-
-end:null
+end:
+end
 
 };
 
-save();
 
-render();
-
-alert(
-"🚕 Jornada iniciada correctamente."
+data.journeyHistory.unshift(
+record
 );
 
-}else{
 
-/* FINALIZAR */
+data.journey=false;
 
-const now =
-new Date();
+data.journeyEnd=end;
 
-if(
-data.currentJourney
-){
-
-data.currentJourney.end =
-now.toLocaleTimeString(
-"es-MX",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit"
-}
-);
-
-data.currentJourney.endTimestamp =
-now.getTime();
-
-
-data.journeys.unshift({
-
-date:
-data.currentJourney.date,
-
-start:
-data.currentJourney.start,
-
-end:
-data.currentJourney.end
-
-});
-
-}
-
-
-data.journey =
-false;
-
-data.currentJourney =
-null;
 
 save();
 
 render();
-
-alert(
-"⏹️ Jornada finalizada correctamente."
-);
-
-}
 
 }
 
@@ -3413,121 +2943,148 @@ RENDER JORNADA
 function renderJourney(){
 
 const status =
-document
-.getElementById(
+document.getElementById(
 "journeyStatus"
 );
 
 
-const time =
-document
-.getElementById(
-"journeyTime"
-);
-
-
 const button =
-document
-.getElementById(
+document.getElementById(
 "journeyButton"
 );
 
 
+const start =
+document.getElementById(
+"journeyStart"
+);
+
+
+const end =
+document.getElementById(
+"journeyEnd"
+);
+
+
 if(
-data.journey &&
-data.currentJourney
+data.journey
 ){
 
 status.textContent =
 "🟢 Jornada activa";
 
-time.innerHTML = `
-
-📅 Fecha:
-<strong>
-${prettyDate(
-data.currentJourney.date
-)}
-</strong>
-
-<br>
-
-▶ Inicio:
-<strong>
-${data.currentJourney.start}
-</strong>
-
-`;
 
 button.textContent =
-"⏹ Finalizar jornada";
+"⏹️ FINALIZAR JORNADA";
 
-button.className =
-"btn btn-finish";
+
+button.classList.remove(
+"btn-start"
+);
+
+
+button.classList.add(
+"btn-finish"
+);
+
+
+start.textContent =
+data.journeyStart ||
+"--";
+
+
+end.textContent =
+"--";
 
 }else{
 
 status.textContent =
 "⚪ Fuera de jornada";
 
-time.textContent =
-"No hay jornada activa.";
 
 button.textContent =
-"▶ Iniciar jornada";
+"▶️ INICIAR JORNADA";
 
-button.className =
-"btn btn-start";
+
+button.classList.remove(
+"btn-finish"
+);
+
+
+button.classList.add(
+"btn-start"
+);
+
+
+start.textContent =
+data.journeyStart ||
+"--";
+
+
+end.textContent =
+data.journeyEnd ||
+"--";
 
 }
 
 
-const history =
-document
-.getElementById(
+renderJourneyHistory();
+
+}
+
+
+/* =========================
+HISTORIAL JORNADAS
+========================= */
+
+function renderJourneyHistory(){
+
+const box =
+document.getElementById(
 "journeyHistory"
 );
 
 
 if(
-data.journeys.length===0
+data.journeyHistory.length===0
 ){
 
-history.innerHTML =
-"No hay jornadas registradas.";
+box.textContent =
+"Aún no hay jornadas registradas.";
 
 return;
 
 }
 
 
-history.innerHTML = `
-
-<div class="journey-history-title">
-📋 Jornadas anteriores
-</div>
-
-${
-data.journeys
+box.innerHTML =
+data.journeyHistory
 .slice(0,30)
 .map(
-j=>`
+(j,i)=>`
 
-<div class="journey-record">
+<div class="history-item">
 
-<div class="journey-record-date">
+<div class="history-title">
 
-📅 ${prettyDate(j.date)}
+🚕 Jornada ${data.journeyHistory.length-i}
 
 </div>
 
-<div class="journey-record-time">
+<div class="history-info">
 
-▶ Inicio: ${j.start}
+📅 Fecha:
+${j.date}
 
 <br>
 
-⏹ Finalización: ${j.end}
+🟢 Inicio:
+${j.start}
+
+<br>
+
+🔴 Finalización:
+${j.end}
 
 </div>
 
@@ -3535,10 +3092,7 @@ j=>`
 
 `
 )
-.join("")
-}
-
-`;
+.join("");
 
 }
 
@@ -3650,14 +3204,10 @@ INICIO
 
 render();
 
+
 setInterval(
 updateHeader,
 30000
-);
-
-setInterval(
-render,
-60000
 );
 
 </script>
