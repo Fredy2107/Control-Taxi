@@ -1,81 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Taxi Pro 8.2 FIX</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Taxi Pro 8.3 FIX</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,sans-serif}
-body{background:#f5f7fb}.app{max-width:440px;margin:auto;padding-bottom:100px}
-.top{height:60px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+body{background:#f5f7fb}.app{max-width:440px;margin:auto;padding-bottom:120px}
+.top{height:60px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 16px;position:sticky;top:0;z-index:10}
 .view{display:none;padding:16px}.view.on{display:block}
 .hero{background:#101828;color:#fff;border-radius:24px;padding:20px}
 .card{background:#fff;border:1px solid #eee;border-radius:20px;padding:16px;margin-top:12px}
 .btn{width:100%;border:0;border-radius:14px;padding:14px;font-weight:900;background:#101828;color:#fff;margin-top:10px}
 .btn2{background:#f2f4f7;color:#000}
-.nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:440px;background:#fff;border:1px solid #eee;border-radius:20px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px}
+.nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:calc(100% - 20px);max-width:440px;background:#fff;border:1px solid #eee;border-radius:20px;display:grid;grid-template-columns:repeat(4,1fr);padding:6px;z-index:20}
 .nav button{border:0;background:transparent;padding:10px;border-radius:14px}.nav button.on{background:#fff7d6}
-.fab{position:fixed;right:16px;bottom:80px;width:56px;height:56px;border-radius:18px;background:#101828;color:#fff;font-size:28px;border:0}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:end;padding:10px}.modal.on{display:flex}
-.sheet{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:440px;margin:auto}
+.fab{position:fixed;right:16px;bottom:80px;width:56px;height:56px;border-radius:18px;background:#101828;color:#fff;font-size:28px;border:0;z-index:30}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:100}
+.modal.on{display:flex}
+.sheet{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:400px}
 .sheet input{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;margin-top:8px}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="top"><b>🚕 Taxi Pro 8.2 FIX</b><span style="font-size:10px;background:#fff7d6;padding:6px 10px;border-radius:10px">FUNCIONA</span></div>
+<div class="top"><b>🚕 Taxi Pro 8.3 REPARADO</b><button onclick="resetAll()" style="font-size:10px;background:#fee2e2;color:#b91c1c;border:0;padding:6px 10px;border-radius:10px;font-weight:800">BORRAR CACHE</button></div>
 
 <div id="v-inicio" class="view on">
-<h2 id="saludo" style="margin-top:10px">Hola Fredy</h2>
-<p id="fecha" style="font-size:12px;color:#777"></p>
-<div class="hero" style="margin-top:14px"><small style="color:#aaa;font-size:10px">GANANCIA REAL HOY</small><h1 id="profit" style="font-size:40px;margin:6px 0">$0</h1><div style="display:flex;gap:8px;font-size:12px"><span>Ingresos: <b id="dIng">$0</b></span><span>Gastos: <b id="dGas">$0</b></span></div></div>
+<h2 id="saludo">Hola Fredy</h2><p id="fecha" style="font-size:12px;color:#777"></p>
+<div class="hero" style="margin-top:14px"><small style="color:#aaa;font-size:10px">GANANCIA REAL HOY - YA DESCUENTA $500 AVEO</small><h1 id="profit" style="font-size:40px;margin:6px 0">$0</h1><div style="display:flex;gap:8px;font-size:12px">Ingresos: <b id="dIng">$0</b> | Gastos: <b id="dGas">$0</b></div></div>
 <div class="card"><b>Acciones rápidas</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><button class="btn btn2" onclick="openM('trip')">🚕 Viaje</button><button class="btn btn2" onclick="openM('gas')">⛽ Gas</button></div></div>
-<div class="card"><div style="display:flex;justify-content:space-between"><b>Próximos pagos</b><span style="color:blue;font-size:12px" onclick="go('agenda')">Ver</span></div><div id="next" style="margin-top:8px;font-size:13px"></div></div>
+<div class="card"><b>Próximos pagos (sin duplicados)</b><div id="next" style="margin-top:8px;font-size:13px"></div></div>
 <div class="card"><b>Hoy incluye (auto)</b><div id="todayList" style="margin-top:8px;font-size:13px"></div></div>
 </div>
 
-<div id="v-jornada" class="view"><h2>🚕 Jornada</h2><div class="card"><p id="jStatus">Cerrada</p><h3 id="jTime" style="margin-top:6px">--</h3><button class="btn" onclick="toggleJ()">Iniciar / Finalizar</button></div><div class="card"><b>Viajes hoy: <span id="jViajes">0</span></b></div></div>
-<div id="v-finanzas" class="view"><h2>💰 Finanzas</h2><div class="card"><p id="fProf" style="font-size:28px;font-weight:900">$0</p><p style="font-size:12px;color:#777">Ingresos <span id="fIng">$0</span> - Gastos <span id="fGas">$0</span></p></div></div>
-<div id="v-agenda" class="view"><h2>📅 Agenda 90 días - Sin duplicados</h2><div id="cal" style="margin-top:12px"></div></div>
+<div id="v-jornada" class="view"><h2>🚕 Jornada</h2><div class="card"><p id="jStatus">Cerrada</p><button class="btn" onclick="toggleJ()">Iniciar / Finalizar Jornada</button></div></div>
+<div id="v-finanzas" class="view"><h2>💰 Finanzas</h2><div class="card"><p id="fProf" style="font-size:28px;font-weight:900">$0</p></div></div>
+<div id="v-agenda" class="view"><h2>📅 Agenda</h2><div id="cal"></div></div>
 
 <button class="fab" onclick="openM('trip')">＋</button>
 <div class="nav"><button id="n-inicio" class="on" onclick="go('inicio')">🏠 Inicio</button><button id="n-jornada" onclick="go('jornada')">🚕 Jornada</button><button id="n-finanzas" onclick="go('finanzas')">💰 Finanzas</button><button id="n-agenda" onclick="go('agenda')">📅 Agenda</button></div>
 </div>
 
-<div id="m-trip" class="modal"><div class="sheet"><h3>Nuevo viaje</h3><input id="iPax" type="number" value="1" placeholder="Pasajeros"><input id="iTar" type="number" value="80" placeholder="Tarifa"><button class="btn" onclick="saveTrip()">Guardar</button><button class="btn btn2" onclick="closeM()">Cerrar</button></div></div>
-<div id="m-gas" class="modal"><div class="sheet"><h3>Gasolina</h3><input id="iGas" type="number" placeholder="$"><button class="btn" onclick="saveGas()">Guardar</button><button class="btn btn2" onclick="closeM()">Cerrar</button></div></div>
+<div id="m-trip" class="modal"><div class="sheet"><h3>🚕 Nuevo viaje</h3><input id="iPax" type="number" value="1"><input id="iTar" type="number" value="80"><button class="btn" onclick="saveTrip()">Guardar Viaje</button><button class="btn btn2" onclick="closeM()">Cerrar</button></div></div>
+<div id="m-gas" class="modal"><div class="sheet"><h3>⛽ Gasolina</h3><input id="iGas" type="number" placeholder="$"><button class="btn" onclick="saveGas()">Guardar Gas</button><button class="btn btn2" onclick="closeM()">Cerrar</button></div></div>
 
 <script>
-console.log("Taxi 8.2 cargado");
-var KEY="taxi82";
-var DATA=JSON.parse(localStorage.getItem(KEY))||{trips:[],gas:[],jornada:false,start:null};
+function resetAll(){localStorage.clear();alert("Cache borrado, se va a recargar");location.reload();}
+var DATA;try{DATA=JSON.parse(localStorage.getItem("taxi83"))||{trips:[],gas:[],jornada:false,start:null};}catch(e){DATA={trips:[],gas:[],jornada:false,start:null};}
 var PAGOS=[
-{id:"aveo",n:"Aveo",m:500,t:"daily"},
-{id:"potrero",n:"El Potrero",m:120,t:"interval",start:"2026-07-23",every:5},
-{id:"checadora",n:"Checadora",m:300,t:"weekly",day:5},
-{id:"villa",n:"Villa Guerrero",m:220,t:"monthly",day:29},
-{id:"movilidad",n:"Movilidad",m:200,t:"monthly",day:20},
-{id:"metepec",n:"Metepec",m:80,t:"monthly",day:4},
-{id:"toluca",n:"Toluca",m:140,t:"monthly",day:6},
+{n:"Cuentas Aveo - $500 diario",m:500,t:"daily"},
+{n:"El Potrero - $120 cada 5 días",m:120,t:"interval",start:"2026-07-23",every:5},
+{n:"Checadora Viernes - $300",m:300,t:"weekly",day:5},
+{n:"Villa Guerrero día 29 - $220",m:220,t:"monthly",day:29},
+{n:"Movilidad día 20 - $200",m:200,t:"monthly",day:20},
+{n:"Metepec día 4 - $80",m:80,t:"monthly",day:4},
+{n:"Toluca día 6 - $140",m:140,t:"monthly",day:6},
 ];
-function save(){localStorage.setItem(KEY,JSON.stringify(DATA));}
+function save(){localStorage.setItem("taxi83",JSON.stringify(DATA));}
 function today(){return new Date().toISOString().slice(0,10);}
-function gastosDe(d){var res=[];PAGOS.forEach(p=>{var ok=false;if(p.t=="daily")ok=true;if(p.t=="weekly"&&d.getDay()==p.day)ok=true;if(p.t=="monthly"&&d.getDate()==p.day)ok=true;if(p.t=="interval"){var ini=new Date(p.start+"T00:00:00");var diff=Math.floor((d-ini)/86400000);if(diff>=0&&diff%p.every==0)ok=true;}if(ok)res.push(p);});return res;}
-function getProx(){var r=[],seen={};for(var i=0;i<90;i++){var f=new Date();f.setDate(f.getDate()+i);PAGOS.filter(p=>p.t!="daily").forEach(p=>{var ok=false;if(p.t=="weekly"&&f.getDay()==p.day)ok=true;if(p.t=="monthly"&&f.getDate()==p.day)ok=true;if(p.t=="interval"){var ini=new Date(p.start+"T00:00:00");var diff=Math.floor((f-ini)/86400000);if(diff>=0&&diff%p.every==0)ok=true;}if(ok){var k=p.id+"_"+f.toISOString().slice(0,10);if(!seen[k]){seen[k]=1;r.push({p:p,f:new Date(f)});}}});}return r.sort((a,b)=>a.f-b.f);}
-function render(){try{
-var ing=DATA.trips.filter(t=>t.d==today()).reduce((a,b)=>a+b.total,0);
-var gas=DATA.gas.filter(g=>g.d==today()).reduce((a,b)=>a+b.m,0);
-var fijo=gastosDe(new Date()).reduce((a,b)=>a+b.m,0);
-var totalG=fijo+gas;
-var gan=ing-totalG;
-document.getElementById("profit").innerText="$"+gan;
-document.getElementById("dIng").innerText="$"+ing;
-document.getElementById("dGas").innerText="$"+totalG;
-document.getElementById("fProf").innerText="$"+gan;
-document.getElementById("fIng").innerText="$"+ing;
-document.getElementById("fGas").innerText="$"+totalG;
-document.getElementById("jViajes").innerText=DATA.trips.filter(t=>t.d==today()).length;
-document.getElementById("todayList").innerHTML=gastosDe(new Date()).map(p=>"<div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f2f2f2'><span>"+p.n+"</span><b>$"+p.m+"</b></div>").join("")+(gas?"<div style='display:flex;justify-content:space-between;padding:6px 0'><span>⛽ Gas</span><b>$"+gas+"</b></div>":"");
-document.getElementById("next").innerHTML=getProx().slice(0,4).map(o=>"<div style='display:flex;justify-content:space-between;padding:6px 0'><span>"+o.p.n+" - "+o.f.toLocaleDateString("es-MX",{day:"numeric",month:"short"})+"</span><b>$"+o.p.m+"</b></div>").join("");
-document.getElementById("cal").innerHTML=(function(){var g={};getProx().forEach(o=>{var k=o.f.toISOString().slice(0,10);if(!g[k])g[k]={f:o.f,items:[]};g[k].items.push(o.p);});return Object.values(g).slice(0,20).map(v=>"<div class='card'><b>"+v.f.toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"short"})+"</b><div style='margin-top:6px'>"+v.items.map(it=>"<div style='display:flex;justify-content:space-between'><span>"+it.n+"</span><b>$"+it.m+"</b></div>").join("")+"</div></div>").join("");})();
-document.getElementById("jStatus").innerText=DATA.jornada?"J
+function gastosDe(d){var res=[];for(var i=0;i<PAGOS.length;i++){var p=PAGOS[i];var ok=false;if(p.t=="daily")ok=true;if(p.t=="weekly"&&d.getDay()==p.day)ok=true;if(p.t=="monthly"&&d.getDate()==p.day)ok=true;if(p.t=="interval"){var ini=new Date(p.start+"T00:00:00");var diff=Math.floor((d-ini)/86400000);if(!isNaN(diff)&&diff>=0&&diff%p.every==0)ok=true;}if(ok)res.push(p);}return res;}
+function getProx(){var r=[],seen={};for(var i=0;i<90;i++){var f=new Date();f.setDate(f.getDate()+i);for(var j=0;j<PAGOS.length;j++){var p=PAGOS[j];if(p.t=="daily")continue;var ok=false;if(p.t=="weekly"&&f.getDay()==p.day)ok=true;if(p.t=="monthly"&&f.getDate()==p.day)ok=true;if(p.t=="interval"){var ini=new Date(p.start+"T00:00:00");var diff=Math.floor((f-ini)/86400000);if(!isNaN(diff)&&diff>=0&&diff%p.every==0)ok=true;}if(ok){var k=p.n+"_"+f.toISOString().slice(0,10);if(!seen[k]){seen[k]=1;r.push({p:p,f:new Date(f)});}}}}return r.sort((a,b)=>a.f-b.f);}
+function render(){var ing=DATA.trips.filter(t=>t.d==today()).reduce((a,b)=>a+b.total,0);var gas=DATA.gas.filter(g=>g.d==today()).reduce((a,b)=>a+b.m,0);var fijo=gastosDe(new Date()).reduce((a,b)=>a+b.m,0);var totalG=fijo+gas;var gan=ing-totalG;document.getElementById("profit").innerText="$"+gan;document.getElementById("dIng").innerText="$"+ing;document.getElementById("dGas").innerText="$"+totalG;document.getElementById("fProf").innerText="$"+gan;document.getElementById("todayList").innerHTML=gastosDe(new Date()).map(p=>"<div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee'><span>"+p.n+"</span><b>$"+p.m+"</b></div>").join("")+(gas?"<div style='display:flex;justify-content:space-between;padding:6px 0'><span>⛽ Gasolina hoy</span><b>$"+gas+"</b></div>":"");document.getElementById("next").innerHTML=getProx().slice(0,5).map(o=>"<div style='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee'><span>"+o.p.n+"<br><small style='color:#888'>"+o.f.toLocaleDateString("es-MX",{day:"numeric",month:"short"})+"</small></span><b>$"+o.p.m+"</b></div>").join("");document.getElementById("cal").innerHTML=(function(){var g={};getProx().forEach(o=>{var k=o.f.toISOString().slice(0,10);if(!g[k])g[k]={f:o.f,items:[]};g[k].items.push(o.p);});return Object.values(g).slice(0,15).map(v=>"<div class='card'><b>"+v.f.toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"short"})+"</b><div style='margin-top:6px'>"+v.items.map(it=>"<div style='display:flex;justify-content:space-between;font-size:13px'><span>"+it.n+"</span><b>$"+it.m+"</b></div>").join("")+"</div></div>").join("");})();var h=new Date().getHours();document.getElementById("saludo").innerText=(h<12?"☀️ Buenos días,":h<19?"🌤️ Buenas tardes,":"🌙 Buenas noches,")+" Fredy";document.getElementById("fecha").innerText=new Date().toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"long"})+" "+new Date().toLocaleTimeString("es-MX");}
+function go(id){document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));document.getElementById("v-"+id).classList.add("on");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("on"));document.getElementById("n-"+id).classList.add("on");}
+function openM(id){document.getElementById("m-"+id).classList.add("on");}
+function closeM(){document.querySelectorAll(".modal").forEach(m=>m.classList.remove("on"));}
+function saveTrip(){var pax=parseInt(document.getElementById("iPax").value)||1;var tar=parseInt(document.getElementById("iTar").value)||80;DATA.trips.push({d:today(),total:pax*tar});save();closeM();render();}
+function saveGas(){var m=parseInt(document.getElementById("iGas").value)||0;if(m){DATA.gas.push({d:today(),m:m});save();closeM();render();}}
+function toggleJ(){DATA.jornada=!DATA.jornada;DATA.start=new Date().toISOString();save();render();}
+render();
+</script>
+</body>
+</html>
