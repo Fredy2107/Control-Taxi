@@ -1,69 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Centro de Control - Taxi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Taxi Pro 10.1 - Fredy</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+*{font-family:'Inter',sans-serif; box-sizing:border-box}
+body{background:#0a0c10; color:white; margin:0}
+.card{background:#161a23; border-radius:28px; border:1px solid rgba(255,255,255,.06); box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.yellow{background:#f5c542; color:#000}
+.view{display:none; animation:fade.25s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)}}
+.nav.active{background:#f5c542; color:#000; font-weight:900}
+</style>
 </head>
-<body class="bg-[#0f1115] text-white">
-<div class="max-w-[430px] mx-auto min-h-screen pb-28">
+<body>
+<div class="max-w-[440px] mx-auto min-h-screen p-4 pb-32">
 
-  <div id="pantalla-Inicio" class="p-4">
-    <div class="bg-[#1c2029] rounded-[20px] p-4 flex justify-between items-center">
-      <div><p id="saludo" class="font-bold text-[18px]"></p><p class="text-xs text-zinc-400">AVEO 2019 • Ixtapan de la Sal</p></div>
-      <div class="w-11 h-11 bg-zinc-600 rounded-full"></div>
+<header class="flex justify-between items-center pt-2">
+  <div class="flex gap-3 items-center">
+    <div class="w-12 h-12 rounded-2xl bg-[#f5c542] grid place-items-center text-xl">🚕</div>
+    <div><p class="font-black text-[15px]">Taxi Pro 10.1</p><p class="text-[11px] text-zinc-500">Control inteligente • Fredy</p></div>
+  </div>
+  <div class="w-10 h-10 rounded-full bg-zinc-800 grid place-items-center">👤</div>
+</header>
+
+<p id="saludo" class="text-2xl font-black mt-6">Buenas noches, Fredy 🌙</p>
+<p id="fecha" class="text-xs text-zinc-500 mt-1"></p>
+
+<!-- INICIO -->
+<div id="view-inicio" class="view active">
+  <div class="card p-6 mt-5 bg-gradient-to-br from-[#f5c542] to-[#eab308] text-black border-0">
+    <p class="text-[11px] font-black uppercase opacity-70">Ganancia Real de Hoy (Auto)</p>
+    <h1 id="profit" class="text-5xl font-black mt-1 tracking-tight">$0</h1>
+    <p class="text-xs mt-1 opacity-70">Ya descontado: Cuentas + Gastos de hoy</p>
+    <div class="grid grid-cols-3 gap-2 mt-5">
+      <div class="bg-black/10 rounded-2xl p-3"><p class="text-[10px] opacity-70">Ingresos</p><p id="income" class="font-black text-sm">$0</p></div>
+      <div class="bg-black/10 rounded-2xl p-3"><p class="text-[10px] opacity-70">Gastos hoy</p><p id="expense" class="font-black text-sm">$0</p></div>
+      <div class="bg-black rounded-2xl p-3 text-white"><p class="text-[10px] opacity-60">Viajes</p><p id="tripsCount" class="font-black text-sm">0</p></div>
     </div>
-    <div class="bg-[#1c2029] rounded-[20px] p-5 mt-4">
-      <div class="flex justify-between"><span class="text-zinc-400 text-sm">Tu jornada de hoy</span><span class="bg-green-500/20 text-green-400 text-xs px-3 py-1 rounded-full">● En ruta</span></div>
-      <h1 class="text-[52px] font-black text-[#4ade80] mt-1">$790</h1>
-      <p class="text-sm text-zinc-400 -mt-2">Ganancia real</p>
-      <div class="grid grid-cols-3 gap-2 mt-4">
-        <div class="bg-black/40 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Ingresos</p><p class="font-bold">$1,440</p></div>
-        <div class="bg-black/40 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Gastos</p><p class="font-bold">$650</p></div>
-        <div class="bg-black/40 rounded-xl p-3"><p class="text-[11px] text-zinc-500">Ganancia</p><p class="font-bold text-green-400">$790</p></div>
-      </div>
-    </div>
-    <div class="grid grid-cols-2 gap-3 mt-4">
-      <button class="bg-white text-black font-bold py-4 rounded-2xl">+ Viaje</button>
-      <button class="bg-zinc-800 font-bold py-4 rounded-2xl">+ Gasto ⛽</button>
-    </div>
   </div>
 
-  <div id="pantalla-Jornada" class="p-4 hidden">
-    <h2 class="text-2xl font-bold">🚕 Jornada</h2>
-    <button class="w-full bg-green-500 text-black font-black py-5 rounded-2xl mt-6 text-lg">INICIAR JORNADA</button>
-    <p class="text-xs text-zinc-500 mt-2">Hora inicio + Kilometraje inicial</p>
+  <div class="card p-5 mt-4">
+    <div class="flex justify-between items-center"><p class="font-bold text-sm">⏱️ Próximo pago crítico</p><span class="text-[10px] bg-red-500/20 text-red-400 px-2 py-1 rounded-full">AUTO</span></div>
+    <h2 id="countdown" class="text-5xl font-black text-center text-[#f5c542] mt-3 tracking-widest">00:00:00</h2>
+    <div class="flex justify-center gap-8 text-[9px] text-zinc-500 mt-1"><span>HORAS</span><span>MINUTOS</span><span>SEGUNDOS</span></div>
+    <div id="nextPayCard" class="mt-4 bg-white/[0.05] rounded-2xl p-3 flex justify-between items-center"></div>
   </div>
 
-  <div id="pantalla-Finanzas" class="p-4 hidden">
-    <h2 class="text-2xl font-bold">💰 Finanzas</h2>
-    <div class="flex gap-2 mt-4"><span class="bg-white text-black px-4 py-1 rounded-full text-sm">Hoy</span><span class="bg-zinc-800 px-4 py-1 rounded-full text-sm">Semana</span><span class="bg-zinc-800 px-4 py-1 rounded-full text-sm">Mes</span></div>
-    <p class="mt-6 text-zinc-400 text-sm">Gastos: ⛽ Gasolina, 🛣️ Casetas, 📍 El Potrero, 🧾 Checadora, 🅿️ Estacionamiento</p>
+  <div class="grid grid-cols-4 gap-2 mt-4">
+    <button onclick="openM('trip')" class="card py-4 flex flex-col items-center gap-1"><span class="text-xl">🚕</span><span class="text-[10px] font-bold">Viaje</span></button>
+    <button onclick="openM('fuel')" class="card py-4 flex flex-col items-center gap-1"><span class="text-xl">⛽</span><span class="text-[10px] font-bold">Gas</span></button>
+    <button onclick="openM('expense')" class="card py-4 flex flex-col items-center gap-1"><span class="text-xl">💸</span><span class="text-[10px] font-bold">Gasto</span></button>
+    <button onclick="show('agenda')" class="card py-4 flex flex-col items-center gap-1"><span class="text-xl">📅</span><span class="text-[10px] font-bold">Agenda</span></button>
   </div>
 
-  <div id="pantalla-Taxi" class="p-4 hidden">
-    <h2 class="text-2xl font-bold">🚗 Mi Taxi</h2>
-    <div class="bg-[#1c2029] rounded-2xl p-5 mt-4"><p class="font-bold text-xl">AVEO 2019</p><p class="text-sm text-zinc-400 mt-1">Kilometraje: 125,430 km<br>Gasolina: 68%<br>Próximo servicio: 130,000 km</p></div>
-  </div>
-
-  <div id="pantalla-Mas" class="p-4 hidden">
-    <h2 class="text-2xl font-bold">Más</h2>
-    <ul class="mt-4 space-y-3"><li class="bg-[#1c2029] p-4 rounded-xl">📅 Calendario de pagos</li><li class="bg-[#1c2029] p-4 rounded-xl">🔧 Mantenimiento</li><li class="bg-[#1c2029] p-4 rounded-xl">⛽ Gasolina</li><li class="bg-[#1c2029] p-4 rounded-xl">💾 Respaldo</li></ul>
-  </div>
-
-  <div class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto bg-[#1c2029] flex justify-around py-3 rounded-t-[20px] border-t border-zinc-800">
-    <button onclick="ver('Inicio')" class="flex flex-col items-center text-green-400"><span>🏠</span><span class="text-[10px]">Inicio</span></button>
-    <button onclick="ver('Jornada')" class="flex flex-col items-center text-zinc-500"><span>🚕</span><span class="text-[10px]">Jornada</span></button>
-    <button onclick="ver('Finanzas')" class="flex flex-col items-center text-zinc-500"><span>💰</span><span class="text-[10px]">Finanzas</span></button>
-    <button onclick="ver('Taxi')" class="flex flex-col items-center text-zinc-500"><span>🚗</span><span class="text-[10px]">Taxi</span></button>
-    <button onclick="ver('Mas')" class="flex flex-col items-center text-zinc-500"><span>☰</span><span class="text-[10px]">Más</span></button>
+  <div class="card p-4 mt-4">
+    <p class="font-bold text-sm mb-2">Hoy se descuenta automático:</p>
+    <div id="todayList" class="space-y-2"></div>
   </div>
 </div>
+
+<!-- AGENDA -->
+<div id="view-agenda" class="view">
+  <h2 class="text-xl font-black mt-2">📅 Agenda automatizada (60 días)</h2>
+  <p class="text-xs text-zinc-500 mt-1">Cuentas Aveo no aparece aquí porque es diario automático</p>
+  <div id="calendar" class="mt-4 space-y-3"></div>
+</div>
+
+<!-- FINANZAS -->
+<div id="view-finanzas" class="view">
+  <h2 class="text-xl font-black mt-2">💰 Finanzas</h2>
+  <div class="flex gap-2 mt-4 bg-zinc-900 p-1 rounded-2xl w-fit"><button class="yellow px-4 py-1.5 rounded-xl text-xs font-bold">Hoy</button><button class="px-4 py-1.5 text-xs text-zinc-500">Semana</button><button class="px-4 py-1.5 text-xs text-zinc-500">Mes</button></div>
+  <div class="card p-5 mt-4"><p class="text-xs text-zinc-500">Ganancia real del día</p><h2 id="fProfit" class="text-3xl font-black mt-1">$0</h2><div class="mt-4 h-24 flex items-end gap-2" id="chart"></div></div>
+  <div class="card p-4 mt-4"><p class="font-bold text-sm">Desglose</p><div id="breakdown" class="mt-3 space-y-2 text-sm"></div></div>
+</div>
+
+<!-- TAXI -->
+<div id="view-taxi" class="view">
+  <div class="card p-6 mt-2 bg-gradient-to-br from-zinc-900 to-zinc-800"><p class="text-4xl">🚕</p><h2 class="font-black text-xl mt-3">AVEO 2019</h2><p class="text-xs text-zinc-400 mt-1">Ixtapan de la Sal • Trabajo diario</p><div class="grid grid-cols-2 gap-3 mt-5"><div class="bg-white/5 rounded-2xl p-3"><p class="text-[10px] text-zinc-500">KM ACTUAL</p><p class="font-bold" id="km">125,430 km</p></div><div class="bg-white/5 rounded-2xl p-3"><p class="text-[10px] text-zinc-500">COSTO / KM</p><p class="font-bold" id="costKm">$0.00</p></div></div></div>
+  <button onclick="backup()" class="w-full card p-4 mt-4 font-bold text-sm">💾 Respaldar datos</button>
+  <button onclick="resetDay()" class="w-full bg-red-500/10 text-red-400 p-4 mt-2 rounded-2xl font-bold text-sm">🗑️ Reiniciar día</button>
+</div>
+
+<!-- NAV -->
+<div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[92%] max-w-[400px] bg-[#161a23]/90 backdrop-blur-xl border border-white/10 rounded-[28px] flex justify-around p-2">
+  <button onclick="show('inicio')" id="n-inicio" class="nav active px-5 py-3 rounded-2xl text-[11px]">🏠 Inicio</button>
+  <button onclick="show('agenda')" id="n-agenda" class="nav px-5 py-3 rounded-2xl text-[11px] text-zinc-500">📅 Agenda</button>
+  <button onclick="show('finanzas')" id="n-finanzas" class="nav px-5 py-3 rounded-2xl text-[11px] text-zinc-500">💰 Finanzas</button>
+  <button onclick="show('taxi')" id="n-taxi" class="nav px-5 py-3 rounded-2xl text-[11px] text-zinc-500">🚗 Taxi</button>
+</div>
+
+<!-- MODALES -->
+<div id="modal-trip" class="fixed inset-0 bg-black/70 hidden place-items-center p-4 z-50"><div class="card p-6 w-full max-w-[380px]"><h2 class="font-black text-lg">🚕 Nuevo viaje</h2><label class="text-xs text-zinc-500 mt-4 block">Pasajeros</label><input id="mPas" type="number" value="1" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl mt-1"><label class="text-xs text-zinc-500 mt-3 block">Tarifa c/u</label><input id="mTar" type="number" value="80" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl mt-1"><div class="flex gap-2 mt-5"><button onclick="closeM()" class="flex-1 bg-zinc-800 p-3 rounded-xl">Cancelar</button><button onclick="saveTrip()" class="flex-1 yellow p-3 rounded-xl font-black">Guardar</button></div></div></div>
+<div id="modal-fuel" class="fixed inset-0 bg-black/70 hidden place-items-center p-4 z-50"><div class="card p-6 w-full max-w-[380px]"><h2 class="font-black">⛽ Gasolina</h2><input id="mGas" type="number" placeholder="Importe $" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl mt-4"><div class="flex gap-2 mt-5"><button onclick="closeM()" class="flex-1 bg-zinc-800 p-3 rounded-xl">Cancelar</button><button onclick="saveFuel()" class="flex-1 yellow p-3 rounded-xl font-black">Guardar</button></div></div></div>
+
+</div>
+
 <script>
-const h=new Date().getHours();
-document.getElementById('saludo').innerText=(h<12?'Buenos días ☀️':h<19?'Buenas tardes 🌤️':'Buenas noches 🌙')+', Carlos';
-function ver(p){['Inicio','Jornada','Finanzas','Taxi','Mas'].forEach(x=>document.getElementById('pantalla-'+x).classList.add('hidden'));document.getElementById('pantalla-'+p).classList.remove('hidden')}
-</script>
-</body>
-</html>
+const PAGOS=[
+  {id:"aveo", name:"Cuentas Aveo", icon:"🚕", amount:500, type:"daily"},
+  {id:"potrero", name:"El Potrero", icon:"📍", amount:120, type:"interval", start:"2026-07-23", every:5},
+  {id:"checadora", name:"Checadora", icon:"🧾", amount:300, type:"weekly", day:5},
+  {id:"villa", name:"Villa Guerrero", icon:"🅿️", amount:220, type:"monthly", day:29},
+  {id:"movilidad", name:"Movilidad", icon:"🚌", amount:200, type:"monthly", day:20},
+  {id:"metepec", name:"Metepec", icon:"📍", amount:80, type:"monthly", day:4},
+  {id:"toluca", name:"Toluca", icon:"🅿️", amount:140, type:"monthly", day:6},
+];
+let store=JSON.parse(localStorage.getItem('taxi101'))||{trips:[], fuels:[], km:125430};
+const todayStr=()=>new Date().toISOString().slice(0,10);
+function save(){localStorage.setItem('taxi101',JSON.stringify(store));}
+function getHoy(){
+  let hoy=new Date(); let total=0; let list=[];
+  PAGOS.forEach(p=>{
+    let toca=false;
+    if(p.type==="daily") toca=true;
+    if(p.type==="weekly" && hoy.getDay()===p.day) toca=true;
+    if(p.type==="monthly" && hoy.getDate()===p.day) toca=true;
+    if(p.type==="interval"){let ini=new Date(p.start); let diff=Math.floor((hoy-ini)/86400000); if(diff>=0 && diff%p.every===0) toca=true;}
+    if(toca){total+=p.amount; list.push(p);}
+  });
+  return {total,list};
+}
+function getProximos(){
+  let res=[]; let seen=new Set();
+  for(let i=0;i<70;i++){
+    let f=new Date(); f.setDate(f.getDate()+i);
+    PAGOS.filter(p=>p.type!=="daily").forEach(p=>{
+      let toca=false;
+      if(p.type==="weekly" && f.getDay()===p.day) toca=true;
+      if(p.type==="monthly" && f.getDate()===p.day) toca=true;
+      if(p.type==="interval"){let ini=new Date(p.start); let diff=Math.floor((f-ini)/86400000); if(diff>0 && diff%p.every===0) toca=true;}
+      if(toca){let key=p.id+f.toISOString().slice(0,10); if(!seen.has(key)){seen.add(key); res.push({p,f:new Date(f)});}}
+    });
+  }
+  return res.sort((a,b)=>a.f-b.f);
+}
+function render(){
+  let hoyData=getHoy();
+  let ingresos=store.trips.filter(t=>t.date===todayStr()).reduce((a,b)=>a+b.total,0);
+  let gasHoy=store.fuels.filter(f=>f.date===todayStr()).reduce((a,b)=>a+b.amount,0);
+  let gastosTotales=hoyData.total+gasHoy;
+  let ganancia=ingresos-gastosTotales;
+  document.getElementById('profit').innerText="$"+ganancia.toLocaleString('es-MX');
+  document.getElementById('income').innerText="$"+ingresos;
+  document.getElementById('expense
