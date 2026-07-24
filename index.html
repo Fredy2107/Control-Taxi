@@ -3,36 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#ffffff">
-
-<title>Taxi Pro 10.0</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#F4B400">
+<title>Taxi Pro 11.0</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{
-  --yellow:#f5c542;
-  --yellow-light:#fff4c7;
+  --primary:#F4B400;
+  --primary-dark:#D99500;
+  --primary-soft:#FFF4CC;
 
-  --bg:#f6f7f9;
-  --card:#ffffff;
+  --bg:#F5F7FA;
+  --card:#FFFFFF;
 
-  --text:#101828;
-  --muted:#667085;
+  --text:#17202A;
+  --muted:#6B7280;
 
-  --border:#eaecf0;
+  --green:#16A34A;
+  --red:#DC2626;
+  --blue:#2563EB;
 
-  --green:#12b76a;
-  --red:#f04438;
-  --blue:#2563eb;
+  --border:#E5E7EB;
 
-  --shadow:0 8px 28px rgba(16,24,40,.07);
-
-  --radius:24px;
+  --shadow:0 10px 30px rgba(15,23,42,.08);
 }
 
 *{
@@ -42,10 +36,10 @@
 }
 
 body{
-  font-family:"Inter",sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--bg);
   color:var(--text);
-  min-height:100vh;
+  padding-bottom:95px;
 }
 
 button,
@@ -61,69 +55,54 @@ button{
 .app{
   max-width:900px;
   margin:auto;
-  padding-bottom:110px;
 }
 
 
 /* HEADER */
 
 .header{
-  background:#fff;
-  padding:20px 18px;
+  background:white;
+  padding:22px 20px 20px;
   border-bottom:1px solid var(--border);
 }
 
-.header-content{
+.header-top{
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
-.user{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.avatar{
-  width:48px;
-  height:48px;
-  background:var(--yellow);
-  border-radius:16px;
-
-  display:grid;
-  place-items:center;
-
-  font-size:22px;
-  font-weight:900;
-}
-
 .greeting small{
-  display:block;
   color:var(--muted);
-  font-size:11px;
+  font-size:13px;
   font-weight:600;
 }
 
 .greeting h1{
-  font-size:18px;
-  margin-top:3px;
+  font-size:25px;
+  margin-top:5px;
   font-weight:800;
 }
 
-.profile-btn{
-  width:44px;
-  height:44px;
+.time{
+  margin-top:7px;
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:-1px;
+}
 
-  border:1px solid var(--border);
-  background:#fff;
-
-  border-radius:15px;
-  font-size:19px;
+.weather-icon{
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  background:var(--primary-soft);
+  display:grid;
+  place-items:center;
+  font-size:30px;
 }
 
 
-/* VIEWS */
+/* VISTAS */
 
 .view{
   display:none;
@@ -132,697 +111,344 @@ button{
 
 .view.active{
   display:block;
-  animation:show .2s ease;
-}
-
-@keyframes show{
-
-  from{
-    opacity:0;
-    transform:translateY(8px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
 }
 
 
-/* DATE */
+/* DASHBOARD */
 
-.date-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:16px;
-}
-
-.date-row strong{
-  font-size:13px;
-}
-
-.date-row span{
-  color:var(--muted);
-  font-size:11px;
-}
-
-
-/* HERO */
-
-.hero{
-  background:
-  linear-gradient(
+.profit-card{
+  background:linear-gradient(
     135deg,
-    #fff5c9,
-    #ffe58a
+    #F4B400,
+    #FFD95A
   );
 
   border-radius:28px;
-
   padding:24px;
-
-  position:relative;
-
-  overflow:hidden;
+  box-shadow:var(--shadow);
 }
 
-.hero::after{
-  content:"";
-
-  position:absolute;
-
-  width:220px;
-  height:220px;
-
-  right:-90px;
-  top:-90px;
-
-  border-radius:50%;
-
-  background:rgba(255,255,255,.35);
-}
-
-.hero-label{
-  font-size:11px;
+.profit-label{
+  font-size:13px;
   font-weight:700;
-
-  color:#6c5b16;
-
-  text-transform:uppercase;
+  color:#5F4A00;
 }
 
-.hero-profit{
-  font-size:40px;
-  font-weight:900;
-
-  letter-spacing:-2px;
-
+.profit-value{
+  font-size:42px;
+  font-weight:800;
   margin:8px 0 22px;
+  letter-spacing:-2px;
 }
 
-.hero-grid{
+.summary-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:8px;
-
-  position:relative;
-  z-index:1;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
-.hero-item{
-  background:
-  rgba(255,255,255,.55);
-
-  border-radius:16px;
-
-  padding:12px;
+.summary{
+  background:rgba(255,255,255,.62);
+  border-radius:18px;
+  padding:15px;
 }
 
-.hero-item small{
+.summary span{
   display:block;
-
-  font-size:9px;
-
-  color:#6c5b16;
+  font-size:11px;
+  color:#665300;
 }
 
-.hero-item strong{
+.summary strong{
   display:block;
-
-  margin-top:4px;
-
-  font-size:14px;
+  margin-top:5px;
+  font-size:18px;
 }
 
 
-/* SECTION */
+/* ACCIÓN PRINCIPAL */
 
-.section-header{
+.main-action{
+  width:100%;
+  margin-top:18px;
+  border:0;
+  background:#17202A;
+  color:white;
+  padding:18px;
+  border-radius:20px;
+  font-size:16px;
+  font-weight:800;
+  box-shadow:var(--shadow);
+}
+
+
+/* SECCIONES */
+
+.section-title{
   display:flex;
-
   justify-content:space-between;
   align-items:center;
-
-  margin:
-  24px 2px
-  11px;
+  margin:26px 2px 12px;
 }
 
-.section-header h2{
-  font-size:16px;
+.section-title h2{
+  font-size:19px;
   font-weight:800;
 }
 
-.section-header button{
+.section-title button{
   border:0;
   background:none;
-
   color:var(--blue);
-
-  font-size:11px;
   font-weight:700;
 }
 
 
-/* QUICK */
+/* TARJETAS */
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+
+/* VUELTA */
+
+.trip-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.trip-card:last-child{
+  border-bottom:0;
+}
+
+.trip-date{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.trip-title{
+  font-weight:800;
+  font-size:14px;
+}
+
+.trip-info{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:5px;
+}
+
+.trip-income{
+  font-size:17px;
+  font-weight:800;
+}
+
+
+/* MENÚ RÁPIDO */
 
 .quick-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(4,1fr);
-
-  gap:9px;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
 
 .quick{
   border:1px solid var(--border);
-
-  background:#fff;
-
+  background:white;
   border-radius:20px;
-
-  padding:14px 5px;
-
-  box-shadow:var(--shadow);
-
+  padding:17px 7px;
   text-align:center;
+  box-shadow:var(--shadow);
 }
 
 .quick-icon{
-  width:43px;
-  height:43px;
-
-  margin:auto auto 7px;
-
-  background:#f2f4f7;
-
-  border-radius:14px;
-
+  width:50px;
+  height:50px;
+  border-radius:16px;
+  background:var(--primary-soft);
   display:grid;
   place-items:center;
-
-  font-size:20px;
+  margin:auto auto 9px;
+  font-size:25px;
 }
 
 .quick strong{
-  font-size:10px;
-}
-
-
-/* JOURNEY */
-
-.journey-card{
-  background:#fff;
-
-  border:1px solid var(--border);
-
-  border-radius:25px;
-
-  padding:20px;
-
-  box-shadow:var(--shadow);
-}
-
-.journey-top{
-  display:flex;
-
-  justify-content:space-between;
-  align-items:center;
-}
-
-.journey-status{
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  font-size:12px;
-  font-weight:800;
-}
-
-.status-dot{
-  width:9px;
-  height:9px;
-
-  border-radius:50%;
-
-  background:#98a2b3;
-}
-
-.status-dot.active{
-  background:var(--green);
-
-  box-shadow:
-  0 0 0 5px
-  rgba(18,183,106,.12);
-}
-
-.journey-time{
-  color:var(--muted);
-
-  font-size:10px;
-}
-
-.journey-stats{
-  display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
-  gap:8px;
-
-  margin:18px 0;
-}
-
-.stat{
-  background:#f8fafc;
-
-  border-radius:16px;
-
-  padding:12px;
-}
-
-.stat small{
-  display:block;
-
-  color:var(--muted);
-
-  font-size:9px;
-}
-
-.stat strong{
-  display:block;
-
-  margin-top:4px;
-
-  font-size:17px;
-}
-
-.primary-btn{
-  width:100%;
-
-  border:0;
-
-  background:var(--text);
-
-  color:#fff;
-
-  padding:14px;
-
-  border-radius:15px;
-
   font-size:11px;
-
-  font-weight:800;
 }
 
 
-/* PAYMENT */
+/* FORMULARIO */
 
-.payment-card{
-  background:#fff;
+.form-group{
+  margin-bottom:16px;
+}
 
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+.form-group input{
+  width:100%;
+  padding:15px;
   border:1px solid var(--border);
+  border-radius:15px;
+  background:#F9FAFB;
+  font-size:16px;
+  outline:none;
+}
 
-  border-radius:23px;
+.form-group input:focus{
+  border-color:var(--primary);
+}
 
+
+.auto-box{
+  background:var(--primary-soft);
   padding:17px;
-
-  box-shadow:var(--shadow);
+  border-radius:17px;
+  margin:15px 0;
 }
 
-.payment{
-  display:flex;
-
-  justify-content:space-between;
-  align-items:center;
-}
-
-.payment-left{
-  display:flex;
-
-  align-items:center;
-
-  gap:11px;
-}
-
-.payment-icon{
-  width:45px;
-  height:45px;
-
-  background:#f2f4f7;
-
-  border-radius:15px;
-
-  display:grid;
-  place-items:center;
-
-  font-size:20px;
-}
-
-.payment-title{
-  font-size:11px;
-  font-weight:800;
-}
-
-.payment-date{
-  color:var(--muted);
-
-  font-size:9px;
-
-  margin-top:4px;
-}
-
-.payment-amount{
-  font-size:14px;
-  font-weight:900;
-}
-
-
-/* VEHICLE */
-
-.vehicle-card{
-  background:#fff;
-
-  border-radius:27px;
-
-  overflow:hidden;
-
-  border:1px solid var(--border);
-
-  box-shadow:var(--shadow);
-}
-
-.vehicle-photo{
-  width:100%;
-
-  height:230px;
-
-  object-fit:cover;
-
+.auto-box span{
   display:block;
-
-  background:#e5e7eb;
+  font-size:12px;
+  color:#6B5300;
 }
 
-.vehicle-info{
-  padding:21px;
-}
-
-.vehicle-info h2{
-  font-size:22px;
-  font-weight:900;
-}
-
-.vehicle-info p{
-  color:var(--muted);
-
-  font-size:11px;
-
+.auto-box strong{
+  display:block;
+  font-size:23px;
   margin-top:5px;
 }
 
-.vehicle-stats{
-  display:grid;
 
-  grid-template-columns:
-  repeat(3,1fr);
+/* BOTONES */
 
-  gap:8px;
-
-  margin-top:18px;
-}
-
-
-/* FINANCE */
-
-.periods{
-  display:flex;
-
-  gap:5px;
-
-  padding:5px;
-
-  background:#eaecf0;
-
-  border-radius:15px;
-
-  margin-bottom:15px;
-}
-
-.periods button{
-  flex:1;
-
+.btn{
+  width:100%;
   border:0;
-
-  background:transparent;
-
-  padding:9px;
-
-  border-radius:11px;
-
-  font-size:10px;
-
-  font-weight:700;
-
-  color:var(--muted);
+  border-radius:16px;
+  padding:16px;
+  font-size:14px;
+  font-weight:800;
 }
 
-.periods button.active{
-  background:#fff;
+.btn-primary{
+  background:#17202A;
+  color:white;
+}
 
+.btn-secondary{
+  background:#F2F4F7;
   color:var(--text);
 }
 
-.finance{
-  background:#fff;
 
-  border:1px solid var(--border);
+/* FINANZAS */
 
-  border-radius:25px;
-
-  padding:22px;
-
-  box-shadow:var(--shadow);
+.finance-main{
+  text-align:center;
 }
 
-.finance-label{
+.finance-main small{
   color:var(--muted);
-
-  font-size:11px;
 }
 
-.finance-profit{
-  font-size:36px;
-
-  font-weight:900;
-
-  margin:5px 0 20px;
+.finance-main h2{
+  font-size:38px;
+  margin:7px 0 20px;
 }
 
 .finance-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(2,1fr);
-
-  gap:9px;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
 .finance-item{
-  background:#f8fafc;
-
-  border-radius:16px;
-
-  padding:15px;
+  background:#F8FAFC;
+  padding:17px;
+  border-radius:17px;
 }
 
-.finance-item small{
+.finance-item span{
+  display:block;
   color:var(--muted);
-
-  font-size:10px;
+  font-size:11px;
 }
 
 .finance-item strong{
   display:block;
-
   margin-top:5px;
+  font-size:18px;
 }
 
-.income{
+.green{
   color:var(--green);
 }
 
-.expense{
+.red{
   color:var(--red);
 }
 
 
-/* CHART */
+/* TAXI */
 
-.chart-card{
-  background:#fff;
-
-  border:1px solid var(--border);
-
-  border-radius:25px;
-
-  padding:20px;
-
-  box-shadow:var(--shadow);
-}
-
-.chart{
-  height:160px;
-
-  display:flex;
-
-  align-items:flex-end;
-
-  gap:8px;
-
-  margin-top:20px;
-}
-
-.bar{
-  flex:1;
-
-  min-height:5px;
-
-  background:var(--yellow);
-
-  border-radius:
-  7px 7px 3px 3px;
-}
-
-
-/* CALENDAR */
-
-.calendar{
-  background:#fff;
-
-  border-radius:25px;
-
+.car-card{
+  background:white;
+  border-radius:26px;
   overflow:hidden;
-
   border:1px solid var(--border);
-
   box-shadow:var(--shadow);
 }
 
-.calendar-header{
-  background:var(--text);
-
-  color:#fff;
-
-  padding:22px;
+.car-photo{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  display:block;
 }
 
-.calendar-header h2{
-  font-size:19px;
+.car-info{
+  padding:20px;
 }
 
-.calendar-header p{
-  color:#98a2b3;
+.car-info h2{
+  font-size:23px;
+}
 
-  font-size:10px;
-
+.car-info p{
+  color:var(--muted);
+  font-size:12px;
   margin-top:5px;
 }
 
-.calendar-day{
-  border-bottom:
-  1px solid var(--border);
-}
-
-.day-header{
-  display:flex;
-
-  justify-content:space-between;
-
-  padding:11px 16px;
-
-  background:#f8fafc;
-}
-
-.day-header strong{
-  font-size:10px;
-}
-
-.day-header span{
-  color:var(--muted);
-
-  font-size:9px;
-}
-
-.pay-row{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  padding:13px 16px;
-}
-
-.pay-left{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-}
-
-.pay-name{
-  font-size:11px;
-  font-weight:800;
-}
-
-.pay-rule{
-  color:var(--muted);
-
-  font-size:9px;
-
-  margin-top:3px;
-}
-
-.pay-value{
-  font-size:12px;
-  font-weight:900;
+.car-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-top:18px;
 }
 
 
-/* SERVICES */
-
-.service-card{
-  background:#fff;
-
-  border:1px solid var(--border);
-
-  border-radius:23px;
-
-  padding:18px;
-
-  box-shadow:var(--shadow);
-}
+/* MANTENIMIENTO */
 
 .service{
   display:flex;
-
   justify-content:space-between;
-
-  padding:14px 0;
-
-  border-bottom:
-  1px solid var(--border);
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
 .service:last-child{
@@ -830,363 +456,168 @@ button{
 }
 
 .service strong{
-  font-size:11px;
+  font-size:13px;
 }
 
 .service small{
   display:block;
-
   color:var(--muted);
-
-  font-size:9px;
-
   margin-top:4px;
 }
 
 
-/* PROFILE */
+/* PAGOS */
 
-.profile-card{
-  background:#fff;
-
-  border-radius:25px;
-
-  padding:28px;
-
-  text-align:center;
-
-  box-shadow:var(--shadow);
+.payment-notice{
+  background:#EEF6FF;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:15px;
 }
 
-.profile-avatar{
-  width:76px;
-  height:76px;
-
-  margin:auto;
-
-  border-radius:25px;
-
-  background:var(--yellow);
-
-  display:grid;
-
-  place-items:center;
-
-  font-size:30px;
+.payment-notice strong{
+  font-size:13px;
 }
 
-.profile-card h2{
-  margin-top:12px;
-
-  font-size:20px;
-}
-
-.profile-card p{
+.payment-notice p{
   color:var(--muted);
-
-  font-size:10px;
-
-  margin-top:4px;
+  font-size:11px;
+  margin-top:5px;
 }
 
-.profile-menu{
-  margin-top:15px;
-
-  background:#fff;
-
-  border:1px solid var(--border);
-
-  border-radius:23px;
-
-  overflow:hidden;
-}
-
-.profile-item{
-  width:100%;
-
-  border:0;
-
-  background:#fff;
-
-  padding:15px;
-
+.payment{
   display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  text-align:left;
-
-  border-bottom:
-  1px solid var(--border);
+  justify-content:space-between;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.profile-item:last-child{
+.payment:last-child{
   border-bottom:0;
 }
 
-.profile-item-icon{
-  width:42px;
-  height:42px;
-
-  border-radius:14px;
-
-  background:#f2f4f7;
-
-  display:grid;
-
-  place-items:center;
+.payment-name{
+  font-weight:700;
+  font-size:13px;
 }
 
-.profile-item strong{
-  display:block;
-
-  font-size:11px;
-}
-
-.profile-item small{
-  display:block;
-
+.payment-date{
   color:var(--muted);
+  font-size:10px;
+  margin-top:4px;
+}
 
-  font-size:9px;
-
-  margin-top:3px;
+.payment-amount{
+  font-weight:800;
 }
 
 
-/* BOTTOM NAV */
+/* NAVEGACIÓN */
 
 .bottom-nav{
   position:fixed;
-
-  z-index:50;
-
+  z-index:100;
   bottom:10px;
-
   left:50%;
-
   transform:translateX(-50%);
 
-  width:
-  min(700px,calc(100% - 18px));
+  width:min(700px,calc(100% - 16px));
 
-  background:
-  rgba(255,255,255,.96);
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(20px);
 
-  backdrop-filter:
-  blur(18px);
-
-  border:
-  1px solid var(--border);
-
+  border:1px solid var(--border);
   border-radius:25px;
 
-  box-shadow:
-  0 12px 40px
-  rgba(16,24,40,.15);
-
-  padding:7px;
+  box-shadow:0 15px 40px rgba(0,0,0,.15);
 
   display:grid;
-
-  grid-template-columns:
-  repeat(5,1fr);
+  grid-template-columns:repeat(5,1fr);
+  padding:7px;
 }
 
 .nav{
   border:0;
-
   background:transparent;
-
+  padding:9px 3px;
+  border-radius:18px;
   color:var(--muted);
-
-  border-radius:17px;
-
-  padding:7px 2px;
-
-  font-size:8px;
-
+  font-size:10px;
   font-weight:700;
 }
 
 .nav-icon{
   display:block;
-
-  font-size:19px;
-
-  margin-bottom:3px;
+  font-size:25px;
+  margin-bottom:5px;
 }
 
 .nav.active{
+  background:var(--primary-soft);
   color:var(--text);
-
-  background:var(--yellow-light);
-}
-
-
-/* FLOATING */
-
-.floating{
-  position:fixed;
-
-  z-index:45;
-
-  right:18px;
-
-  bottom:85px;
-
-  width:54px;
-  height:54px;
-
-  border:0;
-
-  border-radius:18px;
-
-  background:var(--text);
-
-  color:#fff;
-
-  font-size:26px;
-
-  box-shadow:
-  0 10px 25px
-  rgba(16,24,40,.25);
 }
 
 
 /* MODAL */
 
 .modal{
-  position:fixed;
-
-  inset:0;
-
-  z-index:100;
-
   display:none;
-
+  position:fixed;
+  inset:0;
+  z-index:200;
+  background:rgba(15,23,42,.6);
   align-items:flex-end;
-
-  background:
-  rgba(16,24,40,.55);
-
   padding:10px;
 }
 
-.modal.open{
+.modal.active{
   display:flex;
 }
 
-.sheet{
-  width:
-  min(650px,100%);
-
-  background:#fff;
-
+.modal-box{
+  width:min(650px,100%);
+  background:white;
   border-radius:28px;
-
-  padding:23px;
-
+  padding:24px;
   margin:auto;
-
   max-height:90vh;
-
   overflow:auto;
 }
 
-.sheet h2{
-  font-size:19px;
-
-  margin-bottom:18px;
-}
-
-.form{
-  margin-bottom:13px;
-}
-
-.form label{
-  display:block;
-
-  color:var(--muted);
-
-  font-size:10px;
-
-  font-weight:700;
-
-  margin-bottom:6px;
-}
-
-.form input{
-  width:100%;
-
-  padding:13px;
-
-  border:
-  1px solid var(--border);
-
-  border-radius:14px;
-
-  background:#f8fafc;
-
-  outline:none;
+.modal-box h2{
+  font-size:22px;
+  margin-bottom:20px;
 }
 
 .modal-buttons{
-  display:flex;
-
-  gap:8px;
-
-  margin-top:18px;
-}
-
-.modal-buttons button{
-  flex:1;
-
-  border:0;
-
-  padding:13px;
-
-  border-radius:14px;
-
-  font-size:11px;
-
-  font-weight:800;
-}
-
-.cancel{
-  background:#f2f4f7;
-}
-
-.save{
-  background:var(--text);
-
-  color:#fff;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 
-/* MOBILE */
+/* RESPONSIVE */
 
-@media(max-width:520px){
+@media(max-width:600px){
 
   .quick-grid{
-    grid-template-columns:
-    repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .hero-profit{
-    font-size:35px;
+  .profit-value{
+    font-size:38px;
+  }
+
+  .time{
+    font-size:28px;
   }
 
 }
-
 </style>
 </head>
 
 
 <body>
-
 
 <div class="app">
 
@@ -1195,13 +626,7 @@ button{
 
 <header class="header">
 
-<div class="header-content">
-
-<div class="user">
-
-<div class="avatar">
-🚗
-</div>
+<div class="header-top">
 
 <div class="greeting">
 
@@ -1209,22 +634,25 @@ button{
 ☀️ Buenos días
 </small>
 
-<h1 id="userName">
+<h1>
+<span id="userName">
 Fredy
+</span>
 </h1>
 
+<div
+id="time"
+class="time">
+00:00
 </div>
 
 </div>
 
-
-<button
-class="profile-btn"
-onclick="showView('perfil')">
-
-👤
-
-</button>
+<div
+id="weatherIcon"
+class="weather-icon">
+☀️
+</div>
 
 </div>
 
@@ -1232,92 +660,98 @@ onclick="showView('perfil')">
 
 
 
-<!-- =========================
-     INICIO
-========================= -->
+<!-- =====================
+INICIO
+===================== -->
 
 <section
 id="inicio"
 class="view active">
 
 
-<div class="date-row">
+<div class="profit-card">
 
-<strong id="today">
-Hoy
-</strong>
-
-<span id="clock">
---:--
-
-</span>
-
-</div>
-
-
-
-<div class="hero">
-
-<div class="hero-label">
+<div class="profit-label">
 Ganancia real de hoy
 </div>
 
 <div
-id="profit"
-class="hero-profit">
-
+id="todayProfit"
+class="profit-value">
 $0
-
 </div>
 
 
-<div class="hero-grid">
+<div class="summary-grid">
 
-<div class="hero-item">
+<div class="summary">
 
-<small>
-Ingresos
-</small>
+<span>
+🚕 Vueltas
+</span>
 
-<strong id="income">
-$0
-</strong>
-
-</div>
-
-
-<div class="hero-item">
-
-<small>
-Gastos
-</small>
-
-<strong id="expenses">
-$0
-</strong>
-
-</div>
-
-
-<div class="hero-item">
-
-<small>
-Pasajeros
-</small>
-
-<strong id="passengers">
+<strong id="todayTrips">
 0
 </strong>
 
 </div>
 
-</div>
+
+<div class="summary">
+
+<span>
+👥 Pasajeros
+</span>
+
+<strong id="todayPassengers">
+0
+</strong>
 
 </div>
 
 
+<div class="summary">
 
-<div class="section-header">
+<span>
+💰 Ingresos
+</span>
+
+<strong id="todayIncome">
+$0
+</strong>
+
+</div>
+
+
+<div class="summary">
+
+<span>
+💸 Gastos
+</span>
+
+<strong id="todayExpenses">
+$0
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<button
+class="main-action"
+onclick="openModal('tripModal')">
+
+＋ REGISTRAR NUEVA VUELTA
+
+</button>
+
+
+
+<div class="section-title">
 
 <h2>
 Acciones rápidas
@@ -1328,7 +762,6 @@ Acciones rápidas
 
 <div class="quick-grid">
 
-
 <button
 class="quick"
 onclick="openModal('tripModal')">
@@ -1338,7 +771,7 @@ onclick="openModal('tripModal')">
 </div>
 
 <strong>
-Registrar viaje
+Nueva vuelta
 </strong>
 
 </button>
@@ -1353,7 +786,7 @@ onclick="openModal('expenseModal')">
 </div>
 
 <strong>
-Registrar gasto
+Otro gasto
 </strong>
 
 </button>
@@ -1376,7 +809,7 @@ Gasolina
 
 <button
 class="quick"
-onclick="openModal('serviceModal')">
+onclick="showView('taxi')">
 
 <div class="quick-icon">
 🔧
@@ -1388,141 +821,24 @@ Mantenimiento
 
 </button>
 
-
 </div>
 
 
 
-<div class="section-header">
+<div class="section-title">
 
 <h2>
-Tu jornada
+Últimas vueltas
 </h2>
 
-<button
-onclick="showView('jornada')">
-
-Detalles
-
-</button>
-
 </div>
-
-
-
-<div class="journey-card">
-
-
-<div class="journey-top">
-
-<div class="journey-status">
-
-<span
-id="statusDot"
-class="status-dot">
-</span>
-
-<span id="statusText">
-Fuera de jornada
-</span>
-
-</div>
-
-
-<span
-id="startTime"
-class="journey-time">
-
---
-
-</span>
-
-</div>
-
-
-
-<div class="journey-stats">
-
-
-<div class="stat">
-
-<small>
-Viajes
-</small>
-
-<strong id="trips">
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<small>
-Pasajeros
-</small>
-
-<strong id="journeyPassengers">
-0
-</strong>
-
-</div>
-
-
-<div class="stat">
-
-<small>
-Ingresos
-</small>
-
-<strong id="journeyIncome">
-$0
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<button
-id="journeyBtn"
-class="primary-btn"
-onclick="toggleJourney()">
-
-▶ Iniciar jornada
-
-</button>
-
-
-</div>
-
-
-
-<div class="section-header">
-
-<h2>
-Próximo pago
-</h2>
-
-<button
-onclick="showView('agenda')">
-
-Ver calendario
-
-</button>
-
-</div>
-
 
 
 <div
-id="nextPayment"
-class="payment-card">
+id="recentTrips"
+class="card">
 
-Cargando...
+Aún no hay vueltas registradas.
 
 </div>
 
@@ -1531,116 +847,57 @@ Cargando...
 
 
 
-<!-- =========================
-     JORNADA
-========================= -->
+<!-- =====================
+VUELTAS
+===================== -->
 
 <section
-id="jornada"
+id="vueltas"
 class="view">
 
-<div class="section-header">
+
+<div class="section-title">
 
 <h2>
-🚕 Jornada de trabajo
+🚕 Mis vueltas
 </h2>
 
 </div>
 
 
-<div class="journey-card">
-
-<div class="journey-top">
-
-<div class="journey-status">
-
-<span
-id="statusDot2"
-class="status-dot">
-</span>
-
-<span id="statusText2">
-Fuera de jornada
-</span>
-
-</div>
-
-<span
-id="startTime2"
-class="journey-time">
-
---
-
-</span>
-
-</div>
-
-
-<div class="journey-stats">
-
-<div class="stat">
-
-<small>
-Viajes
-</small>
-
-<strong id="trips2">
-0
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Pasajeros
-</small>
-
-<strong id="passengers2">
-0
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Ingresos
-</small>
-
-<strong id="income2">
-$0
-</strong>
-
-</div>
-
-</div>
-
-
 <button
-id="journeyBtn2"
-class="primary-btn"
-onclick="toggleJourney()">
+class="main-action"
+onclick="openModal('tripModal')">
 
-▶ Iniciar jornada
+＋ REGISTRAR VUELTA
 
 </button>
 
+
+<div
+id="allTrips"
+class="card"
+style="margin-top:18px">
+
+No hay vueltas registradas.
+
 </div>
+
 
 </section>
 
 
 
-<!-- =========================
-     FINANZAS
-========================= -->
+<!-- =====================
+FINANZAS
+===================== -->
 
 <section
 id="finanzas"
 class="view">
 
-<div class="section-header">
+
+<div class="section-title">
 
 <h2>
 💰 Finanzas
@@ -1649,64 +906,30 @@ class="view">
 </div>
 
 
-<div class="periods">
+<div class="card finance-main">
 
-<button
-class="active"
-onclick="setPeriod('day',this)">
+<small>
+Ganancia real de hoy
+</small>
 
-Hoy
-
-</button>
-
-
-<button
-onclick="setPeriod('week',this)">
-
-Semana
-
-</button>
-
-
-<button
-onclick="setPeriod('month',this)">
-
-Mes
-
-</button>
-
-</div>
-
-
-<div class="finance">
-
-<div class="finance-label">
-Ganancia real
-</div>
-
-<div
-id="financeProfit"
-class="finance-profit">
-
+<h2
+id="financeProfit">
 $0
-
-</div>
+</h2>
 
 
 <div class="finance-grid">
 
 <div class="finance-item">
 
-<small>
+<span>
 Ingresos
-</small>
+</span>
 
 <strong
 id="financeIncome"
-class="income">
-
+class="green">
 $0
-
 </strong>
 
 </div>
@@ -1714,16 +937,42 @@ $0
 
 <div class="finance-item">
 
-<small>
+<span>
 Gastos
-</small>
+</span>
 
 <strong
-id="financeExpenses"
-class="expense">
-
+id="financeExpense"
+class="red">
 $0
+</strong>
 
+</div>
+
+
+<div class="finance-item">
+
+<span>
+Casetas
+</span>
+
+<strong
+id="financeTolls">
+$0
+</strong>
+
+</div>
+
+
+<div class="finance-item">
+
+<span>
+Gasolina
+</span>
+
+<strong
+id="financeFuel">
+$0
 </strong>
 
 </div>
@@ -1733,39 +982,49 @@ $0
 </div>
 
 
-
-<div class="section-header">
+<div class="section-title">
 
 <h2>
-Ingresos recientes
+📅 Pagos recurrentes
 </h2>
 
 </div>
 
 
-<div class="chart-card">
+<div class="payment-notice">
+
+<strong>
+Los pagos recurrentes se calculan automáticamente.
+</strong>
+
+<p>
+No necesitas registrarlos manualmente. Taxi Pro los toma en cuenta cuando corresponde la fecha de pago.
+</p>
+
+</div>
+
 
 <div
-id="chart"
-class="chart">
+id="payments"
+class="card">
 
 </div>
 
-</div>
 
 </section>
 
 
 
-<!-- =========================
-     MI TAXI
-========================= -->
+<!-- =====================
+MI TAXI
+===================== -->
 
 <section
 id="taxi"
 class="view">
 
-<div class="section-header">
+
+<div class="section-title">
 
 <h2>
 🚗 Mi Taxi
@@ -1774,47 +1033,44 @@ class="view">
 </div>
 
 
-<div class="vehicle-card">
+<div class="car-card">
 
 
 <!--
-IMPORTANTE:
-Coloca una fotografía real de tu
-CHEVROLET AVEO SEDÁN 2019
-en la carpeta del proyecto con:
+COLOCA AQUÍ TU FOTO REAL DEL
+CHEVROLET AVEO SEDÁN 2019.
 
+Nombre recomendado:
 aveo-2019.jpg
-
 -->
 
 <img
-class="vehicle-photo"
+class="car-photo"
 src="aveo-2019.jpg"
 alt="Chevrolet Aveo sedán 2019"
 onerror="
-this.src='https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&fit=crop&w=1200&q=85';
+this.style.display='none';
 ">
 
 
-<div class="vehicle-info">
+<div class="car-info">
 
 <h2>
-Chevrolet Aveo
+Chevrolet Aveo Sedán
 </h2>
 
 <p>
-Sedán 2019 · Vehículo de trabajo
+Modelo 2019 · Taxi Pro
 </p>
 
 
-<div class="vehicle-stats">
+<div class="car-stats">
 
+<div class="summary">
 
-<div class="stat">
-
-<small>
+<span>
 Kilometraje
-</small>
+</span>
 
 <strong id="vehicleKm">
 0 km
@@ -1823,11 +1079,11 @@ Kilometraje
 </div>
 
 
-<div class="stat">
+<div class="summary">
 
-<small>
+<span>
 Servicios
-</small>
+</span>
 
 <strong id="serviceCount">
 0
@@ -1836,11 +1092,11 @@ Servicios
 </div>
 
 
-<div class="stat">
+<div class="summary">
 
-<small>
+<span>
 Último servicio
-</small>
+</span>
 
 <strong id="lastService">
 --
@@ -1848,7 +1104,6 @@ Servicios
 
 </div>
 
-
 </div>
 
 </div>
@@ -1857,10 +1112,10 @@ Servicios
 
 
 
-<div class="section-header">
+<div class="section-title">
 
 <h2>
-🔧 Historial de mantenimiento
+🔧 Mantenimiento
 </h2>
 
 <button
@@ -1875,9 +1130,9 @@ onclick="openModal('serviceModal')">
 
 <div
 id="services"
-class="service-card">
+class="card">
 
-Sin servicios registrados.
+No hay servicios registrados.
 
 </div>
 
@@ -1886,185 +1141,53 @@ Sin servicios registrados.
 
 
 
-<!-- =========================
-     AGENDA
-========================= -->
+<!-- =====================
+JORNADA
+===================== -->
 
 <section
-id="agenda"
+id="jornada"
 class="view">
 
 
-<div class="calendar">
-
-
-<div class="calendar-header">
+<div class="section-title">
 
 <h2>
-📅 Calendario de pagos
+🚕 Jornada
 </h2>
 
-<p>
-Pagos recurrentes configurados en Taxi Pro
-</p>
+</div>
+
+
+<div class="card">
+
+<div class="finance-main">
+
+<small>
+Estado actual
+</small>
+
+<h2
+id="journeyStatus">
+Fuera de jornada
+</h2>
 
 </div>
 
 
-<div
-id="calendarList">
+<button
+id="journeyButton"
+class="btn btn-primary"
+onclick="toggleJourney()">
 
-</div>
+▶ Iniciar jornada
 
+</button>
 
 </div>
 
 
 </section>
-
-
-
-<!-- =========================
-     PERFIL
-========================= -->
-
-<section
-id="perfil"
-class="view">
-
-
-<div class="profile-card">
-
-
-<div class="profile-avatar">
-👤
-</div>
-
-
-<h2 id="profileName">
-Fredy
-</h2>
-
-
-<p>
-Administrador de Taxi Pro
-</p>
-
-
-</div>
-
-
-
-<div class="profile-menu">
-
-
-<button
-class="profile-item"
-onclick="openModal('profileModal')">
-
-<div class="profile-item-icon">
-👤
-</div>
-
-<div>
-
-<strong>
-Mi información
-</strong>
-
-<small>
-Cambiar nombre
-</small>
-
-</div>
-
-</button>
-
-
-<button
-class="profile-item"
-onclick="showView('taxi')">
-
-<div class="profile-item-icon">
-🚗
-</div>
-
-<div>
-
-<strong>
-Mi Taxi
-</strong>
-
-<small>
-Chevrolet Aveo sedán 2019
-</small>
-
-</div>
-
-</button>
-
-
-<button
-class="profile-item"
-onclick="showView('agenda')">
-
-<div class="profile-item-icon">
-📅
-</div>
-
-<div>
-
-<strong>
-Calendario de pagos
-</strong>
-
-<small>
-Consultar próximos pagos
-</small>
-
-</div>
-
-</button>
-
-
-<button
-class="profile-item"
-onclick="backup()">
-
-<div class="profile-item-icon">
-💾
-</div>
-
-<div>
-
-<strong>
-Respaldar información
-</strong>
-
-<small>
-Guardar una copia de tus datos
-</small>
-
-</div>
-
-</button>
-
-
-</div>
-
-</section>
-
-
-
-<!-- FLOATING -->
-
-<button
-class="floating"
-onclick="openModal('quickModal')">
-
-+
-
-</button>
 
 
 
@@ -2079,7 +1202,7 @@ data-view="inicio"
 onclick="showView('inicio')">
 
 <span class="nav-icon">
-⌂
+🏠
 </span>
 
 Inicio
@@ -2089,14 +1212,14 @@ Inicio
 
 <button
 class="nav"
-data-view="jornada"
-onclick="showView('jornada')">
+data-view="vueltas"
+onclick="showView('vueltas')">
 
 <span class="nav-icon">
 🚕
 </span>
 
-Jornada
+Vueltas
 
 </button>
 
@@ -2107,7 +1230,7 @@ data-view="finanzas"
 onclick="showView('finanzas')">
 
 <span class="nav-icon">
-$
+💰
 </span>
 
 Finanzas
@@ -2131,8 +1254,8 @@ Mi Taxi
 
 <button
 class="nav"
-data-view="agenda"
-onclick="showView('agenda')">
+data-view="jornada"
+onclick="showView('jornada')">
 
 <span class="nav-icon">
 ☰
@@ -2145,51 +1268,122 @@ Más
 
 </nav>
 
-
 </div>
 
 
 
-<!-- =========================
-     MODAL VIAJE
-========================= -->
+<!-- =====================
+MODAL VUELTA
+===================== -->
 
 <div
 id="tripModal"
 class="modal">
 
-<div class="sheet">
+<div class="modal-box">
 
 <h2>
-🚕 Registrar viaje
+🚕 Registrar nueva vuelta
 </h2>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Cantidad de pasajeros
+Pasajeros de ida
 </label>
 
 <input
-id="tripPassengers"
+id="outPassengers"
 type="number"
-min="1"
-value="1">
+min="0"
+value="0"
+oninput="calculateTrip()">
 
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Tarifa por pasajero
+Pasajeros de regreso
 </label>
 
 <input
-id="tripFare"
+id="returnPassengers"
 type="number"
-value="80">
+min="0"
+value="0"
+oninput="calculateTrip()">
+
+</div>
+
+
+<div class="auto-box">
+
+<span>
+👥 Total de pasajeros
+</span>
+
+<strong id="modalPassengers">
+0
+</strong>
+
+</div>
+
+
+<div class="auto-box">
+
+<span>
+💰 Ingreso automático
+</span>
+
+<strong id="modalIncome">
+$0
+</strong>
+
+</div>
+
+
+<div class="auto-box">
+
+<span>
+🛣️ Caseta ida + regreso
+</span>
+
+<strong>
+$74
+</strong>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+⛽ Gasolina de esta vuelta (opcional)
+</label>
+
+<input
+id="tripFuel"
+type="number"
+min="0"
+placeholder="Ejemplo: 500">
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+💸 Otros gastos (opcional)
+</label>
+
+<input
+id="tripOther"
+type="number"
+min="0"
+placeholder="Ejemplo: 50">
 
 </div>
 
@@ -2197,18 +1391,19 @@ value="80">
 <div class="modal-buttons">
 
 <button
-class="cancel"
-onclick="closeModals()">
+class="btn btn-secondary"
+onclick="closeModal('tripModal')">
 
 Cancelar
 
 </button>
 
+
 <button
-class="save"
+class="btn btn-primary"
 onclick="saveTrip()">
 
-Guardar
+Guardar vuelta
 
 </button>
 
@@ -2220,20 +1415,22 @@ Guardar
 
 
 
-<!-- MODAL GASTO -->
+<!-- =====================
+MODAL GASTO
+===================== -->
 
 <div
 id="expenseModal"
 class="modal">
 
-<div class="sheet">
+<div class="modal-box">
 
 <h2>
-💸 Registrar gasto
+💸 Registrar otro gasto
 </h2>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
 Concepto
@@ -2241,12 +1438,12 @@ Concepto
 
 <input
 id="expenseName"
-placeholder="Ej. Caseta">
+placeholder="Ejemplo: lavado">
 
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
 Importe
@@ -2262,15 +1459,16 @@ type="number">
 <div class="modal-buttons">
 
 <button
-class="cancel"
-onclick="closeModals()">
+class="btn btn-secondary"
+onclick="closeModal('expenseModal')">
 
 Cancelar
 
 </button>
 
+
 <button
-class="save"
+class="btn btn-primary"
 onclick="saveExpense()">
 
 Guardar
@@ -2285,36 +1483,39 @@ Guardar
 
 
 
-<!-- MODAL GASOLINA -->
+<!-- =====================
+MODAL GASOLINA
+===================== -->
 
 <div
 id="fuelModal"
 class="modal">
 
-<div class="sheet">
+<div class="modal-box">
 
 <h2>
 ⛽ Registrar gasolina
 </h2>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Importe
+Importe gastado
 </label>
 
 <input
 id="fuelAmount"
-type="number">
+type="number"
+placeholder="Ejemplo: 550">
 
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Litros
+Litros (opcional)
 </label>
 
 <input
@@ -2324,10 +1525,10 @@ type="number">
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Kilometraje actual
+Kilometraje actual (opcional)
 </label>
 
 <input
@@ -2340,15 +1541,16 @@ type="number">
 <div class="modal-buttons">
 
 <button
-class="cancel"
-onclick="closeModals()">
+class="btn btn-secondary"
+onclick="closeModal('fuelModal')">
 
 Cancelar
 
 </button>
 
+
 <button
-class="save"
+class="btn btn-primary"
 onclick="saveFuel()">
 
 Guardar
@@ -2363,33 +1565,35 @@ Guardar
 
 
 
-<!-- MODAL SERVICIO -->
+<!-- =====================
+MODAL SERVICIO
+===================== -->
 
 <div
 id="serviceModal"
 class="modal">
 
-<div class="sheet">
+<div class="modal-box">
 
 <h2>
 🔧 Registrar mantenimiento
 </h2>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
-Descripción del servicio
+Descripción
 </label>
 
 <input
 id="serviceDescription"
-placeholder="Ej. Cambio de aceite">
+placeholder="Ejemplo: Cambio de aceite">
 
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
 Fecha
@@ -2402,7 +1606,7 @@ type="date">
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
 Kilometraje
@@ -2415,7 +1619,7 @@ type="number">
 </div>
 
 
-<div class="form">
+<div class="form-group">
 
 <label>
 Costo
@@ -2431,15 +1635,16 @@ type="number">
 <div class="modal-buttons">
 
 <button
-class="cancel"
-onclick="closeModals()">
+class="btn btn-secondary"
+onclick="closeModal('serviceModal')">
 
 Cancelar
 
 </button>
 
+
 <button
-class="save"
+class="btn btn-primary"
 onclick="saveService()">
 
 Guardar
@@ -2454,201 +1659,39 @@ Guardar
 
 
 
-<!-- MODAL PERFIL -->
-
-<div
-id="profileModal"
-class="modal">
-
-<div class="sheet">
-
-<h2>
-👤 Mi información
-</h2>
-
-
-<div class="form">
-
-<label>
-Nombre
-</label>
-
-<input
-id="profileInput">
-
-</div>
-
-
-<div class="modal-buttons">
-
-<button
-class="cancel"
-onclick="closeModals()">
-
-Cancelar
-
-</button>
-
-<button
-class="save"
-onclick="saveProfile()">
-
-Guardar
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- MODAL RÁPIDO -->
-
-<div
-id="quickModal"
-class="modal">
-
-<div class="sheet">
-
-<h2>
-＋ Registrar
-</h2>
-
-
-<div class="quick-grid">
-
-
-<button
-class="quick"
-onclick="
-closeModals();
-openModal('tripModal')
-">
-
-<div class="quick-icon">
-🚕
-</div>
-
-<strong>
-Viaje
-</strong>
-
-</button>
-
-
-<button
-class="quick"
-onclick="
-closeModals();
-openModal('expenseModal')
-">
-
-<div class="quick-icon">
-💸
-</div>
-
-<strong>
-Gasto
-</strong>
-
-</button>
-
-
-<button
-class="quick"
-onclick="
-closeModals();
-openModal('fuelModal')
-">
-
-<div class="quick-icon">
-⛽
-</div>
-
-<strong>
-Gasolina
-</strong>
-
-</button>
-
-
-<button
-class="quick"
-onclick="
-closeModals();
-openModal('serviceModal')
-">
-
-<div class="quick-icon">
-🔧
-</div>
-
-<strong>
-Servicio
-</strong>
-
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-
 <script>
 
+/* =====================
+DATOS
+===================== */
 
-/* =========================
-   DATOS
-========================= */
+const KEY =
+"taxiPro11";
 
-const STORAGE_KEY =
-"taxiPro10";
-
-const DEFAULT_DATA={
+let data =
+JSON.parse(
+localStorage.getItem(KEY)
+) || {
 
 name:"Fredy",
 
-journey:{
-active:false,
-start:null,
-trips:0,
-passengers:0,
-income:0
-},
+journey:false,
 
 trips:[],
-expenses:[],
-fuels:[],
-services:[],
 
-vehicleKm:0
+expenses:[],
+
+fuels:[],
+
+services:[]
 
 };
 
 
-let data =
-JSON.parse(
-localStorage.getItem(
-STORAGE_KEY
-)
-)||DEFAULT_DATA;
-
-
-/* =========================
-   UTILIDADES
-========================= */
-
 function save(){
 
 localStorage.setItem(
-STORAGE_KEY,
+KEY,
 JSON.stringify(data)
 );
 
@@ -2671,66 +1714,20 @@ Number(value)||0
 }
 
 
-function dateKey(date=new Date()){
+function today(){
 
-return date
+return new Date()
 .toISOString()
 .slice(0,10);
 
 }
 
 
-/* =========================
-   NAVEGACIÓN
-========================= */
+/* =====================
+SALUDO
+===================== */
 
-function showView(view){
-
-document
-.querySelectorAll(".view")
-.forEach(
-v=>v.classList.remove(
-"active"
-)
-);
-
-
-document
-.getElementById(view)
-.classList.add(
-"active"
-);
-
-
-document
-.querySelectorAll(".nav")
-.forEach(
-nav=>{
-
-nav.classList.toggle(
-"active",
-nav.dataset.view===view
-);
-
-}
-);
-
-
-window.scrollTo(
-{
-top:0,
-behavior:"smooth"
-}
-);
-
-}
-
-
-/* =========================
-   RELOJ
-========================= */
-
-function updateClock(){
+function updateHeader(){
 
 const now =
 new Date();
@@ -2738,26 +1735,37 @@ new Date();
 const hour =
 now.getHours();
 
-let text =
+let greeting =
 "☀️ Buenos días";
+
+let icon =
+"☀️";
+
 
 if(
 hour>=12 &&
 hour<19
 ){
 
-text =
+greeting =
 "🌤️ Buenas tardes";
 
+icon =
+"🌤️";
+
 }
+
 
 if(
 hour>=19 ||
 hour<5
 ){
 
-text =
+greeting =
 "🌙 Buenas noches";
+
+icon =
+"🌙";
 
 }
 
@@ -2767,7 +1775,15 @@ document
 "greeting"
 )
 .textContent =
-text;
+greeting;
+
+
+document
+.getElementById(
+"weatherIcon"
+)
+.textContent =
+icon;
 
 
 document
@@ -2780,30 +1796,7 @@ data.name;
 
 document
 .getElementById(
-"profileName"
-)
-.textContent =
-data.name;
-
-
-document
-.getElementById(
-"today"
-)
-.textContent =
-now.toLocaleDateString(
-"es-MX",
-{
-weekday:"long",
-day:"numeric",
-month:"long"
-}
-);
-
-
-document
-.getElementById(
-"clock"
+"time"
 )
 .textContent =
 now.toLocaleTimeString(
@@ -2817,123 +1810,179 @@ minute:"2-digit"
 }
 
 
-/* =========================
-   ESTADÍSTICAS
-========================= */
+/* =====================
+ESTADÍSTICAS
+===================== */
 
-function todayStats(){
+function getToday(){
 
-const today =
-dateKey();
+const d =
+today();
 
 
 const trips =
 data.trips.filter(
-x=>x.date===today
+x=>x.date===d
 );
 
 
 const expenses =
 data.expenses.filter(
-x=>x.date===today
+x=>x.date===d
 );
 
 
-const fuels =
+const fuel =
 data.fuels.filter(
-x=>x.date===today
+x=>x.date===d
 );
 
 
-const income =
+let income =
+trips.reduce(
+(a,b)=>a+b.income,
+0
+);
+
+
+let tolls =
+trips.length*74;
+
+
+let tripFuel =
 trips.reduce(
 (a,b)=>
 a+
-Number(b.income),
+Number(b.fuel||0),
 0
 );
 
 
-const expense =
+let tripOther =
+trips.reduce(
+(a,b)=>
+a+
+Number(b.other||0),
+0
+);
+
+
+let fuelExtra =
+fuel.reduce(
+(a,b)=>
+a+
+Number(b.amount||0),
+0
+);
+
+
+let other =
 expenses.reduce(
 (a,b)=>
 a+
-Number(b.amount),
+Number(b.amount||0),
 0
-)+
-fuels.reduce(
+);
+
+
+const totalExpenses =
+tolls+
+tripFuel+
+tripOther+
+fuelExtra+
+other;
+
+
+const passengers =
+trips.reduce(
 (a,b)=>
 a+
-Number(b.amount),
+b.outPassengers+
+b.returnPassengers,
 0
 );
 
 
 return{
 
+trips,
+
 income,
 
-expense,
+tolls,
+
+fuel:
+tripFuel+
+fuelExtra,
+
+other:
+tripOther+
+other,
+
+expenses:
+totalExpenses,
+
+passengers,
 
 profit:
-income-expense,
-
-passengers:
-trips.reduce(
-(a,b)=>
-a+
-Number(b.passengers),
-0
-)
+income-totalExpenses
 
 };
 
 }
 
 
-/* =========================
-   RENDER
-========================= */
+/* =====================
+RENDER
+===================== */
 
 function render(){
 
-updateClock();
+updateHeader();
 
 
-const stats =
-todayStats();
-
-
-document
-.getElementById(
-"profit"
-)
-.textContent =
-money(stats.profit);
+const s =
+getToday();
 
 
 document
 .getElementById(
-"income"
+"todayProfit"
 )
 .textContent =
-money(stats.income);
+money(s.profit);
 
 
 document
 .getElementById(
-"expenses"
+"todayTrips"
 )
 .textContent =
-money(stats.expense);
+s.trips.length;
 
 
 document
 .getElementById(
-"passengers"
+"todayPassengers"
 )
 .textContent =
-stats.passengers;
+s.passengers;
+
+
+document
+.getElementById(
+"todayIncome"
+)
+.textContent =
+money(s.income);
+
+
+document
+.getElementById(
+"todayExpenses"
+)
+.textContent =
+money(s.expenses);
 
 
 document
@@ -2941,7 +1990,7 @@ document
 "financeProfit"
 )
 .textContent =
-money(stats.profit);
+money(s.profit);
 
 
 document
@@ -2949,250 +1998,167 @@ document
 "financeIncome"
 )
 .textContent =
-money(stats.income);
+money(s.income);
 
 
 document
 .getElementById(
-"financeExpenses"
+"financeExpense"
 )
 .textContent =
-money(stats.expense);
-
-
-/* JOURNEY */
-
-const active =
-data.journey.active;
-
-
-[
-"statusDot",
-"statusDot2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.classList.toggle(
-"active",
-active
-)
-);
-
-
-[
-"statusText",
-"statusText2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-active
-?
-"Jornada activa"
-:
-"Fuera de jornada"
-);
-
-
-const start =
-data.journey.start
-?
-new Date(
-data.journey.start
-)
-.toLocaleTimeString(
-"es-MX",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-)
-:
-"--";
-
-
-[
-"startTime",
-"startTime2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-start
-);
-
-
-[
-"trips",
-"trips2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-data.journey.trips
-);
-
-
-[
-"journeyPassengers",
-"passengers2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-data.journey.passengers
-);
-
-
-[
-"journeyIncome",
-"income2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-money(
-data.journey.income
-)
-);
-
-
-[
-"journeyBtn",
-"journeyBtn2"
-]
-.forEach(
-id=>
-document
-.getElementById(id)
-.textContent =
-active
-?
-"⏹ Finalizar jornada"
-:
-"▶ Iniciar jornada"
-);
-
-
-/* VEHICLE */
-
-document
-.getElementById(
-"vehicleKm"
-)
-.textContent =
-Number(
-data.vehicleKm||0
-)
-.toLocaleString(
-"es-MX"
-)
-+
-" km";
+money(s.expenses);
 
 
 document
 .getElementById(
-"serviceCount"
+"financeTolls"
 )
 .textContent =
-data.services.length;
+money(s.tolls);
 
 
-renderServices();
+document
+.getElementById(
+"financeFuel"
+)
+.textContent =
+money(s.fuel);
+
+
+renderTrips();
 
 renderPayments();
 
-renderChart();
+renderServices();
+
+
+document
+.getElementById(
+"journeyStatus"
+)
+.textContent =
+data.journey
+?
+"🟢 Jornada activa"
+:
+"⚪ Fuera de jornada";
+
+
+document
+.getElementById(
+"journeyButton"
+)
+.textContent =
+data.journey
+?
+"⏹ Finalizar jornada"
+:
+"▶ Iniciar jornada";
 
 }
 
 
-/* =========================
-   JORNADA
-========================= */
+/* =====================
+REGISTRAR VUELTA
+===================== */
 
-function toggleJourney(){
+function calculateTrip(){
 
-if(
-!data.journey.active
-){
+const out =
+Number(
+document
+.getElementById(
+"outPassengers"
+)
+.value
+)||0;
 
-data.journey.active =
-true;
 
-data.journey.start =
-new Date()
-.toISOString();
+const back =
+Number(
+document
+.getElementById(
+"returnPassengers"
+)
+.value
+)||0;
 
-data.journey.trips =
-0;
 
-data.journey.passengers =
-0;
+const total =
+out+back;
 
-data.journey.income =
-0;
 
-}else{
+const income =
+total*80;
 
-data.journey.active =
-false;
+
+document
+.getElementById(
+"modalPassengers"
+)
+.textContent =
+total;
+
+
+document
+.getElementById(
+"modalIncome"
+)
+.textContent =
+money(income);
 
 }
 
-save();
-
-render();
-
-}
-
-
-/* =========================
-   VIAJE
-========================= */
 
 function saveTrip(){
 
-const passengers =
+const out =
 Number(
 document
 .getElementById(
-"tripPassengers"
+"outPassengers"
 )
 .value
-);
+)||0;
 
 
-const fare =
+const back =
 Number(
 document
 .getElementById(
-"tripFare"
+"returnPassengers"
 )
 .value
-);
+)||0;
+
+
+const fuel =
+Number(
+document
+.getElementById(
+"tripFuel"
+)
+.value
+)||0;
+
+
+const other =
+Number(
+document
+.getElementById(
+"tripOther"
+)
+.value
+)||0;
 
 
 if(
-passengers<=0 ||
-fare<=0
+out===0 &&
+back===0
 ){
 
 alert(
-"Ingresa datos válidos."
+"Registra al menos un pasajero."
 );
 
 return;
@@ -3200,45 +2166,184 @@ return;
 }
 
 
-const income =
-passengers*fare;
-
-
-data.trips.push({
+data.trips.unshift({
 
 date:
-dateKey(),
+today(),
 
-passengers,
+time:
+new Date()
+.toLocaleTimeString(
+"es-MX",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+),
 
-fare,
+outPassengers:
+out,
 
-income
+returnPassengers:
+back,
+
+income:
+(out+back)*80,
+
+toll:74,
+
+fuel,
+
+other
 
 });
 
 
-data.journey.trips++;
-
-data.journey.passengers +=
-passengers;
-
-data.journey.income +=
-income;
-
-
 save();
 
-closeModals();
+closeModal(
+"tripModal"
+);
+
+clearTripForm();
 
 render();
 
 }
 
 
-/* =========================
-   GASTO
-========================= */
+function clearTripForm(){
+
+[
+"outPassengers",
+"returnPassengers",
+"tripFuel",
+"tripOther"
+]
+.forEach(
+id=>
+document
+.getElementById(id)
+.value=""
+);
+
+document
+.getElementById(
+"modalPassengers"
+)
+.textContent="0";
+
+
+document
+.getElementById(
+"modalIncome"
+)
+.textContent="$0";
+
+}
+
+
+/* =====================
+MOSTRAR VUELTAS
+===================== */
+
+function renderTrips(){
+
+const todayTrips =
+data.trips.filter(
+x=>x.date===today()
+);
+
+
+const recent =
+document
+.getElementById(
+"recentTrips"
+);
+
+
+const all =
+document
+.getElementById(
+"allTrips"
+);
+
+
+function html(list){
+
+if(
+list.length===0
+){
+
+return "Aún no hay vueltas registradas.";
+
+}
+
+
+return list
+.slice(0,20)
+.map(
+(t,i)=>`
+
+<div class="trip-card">
+
+<div>
+
+<div class="trip-date">
+${t.date} · ${t.time}
+</div>
+
+<div class="trip-title">
+🚕 Vuelta ${list.length-i}
+</div>
+
+<div class="trip-info">
+
+Ida: ${t.outPassengers}
+· Regreso: ${t.returnPassengers}
+· Total: ${t.outPassengers+t.returnPassengers}
+pasajeros
+
+<br>
+
+🛣️ Caseta:
+${money(74)}
+
+· ⛽ Gasolina:
+${money(t.fuel)}
+
+</div>
+
+</div>
+
+<div class="trip-income">
+
+${money(t.income)}
+
+</div>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+recent.innerHTML =
+html(todayTrips);
+
+
+all.innerHTML =
+html(data.trips);
+
+}
+
+
+/* =====================
+OTROS GASTOS
+===================== */
 
 function saveExpense(){
 
@@ -3278,7 +2383,7 @@ return;
 data.expenses.push({
 
 date:
-dateKey(),
+today(),
 
 name,
 
@@ -3289,16 +2394,18 @@ amount
 
 save();
 
-closeModals();
+closeModal(
+"expenseModal"
+);
 
 render();
 
 }
 
 
-/* =========================
-   GASOLINA
-========================= */
+/* =====================
+GASOLINA
+===================== */
 
 function saveFuel(){
 
@@ -3319,7 +2426,7 @@ document
 "fuelLiters"
 )
 .value
-);
+)||0;
 
 
 const km =
@@ -3329,7 +2436,7 @@ document
 "fuelKm"
 )
 .value
-);
+)||0;
 
 
 if(
@@ -3348,7 +2455,7 @@ return;
 data.fuels.push({
 
 date:
-dateKey(),
+today(),
 
 amount,
 
@@ -3359,26 +2466,20 @@ km
 });
 
 
-if(km){
-
-data.vehicleKm =
-km;
-
-}
-
-
 save();
 
-closeModals();
+closeModal(
+"fuelModal"
+);
 
 render();
 
 }
 
 
-/* =========================
-   MANTENIMIENTO
-========================= */
+/* =====================
+MANTENIMIENTO
+===================== */
 
 function saveService(){
 
@@ -3397,7 +2498,7 @@ document
 "serviceDate"
 )
 .value ||
-dateKey();
+today();
 
 
 const km =
@@ -3407,7 +2508,7 @@ document
 "serviceKm"
 )
 .value
-);
+)||0;
 
 
 const cost =
@@ -3417,7 +2518,7 @@ document
 "serviceCost"
 )
 .value
-);
+)||0;
 
 
 if(
@@ -3425,7 +2526,7 @@ if(
 ){
 
 alert(
-"Ingresa la descripción."
+"Escribe una descripción."
 );
 
 return;
@@ -3446,26 +2547,20 @@ cost
 });
 
 
-if(km){
-
-data.vehicleKm =
-km;
-
-}
-
-
 save();
 
-closeModals();
+closeModal(
+"serviceModal"
+);
 
 render();
 
 }
 
 
-/* =========================
-   SERVICIOS
-========================= */
+/* =====================
+SERVICIOS
+===================== */
 
 function renderServices(){
 
@@ -3480,32 +2575,17 @@ if(
 data.services.length===0
 ){
 
-box.innerHTML =
-"Sin servicios registrados.";
-
-document
-.getElementById(
-"lastService"
-)
-.textContent =
-"--";
+box.textContent =
+"No hay servicios registrados.";
 
 return;
 
 }
 
 
-document
-.getElementById(
-"lastService"
-)
-.textContent =
-data.services[0].date;
-
-
 box.innerHTML =
 data.services
-.slice(0,10)
+.slice(0,15)
 .map(
 s=>`
 
@@ -3519,10 +2599,8 @@ s=>`
 
 <small>
 ${s.date}
- ·
-${Number(s.km||0)
-.toLocaleString("es-MX")}
- km
+·
+${s.km||0} km
 </small>
 
 </div>
@@ -3540,550 +2618,86 @@ ${money(s.cost)}
 }
 
 
-/* =========================
-   PAGOS RECURRENTES
-========================= */
+/* =====================
+PAGOS RECURRENTES
+===================== */
 
-const PAYMENT_RULES=[
+const payments=[
 
 {
-id:"potrero",
-
-name:"Punto El Potrero",
-
-icon:"📍",
-
+name:"📍 Punto El Potrero",
 amount:120,
-
-type:"interval",
-
-start:"2026-07-23",
-
-interval:5
-
+rule:"Cada 5 días",
+next:"2026-07-23"
 },
 
 {
-id:"checadora",
-
-name:"Pago Checadora",
-
-icon:"🧾",
-
+name:"🧾 Pago Checadora",
 amount:300,
-
-type:"weekly",
-
-weekday:5
-
+rule:"Cada viernes",
+next:"2026-07-24"
 },
 
 {
-id:"villa",
-
-name:"Estacionamiento Villa Guerrero",
-
-icon:"🅿️",
-
+name:"🅿️ Estacionamiento Villa Guerrero",
 amount:220,
-
-type:"monthly",
-
-day:29
-
+rule:"Día 29 de cada mes",
+next:"2026-07-29"
 },
 
 {
-id:"movilidad",
-
-name:"Pago Movilidad",
-
-icon:"🚌",
-
+name:"🚌 Pago Movilidad",
 amount:200,
-
-type:"monthly",
-
-day:20
-
+rule:"Día 20 de cada mes",
+next:"2026-08-20"
 },
 
 {
-id:"metepec",
-
-name:"Pago Metepec",
-
-icon:"📍",
-
+name:"📍 Pago Metepec",
 amount:80,
-
-type:"monthly",
-
-day:4
-
+rule:"Día 4 de cada mes",
+next:"2026-08-04"
 },
 
 {
-id:"toluca",
-
-name:"Estacionamiento Toluca",
-
-icon:"🅿️",
-
+name:"🅿️ Estacionamiento Toluca",
 amount:140,
-
-type:"monthly",
-
-day:6
-
+rule:"Día 6 de cada mes",
+next:"2026-08-06"
 }
 
 ];
 
 
-/*
-Generador de calendario.
-
-Punto El Potrero:
-23 julio
-28 julio
-2 agosto
-7 agosto
-12 agosto
-etc.
-
-No genera pagos duplicados.
-*/
-
-function generatePayments(){
-
-const payments=[];
-
-const seen=
-new Set();
-
-
-const today =
-new Date();
-
-today.setHours(
-0,0,0,0
-);
-
-
-for(
-let i=0;
-i<120;
-i++
-){
-
-const date =
-new Date(today);
-
-date.setDate(
-today.getDate()+i
-);
-
-
-PAYMENT_RULES
-.forEach(
-rule=>{
-
-let match=false;
-
-
-if(
-rule.type==="monthly"
-){
-
-match =
-date.getDate()===
-rule.day;
-
-}
-
-
-if(
-rule.type==="weekly"
-){
-
-match =
-date.getDay()===
-rule.weekday;
-
-}
-
-
-if(
-rule.type==="interval"
-){
-
-const start =
-new Date(
-rule.start+
-"T00:00:00"
-);
-
-
-const days =
-Math.floor(
-(date-start)/
-86400000
-);
-
-
-match =
-days>=0 &&
-days%
-rule.interval===0;
-
-}
-
-
-if(match){
-
-const key =
-rule.id+
-"_"+
-dateKey(date);
-
-
-if(
-!seen.has(key)
-){
-
-seen.add(key);
-
-
-payments.push({
-
-...rule,
-
-date:
-new Date(date)
-
-});
-
-}
-
-}
-
-}
-);
-
-}
-
-
-return payments
-.sort(
-(a,b)=>
-a.date-b.date
-);
-
-}
-
-
-/* =========================
-   CALENDARIO
-========================= */
-
 function renderPayments(){
 
-const payments =
-generatePayments();
-
-
-const groups={};
-
-
-payments
-.forEach(
-p=>{
-
-const key =
-dateKey(p.date);
-
-
-if(
-!groups[key]
-){
-
-groups[key]={
-date:p.date,
-items:[]
-};
-
-}
-
-
-groups[key]
-.items
-.push(p);
-
-}
-);
-
-
-let html="";
-
-
-Object
-.values(groups)
-.forEach(
-group=>{
-
-const date =
-group.date
-.toLocaleDateString(
-"es-MX",
-{
-weekday:"long",
-day:"numeric",
-month:"long"
-}
-);
-
-
-html+=`
-
-<div class="calendar-day">
-
-<div class="day-header">
-
-<strong>
-${date}
-</strong>
-
-<span>
-${group.items.length}
-${group.items.length===1
-?"pago"
-:"pagos"}
-</span>
-
-</div>
-
-`;
-
-
-group.items
-.forEach(
-p=>{
-
-html+=`
-
-<div class="pay-row">
-
-<div class="pay-left">
-
-<div class="payment-icon">
-${p.icon}
-</div>
-
-<div>
-
-<div class="pay-name">
-${p.name}
-</div>
-
-<div class="pay-rule">
-${getRuleText(p)}
-</div>
-
-</div>
-
-</div>
-
-<div class="pay-value">
-${money(p.amount)}
-</div>
-
-</div>
-
-`;
-
-}
-);
-
-
-html+=`
-
-</div>
-
-`;
-
-}
-);
-
-
 document
 .getElementById(
-"calendarList"
+"payments"
 )
 .innerHTML =
-html;
-
-
-const next =
-payments[0];
-
-
-if(next){
-
-const date =
-next.date
-.toLocaleDateString(
-"es-MX",
-{
-weekday:"long",
-day:"numeric",
-month:"long"
-}
-);
-
-
-document
-.getElementById(
-"nextPayment"
-)
-.innerHTML = `
+payments
+.map(
+p=>`
 
 <div class="payment">
 
-<div class="payment-left">
-
-<div class="payment-icon">
-${next.icon}
-</div>
-
 <div>
 
-<div class="payment-title">
-${next.name}
+<div class="payment-name">
+${p.name}
 </div>
 
 <div class="payment-date">
-${date}
-</div>
-
+${p.rule}
 </div>
 
 </div>
 
 <div class="payment-amount">
-${money(next.amount)}
+${money(p.amount)}
 </div>
 
-</div>
-
-`;
-
-}
-
-}
-
-
-/* =========================
-   REGLAS
-========================= */
-
-function getRuleText(p){
-
-if(
-p.type==="interval"
-){
-
-return "Cada 5 días";
-
-}
-
-if(
-p.type==="weekly"
-){
-
-return "Cada viernes";
-
-}
-
-return "Cada mes";
-
-}
-
-
-/* =========================
-   GRÁFICA
-========================= */
-
-function renderChart(){
-
-const chart =
-document
-.getElementById(
-"chart"
-);
-
-
-const values=[];
-
-
-for(
-let i=6;
-i>=0;
-i--
-){
-
-const d =
-new Date();
-
-
-d.setDate(
-d.getDate()-i
-);
-
-
-const key =
-dateKey(d);
-
-
-const total =
-data.trips
-.filter(
-t=>t.date===key
-)
-.reduce(
-(a,b)=>
-a+
-Number(b.income),
-0
-);
-
-
-values.push(total);
-
-}
-
-
-const max =
-Math.max(
-...values,
-1
-);
-
-
-chart.innerHTML =
-values
-.map(
-value=>`
-
-<div
-class="bar"
-style="
-height:
-${Math.max(
-5,
-value/max*100
-)}%;
-">
 </div>
 
 `
@@ -4093,150 +2707,95 @@ value/max*100
 }
 
 
-/* =========================
-   PERFIL
-========================= */
+/* =====================
+JORNADA
+===================== */
 
-function saveProfile(){
+function toggleJourney(){
 
-const name =
-document
-.getElementById(
-"profileInput"
-)
-.value
-.trim();
-
-
-if(name){
-
-data.name =
-name;
-
-}
-
+data.journey =
+!data.journey;
 
 save();
-
-closeModals();
 
 render();
 
 }
 
 
-/* =========================
-   PERIODO
-========================= */
+/* =====================
+NAVEGACIÓN
+===================== */
 
-function setPeriod(
-period,
-button
-){
+function showView(view){
 
 document
 .querySelectorAll(
-".periods button"
+".view"
 )
 .forEach(
-b=>
-b.classList.remove(
+v=>
+v.classList.remove(
 "active"
 )
 );
 
-button.classList.add(
+
+document
+.getElementById(view)
+.classList.add(
 "active"
+);
+
+
+document
+.querySelectorAll(
+".nav"
+)
+.forEach(
+n=>
+n.classList.toggle(
+"active",
+n.dataset.view===view
+)
+);
+
+
+window.scrollTo(
+{
+top:0,
+behavior:"smooth"
+}
 );
 
 }
 
 
-/* =========================
-   MODALES
-========================= */
+/* =====================
+MODALES
+===================== */
 
 function openModal(id){
 
 document
 .getElementById(id)
 .classList.add(
-"open"
+"active"
 );
 
 }
 
 
-function closeModals(){
+function closeModal(id){
 
 document
-.querySelectorAll(
-".modal"
-)
-.forEach(
-m=>
-m.classList.remove(
-"open"
-)
+.getElementById(id)
+.classList.remove(
+"active"
 );
 
 }
 
-
-/* =========================
-   RESPALDO
-========================= */
-
-function backup(){
-
-const blob =
-new Blob(
-[
-JSON.stringify(
-data,
-null,
-2
-)
-],
-{
-type:
-"application/json"
-}
-);
-
-
-const url =
-URL.createObjectURL(
-blob
-);
-
-
-const a =
-document
-.createElement("a");
-
-
-a.href =
-url;
-
-
-a.download =
-"Taxi-Pro-10.0-Respaldo.json";
-
-
-a.click();
-
-
-URL.revokeObjectURL(
-url
-);
-
-}
-
-
-/* =========================
-   CERRAR MODAL
-========================= */
 
 document
 .querySelectorAll(
@@ -4250,12 +2809,11 @@ modal.addEventListener(
 e=>{
 
 if(
-e.target===
-modal
+e.target===modal
 ){
 
 modal.classList.remove(
-"open"
+"active"
 );
 
 }
@@ -4266,20 +2824,18 @@ modal.classList.remove(
 });
 
 
-/* =========================
-   INICIAR
-========================= */
+/* =====================
+INICIO
+===================== */
 
 render();
 
-
 setInterval(
-updateClock,
+updateHeader,
 30000
 );
 
 </script>
-
 
 </body>
 </html>
