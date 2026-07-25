@@ -1,258 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111111">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Taxi Pro</title>
+  <title>Taxi Pro</title>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  color: #222;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      color: #222;
+    }
 
-header {
-  background: #111;
-  color: white;
-  padding: 20px 15px;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 28px;
-}
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
 
-header p {
-  margin: 7px 0 0;
-  color: #ccc;
-}
+    header p {
+      margin: 8px 0 0;
+      color: #ccc;
+    }
 
-main {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 15px;
-  padding-bottom: 80px;
-}
+    main {
+      max-width: 700px;
+      margin: auto;
+      padding: 15px;
+      padding-bottom: 30px;
+    }
 
-.seccion {
-  display: none;
-}
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
 
-.seccion.activa {
-  display: block;
-}
+    .card h2 {
+      margin-top: 0;
+    }
 
-.card {
-  background: white;
-  border-radius: 14px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 3px 10px rgba(0,0,0,.1);
-}
+    button {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-.card h2 {
-  margin-top: 0;
-}
+    button:active {
+      background: #333;
+    }
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 6px 0 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  background: white;
-}
+    .seccion {
+      display: none;
+    }
 
-textarea {
-  min-height: 80px;
-  resize: vertical;
-}
+    .seccion.activa {
+      display: block;
+    }
 
-label {
-  font-weight: bold;
-  display: block;
-  margin-top: 8px;
-}
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
 
-.button {
-  width: 100%;
-  padding: 13px;
-  margin-top: 8px;
-  border: none;
-  border-radius: 8px;
-  background: #111;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 10px;
+    }
 
-.button:hover {
-  background: #333;
-}
+    .registro {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      background: #fafafa;
+    }
 
-.button.secundario {
-  background: #666;
-}
+    .boton-eliminar {
+      background: #b00020;
+    }
 
-.button.peligro {
-  background: #b00020;
-}
+    .boton-editar {
+      background: #005bbb;
+    }
 
-.button.editar {
-  background: #005bbb;
-}
+    .navegacion {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-.menu {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 15px;
-}
-
-.menu button {
-  padding: 18px 10px;
-  border: none;
-  border-radius: 12px;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.menu button:hover {
-  background: #eee;
-}
-
-.resumen-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-}
-
-.resumen-box {
-  padding: 15px;
-  border-radius: 12px;
-  background: #f5f5f5;
-  text-align: center;
-}
-
-.resumen-box strong {
-  display: block;
-  font-size: 20px;
-  margin-top: 6px;
-}
-
-.lista {
-  margin-top: 15px;
-}
-
-.registro {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 10px;
-  background: #fafafa;
-}
-
-.registro strong {
-  font-size: 17px;
-}
-
-.registro p {
-  margin: 6px 0;
-}
-
-.botones-registro {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.botones-registro button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 7px;
-  color: white;
-  cursor: pointer;
-}
-
-.nav-inferior {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #111;
-  display: flex;
-  justify-content: space-around;
-  padding: 8px 4px;
-  z-index: 20;
-}
-
-.nav-inferior button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 12px;
-  cursor: pointer;
-  padding: 5px;
-}
-
-.nav-inferior span {
-  display: block;
-  font-size: 20px;
-}
-
-.oculto {
-  display: none;
-}
-
-.total {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin: 10px 0;
-}
-
-.positivo {
-  color: #16803c;
-}
-
-.negativo {
-  color: #b00020;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  color: #777;
-}
-
-@media (max-width: 450px) {
-  .menu {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .resumen-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+    }
+  </style>
 </head>
 
 <body>
@@ -264,1211 +135,1204 @@ footer {
 
 <main>
 
-<!-- ================= INICIO ================= -->
+  <!-- INICIO -->
+  <section id="inicio" class="seccion activa">
 
-<section id="inicio" class="seccion activa">
+    <div class="card">
+      <h2>Bienvenido a Taxi Pro</h2>
 
-  <div class="card">
-    <h2>👋 Bienvenido a Taxi Pro</h2>
-    <p>
-      Lleva el control de los ingresos, gastos,
-      mantenimiento y utilidad de tu taxi.
-    </p>
-  </div>
+      <p>
+        Tu aplicación para llevar el control de
+        ingresos, gastos y mantenimiento de tu taxi.
+      </p>
+    </div>
 
-  <div class="menu">
+    <div class="card">
+      <h2>Menú principal</h2>
 
-    <button onclick="mostrarSeccion('ingresos')">
-      💰
-      <br>
-      Ingresos
-    </button>
+      <div class="navegacion">
 
-    <button onclick="mostrarSeccion('gastos')">
-      💸
-      <br>
-      Gastos
-    </button>
+        <button onclick="abrirSeccion('ingresos')">
+          💰 Ingresos
+        </button>
 
-    <button onclick="mostrarSeccion('recurrentes')">
-      🔄
-      <br>
-      Recurrentes
-    </button>
+        <button onclick="abrirSeccion('gastos')">
+          💸 Gastos
+        </button>
 
-    <button onclick="mostrarSeccion('mantenimiento')">
-      🔧
-      <br>
-      Mantenimiento
-    </button>
+        <button onclick="abrirSeccion('mantenimiento')">
+          🔧 Mantenimiento
+        </button>
 
-    <button onclick="mostrarSeccion('resumen')">
-      📊
-      <br>
-      Resumen
-    </button>
+        <button onclick="abrirSeccion('resumen')">
+          📊 Resumen
+        </button>
 
-  </div>
-
-  <div class="card">
-    <h2>📊 Resumen actual</h2>
-
-    <div class="resumen-grid">
-
-      <div class="resumen-box">
-        Ingresos
-        <strong id="inicioIngresos">$0.00</strong>
       </div>
+    </div>
 
-      <div class="resumen-box">
-        Gastos
-        <strong id="inicioGastos">$0.00</strong>
-      </div>
+  </section>
 
-      <div class="resumen-box">
-        Utilidad
-        <strong id="inicioUtilidad">$0.00</strong>
-      </div>
 
-      <div class="resumen-box">
-        Pasajeros
-        <strong id="inicioPasajeros">0</strong>
+  <!-- INGRESOS -->
+  <section id="ingresos" class="seccion">
+
+    <div class="card">
+
+      <h2>💰 Ingresos</h2>
+
+      <label>Fecha</label>
+      <input type="date" id="fechaIngreso">
+
+      <label>Número de pasajeros</label>
+      <input
+        type="number"
+        id="pasajerosIngreso"
+        min="1"
+        placeholder="Ejemplo: 5"
+      >
+
+      <label>Tarifa por pasajero</label>
+      <input
+        type="number"
+        id="tarifaIngreso"
+        value="80"
+        min="0"
+      >
+
+      <button onclick="guardarIngreso()">
+        Guardar ingreso
+      </button>
+
+      <button onclick="abrirSeccion('inicio')">
+        Volver al inicio
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h2>Historial</h2>
+
+      <div id="listaIngresos">
+        No hay ingresos registrados.
       </div>
 
     </div>
 
-  </div>
+  </section>
 
-</section>
 
+  <!-- GASTOS -->
+  <section id="gastos" class="seccion">
 
-<!-- ================= INGRESOS ================= -->
+    <div class="card">
 
-<section id="ingresos" class="seccion">
+      <h2>💸 Gastos</h2>
 
-<div class="card">
+      <label>Fecha</label>
+      <input type="date" id="fechaGasto">
 
-<h2>💰 Registrar ingreso</h2>
+      <label>Tipo de gasto</label>
 
-<label>Fecha</label>
-<input type="date" id="ingresoFecha">
+      <select id="tipoGasto">
 
-<label>Número de pasajeros</label>
-<input type="number" id="ingresoPasajeros" min="0" placeholder="Ejemplo: 5">
+        <option value="Gasolina">
+          Gasolina
+        </option>
 
-<label>Tarifa por pasajero</label>
-<input type="number" id="ingresoTarifa" min="0" step="0.01" value="80">
+        <option value="Caseta">
+          Caseta
+        </option>
 
-<button class="button" onclick="guardarIngreso()">
-Guardar ingreso
-</button>
+        <option value="Otro">
+          Otro
+        </option>
 
-</div>
+      </select>
 
-<div class="card">
+      <label>Descripción</label>
 
-<h2>📋 Historial de ingresos</h2>
+      <input
+        type="text"
+        id="descripcionGasto"
+        placeholder="Ejemplo: Gasolina"
+      >
 
-<div id="listaIngresos" class="lista"></div>
+      <label>Monto</label>
 
-</div>
+      <input
+        type="number"
+        id="montoGasto"
+        min="0"
+        placeholder="0"
+      >
 
-</section>
+      <button onclick="guardarGasto()">
+        Guardar gasto
+      </button>
 
+      <button onclick="abrirSeccion('inicio')">
+        Volver al inicio
+      </button>
 
-<!-- ================= GASTOS ================= -->
+    </div>
 
-<section id="gastos" class="seccion">
+    <div class="card">
 
-<div class="card">
+      <h2>Historial</h2>
 
-<h2>💸 Registrar gasto</h2>
+      <div id="listaGastos">
+        No hay gastos registrados.
+      </div>
 
-<label>Fecha</label>
-<input type="date" id="gastoFecha">
+    </div>
 
-<label>Tipo de gasto</label>
+  </section>
 
-<select id="gastoTipo">
 
-<option value="Gasolina">Gasolina</option>
-<option value="Caseta">Caseta</option>
-<option value="Cooperación">Cooperación</option>
-<option value="Cuenta">Cuenta</option>
-<option value="Otro">Otro</option>
+  <!-- MANTENIMIENTO -->
+  <section id="mantenimiento" class="seccion">
 
-</select>
+    <div class="card">
 
-<label>Descripción</label>
-<input type="text" id="gastoDescripcion" placeholder="Descripción del gasto">
+      <h2>🔧 Mantenimiento</h2>
 
-<label>Monto</label>
-<input type="number" id="gastoMonto" min="0" step="0.01">
+      <input
+        type="hidden"
+        id="idMantenimiento"
+      >
 
-<button class="button" onclick="guardarGasto()">
-Guardar gasto
-</button>
+      <label>Fecha</label>
 
-</div>
+      <input
+        type="date"
+        id="fechaMantenimiento"
+      >
 
-<div class="card">
+      <label>Descripción del servicio</label>
 
-<h2>📋 Historial de gastos</h2>
+      <textarea
+        id="descripcionMantenimiento"
+        placeholder="Ejemplo: Reemplazo de 4 llantas"
+      ></textarea>
 
-<div id="listaGastos" class="lista"></div>
+      <label>Kilometraje</label>
 
-</div>
+      <input
+        type="number"
+        id="kmMantenimiento"
+        placeholder="Ejemplo: 102003"
+      >
 
-</section>
+      <label>Costo</label>
 
+      <input
+        type="number"
+        id="costoMantenimiento"
+        min="0"
+        placeholder="0"
+      >
 
-<!-- ================= GASTOS RECURRENTES ================= -->
+      <button onclick="guardarMantenimiento()">
+        Guardar mantenimiento
+      </button>
 
-<section id="recurrentes" class="seccion">
+      <button
+        id="cancelarEdicion"
+        style="display:none"
+        onclick="cancelarEdicion()"
+      >
+        Cancelar edición
+      </button>
 
-<div class="card">
+      <button onclick="abrirSeccion('inicio')">
+        Volver al inicio
+      </button>
 
-<h2>🔄 Gastos recurrentes</h2>
+    </div>
 
-<p>
-Registra gastos que se repiten periódicamente.
-</p>
+    <div class="card">
 
-<label>Concepto</label>
-<input type="text" id="recurrenteConcepto" placeholder="Ejemplo: Punto El Potrero">
+      <h2>Historial de mantenimiento</h2>
 
-<label>Monto</label>
-<input type="number" id="recurrenteMonto" min="0" step="0.01">
+      <div id="listaMantenimiento">
+        No hay mantenimientos registrados.
+      </div>
 
-<label>Frecuencia</label>
+    </div>
 
-<select id="recurrenteFrecuencia">
+  </section>
 
-<option value="Diario">Diario</option>
-<option value="Cada 5 días">Cada 5 días</option>
-<option value="Semanal">Semanal</option>
-<option value="Quincenal">Quincenal</option>
-<option value="Mensual">Mensual</option>
 
-</select>
+  <!-- RESUMEN -->
+  <section id="resumen" class="seccion">
 
-<label>Fecha de inicio</label>
-<input type="date" id="recurrenteFecha">
+    <div class="card">
 
-<button class="button" onclick="guardarRecurrente()">
-Guardar gasto recurrente
-</button>
+      <h2>📊 Resumen</h2>
 
-</div>
+      <p>
+        Total de ingresos:
+        <strong id="totalIngresos">
+          $0.00
+        </strong>
+      </p>
 
-<div class="card">
+      <p>
+        Total de gastos:
+        <strong id="totalGastos">
+          $0.00
+        </strong>
+      </p>
 
-<h2>📋 Gastos recurrentes registrados</h2>
+      <p>
+        Utilidad:
+        <strong id="utilidad">
+          $0.00
+        </strong>
+      </p>
 
-<div id="listaRecurrentes" class="lista"></div>
+      <p>
+        Total de pasajeros:
+        <strong id="totalPasajeros">
+          0
+        </strong>
+      </p>
 
-</div>
+      <button onclick="abrirSeccion('inicio')">
+        Volver al inicio
+      </button>
 
-</section>
+    </div>
 
-
-<!-- ================= MANTENIMIENTO ================= -->
-
-<section id="mantenimiento" class="seccion">
-
-<div class="card">
-
-<h2>🔧 Mantenimiento del taxi</h2>
-
-<input type="hidden" id="mantenimientoId">
-
-<label>Fecha del servicio</label>
-<input type="date" id="mantenimientoFecha">
-
-<label>Descripción del servicio</label>
-
-<textarea
-id="mantenimientoDescripcion"
-placeholder="Ejemplo: Reemplazo de 4 llantas">
-</textarea>
-
-<label>Kilometraje</label>
-<input type="number" id="mantenimientoKm" placeholder="Ejemplo: 102003">
-
-<label>Costo</label>
-<input type="number" id="mantenimientoCosto" min="0" step="0.01">
-
-<button class="button" id="btnGuardarMantenimiento" onclick="guardarMantenimiento()">
-Guardar mantenimiento
-</button>
-
-<button
-class="button secundario oculto"
-id="btnCancelarEdicion"
-onclick="cancelarEdicionMantenimiento()">
-Cancelar edición
-</button>
-
-</div>
-
-<div class="card">
-
-<h2>📋 Historial de mantenimiento</h2>
-
-<div id="listaMantenimiento" class="lista"></div>
-
-</div>
-
-</section>
-
-
-<!-- ================= RESUMEN ================= -->
-
-<section id="resumen" class="seccion">
-
-<div class="card">
-
-<h2>📊 Resumen general</h2>
-
-<div class="resumen-grid">
-
-<div class="resumen-box">
-💰 Ingresos
-<strong id="totalIngresos">$0.00</strong>
-</div>
-
-<div class="resumen-box">
-💸 Gastos
-<strong id="totalGastos">$0.00</strong>
-</div>
-
-<div class="resumen-box">
-📈 Utilidad
-<strong id="utilidad">$0.00</strong>
-</div>
-
-<div class="resumen-box">
-👥 Pasajeros
-<strong id="totalPasajeros">0</strong>
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<h2>🔧 Total mantenimiento</h2>
-
-<div class="total" id="totalMantenimiento">
-$0.00
-</div>
-
-</div>
-
-</section>
-
-<footer>
-Taxi Pro © 2026
-</footer>
+  </section>
 
 </main>
 
-
-<!-- ================= NAVEGACIÓN ================= -->
-
-<nav class="nav-inferior">
-
-<button onclick="mostrarSeccion('inicio')">
-<span>🏠</span>
-Inicio
-</button>
-
-<button onclick="mostrarSeccion('ingresos')">
-<span>💰</span>
-Ingresos
-</button>
-
-<button onclick="mostrarSeccion('gastos')">
-<span>💸</span>
-Gastos
-</button>
-
-<button onclick="mostrarSeccion('mantenimiento')">
-<span>🔧</span>
-Mantenimiento
-</button>
-
-<button onclick="mostrarSeccion('resumen')">
-<span>📊</span>
-Resumen
-</button>
-
-</nav>
+<footer>
+  Taxi Pro © 2026
+</footer>
 
 
 <script>
 
-/* ==========================================
-   DATOS
-========================================== */
+  /* =========================
+     DATOS
+  ========================= */
 
-let ingresos =
-JSON.parse(localStorage.getItem("taxipro_ingresos")) || [];
+  let ingresos =
+    JSON.parse(
+      localStorage.getItem("taxipro_ingresos")
+    ) || [];
 
-let gastos =
-JSON.parse(localStorage.getItem("taxipro_gastos")) || [];
+  let gastos =
+    JSON.parse(
+      localStorage.getItem("taxipro_gastos")
+    ) || [];
 
-let recurrentes =
-JSON.parse(localStorage.getItem("taxipro_recurrentes")) || [];
-
-let mantenimientos =
-JSON.parse(localStorage.getItem("taxipro_mantenimientos")) || [];
-
-
-/* ==========================================
-   UTILIDADES
-========================================== */
-
-function dinero(valor) {
-
-  return new Intl.NumberFormat("es-MX", {
-    style: "currency",
-    currency: "MXN"
-  }).format(Number(valor) || 0);
-
-}
+  let mantenimientos =
+    JSON.parse(
+      localStorage.getItem("taxipro_mantenimientos")
+    ) || [];
 
 
-function fechaHoy() {
+  /* =========================
+     NAVEGACIÓN
+  ========================= */
 
-  let fecha = new Date();
+  function abrirSeccion(nombre) {
 
-  let año = fecha.getFullYear();
+    let secciones =
+      document.querySelectorAll(".seccion");
 
-  let mes = String(fecha.getMonth() + 1)
-    .padStart(2, "0");
+    secciones.forEach(function(seccion) {
 
-  let dia = String(fecha.getDate())
-    .padStart(2, "0");
-
-  return `${año}-${mes}-${dia}`;
-
-}
-
-
-function escaparHTML(texto) {
-
-  return String(texto || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-
-}
-
-
-/* ==========================================
-   NAVEGACIÓN
-========================================== */
-
-function mostrarSeccion(nombre) {
-
-  document
-    .querySelectorAll(".seccion")
-    .forEach(seccion => {
       seccion.classList.remove("activa");
+
     });
 
-  let seccion =
-    document.getElementById(nombre);
+    let seleccion =
+      document.getElementById(nombre);
 
-  if (seccion) {
-    seccion.classList.add("activa");
-  }
+    if (seleccion) {
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-  actualizarTodo();
-
-}
-
-
-/* ==========================================
-   INGRESOS
-========================================== */
-
-function guardarIngreso() {
-
-  let fecha =
-    document.getElementById("ingresoFecha").value;
-
-  let pasajeros =
-    Number(document.getElementById("ingresoPasajeros").value);
-
-  let tarifa =
-    Number(document.getElementById("ingresoTarifa").value);
-
-  if (!fecha || pasajeros <= 0 || tarifa <= 0) {
-
-    alert("Completa correctamente los datos del ingreso.");
-
-    return;
-
-  }
-
-  ingresos.push({
-
-    id: Date.now(),
-
-    fecha: fecha,
-
-    pasajeros: pasajeros,
-
-    tarifa: tarifa,
-
-    total: pasajeros * tarifa
-
-  });
-
-  localStorage.setItem(
-    "taxipro_ingresos",
-    JSON.stringify(ingresos)
-  );
-
-  document.getElementById("ingresoPasajeros").value = "";
-
-  alert("Ingreso guardado correctamente.");
-
-  actualizarTodo();
-
-}
-
-
-function eliminarIngreso(id) {
-
-  if (!confirm("¿Deseas eliminar este ingreso?")) return;
-
-  ingresos =
-    ingresos.filter(item => item.id !== id);
-
-  localStorage.setItem(
-    "taxipro_ingresos",
-    JSON.stringify(ingresos)
-  );
-
-  actualizarTodo();
-
-}
-
-
-function mostrarIngresos() {
-
-  let contenedor =
-    document.getElementById("listaIngresos");
-
-  if (ingresos.length === 0) {
-
-    contenedor.innerHTML =
-      "<p>No hay ingresos registrados.</p>";
-
-    return;
-
-  }
-
-  let lista =
-    [...ingresos].reverse();
-
-  contenedor.innerHTML =
-    lista.map(item => `
-
-      <div class="registro">
-
-        <strong>📅 ${escaparHTML(item.fecha)}</strong>
-
-        <p>
-          Pasajeros:
-          ${item.pasajeros}
-        </p>
-
-        <p>
-          Tarifa:
-          ${dinero(item.tarifa)}
-        </p>
-
-        <p>
-          <strong>
-            Total:
-            ${dinero(item.total)}
-          </strong>
-        </p>
-
-        <div class="botones-registro">
-
-          <button
-          class="peligro"
-          onclick="eliminarIngreso(${item.id})">
-          Eliminar
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   GASTOS
-========================================== */
-
-function guardarGasto() {
-
-  let fecha =
-    document.getElementById("gastoFecha").value;
-
-  let tipo =
-    document.getElementById("gastoTipo").value;
-
-  let descripcion =
-    document.getElementById("gastoDescripcion").value;
-
-  let monto =
-    Number(document.getElementById("gastoMonto").value);
-
-  if (!fecha || monto <= 0) {
-
-    alert("Completa correctamente los datos del gasto.");
-
-    return;
-
-  }
-
-  gastos.push({
-
-    id: Date.now(),
-
-    fecha: fecha,
-
-    tipo: tipo,
-
-    descripcion: descripcion,
-
-    monto: monto
-
-  });
-
-  localStorage.setItem(
-    "taxipro_gastos",
-    JSON.stringify(gastos)
-  );
-
-  document.getElementById("gastoDescripcion").value = "";
-
-  document.getElementById("gastoMonto").value = "";
-
-  alert("Gasto guardado correctamente.");
-
-  actualizarTodo();
-
-}
-
-
-function eliminarGasto(id) {
-
-  if (!confirm("¿Deseas eliminar este gasto?")) return;
-
-  gastos =
-    gastos.filter(item => item.id !== id);
-
-  localStorage.setItem(
-    "taxipro_gastos",
-    JSON.stringify(gastos)
-  );
-
-  actualizarTodo();
-
-}
-
-
-function mostrarGastos() {
-
-  let contenedor =
-    document.getElementById("listaGastos");
-
-  if (gastos.length === 0) {
-
-    contenedor.innerHTML =
-      "<p>No hay gastos registrados.</p>";
-
-    return;
-
-  }
-
-  let lista =
-    [...gastos].reverse();
-
-  contenedor.innerHTML =
-    lista.map(item => `
-
-      <div class="registro">
-
-        <strong>
-          📅 ${escaparHTML(item.fecha)}
-        </strong>
-
-        <p>
-          Tipo:
-          ${escaparHTML(item.tipo)}
-        </p>
-
-        <p>
-          ${escaparHTML(item.descripcion)}
-        </p>
-
-        <p>
-          <strong>
-            ${dinero(item.monto)}
-          </strong>
-        </p>
-
-        <div class="botones-registro">
-
-          <button
-          class="peligro"
-          onclick="eliminarGasto(${item.id})">
-          Eliminar
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   GASTOS RECURRENTES
-========================================== */
-
-function guardarRecurrente() {
-
-  let concepto =
-    document.getElementById("recurrenteConcepto").value;
-
-  let monto =
-    Number(document.getElementById("recurrenteMonto").value);
-
-  let frecuencia =
-    document.getElementById("recurrenteFrecuencia").value;
-
-  let fecha =
-    document.getElementById("recurrenteFecha").value;
-
-  if (!concepto || monto <= 0 || !fecha) {
-
-    alert("Completa todos los datos.");
-
-    return;
-
-  }
-
-  recurrentes.push({
-
-    id: Date.now(),
-
-    concepto: concepto,
-
-    monto: monto,
-
-    frecuencia: frecuencia,
-
-    fecha: fecha
-
-  });
-
-  localStorage.setItem(
-    "taxipro_recurrentes",
-    JSON.stringify(recurrentes)
-  );
-
-  document.getElementById("recurrenteConcepto").value = "";
-
-  document.getElementById("recurrenteMonto").value = "";
-
-  alert("Gasto recurrente guardado.");
-
-  actualizarTodo();
-
-}
-
-
-function eliminarRecurrente(id) {
-
-  if (!confirm("¿Eliminar este gasto recurrente?")) return;
-
-  recurrentes =
-    recurrentes.filter(item => item.id !== id);
-
-  localStorage.setItem(
-    "taxipro_recurrentes",
-    JSON.stringify(recurrentes)
-  );
-
-  actualizarTodo();
-
-}
-
-
-function mostrarRecurrentes() {
-
-  let contenedor =
-    document.getElementById("listaRecurrentes");
-
-  if (recurrentes.length === 0) {
-
-    contenedor.innerHTML =
-      "<p>No hay gastos recurrentes registrados.</p>";
-
-    return;
-
-  }
-
-  contenedor.innerHTML =
-    [...recurrentes].reverse().map(item => `
-
-      <div class="registro">
-
-        <strong>
-          ${escaparHTML(item.concepto)}
-        </strong>
-
-        <p>
-          Monto:
-          ${dinero(item.monto)}
-        </p>
-
-        <p>
-          Frecuencia:
-          ${escaparHTML(item.frecuencia)}
-        </p>
-
-        <p>
-          Inicio:
-          ${escaparHTML(item.fecha)}
-        </p>
-
-        <button
-        class="button peligro"
-        onclick="eliminarRecurrente(${item.id})">
-        Eliminar
-        </button>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   MANTENIMIENTO
-========================================== */
-
-function guardarMantenimiento() {
-
-  let id =
-    document.getElementById("mantenimientoId").value;
-
-  let fecha =
-    document.getElementById("mantenimientoFecha").value;
-
-  let descripcion =
-    document.getElementById("mantenimientoDescripcion").value;
-
-  let km =
-    document.getElementById("mantenimientoKm").value;
-
-  let costo =
-    Number(document.getElementById("mantenimientoCosto").value);
-
-  if (!fecha || !descripcion || !km || costo < 0) {
-
-    alert("Completa correctamente los datos del mantenimiento.");
-
-    return;
-
-  }
-
-
-  if (id) {
-
-    let indice =
-      mantenimientos.findIndex(
-        item => item.id == id
-      );
-
-    if (indice !== -1) {
-
-      mantenimientos[indice] = {
-
-        id: Number(id),
-
-        fecha: fecha,
-
-        descripcion: descripcion,
-
-        km: km,
-
-        costo: costo
-
-      };
+      seleccion.classList.add("activa");
 
     }
 
-    alert("Mantenimiento actualizado correctamente.");
+    actualizarTodo();
 
-  } else {
+    window.scrollTo(0, 0);
 
-    mantenimientos.push({
+  }
+
+
+  /* =========================
+     INGRESOS
+  ========================= */
+
+  function guardarIngreso() {
+
+    let fecha =
+      document.getElementById(
+        "fechaIngreso"
+      ).value;
+
+    let pasajeros =
+      Number(
+        document.getElementById(
+          "pasajerosIngreso"
+        ).value
+      );
+
+    let tarifa =
+      Number(
+        document.getElementById(
+          "tarifaIngreso"
+        ).value
+      );
+
+    if (
+      fecha === "" ||
+      pasajeros <= 0 ||
+      tarifa <= 0
+    ) {
+
+      alert(
+        "Completa correctamente los datos."
+      );
+
+      return;
+
+    }
+
+    let nuevoIngreso = {
 
       id: Date.now(),
 
       fecha: fecha,
 
-      descripcion: descripcion,
+      pasajeros: pasajeros,
 
-      km: km,
+      tarifa: tarifa,
 
-      costo: costo
+      total:
+        pasajeros * tarifa
 
-    });
+    };
 
-    alert("Mantenimiento guardado correctamente.");
+    ingresos.push(
+      nuevoIngreso
+    );
+
+    localStorage.setItem(
+      "taxipro_ingresos",
+      JSON.stringify(ingresos)
+    );
+
+    document.getElementById(
+      "pasajerosIngreso"
+    ).value = "";
+
+    mostrarIngresos();
+
+    actualizarResumen();
+
+    alert(
+      "Ingreso guardado correctamente."
+    );
 
   }
 
 
-  localStorage.setItem(
-    "taxipro_mantenimientos",
-    JSON.stringify(mantenimientos)
-  );
+  function eliminarIngreso(id) {
 
+    if (
+      !confirm(
+        "¿Eliminar este ingreso?"
+      )
+    ) {
 
-  limpiarFormularioMantenimiento();
+      return;
 
-  actualizarTodo();
+    }
 
-}
+    ingresos =
+      ingresos.filter(
+        function(item) {
 
+          return item.id !== id;
 
-function editarMantenimiento(id) {
+        }
+      );
 
-  let item =
-    mantenimientos.find(
-      registro => registro.id === id
+    localStorage.setItem(
+      "taxipro_ingresos",
+      JSON.stringify(ingresos)
     );
-
-  if (!item) return;
-
-
-  document.getElementById("mantenimientoId").value =
-    item.id;
-
-  document.getElementById("mantenimientoFecha").value =
-    item.fecha;
-
-  document.getElementById("mantenimientoDescripcion").value =
-    item.descripcion;
-
-  document.getElementById("mantenimientoKm").value =
-    item.km;
-
-  document.getElementById("mantenimientoCosto").value =
-    item.costo;
-
-
-  document.getElementById("btnGuardarMantenimiento")
-    .textContent =
-    "Actualizar mantenimiento";
-
-  document.getElementById("btnCancelarEdicion")
-    .classList.remove("oculto");
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
-
-
-function eliminarMantenimiento(id) {
-
-  if (
-    !confirm(
-      "¿Deseas eliminar este registro de mantenimiento?"
-    )
-  ) return;
-
-
-  mantenimientos =
-    mantenimientos.filter(
-      item => item.id !== id
-    );
-
-
-  localStorage.setItem(
-    "taxipro_mantenimientos",
-    JSON.stringify(mantenimientos)
-  );
-
-
-  actualizarTodo();
-
-}
-
-
-function cancelarEdicionMantenimiento() {
-
-  limpiarFormularioMantenimiento();
-
-}
-
-
-function limpiarFormularioMantenimiento() {
-
-  document.getElementById("mantenimientoId").value = "";
-
-  document.getElementById("mantenimientoFecha").value = "";
-
-  document.getElementById("mantenimientoDescripcion").value = "";
-
-  document.getElementById("mantenimientoKm").value = "";
-
-  document.getElementById("mantenimientoCosto").value = "";
-
-
-  document.getElementById("btnGuardarMantenimiento")
-    .textContent =
-    "Guardar mantenimiento";
-
-  document.getElementById("btnCancelarEdicion")
-    .classList.add("oculto");
-
-}
-
-
-function mostrarMantenimiento() {
-
-  let contenedor =
-    document.getElementById("listaMantenimiento");
-
-  if (mantenimientos.length === 0) {
-
-    contenedor.innerHTML =
-      "<p>No hay mantenimientos registrados.</p>";
-
-    return;
-
-  }
-
-
-  contenedor.innerHTML =
-    [...mantenimientos].reverse().map(item => `
-
-      <div class="registro">
-
-        <strong>
-          🔧 ${escaparHTML(item.descripcion)}
-        </strong>
-
-        <p>
-          📅 Fecha:
-          ${escaparHTML(item.fecha)}
-        </p>
-
-        <p>
-          🚕 Kilometraje:
-          ${escaparHTML(item.km)} km
-        </p>
-
-        <p>
-          💰 Costo:
-          <strong>
-            ${dinero(item.costo)}
-          </strong>
-        </p>
-
-        <div class="botones-registro">
-
-          <button
-          class="editar"
-          onclick="editarMantenimiento(${item.id})">
-          ✏️ Editar
-          </button>
-
-          <button
-          class="peligro"
-          onclick="eliminarMantenimiento(${item.id})">
-          🗑️ Eliminar
-          </button>
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-/* ==========================================
-   RESUMEN
-========================================== */
-
-function actualizarResumen() {
-
-  let totalIngresos =
-    ingresos.reduce(
-      (suma, item) =>
-      suma + Number(item.total || 0),
-      0
-    );
-
-
-  let totalGastos =
-    gastos.reduce(
-      (suma, item) =>
-      suma + Number(item.monto || 0),
-      0
-    );
-
-
-  let totalPasajeros =
-    ingresos.reduce(
-      (suma, item) =>
-      suma + Number(item.pasajeros || 0),
-      0
-    );
-
-
-  let totalMantenimiento =
-    mantenimientos.reduce(
-      (suma, item) =>
-      suma + Number(item.costo || 0),
-      0
-    );
-
-
-  let utilidad =
-    totalIngresos - totalGastos;
-
-
-  document.getElementById("totalIngresos")
-    .textContent =
-    dinero(totalIngresos);
-
-  document.getElementById("totalGastos")
-    .textContent =
-    dinero(totalGastos);
-
-  document.getElementById("utilidad")
-    .textContent =
-    dinero(utilidad);
-
-  document.getElementById("totalPasajeros")
-    .textContent =
-    totalPasajeros;
-
-  document.getElementById("totalMantenimiento")
-    .textContent =
-    dinero(totalMantenimiento);
-
-
-  document.getElementById("inicioIngresos")
-    .textContent =
-    dinero(totalIngresos);
-
-  document.getElementById("inicioGastos")
-    .textContent =
-    dinero(totalGastos);
-
-  document.getElementById("inicioUtilidad")
-    .textContent =
-    dinero(utilidad);
-
-  document.getElementById("inicioPasajeros")
-    .textContent =
-    totalPasajeros;
-
-
-  document.getElementById("utilidad")
-    .className =
-    utilidad >= 0
-    ? "positivo"
-    : "negativo";
-
-}
-
-
-/* ==========================================
-   ACTUALIZAR TODO
-========================================== */
-
-function actualizarTodo() {
-
-  mostrarIngresos();
-
-  mostrarGastos();
-
-  mostrarRecurrentes();
-
-  mostrarMantenimiento();
-
-  actualizarResumen();
-
-}
-
-
-/* ==========================================
-   INICIO
-========================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  function() {
-
-    document.getElementById("ingresoFecha")
-      .value =
-      fechaHoy();
-
-    document.getElementById("gastoFecha")
-      .value =
-      fechaHoy();
-
-    document.getElementById("recurrenteFecha")
-      .value =
-      fechaHoy();
-
-    document.getElementById("mantenimientoFecha")
-      .value =
-      fechaHoy();
-
 
     actualizarTodo();
 
   }
-);
+
+
+  function mostrarIngresos() {
+
+    let contenedor =
+      document.getElementById(
+        "listaIngresos"
+      );
+
+    if (
+      ingresos.length === 0
+    ) {
+
+      contenedor.innerHTML =
+        "No hay ingresos registrados.";
+
+      return;
+
+    }
+
+    contenedor.innerHTML = "";
+
+    ingresos
+      .slice()
+      .reverse()
+      .forEach(function(item) {
+
+        let registro =
+          document.createElement(
+            "div"
+          );
+
+        registro.className =
+          "registro";
+
+        registro.innerHTML =
+
+          "<strong>Fecha:</strong> "
+          + item.fecha
+          + "<br><br>"
+
+          + "<strong>Pasajeros:</strong> "
+          + item.pasajeros
+          + "<br>"
+
+          + "<strong>Tarifa:</strong> $"
+          + item.tarifa.toFixed(2)
+          + "<br>"
+
+          + "<strong>Total:</strong> $"
+          + item.total.toFixed(2);
+
+        let boton =
+          document.createElement(
+            "button"
+          );
+
+        boton.className =
+          "boton-eliminar";
+
+        boton.textContent =
+          "Eliminar";
+
+        boton.onclick =
+          function() {
+
+            eliminarIngreso(
+              item.id
+            );
+
+          };
+
+        registro.appendChild(
+          boton
+        );
+
+        contenedor.appendChild(
+          registro
+        );
+
+      });
+
+  }
+
+
+  /* =========================
+     GASTOS
+  ========================= */
+
+  function guardarGasto() {
+
+    let fecha =
+      document.getElementById(
+        "fechaGasto"
+      ).value;
+
+    let tipo =
+      document.getElementById(
+        "tipoGasto"
+      ).value;
+
+    let descripcion =
+      document.getElementById(
+        "descripcionGasto"
+      ).value;
+
+    let monto =
+      Number(
+        document.getElementById(
+          "montoGasto"
+        ).value
+      );
+
+    if (
+      fecha === "" ||
+      monto <= 0
+    ) {
+
+      alert(
+        "Completa correctamente los datos."
+      );
+
+      return;
+
+    }
+
+    gastos.push({
+
+      id: Date.now(),
+
+      fecha: fecha,
+
+      tipo: tipo,
+
+      descripcion:
+        descripcion,
+
+      monto: monto
+
+    });
+
+    localStorage.setItem(
+      "taxipro_gastos",
+      JSON.stringify(gastos)
+    );
+
+    document.getElementById(
+      "descripcionGasto"
+    ).value = "";
+
+    document.getElementById(
+      "montoGasto"
+    ).value = "";
+
+    actualizarTodo();
+
+    alert(
+      "Gasto guardado correctamente."
+    );
+
+  }
+
+
+  function eliminarGasto(id) {
+
+    if (
+      !confirm(
+        "¿Eliminar este gasto?"
+      )
+    ) {
+
+      return;
+
+    }
+
+    gastos =
+      gastos.filter(
+        function(item) {
+
+          return item.id !== id;
+
+        }
+      );
+
+    localStorage.setItem(
+      "taxipro_gastos",
+      JSON.stringify(gastos)
+    );
+
+    actualizarTodo();
+
+  }
+
+
+  function mostrarGastos() {
+
+    let contenedor =
+      document.getElementById(
+        "listaGastos"
+      );
+
+    if (
+      gastos.length === 0
+    ) {
+
+      contenedor.innerHTML =
+        "No hay gastos registrados.";
+
+      return;
+
+    }
+
+    contenedor.innerHTML = "";
+
+    gastos
+      .slice()
+      .reverse()
+      .forEach(function(item) {
+
+        let registro =
+          document.createElement(
+            "div"
+          );
+
+        registro.className =
+          "registro";
+
+        registro.innerHTML =
+
+          "<strong>Fecha:</strong> "
+          + item.fecha
+          + "<br><br>"
+
+          + "<strong>Tipo:</strong> "
+          + item.tipo
+          + "<br>"
+
+          + "<strong>Descripción:</strong> "
+          + item.descripcion
+          + "<br>"
+
+          + "<strong>Monto:</strong> $"
+          + item.monto.toFixed(2);
+
+        let boton =
+          document.createElement(
+            "button"
+          );
+
+        boton.className =
+          "boton-eliminar";
+
+        boton.textContent =
+          "Eliminar";
+
+        boton.onclick =
+          function() {
+
+            eliminarGasto(
+              item.id
+            );
+
+          };
+
+        registro.appendChild(
+          boton
+        );
+
+        contenedor.appendChild(
+          registro
+        );
+
+      });
+
+  }
+
+
+  /* =========================
+     MANTENIMIENTO
+  ========================= */
+
+  function guardarMantenimiento() {
+
+    let id =
+      document.getElementById(
+        "idMantenimiento"
+      ).value;
+
+    let fecha =
+      document.getElementById(
+        "fechaMantenimiento"
+      ).value;
+
+    let descripcion =
+      document.getElementById(
+        "descripcionMantenimiento"
+      ).value;
+
+    let km =
+      document.getElementById(
+        "kmMantenimiento"
+      ).value;
+
+    let costo =
+      Number(
+        document.getElementById(
+          "costoMantenimiento"
+        ).value
+      );
+
+    if (
+      fecha === "" ||
+      descripcion === "" ||
+      km === "" ||
+      costo < 0
+    ) {
+
+      alert(
+        "Completa correctamente los datos."
+      );
+
+      return;
+
+    }
+
+
+    if (id !== "") {
+
+      let indice =
+        mantenimientos.findIndex(
+          function(item) {
+
+            return item.id ==
+              Number(id);
+
+          }
+        );
+
+      if (indice !== -1) {
+
+        mantenimientos[indice] = {
+
+          id:
+            Number(id),
+
+          fecha:
+            fecha,
+
+          descripcion:
+            descripcion,
+
+          km:
+            km,
+
+          costo:
+            costo
+
+        };
+
+      }
+
+      alert(
+        "Mantenimiento actualizado."
+      );
+
+    } else {
+
+      mantenimientos.push({
+
+        id:
+          Date.now(),
+
+        fecha:
+          fecha,
+
+        descripcion:
+          descripcion,
+
+        km:
+          km,
+
+        costo:
+          costo
+
+      });
+
+      alert(
+        "Mantenimiento guardado."
+      );
+
+    }
+
+    localStorage.setItem(
+      "taxipro_mantenimientos",
+      JSON.stringify(
+        mantenimientos
+      )
+    );
+
+    limpiarMantenimiento();
+
+    actualizarTodo();
+
+  }
+
+
+  function editarMantenimiento(id) {
+
+    let item =
+      mantenimientos.find(
+        function(registro) {
+
+          return registro.id === id;
+
+        }
+      );
+
+    if (!item) {
+
+      return;
+
+    }
+
+    document.getElementById(
+      "idMantenimiento"
+    ).value =
+      item.id;
+
+    document.getElementById(
+      "fechaMantenimiento"
+    ).value =
+      item.fecha;
+
+    document.getElementById(
+      "descripcionMantenimiento"
+    ).value =
+      item.descripcion;
+
+    document.getElementById(
+      "kmMantenimiento"
+    ).value =
+      item.km;
+
+    document.getElementById(
+      "costoMantenimiento"
+    ).value =
+      item.costo;
+
+    document.getElementById(
+      "cancelarEdicion"
+    ).style.display =
+      "block";
+
+    abrirSeccion(
+      "mantenimiento"
+    );
+
+  }
+
+
+  function eliminarMantenimiento(id) {
+
+    if (
+      !confirm(
+        "¿Eliminar este mantenimiento?"
+      )
+    ) {
+
+      return;
+
+    }
+
+    mantenimientos =
+      mantenimientos.filter(
+        function(item) {
+
+          return item.id !== id;
+
+        }
+      );
+
+    localStorage.setItem(
+      "taxipro_mantenimientos",
+      JSON.stringify(
+        mantenimientos
+      )
+    );
+
+    actualizarTodo();
+
+  }
+
+
+  function cancelarEdicion() {
+
+    limpiarMantenimiento();
+
+  }
+
+
+  function limpiarMantenimiento() {
+
+    document.getElementById(
+      "idMantenimiento"
+    ).value = "";
+
+    document.getElementById(
+      "fechaMantenimiento"
+    ).value = "";
+
+    document.getElementById(
+      "descripcionMantenimiento"
+    ).value = "";
+
+    document.getElementById(
+      "kmMantenimiento"
+    ).value = "";
+
+    document.getElementById(
+      "costoMantenimiento"
+    ).value = "";
+
+    document.getElementById(
+      "cancelarEdicion"
+    ).style.display =
+      "none";
+
+  }
+
+
+  function mostrarMantenimiento() {
+
+    let contenedor =
+      document.getElementById(
+        "listaMantenimiento"
+      );
+
+    if (
+      mantenimientos.length === 0
+    ) {
+
+      contenedor.innerHTML =
+        "No hay mantenimientos registrados.";
+
+      return;
+
+    }
+
+    contenedor.innerHTML = "";
+
+    mantenimientos
+      .slice()
+      .reverse()
+      .forEach(function(item) {
+
+        let registro =
+          document.createElement(
+            "div"
+          );
+
+        registro.className =
+          "registro";
+
+        registro.innerHTML =
+
+          "<strong>"
+          + item.descripcion
+          + "</strong>"
+          + "<br><br>"
+
+          + "<strong>Fecha:</strong> "
+          + item.fecha
+          + "<br>"
+
+          + "<strong>Kilometraje:</strong> "
+          + item.km
+          + " km<br>"
+
+          + "<strong>Costo:</strong> $"
+          + Number(item.costo)
+            .toFixed(2);
+
+        let editar =
+          document.createElement(
+            "button"
+          );
+
+        editar.className =
+          "boton-editar";
+
+        editar.textContent =
+          "Editar";
+
+        editar.onclick =
+          function() {
+
+            editarMantenimiento(
+              item.id
+            );
+
+          };
+
+
+        let eliminar =
+          document.createElement(
+            "button"
+          );
+
+        eliminar.className =
+          "boton-eliminar";
+
+        eliminar.textContent =
+          "Eliminar";
+
+        eliminar.onclick =
+          function() {
+
+            eliminarMantenimiento(
+              item.id
+            );
+
+          };
+
+        registro.appendChild(
+          editar
+        );
+
+        registro.appendChild(
+          eliminar
+        );
+
+        contenedor.appendChild(
+          registro
+        );
+
+      });
+
+  }
+
+
+  /* =========================
+     RESUMEN
+  ========================= */
+
+  function actualizarResumen() {
+
+    let totalIngresos =
+      ingresos.reduce(
+        function(total, item) {
+
+          return total +
+            Number(item.total || 0);
+
+        },
+        0
+      );
+
+    let totalGastos =
+      gastos.reduce(
+        function(total, item) {
+
+          return total +
+            Number(item.monto || 0);
+
+        },
+        0
+      );
+
+    let pasajeros =
+      ingresos.reduce(
+        function(total, item) {
+
+          return total +
+            Number(item.pasajeros || 0);
+
+        },
+        0
+      );
+
+    let utilidad =
+      totalIngresos -
+      totalGastos;
+
+
+    document.getElementById(
+      "totalIngresos"
+    ).textContent =
+      "$" +
+      totalIngresos.toFixed(2);
+
+    document.getElementById(
+      "totalGastos"
+    ).textContent =
+      "$" +
+      totalGastos.toFixed(2);
+
+    document.getElementById(
+      "utilidad"
+    ).textContent =
+      "$" +
+      utilidad.toFixed(2);
+
+    document.getElementById(
+      "totalPasajeros"
+    ).textContent =
+      pasajeros;
+
+  }
+
+
+  /* =========================
+     ACTUALIZAR
+  ========================= */
+
+  function actualizarTodo() {
+
+    mostrarIngresos();
+
+    mostrarGastos();
+
+    mostrarMantenimiento();
+
+    actualizarResumen();
+
+  }
+
+
+  /* =========================
+     INICIO
+  ========================= */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+      let hoy =
+        new Date()
+          .toISOString()
+          .split("T")[0];
+
+      document.getElementById(
+        "fechaIngreso"
+      );
+
+      document.getElementById(
+        "fechaGasto"
+      ).value =
+        hoy;
+
+      document.getElementById(
+        "fechaMantenimiento"
+      ).value =
+        hoy;
+
+      actualizarTodo();
+
+    }
+  );
 
 </script>
 
